@@ -1525,6 +1525,37 @@ border-left: 1px solid #fcf5fa;
     border-radius: 8px; /* زوايا دائرية */
       border: 2px solid #071bf0; /* لون أزرق فاتح */ 
 }
+/* الكود الحالي لديك يعمل بشكل ممتاز للجوالات، سنضيف التعديلات فقط للكمبيوتر */
+
+@media (min-width: 1025px) {
+    .manager-card { /* اسم الحاوية المستخدمة لعرض البطاقات */
+        max-width: 70%; /* تكبير العرض ليتناسب مع الشاشات الكبيرة */
+        margin: 20px auto; /* إضافة مسافة من الأعلى وتوسيط البطاقات */
+    }
+
+    .manager-card .header img {
+        width: 150px; /* تكبير صورة المدير */
+        height: 150px;
+    }
+
+    .manager-card .header h3 {
+        font-size: 1.8em; /* تكبير النص */
+    }
+
+    .manager-card .body {
+        padding: 30px; /* زيادة المسافات الداخلية */
+    }
+
+    .manager-card .body .manager-years,
+    .manager-card .body .manager-wins,
+    .manager-card .body .manager-stats {
+        font-size: 1.5em; /* تكبير النصوص داخل البطاقات */
+    }
+}
+
+
+
+
 
 /* إطار للخريطة */
 .map-wrapper {
@@ -2045,4 +2076,90 @@ body {
     background-size: cover; /* تغطية الخلفية بشكل مناسب */
     margin: 0;
     padding: 0;
+}
+
+
+/*======================================================================
+/*التنسقات الخاصه بشكل افقي للجوال والكمبيوتر تثبيت الطبق2 ة 
+/*======================================================================*/
+/* تنسيق الجداول */
+table {
+    width: 100%; /* تأكد من أن الجدول يأخذ العرض الكامل */
+    border-collapse: collapse;
+    margin: 20px auto;
+    font-size: 1rem; /* حجم الخط */
+}
+
+th, td {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ffffff; /* خطوط بيضاء بين الصفوف */
+}
+
+/* تأثير التمرير على الجدول */
+tr:hover td {
+    background-color: #003366;
+    color: #ffffff;
+}
+
+/* استجابة الجداول */
+@media (max-width: 1024px) {
+    table {
+        font-size: 0.9rem;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 767px) {
+    table {
+        font-size: 0.8rem;
+    }
+
+    th, td {
+        padding: 6px;
+    }
+}
+
+/* ترتيب الأزرار العلوية */
+.buttons {
+    display: flex;
+    flex-wrap: wrap; /* جعل الأزرار تنتقل لصف جديد عند عدم توفر المساحة */
+    gap: 10px; /* المسافة بين الأزرار */
+    justify-content: center; /* توسيط الأزرار */
+    margin: 20px 0;
+}
+
+.icon-btn {
+    background-color: #005fbf;
+    color: #ffffff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* تأثير عند تمرير المؤشر */
+.icon-btn:hover {
+    background-color: #8623ad;
+    transform: scale(1.05);
+}
+
+/* تنسيق استجابة الأزرار */
+@media (max-width: 767px) {
+    .icon-btn {
+        width: 100%; /* جعل الأزرار تأخذ العرض بالكامل */
+        text-align: center;
+    }
+}
+/* تحسينات العرض والاستجابة */
+.container, .map-card {
+    width: 90%; /* العرض النسبي */
+    max-width: 1200px; /* الحد الأقصى للعرض */
+    margin: 0 auto; /* محاذاة في المنتصف */
 }
