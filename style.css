@@ -1974,6 +1974,12 @@ border-left: 1px solid #fcf5fa;
 html, body {
     overflow-x: hidden; /* منع التمرير الأفقي */
 }
+.scrollable-content {
+    overflow-y: auto; /* السماح بالتمرير العمودي */
+    max-height: 80vh; /* تحديد أقصى ارتفاع للحاوية */
+    padding: 10px; /* إضافة مسافة داخلية */
+    box-sizing: border-box; /* لضمان الحشوات ضمن العرض */
+}
 
 /* التأكد من أن جميع العناصر داخل الصفحة تتناسب مع العرض */
 .container, .map-wrapper, .map-card, #main-buttons, .hidden, #competition-results, #last-games-table {
@@ -1981,6 +1987,7 @@ html, body {
     box-sizing: border-box; /* التأكد من حساب الحشوة ضمن العرض */
     margin: 0 auto; /* محاذاة العناصر أفقياً */
 }
+
 
 /* إصلاح أي جداول قد تكون عريضة */
 table {
