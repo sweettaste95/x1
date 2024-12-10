@@ -72,12 +72,8 @@ if ('serviceWorker' in navigator) {
   <div id="welcome-message" class="welcome-message">
     <!-- سيتم عرض رسالة الترحيب هنا -->
 </div>
-    
-      <div id="user-count" style="text-align: center; font-size: 1.2em; margin-bottom: 15px; margin-top: 10px;">
-   عدد مشجعي الهلال المسجلين: ...
-</div>
 
-   
+    
       
       
     <!-- الأزرار الرئيسية -->
@@ -97,36 +93,37 @@ if ('serviceWorker' in navigator) {
     <div id="managers-container"></div>
 </div>
 
-      
+    <main>
+    <section id="hilal-map-section" class="hidden">
+        <h2>منصات الهلال حول العالم</h2>
+        <!-- إطار للخريطة -->
+        <div class="map-wrapper">
+            <div id="map" style="height: 500px; width: 100%;"></div>
+        </div>
 
- <main>
-        <section id="hilal-map-section" class="hidden">
-            <h2>منصات الهلال حول العالم</h2>
-            <!-- إطار للخريطة -->
-            <div class="map-wrapper">
-                <div id="map" style="height: 500px; width: 100%;"></div>
-            </div>
+        <!-- إضافة فاصل لتباعد المربع عن الخريطة -->
+        <div style="height: 30px;"></div>
 
-            <!-- بطاقة البحث -->
-            <div class="map-card">
-                <p class="description-text">ابحث عن البطولة باستخدام النص أو اختر من القائمة:</p>
-              <div class="map-controls">
-    <input type="text" id="search-box" placeholder="أدخل اسم البطولة أو الملعب" />
-    <select id="search-dropdown" onchange="highlightSearchButton()">
-        <option value="">اختر من القائمة</option>
-        <option value="كأس ولي العهد - ملعب الملك فهد">كأس ولي العهد - ملعب الملك فهد</option>
-        <option value="كأس آسيا - ملعب الجامعة">كأس آسيا - ملعب الجامعة</option>
-    </select>
-    <button id="search-btn" onclick="searchMap()" class="search-btn">بحث</button>
-</div>
-                <div class="map-buttons">
-                    <button class="reset-btn" onclick="resetMap()">إعادة ضبط الخريطة</button>
-<button onclick="showCityStats()" class="stats-btn">عرض إحصائيات البطولات</button>
-                </div>
+        <!-- بطاقة البحث -->
+        <div class="map-card">
+            <p class="description-text">ابحث عن البطولة باستخدام النص أو اختر من القائمة:</p>
+            <div class="map-controls">
+                <input type="text" id="search-box" placeholder="أدخل اسم البطولة أو الملعب" />
+                <select id="search-dropdown" onchange="highlightSearchButton()">
+                    <option value="">اختر من القائمة</option>
+                    <option value="كأس ولي العهد - ملعب الملك فهد">كأس ولي العهد - ملعب الملك فهد</option>
+                    <option value="كأس آسيا - ملعب الجامعة">كأس آسيا - ملعب الجامعة</option>
+                </select>
+                <button id="search-btn" onclick="searchMap()" class="search-btn">بحث</button>
             </div>
-        </section>
-      
-   
+            <div class="map-buttons">
+                <button class="reset-btn" onclick="resetMap()">إعادة ضبط الخريطة</button>
+                <button onclick="showCityStats()" class="stats-btn">عرض إحصائيات البطولات</button>
+            </div>
+        </div>
+    </section>
+</main>
+
    
 
    
