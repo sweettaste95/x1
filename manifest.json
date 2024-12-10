@@ -1,0 +1,23 @@
+    {
+  "name": "توأريخ و أنجازات الهلال",
+  "short_name": "بطولات الهلال",
+  "description": "تطبيق يحتوي على إنجازات وتواريخ بطولات نادي الهلال.",
+  "start_url": "/index.html",
+  "author": "حالي الذوق",
+  "display": "standalone",
+  "background_color": "#001f3f",
+  "theme_color": "#005fbf",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+

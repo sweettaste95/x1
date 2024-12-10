@@ -1,0 +1,2014 @@
+/*css*/
+
+/* تنسيق الصفحة الرئيسية */
+body {
+    display: flex; /* استخدام النمط المرن لتوسيط المحتوى */
+    justify-content: center; /* محاذاة المحتوى أفقياً في المنتصف */
+    align-items: center; /* محاذاة المحتوى عمودياً في المنتصف */
+    min-height: 100vh; /* ضبط ارتفاع الصفحة ليكون بالكامل */
+    background: linear-gradient(135deg, #35004e, #001f5c); /* تعيين تدرج لوني للخلفية */
+    color: #fff; /* لون النص أبيض */
+    text-align: center; /* محاذاة النص في المنتصف */
+  
+    margin: 0; /* إزالة المسافات الافتراضية */
+    padding: 0;
+    background: #000; /* لون خلفية عام */
+    overflow-x: hidden; /* منع التحرك الأفقي */
+}
+
+  
+  
+  
+}
+/* حاوية المحتوى الرئيسي */
+.container {
+    max-width: 500px; /* أقصى عرض للحاوية */
+    padding: 30px; /* مسافة داخلية حول المحتوى */
+    background: #001f3f; /* لون خلفية الحاوية */
+    border-radius: 15px; /* زوايا الحاوية دائرية */
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3); /* إضافة ظل خفيف حول الحاوية */
+  
+  margin: 0 auto; /* توسيط المحتوى أفقياً */
+    padding: 20px;
+  
+
+  
+}
+/* تنسيق حاوية العنوان والشعار */
+.header {
+    display: flex; /* استخدام النمط المرن لتنسيق العنوان والشعار */
+    align-items: center; /* محاذاة العناصر عمودياً في المنتصف */
+    justify-content: center; /* محاذاة العناصر أفقياً في المنتصف */
+    margin-bottom: 20px; /* مسافة سفلية تحت الحاوية */
+    padding: 15px 20px; /* مسافة داخلية حول المحتوى */
+    background: linear-gradient(135deg, #000428, #004e92); /* تدرج لوني للخلفية */
+    border-radius: 15px; /* زوايا الحاوية دائرية */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* ظل خفيف حول الحاوية */
+    gap: 10px; /* مسافة بين العنوان والشعار */
+    border-top: 1px solid #fcf5fa;
+    border-bottom: 1px solid #fcf5fa;
+    border-right: 1px solid #fcf5fa;
+    border-left: 1px solid #fcf5fa;
+}
+
+/* تنسيق العنوان الرئيسي */
+#main-title {
+    font-size: 1.5rem; /* حجم الخط للعنوان */
+    color: #ffffff; /* لون النص أبيض */
+    font-weight: bold; /* جعل الخط عريض */
+    text-align: center; /* محاذاة النص في المنتصف */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), /* ظل خارجي للنص */
+                 0 0 15px rgba(255, 255, 255, 0.3), 
+                 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+#logo-container {
+    width: 60px; /* عرض الحاوية */
+    height: 40px; /* ارتفاع الحاوية */
+    display: flex; /* استخدام النمط المرن لتنسيق الشعار */
+    align-items: center; /* محاذاة الشعار عمودياً في المنتصف */
+}
+
+#logo {
+    width: 100%; /* جعل الشعار يأخذ العرض بالكامل */
+    height: auto; /* الحفاظ على نسبة العرض إلى الارتفاع */
+}
+
+/* ===================================================================== */
+/* إضافات التنسيقات للشاشات المختلفة */
+/* ===================================================================== */
+
+/* شاشات الجوالات (أجهزة صغيرة جداً) */
+@media (max-width: 767px) {
+    body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden; /* منع التحرك الجانبي */
+    }
+    .container {
+        width: 100%; /* جعل الحاوية تأخذ العرض بالكامل */
+        margin: 0 auto; /* توسيط الحاوية */
+        padding: 10px; /* تقليل المسافات الداخلية */
+    }
+    #main-title {
+        font-size: 1.2rem; /* تقليل حجم النص */
+        margin-bottom: 10px;
+    }
+    .header {
+        flex-direction: column; /* صف عمودي للمحتوى */
+        gap: 5px;
+    }
+    #logo-container {
+        width: 45px;
+        height: 30px;
+    }
+    .icon-btn {
+        width: 100%; /* جعل الأزرار تمتد بكامل العرض */
+        font-size: 0.9rem; /* تقليل حجم النص */
+    }
+}
+
+/* شاشات الأجهزة اللوحية (الأجهزة المتوسطة) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .container {
+        width: 90%; /* جعل الحاوية أعرض */
+        padding: 20px;
+    }
+    #main-title {
+        font-size: 1.4rem;
+    }
+    .header {
+        gap: 10px; /* توسيع المسافات بين العناصر */
+    }
+    #logo-container {
+        width: 60px;
+        height: 40px;
+    }
+    .icon-btn {
+        font-size: 1rem; /* تكبير النص قليلاً */
+        width: auto; /* إعادة الأزرار للحجم التلقائي */
+    }
+}
+
+/* شاشات الأجهزة الكبيرة (أجهزة الكمبيوتر) */
+@media (min-width: 1025px) {
+    .container {
+        max-width: 600px; /* عرض ثابت للحاوية */
+        padding: 40px;
+    }
+    #main-title {
+        font-size: 1.8rem;
+    }
+    .header {
+        gap: 15px;
+    }
+    #logo-container {
+        width: 70px;
+        height: 50px;
+    }
+    .icon-btn {
+        width: auto; /* الأزرار تكون جنب بعضها */
+        display: inline-block;
+    }
+}
+
+/*============================================================================
+/*تنسيقات الخاصة بالازرار الرئيسية  
+/*===========================================================================*/
+
+/* تعديل الأزرار الرئيسية لتصبح ثلاثية الأبعاد */
+.icon-btn {
+    background-color: #005fbf;
+    color: #ffffff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    width: auto; /* العرض الافتراضي */
+}
+
+
+.icon-btn:hover {
+    transform: translateY(-4px); /* حركة للأعلى عند التمرير */
+    background-color: #8623ad;
+    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.3); /* تكبير الظل عند التمرير */
+}
+
+.icon-btn:active {
+    transform: translateY(2px); /* حركة للأسفل عند الضغط */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* تصغير الظل عند الضغط */
+}
+
+/* المسافات بين الأزرار الرئيسية */
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+/*============================================================================
+/*زر العودة للقائمة الرئيسية  
+/*===========================================================================*/
+
+
+#main-menu-btn {
+    margin-top: 20px; /* مسافة علوية */
+    padding: 10px 20px; /* مساحة داخلية */
+    font-size: 1rem; /* حجم النص */
+    font-weight: bold; /* النص بخط عريض */
+    color: #ffffff; /* لون النص */
+    background: #8e26a3; /* لون الخلفية */
+    border: none; /* إزالة الحدود */
+    border-radius: 50px; /* زوايا مستديرة */
+    cursor: pointer; /* تغيير المؤشر عند التمرير */
+    transition: transform 0.2s, background 0.3s; /* تأثير التحويل وتغيير الخلفية */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* إضافة ظل */
+}
+
+/* تأثير عند تمرير الماوس فوق الزر */
+#main-menu-btn:hover {
+    background: linear-gradient(145deg, #005fbf, #0077ff); /* تدرج لوني عند التمرير */
+    transform: scale(1.22); /* تكبير الزر قليلاً */
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4); /* تكبير الظل */
+}
+
+/* تأثير عند الضغط على الزر */
+#main-menu-btn:active {
+    transform: scale(0.98); /* تصغير الزر قليلاً عند الضغط */
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2); /* تصغير الظل */
+}
+
+
+
+/*======================================================================
+/* كل مايتعلق بشاشة الدخول التسجيل  
+/*======================================================================*/
+
+/* إخفاء العناصر الأخرى عند وجود شاشة التسجيل */
+.hidden {
+    display: none;
+}
+
+#register-screen h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+#register-screen p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #b3c7e6;
+}
+
+#register-screen input[type="text"],
+#register-screen input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+#register-screen button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fff;
+    background: #005fbf;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* ===================================================================== */
+/* إضافات التنسيقات للشاشات المختلفة */
+/* ===================================================================== */
+
+/* شاشات الجوالات (أجهزة صغيرة جداً) */
+
+
+    .buttons {
+        gap: 8px; /* تقليل المسافة بين الأزرار */
+    }
+
+    .back-btn, .return-to-main-btn {
+        padding: 8px 15px; /* تقليل الحشوة */
+        font-size: 0.9rem; /* تصغير النص */
+    }
+
+    #register-screen h2 {
+        font-size: 1.5rem; /* تصغير العنوان */
+    }
+
+    #register-screen p {
+        font-size: 0.9rem; /* تصغير النص */
+    }
+
+   #register-screen input[type="text"],
+    #register-screen input[type="email"] {
+       width: 70%; /* جعل الحقول تمتد على كامل العرض */
+        padding: 10px; /* تقليل الحشوة داخل الحقول */
+        font-size: 0.9rem; /* تصغير النص */
+    }
+
+    #register-screen button {
+        padding: 10px; /* تقليل الحشوة */
+        font-size: 1rem; /* تصغير النص */
+    }
+}
+
+/* شاشات الأجهزة اللوحية (الأجهزة المتوسطة) */
+
+
+    .buttons {
+        gap: 10px; /* الحفاظ على المسافة بين الأزرار */
+    }
+
+    .back-btn, .return-to-main-btn {
+        padding: 10px 18px; /* تقليل الحشوة قليلاً */
+        font-size: 1rem; /* حجم متوسط للنص */
+    }
+
+    #register-screen h2 {
+        font-size: 1.8rem; /* حجم متوسط للعناوين */
+    }
+
+    #register-screen p {
+        font-size: 1rem; /* حجم متوسط للنص */
+    }
+
+    #register-screen input[type="text"],
+    #register-screen input[type="email"] {
+        padding: 12px; /* حشوة متوسطة */
+        font-size: 1rem; /* حجم متوسط للنص */
+    }
+
+    #register-screen button {
+        padding: 12px; /* حشوة متوسطة */
+        font-size: 1.1rem; /* حجم متوسط للنص */
+    }
+}
+
+/* شاشات الأجهزة الكبيرة (أجهزة الكمبيوتر) */
+
+
+
+    .buttons {
+        gap: 12px; /* زيادة المسافة بين الأزرار */
+    }
+
+    .back-btn, .return-to-main-btn {
+        padding: 12px 25px; /* زيادة الحشوة */
+        font-size: 1.1rem; /* تكبير النص */
+    }
+
+    #register-screen h2 {
+        font-size: 2rem; /* حجم أكبر للعناوين */
+    }
+
+    #register-screen p {
+        font-size: 1.1rem; /* تكبير النص */
+    }
+
+    #register-screen input[type="text"],
+    #register-screen input[type="email"] {
+        padding: 14px; /* زيادة الحشوة داخل الحقول */
+        font-size: 1.1rem; /* تكبير النص */
+    }
+
+    #register-screen button {
+        padding: 14px; /* زيادة الحشوة */
+        font-size: 1.2rem; /* تكبير النص */
+    }
+}
+/*======================================================================
+/*  لجميع القوائم بالبرنامج تنسيق القائمة المنسدلة */
+/*=====================================================================*/
+select {
+    width: 100%; /* عرض كامل */
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid #005fbf; /* حدود زرقاء */
+    border-radius: 8px; /* زوايا دائرية */
+    margin: 10px 0; /* مسافة علوية وسفلية */
+}
+
+/*======================================================================
+/*  تنسيق القائمة المنسدلة الخاصة باختير سنة التتويج */
+/*=====================================================================*/
+#year-select {
+    display: block;
+    margin: 20px auto; /* توسيط العنصر مع مسافة علوية */
+    padding: 15px;
+    width: 80%; /* عرض الكومبو بوكس */
+    font-size: 1.2rem; /* تكبير حجم النص */
+    text-align: center;
+    border: 2px solid #005fbf; /* حدود زرقاء */
+    border-radius: 10px;
+    color: #333;
+}
+
+#year-select:hover {
+    border-color: #8623ad; /* لون الحدود عند التمرير */
+    background-color: #ffffff;
+}
+
+#year-select option {
+    font-size: 1.2rem;
+}
+
+/*======================================================================
+/*  تنسيق القائمة المنسدلة الخاصة باختير جدول الحسميات لدوري */
+/*=====================================================================*/
+#season-select {
+    display: block;
+    margin: 20px auto;
+    padding: 10px;
+    width: 80%; /* عرض القائمة */
+    font-size: 1rem;
+    text-align: center;
+    border: 2px solid #005fbf;
+    border-radius: 8px;
+    background-color: #fcfafc; /* لون الخلفية */
+    color: #333; /* لون النص */
+    appearance: auto; /* الحفاظ على السهم الافتراضي */
+    pointer-events: auto; /* تفعيل التفاعل */
+}
+
+#season-select:hover {
+    border-color: #8623ad; /* لون الحدود عند التمرير */
+    background-color: #ffffff;
+}
+
+/*======================================================================
+/*  تنسيق القائمة المنسدلة الخاصة باختير تاريخ المسابقة */
+/*=====================================================================*/
+#competition-select {
+    display: block; /* لجعل العنصر ككتلة */
+    margin: 20px auto; /* توسيط العنصر وتوفير مسافة علوية */
+    padding: 15px; /* زيادة المساحة الداخلية */
+    width: 80%; /* عرض الكومبو بوكس */
+    font-size: 1.2rem; /* تكبير حجم النص */
+    text-align: center; /* توسيط النص داخل الكومبو بوكس */
+    border: 2px solid #005fbf; /* إضافة حدود زرقاء */
+    border-radius: 10px; /* زوايا دائرية */
+    color: #333; /* لون النص */
+}
+
+#competition-select option {
+    font-size: 1.2rem;
+}
+
+/*======================================================================
+/*  تنسيقق عرض البطولة بعد اختيار المسابقة */
+/*=====================================================================*/
+#competition-results p {
+     background: #001f5c; /* خلفية البطاقة */
+    color: #ffffff; /* لون النص */
+    border: 2px solid #005fbf; /* حدود */
+    border-radius: 15px; /* زوايا دائرية */
+    padding: 15px; /* حشوة داخلية */
+    margin: 10px auto; /* مسافة بين البطاقات */
+    width: 60%; /* العرض */
+    text-align: center; /* توسيط النص */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* ظل */
+    transition: transform 0.2s, box-shadow 0.3s;
+
+}
+
+#competition-results p:hover {
+    background-color: #6e0068; /* تغيير لون الخلفية عند التمرير */
+    transform: scale(1.05); /* تكبير خفيف عند التمرير */
+   
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.4); /* تكبير الظل */
+  
+}
+
+#competition-results .fa-trophy {
+    color: #FFD700; /* اللون الذهبي */
+}
+
+/*======================================================================
+/*  داخل التتويجات عرض المسابقات البطولات حسب العام */
+/*=====================================================================*/
+#championship-details p {
+   background: #001f5c; /* خلفية البطاقة */
+    color: #ffffff; /* لون النص */
+    text-decoration: none; /* إزالة الخط السفلي */
+    border: 2px solid #005fbf; /* حدود */
+    border-radius: 15px; /* زوايا دائرية */
+    padding: 15px; /* حشوة داخلية */
+    margin: 10px auto; /* مسافة بين البطاقات */
+    width: 60%; /* العرض */
+    text-align: center; /* توسيط النص */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* ظل */
+    transition: transform 0.2s, box-shadow 0.3s;
+
+}
+
+#championship-details p:hover {
+     background-color: #6e0068; /* تغيير لون الخلفية عند التمرير */
+    color: #ffffff; /* تثبيت اللون الأبيض عند التمرير */
+    text-decoration: none; /* ضمان عدم ظهور الخط السفلي */
+    transform: scale(1.05); /* تكبير خفيف عند التمرير */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.4); /* تكبير الظل */
+   
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.4); /* تكبير الظل */
+   
+}
+#championship-details a {
+    color: #ffffff; /* لون النص أبيض */
+    text-decoration: none; /* إزالة الخط السفلي */
+}
+
+#championship-details a:hover {
+    color: #ffffff; /* تثبيت اللون الأبيض عند التمرير */
+    text-decoration: none; /* منع ظهور الخط السفلي */
+}
+
+
+body {
+    direction: rtl; /* اتجاه النصوص */
+}
+
+#championship-info {
+    text-align: right; /* محاذاة النص لليمين */
+}
+
+
+
+
+
+
+
+
+/* هذا خاص بتفاصيل داخل البطاقة الي تعرض تفاصيل البطولة ومعلوماتها */
+/* تحسين البطاقة */
+/* تصميم البطاقة */
+.hidden {
+    display: none; /* إخفاء العناصر بشكل افتراضي */
+}
+
+/* تصميم البطاقة */
+#championship-info {
+    background: linear-gradient(135deg, #001f5c, #004080); /* خلفية متدرجة */
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 6px 14px rgba(0, 0, 0, 0.4); /* ظل */
+    max-width: 400px;
+    margin: 20px auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+#championship-logo {
+    width: 150px; /* تكبير الشعار */
+    height: auto; /* الحفاظ على النسبة */
+    display: block;
+    margin: 0 auto; /* توسيط الشعار */
+    margin-bottom: 5px; /* تقليل المسافة تحت الشعار */
+}
+
+.info-title {
+    margin-top: 5px; /* تقليل المسافة العلوية للعنوان */
+    margin-bottom: 5px; /* تقليل المسافة السفلية */
+    font-size: 1.4rem; /* تكبير النص قليلاً */
+}
+
+
+/* الصورة */
+
+#championship-info img {
+    display: block; /* ضمان أن الصورة كتلة منفصلة */
+    margin: 0 auto; /* توسيط الصورة */
+    width: 95%; /* حجم الصورة النسبي */
+    height: auto; /* الحفاظ على النسبة */
+    border-radius: 10px; /* زوايا دائرية */
+    margin-bottom: 10px; /* مسافة سفلية للصورة */
+    border: 3px solid #f5f3f0; /* إطار للصورة */
+}
+
+/* العنوان */
+.info-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #ffffff;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* قائمة المعلومات */
+.info-section {
+    background: #ffffff;
+    color: #001f5c;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0;
+    text-align: left;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* الأيقونات */
+.info-section i {
+    font-size: 1.5rem;
+    color: #1b29c2;
+}
+
+/* النصوص */
+.info-section span {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.return-btn {
+    background-color:#1b4dc2; /* اللون الأساسي: عنابي */
+    color: #ffffff; /* لون النص: أبيض */
+    border-radius: 8px; /* زوايا دائرية */
+    padding: 10px 20px; /* مسافة داخلية */
+    font-size: 1.2rem; /* حجم النص */
+    font-weight: bold; /* الخط عريض */
+    text-align: center; /* توسيط النص */
+    cursor: pointer; /* مؤشر الفأرة */
+  
+   border: none; /* إزالة الحدود */
+  cursor: pointer; /* مؤشر التفاعل */
+  transition: transform 0.2s, background-color 0.3s; /* تأثيرات التحريك */
+}
+
+.return-btn:hover {
+    background-color:#8623ad; /* اللون عند التمرير: أزرق */
+    color: #ffffff; /* النص يبقى أبيض */
+    transform: scale(1.05); /* تكبير الزر قليلاً عند التمرير */
+}
+
+ 
+ 
+
+/* شاشات الجوالات */
+@media (max-width: 767px) {
+    select, #year-select, #season-select, #competition-select {
+        width: 90%; /* تكبير عرض العناصر لتناسب الجوالات */
+        font-size: 0.9rem; /* تصغير النص */
+        padding: 8px;
+    }
+
+    #competition-results p, #championship-details p {
+        font-size: 1rem; /* تصغير النص */
+        width: 90%; /* عرض يناسب الشاشات الصغيرة */
+    }
+}
+
+/* شاشات الأجهزة اللوحية */
+@media (min-width: 768px) and (max-width: 1024px) {
+    select, #year-select, #season-select, #competition-select {
+        width: 80%;
+        font-size: 1rem; /* حجم متوسط للنص */
+        padding: 10px;
+    }
+
+    #competition-results p, #championship-details p {
+        font-size: 1.2rem;
+        width: 80%;
+    }
+}
+
+/* شاشات الكمبيوتر */
+@media (min-width: 1025px) {
+    select, #year-select, #season-select, #competition-select {
+        width: 70%;
+        font-size: 1.2rem;
+        padding: 12px;
+    }
+
+    #competition-results p, #championship-details p {
+        font-size: 1.5rem;
+        width: 60%;
+    }
+}
+/*======================================================================
+/* كل مايتعلق بزر مباريات الهلال القادمة  
+/*======================================================================*/
+
+/* تحسين تصميم جدول المباريات */
+#matches-schedule table {
+    width: 100%;
+    border-collapse: collapse; /* إزالة المسافات بين الخلايا */
+    margin-top: 20px;
+    background-color: #001f3f; /* خلفية الجدول */
+    border-radius: 10px; /* زوايا دائرية */
+    overflow: hidden; /* لإخفاء أي شيء خارج الحواف */
+    border: 2px solid #005fbf; /* حواف خارجية بلون أزرق داكن */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* إضافة ظل لطيف */
+}
+
+/* تنسيق العناوين */
+#matches-schedule th {
+    background-color: #003366; /* خلفية داكنة للعناوين */
+    color: #add8e6; /* لون النص أزرق فاتح */
+    font-size: 1.1rem;
+    padding: 12px;
+    text-align: center;
+    border-bottom: 2px solid #005fbf; /* خط فاصل أسفل العناوين */
+}
+
+/* تنسيق بيانات الجدول */
+#matches-schedule td {
+    background-color: #001f3f; /* خلفية البيانات */
+    color: #ffffff; /* لون النص */
+    font-size: 1rem;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #005fbf; /* خطوط بين الصفوف */
+}
+
+/* تأثير التمرير على الصفوف */
+#matches-schedule tr:hover td {
+    background-color: #003366; /* لون خلفية الصف عند التمرير */
+    color: #ffffff; /* لون النص عند التمرير */
+}
+
+/* تحسين النصوص */
+#matches-schedule th,
+#matches-schedule td {
+    border-right: 1px solid #005fbf; /* إضافة خطوط عمودية */
+}
+
+/* إزالة الخط الأخير العمودي */
+#matches-schedule th:last-child,
+#matches-schedule td:last-child {
+    border-right: none;
+}
+
+#matches-schedule h2 {
+    margin-top: 20px; /* يمكنك تعديل هذه القيمة لزيادة أو تقليل المسافة */
+    margin-bottom: 20px; /* لإضافة مسافة تحت العنوان إذا كنت تحتاج لذلك */
+    text-align: center; /* لجعل العنوان في المنتصف (اختياري) */
+  
+}
+
+/*======================================================================
+/* كل مايتعلق بزرحسميات الدوري للهلال 
+/*======================================================================*/
+
+#last-games-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #001f3f; /* لون الخلفية */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* ظل خفيف */
+}
+
+#last-games-table th {
+    background-color: #001f3f; /* لون خلفية العناوين */
+    color: #ffffff; /* لون النص */
+    font-size: 1rem; /* حجم النص */
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ffffff; /* خطوط بين العناوين */
+}
+
+#last-games-table td {
+    background-color: #001f3f; /* خلفية الخلايا */
+    color: #fcfafc; /* لون النص */
+    font-size: 0.9rem; /* تقليل حجم النص */
+    padding: 6px;
+    text-align: center;
+    border: 1px solid #ffffff; /* خطوط بين الخلايا */
+}
+
+/* تأثير التمرير */
+#last-games-table tr:hover td {
+    background-color: #411751; /* لون عند التمرير */
+}
+
+/*======================================================================
+/* إضافات التنسيقات للشاشات المختلفة */
+/*======================================================================*/
+
+/* شاشات الجوالات */
+@media (max-width: 767px) {
+    #matches-schedule table,
+    #last-games-table {
+        width: 100%; /* تأكد من أن الجدول يأخذ العرض الكامل */
+        font-size: 0.8rem; /* تصغير النص */
+    }
+
+    #matches-schedule th, #matches-schedule td,
+    #last-games-table th, #last-games-table td {
+        padding: 6px; /* تقليل الحشوات */
+    }
+
+    #matches-schedule h2,
+    #last-games-table h2 {
+        font-size: 1.2rem; /* تصغير العناوين */
+    }
+}
+
+/* شاشات الأجهزة اللوحية */
+@media (min-width: 768px) and (max-width: 1024px) {
+    #matches-schedule table,
+    #last-games-table {
+        width: 90%; /* ضبط العرض لتتناسب مع الأجهزة اللوحية */
+        font-size: 0.9rem; /* حجم متوسط للنص */
+    }
+
+    #matches-schedule th, #matches-schedule td,
+    #last-games-table th, #last-games-table td {
+        padding: 8px; /* حشوات متوسطة */
+    }
+
+    #matches-schedule h2,
+    #last-games-table h2 {
+        font-size: 1.5rem; /* حجم متوسط للعناوين */
+    }
+}
+
+/* شاشات الكمبيوتر */
+
+@media (min-width: 1025px) {
+    #matches-schedule table,
+    #last-games-table {
+        width: 70%; /* عرض أصغر للشاشات الكبيرة */
+        font-size: 1rem; /* تكبير النص */
+        margin: 0 auto; /* توسيط الجدول أفقياً */
+    }
+
+    #matches-schedule th, #matches-schedule td,
+    #last-games-table th, #last-games-table td {
+        padding: 10px; /* حشوات مريحة */
+    }
+
+    #matches-schedule h2,
+    #last-games-table h2 {
+        font-size: 1.8rem; /* تكبير العناوين */
+    }
+}
+/*======================================================================
+/* كل مايتعلق بزراليوتيوب الفيديوات 
+/*======================================================================*/
+
+/* تنسيق العنصر الذي يحتوي على الفيديوهات */
+
+#youtube-videos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* شبكة ديناميكية */
+    gap: 20px; /* تقليل المسافة بين الفيديوهات */
+    justify-content: center;
+    padding: 20px; /* تقليل الحشوة */
+}
+
+
+
+/* تنسيق كل فيديو كارد بحيث يكون صغير الحجم */
+.video-card {
+    width: 100%;
+    height: auto;
+    border: 3px solid  #3b97f5 !important; /* لون إطار برتقالي */
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    background: linear-gradient(135deg, #35004e, #001f5c);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    align-items: center;
+}
+
+/* تأثير عند تمرير الماوس على الفيديو */
+.video-card:hover {
+    transform: scale(1.05); /* تكبير بسيط عند التمرير */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4); /* تكبير الظل */
+}
+
+/* تنسيق iframe لجعل الفيديو يناسب حجم الكارد */
+.video-card iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px; /* نفس زوايا الكارد */
+     border: 2px solid #ffffff; /* إطار أبيض */
+}
+
+.video-title {
+    margin-top: 10px; /* تقليل المسافة بين الفيديو والعنوان */
+    font-size: 1rem; /* حجم خط مناسب للجوال */
+    color: #FFFFFF; /* لون متناسق */
+    text-align: center; /* محاذاة العنوان في المنتصف */
+    font-weight: bold; /* خط عريض */
+    white-space: nowrap; /* النص في سطر واحد */
+    overflow: hidden; /* منع تجاوز النص */
+    text-overflow: ellipsis; /* النقاط إذا كان النص طويلاً */
+}
+
+
+/*======================================================================
+/* تنسيقات إضافية للشاشات المختلفة */
+/*======================================================================*/
+
+/* شاشات الجوالات */
+@media (max-width: 767px) {
+    #youtube-videos {
+        grid-template-columns: repeat(1, 1fr); /* فيديو واحد في كل صف */
+        gap:25px; /* تقليل المسافة بين الفيديوهات */
+    }
+
+    .video-card {
+        width: 100%;
+        height: auto;
+        padding: 10px;
+        border: 2px solid #003366; /* تقليل سماكة الإطار */
+    }
+}
+
+/* شاشات الأجهزة اللوحية */
+@media (min-width: 768px) and (max-width: 1024px) {
+    #youtube-videos {
+        grid-template-columns: repeat(2, 1fr); /* 2 فيديو لكل صف */
+        gap: 20px; /* مسافة مناسبة بين الفيديوهات */
+    }
+
+    .video-card {
+        border: 3px solid #005fbf; /* تحسين الإطار */
+    }
+}
+
+/* شاشات الكمبيوتر */
+@media (min-width: 1025px) {
+    #youtube-videos {
+        grid-template-columns: repeat(2, 1fr); /* 3 فيديوهات لكل صف */
+        gap: 40px; /* مسافة أكبر بين الفيديوهات */
+    }
+
+    .video-card {
+        border: 4px solid #005fbf; /* تحسين الإطار */
+        padding: 15px; /* حشوة داخلية للكارد */
+    }
+}
+/*======================================================================
+/* تنسيق أزرار التنقل لجعلها ثلاثية الأبعاد */
+/*======================================================================*/
+
+.pagination-button {
+    background-color: #8B008B; /* لون بنفسجي */
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 1em;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px #5D005D; /* تأثير الظل لثلاثي الأبعاد */
+}
+
+.pagination-button:hover {
+    background-color: #9400D3; /* لون بنفسجي أفتح قليلاً عند التمرير */
+}
+
+.pagination-button:active {
+    box-shadow: 0 2px #5D005D;
+    transform: translateY(2px); /* تأثير الضغط */
+}
+
+/* تنسيق رقم الصفحة */
+.page-number {
+    font-size: 1.2em;
+    margin: 0 15px;
+    color: #fffcfe; /* لون بنفسجي */
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+/* تغيير الكلاس ليكون container بدلًا من app-container */
+.container {
+    background-image: url('https://github.com/sweettaste95/hilal-images/blob/main/signal-2024-11-09-092357_007.jpeg?raw=true');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.7; /* الشفافية */
+}
+
+/* التأكد من أن المحتوى يظهر فوق الخلفية */
+.app-content {
+    position: relative;
+    z-index: 1; /* اجعل المحتوى يظهر فوق الخلفية */
+}
+
+/* تطبيق صورة خلفية مع شفافية */
+.app-container {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('path-to-your-image.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; 
+}
+
+/*=========================================================================================
+/* تحسينات الاستجابة */
+/*=========================================================================================*/
+
+/* للجوالات */
+@media (max-width: 767px) {
+    .container {
+        background-size: cover;
+        padding: 10px; /* تقليل الحشوة لتناسب الجوالات */
+    }
+
+    .app-content {
+        padding: 15px;
+    }
+
+    .app-container {
+        background-size: contain; /* ملاءمة الخلفية بدون تشويه */
+        padding: 10px;
+    }
+}
+
+/* للأجهزة اللوحية */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .container {
+        background-size: cover;
+        padding: 20px; /* حشوة متوسطة للأجهزة اللوحية */
+    }
+
+    .app-content {
+        padding: 25px;
+    }
+
+    .app-container {
+        background-size: cover;
+        padding: 20px;
+    }
+}
+
+/* لأجهزة الكمبيوتر */
+@media (min-width: 1025px) {
+    .container {
+        background-size: cover;
+        padding: 30px; /* مساحة أكبر لأجهزة الكمبيوتر */
+    }
+
+    .app-content {
+        padding: 30px;
+    }
+
+    .app-container {
+        background-size: cover;
+        padding: 30px;
+    }
+}
+
+/*===============================================================================================================
+/* ازارار خاصه بكاس اسيا وكاس الدوري وازارار الدخلية في جميع المباريات وحسميات الهلالل تنسيقات الأزرار داخل .competition-buttons لجعلها ثلاثية الأبعاد */ 
+/*==============================================================================================================*/   
+.competition-buttons .competition-button {
+    background-color: #005fbf; /* لون الخلفية الأساسي */
+    color: #ffffff; /* لون النص */
+    padding: 8px 12px; /* تقليل الحشوة قليلاً */
+    font-size: 0.9rem; /* تقليل حجم الخط */
+    font-weight: bold; /* خط عريض */
+    border: none; /* إزالة الحدود */
+    border-radius: 10px; /* زوايا دائرية */
+    cursor: pointer; /* مؤشر الفأرة */
+    transition: transform 0.3s, box-shadow 0.3s; /* انتقال للتأثيرات */
+    box-shadow: 0 6px #003f7f; /* تأثير الظل ثلاثي الأبعاد */
+    white-space: nowrap; /* منع النص من الانتقال إلى سطر جديد */
+      margin-bottom: 20px; /* إضافة مسافة أسفل الأزرار */
+
+}
+
+/* التأثير عند التمرير على الزر */
+.competition-buttons .competition-button:hover {
+    background-color: #8623ad; /* لون مختلف عند التمرير */
+    transform: translateY(-4px); /* تحريك الزر للأعلى */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4); /* تكبير الظل */
+}
+
+/* التأثير عند الضغط على الزر */
+.competition-buttons .competition-button:active {
+    transform: translateY(2px); /* تحريك الزر للأسفل */
+    box-shadow: 0 4px #003f7f; /* تصغير الظل */
+}
+
+
+
+
+/*======================================================================
+/* خاص بروابط السوشل ميديا 
+/*======================================================================*/
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-links a {
+    color: #87CEEB;
+    font-size: 1.3em;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.social-links a:hover {
+    color: #fefaff;
+}
+/*============================================================================
+/* حقوق الطبع والنشر */ 
+/*===========================================================================*/
+.footer-text {
+    font-size: 0.7em;
+    color: #ffffff;
+    text-align: center;
+    margin-top: 15px;
+    background-color: #001f3f;
+    padding: 10px;
+   border-top: 1px solid #fcf5fa;
+  border-bottom: 1px solid #fcf5fa;
+border-right: 1px solid #fcf5fa;
+border-left: 1px solid #fcf5fa;
+      border-radius: 15px; /* زوايا الحاوية دائرية */
+
+}
+
+
+/* تنسيق حاوية نموذج الملاحظات */
+#feedback-section {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, #35004e, #001f5c);
+  color: #ffffff;
+  width: 400px;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  z-index: 1000;
+}
+
+/* تنسيق الحقول */
+#feedbackSubject,
+#feedbackMessage {
+  width: 80%;
+  padding: 8px;
+  margin: 10px 0;
+  border: 1px solid #005fbf;
+  border-radius: 10px;
+  font-size: 1rem;
+  background: #ffffff;
+  color: #333333;
+}
+
+/* تنسيق الأزرار */
+.feedback-btn {
+  background-color: #2b9ce3; /* لون الخلفية */
+  color: #ffffff; /* لون النص */
+  padding: 10px 20px; /* حشوة داخلية */
+  font-size: 1rem; /* حجم النص */
+  border: none; /* إزالة الحدود */
+  border-radius: 10px; /* زوايا دائرية */
+  cursor: pointer; /* مؤشر التفاعل */
+  margin: 10px 5px; /* المسافة حول الزر */
+  transition: transform 0.2s, background-color 0.3s; /* تأثيرات التحريك */
+}
+.feedback-btn:hover {
+  background-color: #8623ad; /* لون عند التمرير */
+  transform: scale(1.05); /* تكبير الزر قليلاً */
+}
+
+.feedback-btn:active {
+  background-color: #1e7e34; /* لون عند الضغط */
+  transform: scale(0.95); /* تصغير الزر قليلاً */
+}
+/* إخفاء القسم */
+.hidden {
+  display: none;
+}
+
+/* تنسيق العناوين */
+#feedback-section h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+
+/*============================================================
+/* زر من نحن 
+/*============================================================*/
+.about-button {
+  background-color: #2b9ce3; /* نفس لون زر اقتراحاتكم */
+  color: #ffffff; /* لون النص */
+  padding: 10px 20px; /* نفس الحشوة */
+  font-size: 1rem; /* نفس حجم النص */
+  border: none; /* إزالة الحدود */
+  border-radius: 10px; /* زوايا دائرية */
+  cursor: pointer; /* مؤشر التفاعل */
+  margin: 10px 5px; /* المسافة حول الزر */
+  transition: transform 0.2s, background-color 0.3s; /* تأثيرات التحريك */
+}
+
+.about-button:hover {
+  background-color: #8623ad; /* لون عند التمرير */
+  transform: scale(1.05); /* تكبير الزر قليلاً */
+}
+
+.about-button:active {
+  background-color: #1e7e34; /* لون عند الضغط */
+  transform: scale(0.95); /* تصغير الزر قليلاً */
+  }
+/* تصميم البطاقة */
+.about-card {
+    position: fixed;
+  
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background: linear-gradient(135deg, #35004e, #001f5c);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: white;
+    z-index: 1000;
+}
+/* زر الإغلاق داخل البطاقة */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5em;
+    color: white;
+    cursor: pointer;
+}
+
+#loading-spinner {
+    font-size: 1rem;
+    color: #005fbf;
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* تخصيص التنسيق لزر التسجيل عند التعطيل */
+.register-btn:disabled {
+    background-color: #cccccc; /* لون الخلفية عند التعطيل */
+    color: #666666; /* لون النص عند التعطيل */
+    cursor: not-allowed; /* تغيير المؤشر */
+    opacity: 0.6; /* خفاء الزر جزئيًا */
+}
+.telegram-link {
+    color: #FFD700; /* لون ذهبي */
+    font-weight: bold;
+    text-decoration: underline;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.telegram-link:hover {
+    color: #FFA500; /* لون برتقالي فاتح عند التمرير */
+    text-decoration: none;
+}
+
+
+/* الحاوية الخارجية للشريط */
+.marquee-container {
+  width: 100%;
+  height: 50px;
+  background-color: #001f5c;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid #005fbf;
+}
+
+/* النصوص التي تتحرك */
+.marquee-content {
+  display: flex;
+  animation: scroll 20s linear infinite;
+  white-space: nowrap;
+  font-size: 18px;
+  color: #ffffff;
+}
+
+/* النصوص الفردية */
+.marquee-content span {
+  margin-right: 50px;
+  display: inline-block;
+}
+
+/* حركة الانسيابية للنص */
+@keyframes scroll {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/*======================================================================
+/* خاص بالسلايدر لرؤساء */
+/*======================================================================*/
+
+/* تصميم البطاقة (يجب إضافة position: relative) */
+
+
+/* التصميم الأساسي للبطاقة */
+.manager-card {
+   /* background: white; /* لون الخلفية للجزء السفلي من البطاقة */
+    border-radius: 15px; /* زوايا البطاقة دائرية */
+    padding: 0; /* لا توجد مسافة داخلية للبطاقة */
+    max-width: 400px; /* العرض الأقصى للبطاقة */
+    margin: 0 auto; /* محاذاة البطاقة إلى المركز */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* تأثير ثلاثي الأبعاد */
+    overflow: hidden; /* إخفاء أي عناصر تخرج عن حدود البطاقة */
+    margin-top: 20px; /* مسافة إضافية أعلى البطاقة */
+    position: relative; /* يحدد أن الرقم (#) سيكون داخل حدود البطاقة */
+  
+  
+}
+
+/* تصميم الجزء العلوي من البطاقة (الصورة + الاسم) */
+.manager-card .header {
+    text-align: center; /* توسيط النصوص والعناصر داخل الجزء العلوي */
+    padding: 15px; /* مسافة داخلية حول العناصر */
+    color: white; /* لون النص */
+    display: flex; /* استخدام تخطيط مرن */
+    flex-direction: column; /* ترتيب العناصر عموديًا */
+    align-items: center; /* جعل العناصر (مثل الصورة) في الوسط أفقياً */
+    justify-content: flex-end; /* وضع الاسم أسفل العناصر الأخرى */
+}
+
+/* تصميم صورة المدير */
+.manager-card .header img {
+    width: 120px; /* عرض الصورة */
+    height: 120px; /* ارتفاع الصورة */
+    border-radius: 50%; /* تحويل الصورة إلى شكل دائري */
+    margin-bottom: 10px; /* مسافة أسفل الصورة */
+    border: 3px solid white; /* إضافة إطار أبيض حول الصورة */
+      border: 2px solid #00BFFF; /* لون أزرق فاتح */
+
+}
+
+/* تصميم اسم المدير */
+.manager-card .header h3 {
+    margin-top: auto; /* يجعل الاسم يتحرك إلى أسفل */
+    font-size: 1.2em; /* حجم الخط للاسم */
+    text-align: center; /* توسيط الاسم أفقياً */
+}
+
+/* تصميم الرقم (#) في الزاوية اليمنى */
+.manager-card .manager-number {
+    position: absolute; /* الوضع مطلق بالنسبة للبطاقة */
+    top: 10px; /* المسافة من أعلى البطاقة */
+    right: 10px; /* المسافة من الجانب الأيمن */
+    background: #FFD700; /* اللون الأصفر للخلفية */
+    color: #005fbf; /* لون النص */
+    border-radius: 50%; /* جعل الرقم داخل دائرة */
+    padding: 5px 10px; /* مسافة داخلية حول الرقم */
+    font-weight: bold; /* جعل الرقم بالخط العريض */
+}
+
+/* تصميم الجزء السفلي من البطاقة */
+.manager-card .body {
+   /* background: white; /* لون الخلفية للجزء السفلي */
+    color: #333; /* لون النص */
+    padding: 20px; /* مسافة داخلية */
+    text-align: center; /* توسيط النصوص والعناصر داخل الجزء السفلي */
+      position: relative; /* لتفعيل التحكم بالموقع */
+   background: #f9f9f9; /* لون رمادي خفيف */
+    border: 2px solid #8B008B; /* لون عنابي خفيف للحواف */
+    padding: 20px;
+  
+}
+
+
+   
+
+
+
+
+
+
+/* تصميم النص الخاص بعدد الكؤوس */
+.achievements {
+    font-size: 1.2em; /* حجم النص */
+    color: #333; /* لون النص */
+    margin-top: 10px; /* مسافة أعلى النص */
+  text-align: center; /* تحريك النص لليمين */
+    padding-right: 20px; /* مسافة إضافية على اليمين */
+}
+
+
+
+
+
+/* تصميم أيقونة الكأس */
+.achievements i {
+    margin-left: 5px; /* مسافة صغيرة بين العدد وأيقونة الكأس */
+    color: #ffd700; /* لون ذهبي للكأس */
+}
+
+/* تصميم أزرار التنقل بين المدراء */
+.manager-card .buttons {
+    display: flex; /* عرض الأزرار بجانب بعضها */
+    justify-content: space-between; /* توزيع الأزرار على جانبي البطاقة */
+    padding: 10px; /* مسافة داخلية حول الأزرار */
+}
+
+/* تصميم الزر */
+.manager-card .buttons button {
+    background: #8B008B; /* لون الخلفية للزر */
+    color: white; /* لون النص */
+    border: none; /* إزالة الحدود */
+    border-radius: 8px; /* زوايا الزر دائرية */
+    padding: 10px 20px; /* مسافة داخلية حول النص */
+    font-size: 1em; /* حجم النص */
+    cursor: pointer; /* تغيير المؤشر عند التمرير */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* تأثير ثلاثي الأبعاد */
+    transition: transform 0.2s, background 0.3s; /* تأثير الانتقال عند التفاعل */
+}
+
+.manager-card .buttons {
+    display: flex; /* عرض الأزرار بجانب بعضها */
+    justify-content: space-between; /* توزيع الأزرار على جانبي البطاقة */
+    padding: 10px; /* مسافة داخلية حول الأزرار */
+    position: relative; /* تموضع الأزرار داخل البطاقة */
+    margin-top: 20px; /* مسافة كافية لضمان الأزرار تبقى في مكانها */
+}
+
+
+/* تأثير عند تمرير المؤشر فوق الزر */
+.manager-card .buttons button:hover {
+    background: #003f8f; /* لون أغمق عند التمرير */
+    transform: translateY(-2px); /* تأثير رفع الزر */
+
+}
+/* تصميم النص الخاص بالفترة الزمنية */
+.manager-card .body .manager-years {
+    font-size: 1.2em; /* زيادة حجم النص */
+    line-height: 1.8; /* تحسين المسافة بين الأسطر */
+    color: #444; /* لون أغمق قليلاً لتحسين الوضوح */
+    margin-bottom: 15px; /* تحسين المسافة السفلية */
+    text-align: center; /* توسيط النصوص */
+    margin-top: 25px; /* زيادة المسافة العلوية قليلاً */
+  
+    border-bottom: 1px solid #ccc; /* خط سفلي */
+    padding-bottom: 5px;
+}
+
+/* تصميم النص الخاص بالبطولات */
+.manager-card .body .manager-wins {
+    font-size: 1.2em; /* زيادة حجم النص */
+    line-height: 1.8; /* تحسين المسافة بين الأسطر */
+    color: #444; /* لون أغمق قليلاً لتحسين الوضوح */
+    margin-bottom: 25px; /* تحسين المسافة السفلية */
+    text-align: center; /* توسيط النصوص */
+    margin-top: 20px; /* زيادة المسافة العلوية لتكون تحت الفترة الزمنية */
+  
+   border-bottom: 1px solid #ccc; /* خط سفلي */
+    padding-bottom: 5px;
+}
+
+/* تصميم النص الخاص بالإحصائيات */
+.manager-card .body .manager-stats {
+    font-size: 1.2em; /* حجم النص */
+    line-height: 1.8; /* تحسين المسافة بين الأسطر */
+    color: #444; /* لون أغمق قليلاً لتحسين الوضوح */
+    margin-top: 10px; /* مسافة أعلى النص */
+    text-align: center; /* توسيط النصوص */
+    padding-top: 10px; /* مسافة داخلية أعلى */
+}
+
+
+
+
+
+/* تحسين أيقونة الإحصائيات */
+.manager-card .body .manager-stats::before {
+    content: "\f080"; /* أيقونة الرسم البياني من FontAwesome */
+    font-family: "Font Awesome 5 Free"; /* تحميل الخط */
+    font-weight: 900; /* جعل الأيقونة عريضة */
+    margin-right: 5px; /* مسافة بين الأيقونة والنص */
+    color: #00bcd4; /* لون أزرق سماوي */
+    font-size: 1.3em; /* زيادة حجم الأيقونة */
+}
+
+/* تحسين أيقونة الفترة الزمنية */
+.manager-card .body .manager-years::before {
+    content: "\f073"; /* أيقونة التقويم من FontAwesome */
+    font-family: "Font Awesome 5 Free"; /* تحميل الخط */
+    margin-right: 5px; /* مسافة صغيرة بين الأيقونة والنص */
+    color: #3f51b5; /* لون أزرق داكن */
+    font-size: 1.3em; /* زيادة حجم الأيقونة */
+}
+
+/* تحسين أيقونة البطولات */
+.manager-card .body .manager-wins::before {
+    content: "\f091"; /* أيقونة الكأس من FontAwesome */
+    font-family: "Font Awesome 5 Free";
+    margin-right: 5px; /* مسافة بين الأيقونة والنص */
+    color: #d4af37; /* لون ذهبي لامع يشبه الكأس الحقيقي */
+    font-size: 1.3em; /* زيادة حجم الأيقونة */
+}
+.manager-card .body .manager-stats:hover::before,
+.manager-card .body .manager-years:hover::before,
+.manager-card .body .manager-wins:hover::before {
+    color: #6d008b; /* لون برتقالي عند التمرير */
+    transform: scale(1.2); /* تكبير الأيقونة قليلاً */
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+.manager-card .body .manager-stats,
+.manager-card .body .manager-years,
+.manager-card .body .manager-wins {
+    background: rgba(0, 0, 0, 0.05); /* خلفية رمادية خفيفة */
+    padding: 10px; /* مسافة داخلية */
+    border-radius: 8px; /* زوايا دائرية */
+      border: 2px solid #071bf0; /* لون أزرق فاتح */ 
+}
+
+/* إطار للخريطة */
+.map-wrapper {
+    border: 4px solid #87CEEB; /* إطار أزرق فاتح */
+    border-radius: 15px; /* زوايا دائرية */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* ظل لطيف */
+    margin-bottom: 20px; /* مسافة تحت الخريطة */
+    overflow: hidden;
+}
+
+/* البطاقة */
+/* البطاقة */
+.map-card {
+    margin-top: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, #001f5c, #004080); /* تدرج أزرق عميق */
+    border-radius: 15px; /* زوايا دائرية */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* ظل لطيف */
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #fff; /* النص باللون الأبيض */
+    border: 2px solid #87CEEB; /* حواف زرقاء فاتحة */
+}
+
+/* وصف الحقول */
+.description-text {
+    font-size: 18px; /* تكبير حجم الخط */
+    font-family: 'Arial', sans-serif; /* خط جذاب وسهل القراءة */
+    color: #fefefe; /* لون النص */
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* ترتيب الحقول */
+.map-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px; /* مسافة إضافية أسفل الحقول */
+}
+
+#search-box, #search-dropdown, .search-btn {
+    flex: 1;
+    width: 200px; /* نفس العرض */
+    padding: 8px; /* نفس التباعد الداخلي */
+    font-size: 14px;
+    border: 1px solid #ccc; /* حدود الحقول */
+    border-radius: 5px; /* زوايا دائرية */
+}
+
+.search-btn:hover {
+    background-color: #003f7f; /* لون أزرق غامق عند التمرير */
+}
+
+#search-box::placeholder {
+    color: #d3d3d3; /* لون النص التوضيحي */
+}
+
+/* الحالة الافتراضية للزر */
+.search-btn {
+    background-color: #005fbf;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* عند التمرير */
+.search-btn:hover {
+    background-color: #003f7f;
+}
+
+/* حالة مميزة للزر عند تغيير الكومبو بوكس */
+.search-btn.highlighted {
+    background-color: #32CD32; /* لون أخضر فاتح */
+}
+
+/* الأزرار */
+.map-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* مسافة بين الأزرار */
+    margin-top: 15px;
+}
+
+.reset-btn, .stats-btn {
+    width: 200px; /* نفس العرض */
+    text-align: center;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.reset-btn {
+    background-color: #8B0000; /* لون عنابي */
+    color: white;
+}
+
+.reset-btn:hover {
+    background-color: #660000; /* لون غامق عند التمرير */
+}
+
+.stats-btn {
+    background-color: #005fbf; /* لون أزرق */
+    color: white;
+}
+
+.stats-btn:hover {
+    background-color: #003f7f; /* لون غامق عند التمرير */
+}
+
+/* التركيز على الحقول */
+#search-box:focus,
+#search-dropdown:focus {
+    outline: 2px solid #87CEEB; /* حدود التركيز */
+}
+
+/* بطاقة الإحصائيات */
+.stats-popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #001f3f; /* لون أزرق غامق */
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    border: 2px solid #005fbf;
+}
+
+.stats-popup h3 {
+    margin-bottom: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #f7f7f0; /* أزرق فاتح */
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.stats-list {
+    max-height: 200px;
+    overflow-y: auto; /* للسماح بالتمرير إذا زاد المحتوى */
+    text-align: left;
+    padding-right: 10px; /* لإبعاد شريط التمرير */
+}
+
+.stats-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ffffff; /* فاصل أبيض */
+}
+
+.stats-item:last-child {
+    border-bottom: none;
+}
+
+.stadium-name {
+    font-size: 16px;
+    font-weight: bold; /* خط عريض */
+    color: #ffffff;
+}
+
+.stadium-count {
+    display: flex;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #00aaff; /* حدود أزرق */
+    margin-left: 10px; /* إبعاد النص عن شريط التمرير */
+}
+
+.stadium-count .count {
+    font-weight: bold;
+    margin-right: 5px;
+    color: #005fbf; /* لون نص العدد */
+}
+
+.stadium-count .cup-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.total-stats {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff; /* أبيض */
+    text-align: center;
+}
+
+.total-stats .cup-icon {
+    margin-left: 5px;
+    width: 20px;
+    height: 20px;
+}
+
+/* زر الإغلاق */
+.stats-popup .close-btn {
+    background-color: #005fbf; /* لون أزرق */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.stats-popup .close-btn:hover {
+    background-color: #003f7f; /* لون أزرق غامق عند التمرير */
+}
+
+/*=================== تنسيقات الشاشات ===================*/
+
+/* شاشات الجوال */
+@media (max-width: 767px) {
+    .map-card, .stats-popup {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .map-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .reset-btn, .stats-btn {
+        width: 100%;
+    }
+
+    #search-box, #search-dropdown, .search-btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+/* شاشات الأجهزة اللوحية */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .map-card, .stats-popup {
+        width: 80%;
+    }
+
+    .reset-btn, .stats-btn {
+        width: 90%;
+    }
+
+    #search-box, #search-dropdown, .search-btn {
+        width: 90%;
+    }
+}
+
+/* شاشات الكمبيوتر */
+@media (min-width: 1025px) {
+    .map-card, .stats-popup {
+        width: 600px;
+    }
+
+    .reset-btn, .stats-btn {
+        width: 200px;
+    }
+}
+/* تصميم البطاقة */
+#action-card {
+    max-width: 400px;
+    margin: 20px auto;
+    background: linear-gradient(135deg, #001f5c, #004080);
+    color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    text-align: center;
+    border: 2px solid #005fbf;
+}
+
+/* عنوان البطاقة */
+.card-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* أزرار البطاقة */
+.card-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.card-btn {
+    background-color: #005fbf;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* التأثير عند التمرير على الأزرار */
+.card-btn:hover {
+    background-color: #8623ad;
+    transform: scale(1.05);
+}
+
+/* التأثير عند الضغط */
+.card-btn:active {
+    background-color: #3b007a;
+    transform: scale(0.95);
+}
+
+
+/* تصميم شريط التنقل السفلي */
+/* تصميم شريط التنقل السفلي */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #001f5c;
+    padding: 10px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.bottom-nav a {
+    text-align: center;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.bottom-nav a:hover {
+    color: #8623ad;
+    transform: scale(1.1);
+}
+
+.bottom-nav i {
+    font-size: 1.2rem;
+}
+
+.bottom-nav span {
+    font-size: 0.8rem;
+}
+
+@media (max-width: 767px) {
+    .bottom-nav {
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    .bottom-nav a {
+        font-size: 0.8rem;
+    }
+
+    .bottom-nav i {
+        font-size: 1rem;
+    }
+
+    .bottom-nav span {
+        font-size: 0.7rem;
+    }
+}
+
+/* نموذج الملاحظات */
+.hidden {
+    display: none;
+}
+
+.section {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    margin: 20px;
+    border-radius: 5px;
+}
+
+.footer-copyright {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #ffffff;
+    background-color: #001f3f;
+    padding: 10px 0;
+    margin-top: 15px;
+    padding-bottom: 50px; /* ترك مساحة لتجنب تغطيته من شريط التنقل */
+    border-top: 1px solid #87CEEB;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*======================================================================
+/*التنسقات الخاصه بشكل افقي للجوال والكمبيوتر تثبيت الطبقة 
+/*======================================================================*/
+
+/* إصلاح التمرير الأفقي */
+html, body {
+    overflow-x: hidden; /* منع التمرير الأفقي */
+}
+
+/* التأكد من أن جميع العناصر داخل الصفحة تتناسب مع العرض */
+.container, .map-wrapper, .map-card, #main-buttons, .hidden, #competition-results, #last-games-table {
+    max-width: 100%; /* منع أي عنصر من تجاوز العرض */
+    box-sizing: border-box; /* التأكد من حساب الحشوة ضمن العرض */
+    margin: 0 auto; /* محاذاة العناصر أفقياً */
+}
+
+/* إصلاح أي جداول قد تكون عريضة */
+table {
+    width: 100%; /* التأكد من أن الجدول لا يتجاوز العرض */
+    overflow-x: auto; /* إضافة تمرير أفقي عند الحاجة */
+}
+
+/* إصلاح الصور الكبيرة */
+img {
+    max-width: 100%; /* منع الصور من تجاوز العرض */
+    height: auto; /* الحفاظ على نسبة العرض إلى الارتفاع */
+}
+
+/* إصلاح الحاويات التي قد تحتوي على محتويات عريضة */
+.hidden {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+/* التأكد من أن الأقسام القابلة للتمرير تعمل بشكل سليم */
+.hidden, .popup, .map-card, #feedback-section {
+    overflow-y: auto; /* السماح بالتمرير العمودي فقط */
+    overflow-x: hidden; /* منع التمرير الأفقي */
+}
+
+/* التأكد من أن الخلفية لا تسبب تمرير أفقي */
+body {
+    background-size: cover; /* تغطية الخلفية بشكل مناسب */
+    margin: 0;
+    padding: 0;
+}
