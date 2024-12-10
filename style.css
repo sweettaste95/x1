@@ -841,57 +841,61 @@ body {
 /* كل مايتعلق بزراليوتيوب الفيديوات 
 /*======================================================================*/
 
-/* تنسيق العنصر الذي يحتوي على الفيديوهات */
 
+
+/* العنصر الذي يحتوي على الفيديوهات */
+/* تنسيق الحاوية التي تحتوي على الفيديوهات */
 #youtube-videos {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* شبكة ديناميكية */
-    gap: 20px; /* تقليل المسافة بين الفيديوهات */
-    justify-content: center;
-    padding: 20px; /* تقليل الحشوة */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* شبكة ديناميكية */
+    gap: 30px; /* المسافة بين الفيديوهات */
+    justify-content: center; /* توسيط العناصر داخل الشبكة أفقياً */
+    align-items: center; /* توسيط العناصر داخل الشبكة عمودياً */
+    padding: 20px; /* حشوة حول الشبكة */
 }
 
 
 
-/* تنسيق كل فيديو كارد بحيث يكون صغير الحجم */
+/* تنسيق كل فيديو كارد */
 .video-card {
     width: 100%;
     height: auto;
-    border: 3px solid  #3b97f5 !important; /* لون إطار برتقالي */
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    border: 3px solid #3b97f5 !important; /* لون الإطار */
+    border-radius: 10px; /* زوايا دائرية */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* إضافة ظل */
     overflow: hidden;
     background: linear-gradient(135deg, #35004e, #001f5c);
     transition: transform 0.3s, box-shadow 0.3s;
     display: flex;
     flex-direction: column;
+    align-items: center; /* توسيط العناصر داخل البطاقة */
+    justify-content: center; /* توسيط النصوص والصورة */
     padding: 10px;
-    align-items: center;
 }
-
 /* تأثير عند تمرير الماوس على الفيديو */
 .video-card:hover {
     transform: scale(1.05); /* تكبير بسيط عند التمرير */
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4); /* تكبير الظل */
 }
 
-/* تنسيق iframe لجعل الفيديو يناسب حجم الكارد */
+/* تنسيق iframe */
 .video-card iframe {
     width: 100%;
-    height: 100%;
+    height: auto;
     border-radius: 10px; /* نفس زوايا الكارد */
-     border: 2px solid #ffffff; /* إطار أبيض */
+    border: 2px solid #ffffff; /* إطار أبيض */
 }
 
+/* تنسيق عنوان الفيديو */
 .video-title {
-    margin-top: 10px; /* تقليل المسافة بين الفيديو والعنوان */
-    font-size: 1rem; /* حجم خط مناسب للجوال */
-    color: #FFFFFF; /* لون متناسق */
-    text-align: center; /* محاذاة العنوان في المنتصف */
-    font-weight: bold; /* خط عريض */
-    white-space: nowrap; /* النص في سطر واحد */
-    overflow: hidden; /* منع تجاوز النص */
-    text-overflow: ellipsis; /* النقاط إذا كان النص طويلاً */
+    margin-top: 10px; /* مسافة بين الفيديو والعنوان */
+    font-size: 1rem;
+    color: #FFFFFF;
+    text-align: center;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 
@@ -899,11 +903,11 @@ body {
 /* تنسيقات إضافية للشاشات المختلفة */
 /*======================================================================*/
 
-/* شاشات الجوالات */
+/* شاشات الجوال */
 @media (max-width: 767px) {
     #youtube-videos {
-        grid-template-columns: repeat(1, 1fr); /* فيديو واحد في كل صف */
-        gap:25px; /* تقليل المسافة بين الفيديوهات */
+        grid-template-columns: repeat(1, 1fr); /* فيديو واحد لكل صف */
+        gap: 15px; /* تقليل المسافة بين الفيديوهات */
     }
 
     .video-card {
@@ -917,8 +921,8 @@ body {
 /* شاشات الأجهزة اللوحية */
 @media (min-width: 768px) and (max-width: 1024px) {
     #youtube-videos {
-        grid-template-columns: repeat(2, 1fr); /* 2 فيديو لكل صف */
-        gap: 20px; /* مسافة مناسبة بين الفيديوهات */
+        grid-template-columns: repeat(2, 1fr); /* فيديوهين لكل صف */
+        gap: 20px;
     }
 
     .video-card {
@@ -929,8 +933,9 @@ body {
 /* شاشات الكمبيوتر */
 @media (min-width: 1025px) {
     #youtube-videos {
-        grid-template-columns: repeat(2, 1fr); /* 3 فيديوهات لكل صف */
-        gap: 40px; /* مسافة أكبر بين الفيديوهات */
+        grid-template-columns: repeat(2, 1fr); /* ثلاثة فيديوهات لكل صف */
+        gap: 30px; /* زيادة المسافة بين الفيديوهات */
+        justify-content: center; /* توسيط العناصر داخل الشبكة */
     }
 
     .video-card {
