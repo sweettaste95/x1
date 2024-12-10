@@ -1313,19 +1313,21 @@ border-left: 1px solid #fcf5fa;
 
 
 /* التصميم الأساسي للبطاقة */
-.manager-card {
-   /* background: white; /* لون الخلفية للجزء السفلي من البطاقة */
-    border-radius: 15px; /* زوايا البطاقة دائرية */
-    padding: 0; /* لا توجد مسافة داخلية للبطاقة */
-    max-width: 400px; /* العرض الأقصى للبطاقة */
-    margin: 0 auto; /* محاذاة البطاقة إلى المركز */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* تأثير ثلاثي الأبعاد */
-    overflow: hidden; /* إخفاء أي عناصر تخرج عن حدود البطاقة */
-    margin-top: 20px; /* مسافة إضافية أعلى البطاقة */
-    position: relative; /* يحدد أن الرقم (#) سيكون داخل حدود البطاقة */
-  
-  
+/* البطاقة */
+.map-card {
+    margin-top: 20px; /* تباعد عن الخريطة */
+    padding: 20px;
+    background: linear-gradient(135deg, #001f5c, #004080); /* تدرج أزرق عميق */
+    border-radius: 15px; /* زوايا دائرية */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* ظل لطيف */
+    width: 100%; /* تطابق عرض الخريطة */
+    box-sizing: border-box; /* لضمان عدم تجاوز الحدود */
+    margin-left: auto;
+    margin-right: auto;
+    color: #fff; /* النص باللون الأبيض */
+    border: 2px solid #87CEEB; /* حواف زرقاء فاتحة */
 }
+
 
 /* تصميم الجزء العلوي من البطاقة (الصورة + الاسم) */
 .manager-card .header {
@@ -1564,7 +1566,9 @@ border-left: 1px solid #fcf5fa;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* ظل لطيف */
     margin-bottom: 20px; /* مسافة تحت الخريطة */
     overflow: hidden;
+    width: 100%; /* عرض كامل */
 }
+
 
 /* البطاقة */
 /* البطاقة */
@@ -1887,6 +1891,9 @@ border-left: 1px solid #fcf5fa;
         width: 200px;
     }
 }
+
+
+/*==============================================================*/
 /* تصميم البطاقة */
 #action-card {
     max-width: 400px;
@@ -2230,5 +2237,67 @@ tr:hover td {
     .welcome-message {
         font-size: 1.8rem;
         margin-top: 30px;
+    }
+}
+
+/*==========================================================*/
+
+/* تعديل عرض البطاقة لتتناسب مع عرض الخريطة */
+.map-card {
+    width: 100%; /* تمديد البطاقة لتناسب عرض الخريطة */
+    max-width: none; /* إزالة الحد الأقصى للعرض */
+    margin-left: 0; /* إزالة المسافات الجانبية */
+    margin-right: 0;
+    padding: 20px; /* الحفاظ على المسافة الداخلية */
+    box-sizing: border-box; /* الحشوات داخل العرض */
+}
+
+/* تخصيص للجوال */
+@media (max-width: 767px) {
+    .map-card {
+        padding: 10px; /* تقليل المسافات للجوال */
+    }
+
+    #search-box, #search-dropdown {
+        font-size: 16px; /* تكبير النص ليكون أوضح */
+        padding: 12px; /* تحسين المسافات داخل الحقول */
+    }
+
+    #search-btn {
+        font-size: 16px; /* تكبير الزر ليكون متناسبًا مع النص */
+        padding: 12px 20px; /* تحسين الحجم */
+    }
+}
+
+/* تخصيص للأجهزة اللوحية */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .map-card {
+        padding: 15px; /* مسافات متوسطة للأجهزة اللوحية */
+    }
+
+    #search-box, #search-dropdown {
+        font-size: 18px; /* حجم مناسب للأجهزة اللوحية */
+    }
+
+    #search-btn {
+        font-size: 18px;
+        padding: 14px 24px;
+    }
+}
+
+/* تخصيص للكمبيوتر */
+@media (min-width: 1025px) {
+    .map-card {
+        margin-top: 20px; /* مسافة علوية لتجنب الالتصاق */
+    }
+
+    #search-box, #search-dropdown {
+        font-size: 20px; /* حجم النص أكبر للشاشات الكبيرة */
+        padding: 14px 28px;
+    }
+
+    #search-btn {
+        font-size: 20px;
+        padding: 14px 28px;
     }
 }
