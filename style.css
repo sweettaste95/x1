@@ -1569,7 +1569,7 @@ border-left: 1px solid #fcf5fa;
 /* البطاقة */
 /* البطاقة */
 .map-card {
-    margin-top: 20px;
+    margin-top: 30px; /* تباعد عن الخريطة */
     padding: 20px;
     background: linear-gradient(135deg, #001f5c, #004080); /* تدرج أزرق عميق */
     border-radius: 15px; /* زوايا دائرية */
@@ -1579,8 +1579,30 @@ border-left: 1px solid #fcf5fa;
     margin-right: auto;
     color: #fff; /* النص باللون الأبيض */
     border: 2px solid #87CEEB; /* حواف زرقاء فاتحة */
-}
 
+    width: 100%; /* تطابق عرض الخريطة */
+    max-width: 600px; /* حد أقصى للعرض */
+    box-sizing: border-box; /* لضمان عدم تجاوز الحدود */
+   
+    border-radius: 15px; /* زوايا دائرية */
+}
+/* تخصيص الجوال */
+@media (max-width: 767px) {
+    .map-card {
+        width: 90%; /* عرض مناسب للجوال */
+    }
+
+    #search-box,
+    #search-dropdown {
+        font-size: 1rem; /* حجم أصغر قليلاً للنص في الجوال */
+        padding: 10px; /* حشوة أقل */
+    }
+
+    #search-btn {
+        font-size: 1rem;
+        padding: 10px 15px;
+    }
+}
 /* وصف الحقول */
 .description-text {
     font-size: 18px; /* تكبير حجم الخط */
