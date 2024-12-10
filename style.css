@@ -1980,6 +1980,33 @@ html, body {
     padding: 10px; /* إضافة مسافة داخلية */
     box-sizing: border-box; /* لضمان الحشوات ضمن العرض */
 }
+/* للجوالات */
+@media (max-width: 767px) {
+    html, body {
+        overflow-y: auto;
+        overflow-x: hidden;
+        scrollbar-gutter: stable;
+    }
+}
+
+/* للأجهزة اللوحية */
+@media (min-width: 768px) and (max-width: 1024px) {
+    html, body {
+        overflow-y: auto;
+        overflow-x: hidden;
+        scrollbar-gutter: stable;
+    }
+}
+
+/* للأجهزة الكبيرة */
+@media (min-width: 1025px) {
+    html, body {
+        overflow-y: auto;
+        overflow-x: hidden;
+        scrollbar-gutter: stable;
+    }
+}
+
 
 /* التأكد من أن جميع العناصر داخل الصفحة تتناسب مع العرض */
 .container, .map-wrapper, .map-card, #main-buttons, .hidden, #competition-results, #last-games-table {
