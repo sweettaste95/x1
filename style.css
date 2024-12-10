@@ -1553,7 +1553,7 @@ border-left: 1px solid #fcf5fa;
     }
 }
 
-
+/*===================================================================*/
 
 
 
@@ -1591,15 +1591,41 @@ border-left: 1px solid #fcf5fa;
     font-weight: bold;
 }
 
-/* ترتيب الحقول */
 .map-controls {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
-    margin-top: 10px;
+    margin-top: 30px; /* مسافة علوية لضمان المربع بعيد عن الخريطة */
     margin-bottom: 20px; /* مسافة إضافية أسفل الحقول */
 }
+
+/* شاشات الجوال */
+@media (max-width: 767px) {
+    .map-controls {
+        flex-direction: column; /* ترتيب العناصر عموديًا لتناسب الشاشة الصغيرة */
+        align-items: stretch; /* محاذاة العناصر بعرض كامل */
+        margin-top: 20px; /* مسافة أقل تناسب حجم الشاشة الصغيرة */
+        gap: 8px; /* مسافة أصغر بين الحقول */
+    }
+}
+
+/* شاشات الأجهزة اللوحية */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .map-controls {
+        margin-top: 25px; /* مسافة متوسطة تناسب الأجهزة اللوحية */
+        gap: 12px; /* مسافة متوسطة بين الحقول */
+    }
+}
+
+@media (min-width: 1025px) {
+    .map-controls {
+        margin-top: 40px; /* زيادة أكبر للمسافة العلوية لشاشات الكمبيوتر */
+        gap: 15px; /* مسافة أكبر بين الحقول */
+    }
+}
+
+
 
 #search-box, #search-dropdown, .search-btn {
     flex: 1;
@@ -2162,4 +2188,25 @@ tr:hover td {
     width: 90%; /* العرض النسبي */
     max-width: 1200px; /* الحد الأقصى للعرض */
     margin: 0 auto; /* محاذاة في المنتصف */
+}
+
+
+.welcome-message {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* تحسينات لشاشات الكمبيوتر */
+@media (min-width: 1025px) {
+    .welcome-message {
+        font-size: 1.8rem;
+        margin-top: 30px;
+    }
 }
