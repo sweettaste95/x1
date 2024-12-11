@@ -775,6 +775,17 @@ function showChampionshipsByYear(data, year) {
     }
 }
 
+// عرض تفاصيل البطولة
+// إخفاء تفاصيل البطولة عند تحميل الصفحة
+document.addEventListener("DOMContentLoaded", () => {
+    const infoContainer = document.getElementById("championship-info");
+    infoContainer.classList.add("hidden");
+});
+
+// عرض تفاصيل البطولة
+// عرض تفاصيل البطولة
+// عرض تفاصيل البطولة
+// عرض تفاصيل البطولة
 function showChampionshipInfo(championship) {
     const infoContainer = document.getElementById("championship-info");
     const detailsContainer = document.getElementById("championship-details");
@@ -782,11 +793,9 @@ function showChampionshipInfo(championship) {
     // إخفاء قائمة البطولات
     detailsContainer.classList.add("hidden");
 
-    // البحث عن الفيديو المرتبط برقم البطولة
-    const relatedVideo = videos.find(video => video["Championship Rank"] == championship["Championship Rank"]);
-
     // تحديث محتوى البطاقة
     infoContainer.innerHTML = `
+    
         <h3 class="info-title">${championship["Name"]}</h3>
         <img src="${championship["Image URL"]}" alt="${championship["Name"]}" class="championship-image">
         <div class="info-section">
@@ -809,14 +818,26 @@ function showChampionshipInfo(championship) {
             <i class="fa fa-hashtag"></i>
             <span>رقم البطولة: ${championship["Championship Rank"] || "غير متوفر"}</span>
         </div>
-        ${relatedVideo ? `<button class="view-video-btn" onclick="showVideoPopup('${relatedVideo.videoId}')">
-            <i class="fas fa-play-circle"></i> 🎥 مشاهدة مباراة التتويج
-        </button>` : ""}
         <button class="return-btn" onclick="backToList()">العودة إلى قائمة البطولات</button>
+        
     `;
 
+  // الكود لضبط الشعار فقط
+    const logo = document.getElementById("championship-logo");
+    if (logo) {
+        logo.style.border = "none"; // إزالة أي حدود
+        logo.style.margin = "0"; // إزالة أي مسافات غير مرغوب فيها
+        logo.style.boxShadow = "none"; // إزالة أي ظل
+        logo.style.height = "auto"; // 
+      
+      
+  logo.style.width = "100px"; // تكبير العرض
+    logo.style.marginBottom = "2px"; // تقليل المسافة بين الشعار والعنوان
+}   
+
     infoContainer.classList.remove("hidden");
-}
+ }
+  
 
 // زر العودة إلى قائمة البطولات
 function backToList() {
@@ -828,28 +849,6 @@ function backToList() {
 
     // عرض قائمة البطولات
     detailsContainer.classList.remove("hidden");
-}
-
-function showVideoPopup(videoId) {
-    // إنشاء النافذة المنبثقة
-    const popup = document.createElement("div");
-    popup.classList.add("video-popup");
-    popup.innerHTML = `
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <button class="close-popup-btn" onclick="closeVideoPopup()">×</button>
-        </div>
-    `;
-
-    // إضافة النافذة إلى الصفحة
-    document.body.appendChild(popup);
-}
-
-function closeVideoPopup() {
-    const popup = document.querySelector(".video-popup");
-    if (popup) {
-        popup.remove();
-    }
 }
 
 
