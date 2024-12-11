@@ -221,35 +221,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-function fetchUserCount() {
-    fetch("https://script.google.com/macros/s/AKfycbwTghdY-7GCgsEibhJMD_9aFz-y2iqfWuTwDW8PlL9v0grw4BZvdKNSuhYVtgjeNu-3/exec")
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === "Success") {
-                const userCount = data.userCount;
-                document.getElementById("user-count").textContent = `أنت الزائر رقم : ${userCount}`;
-            } else {
-                console.error("Error:", data.message);
-            }
-        })
-        .catch(error => console.error("Fetch error:", error));
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    fetchUserCount(); // استدعاء الدالة بعد تحميل الصفحة
-});
 
 
 // بيانات البطولات حسب المسابقة
 const championshipsByCompetition = {
     "كأس الملك": [1962, 1965, 1980, 1982, 1984, 1989, 2015, 2017, 2020, 2023, 2024],
     "الدوري الممتاز": [1977, 1979, 1985, 1986, 1988, 1990, 1996, 1998, 2000, 2005, 2008, 2010, 2011, 2017, 2018, 2020, 2021, 2022, 2024],
-    "كأس ولي العهد": [1965,1964, 1995, 2000, 2003, 2005, 2006, 2008, 2009, 2010, 2011, 2012, 2013, 2016],
-    "دوري أبطال آسيا": [ 1991, 1996, 1997, 2000, 2002, 2019, 2021],
-    "كأس الاتحاد السعودي": [ 2005, 1999, 1986, 1989, 1993, 1995],
+    "كأس ولي العهد": [1965, 1995, 2000, 2003, 2005, 2006, 2008, 2009, 2010, 2011, 2012, 2013, 2016],
+    "دوري أبطال آسيا": [ 1991, 1996, 1997, 2000 ,2000, 2002, 2019, 2021],
+    "كأس الاتحاد السعودي": [ 1986, 1989, 1993, 1995, 1999, 2005],
     "كأس السوبر السعودي": [2015, 2018, 2021, 2023, 2024],
     "كأس المؤسس": [2000],
-    "بطولة الأندية العربية أبطال الدوري": [2001, 2000, 1994, 1995],
+    "بطولة الأندية العربية أبطال الدوري": [1994, 1995, 2000, 2001],
     "كأس الأندية الخليجية": [1986, 1998],
     "كأس السوبر السعودي المصري": [2001],
 };
@@ -813,7 +796,6 @@ function showChampionshipInfo(championship) {
     // تحديث محتوى البطاقة
     infoContainer.innerHTML = `
     
-        <img src="icon.png" alt="شعار التطبيق" id="championship-logo" style="width: 50px; height: auto; margin-bottom: 10px;">
         <h3 class="info-title">${championship["Name"]}</h3>
         <img src="${championship["Image URL"]}" alt="${championship["Name"]}" class="championship-image">
         <div class="info-section">
@@ -1243,8 +1225,9 @@ function displayManager(index) {
                 </p>
                 <!-- الأزرار -->
                 <div class="buttons">
-                    <button onclick="prevManager()">السابق</button>
+                 
                     <button onclick="nextManager()">التالي</button>
+                     <button onclick="prevManager()">السابق</button>
                 </div>
             </div>
         </div>
