@@ -78,13 +78,13 @@ if ('serviceWorker' in navigator) {
       
     <!-- الأزرار الرئيسية -->
 <div id="main-buttons" class="buttons hidden">
-  <button class="icon-btn" onclick="showLastGames()">📜 سجلات الدوري</button>
-    <button class="icon-btn" onclick="showManagers()">👥 رؤساء الهلال</button>
-   <button class="icon-btn" onclick="showYouTubeVideos()">📹 مقاطع التتويج</button>
-   <button class="icon-btn" onclick="showMatches()">📅 مباريات الهلال</button>
-  <button class="icon-btn" onclick="showHilalMap()">🗺️ منصات الهلال</button>
-  <button class="icon-btn" onclick="showCompetitionSearch()">⭐ المسابقة</button>
+    <button class="icon-btn" onclick="showCompetitionSearch()">⭐ المسابقة</button>
   <button class="icon-btn" onclick="showTimeline()">🏆 التتويجات</button>
+   <button class="icon-btn" onclick="showYouTubeVideos()">📹 مقاطع التتويج</button>
+  <button class="icon-btn" onclick="showHilalMap()">🗺️ منصات الهلال</button>
+    <button class="icon-btn" onclick="showManagers()">👥 رؤساء الهلال</button>
+  <button class="icon-btn" onclick="showLastGames()">📜 سجلات الدوري</button>
+   <button class="icon-btn" onclick="showMatches()">📅 مباريات الهلال</button>
 </div>
 
   
@@ -131,7 +131,7 @@ if ('serviceWorker' in navigator) {
 
         <!-- البحث حسب المسابقة -->
         <div id="competition-search" class="search-section hidden">
-           
+               <h2>المسابقات المحلية و الدولية</h2>
             <select id="competition-select" onchange="searchByCompetition()">>
                 <option value="">اختر المسابقة</option>
             </select>
@@ -141,7 +141,8 @@ if ('serviceWorker' in navigator) {
 
         <!-- قسم التتويجات مع قائمة منسدلة -->
         <div class="timeline-container hidden">
-         
+         <!-- قسم جدول مباريات الهلال التاريخي -->
+    <h2>تتويجات البطولات النهائية</h2>
             <select id="year-select" onchange="showChampionshipDetails(this.value)">
                 <option value="">  اختـــر سنـــة التتويــج</option>
             </select>
@@ -197,7 +198,11 @@ if ('serviceWorker' in navigator) {
               <button class="competition-button" onclick="filterMatches('كأس السوبر السعودي')">السوبر </button>
               <button class="competition-button" onclick="filterMatches('دوري روشن السعودي')">الدوري  </button>
               <button class="competition-button" onclick="filterMatches('كأس الملك السعودي')">كأس الملك </button>
-              <button class="competition-button" onclick="filterMatches('دوري أبطال آسيا')">أبطال آسيا</button>
+             <button class="competition-button" onclick="filterMatches('دوري أبطال آسيا')">أبطال آسيا </button>
+                    <button class="competition-button" onclick="filterMatches('كأس العالم ')">كأس العالم  </button>
+
+      
+      
      <!--    <button class="competition-button" onclick="displayMatches(allMatches)">عرض الكل</button>-->
     </div>  
   
@@ -220,7 +225,7 @@ if ('serviceWorker' in navigator) {
 
 <!-- قسم جدول مباريات الهلال التاريخي -->
 <div id="last-games-section" class="hidden">
-    <h2>سجل مباريات الهلال التاريخي</h2>
+    <h2>سجل مباريات الهلال في الدوري</h2>
 
     
     <!-- القائمة المنسدلة لاختيار السنة -->
@@ -326,7 +331,7 @@ if ('serviceWorker' in navigator) {
 
   <!-- حقوق الطبع والنشر -->
 <div class="footer-copyright">
-    <p>© جميع الحقوق محفوظة لحساب حالي الذوق 2024 - الإصدار الأول</p>
+    <p> 2024 © جميع الحقوق محفوظة لحساب حالي الذوق الإصدار الأول  B_S_2000@</p> 
 </div>
 
 <!-- شريط التنقل السفلي -->
