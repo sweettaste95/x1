@@ -550,13 +550,7 @@ body {
     text-align: center;
     font-family: Arial, sans-serif;
 }
-#championship-logo {
-    width: 150px; /* تكبير الشعار */
-    height: auto; /* الحفاظ على النسبة */
-    display: block;
-    margin: 0 auto; /* توسيط الشعار */
-    margin-bottom: 5px; /* تقليل المسافة تحت الشعار */
-}
+
 
 .info-title {
     margin-top: 5px; /* تقليل المسافة العلوية للعنوان */
@@ -2034,8 +2028,97 @@ border-left: 1px solid #fcf5fa;
     border-top: 1px solid #87CEEB;
 }
 
+/*=======================================================================================*/
+
+/*========================================================================================*/
+
+/* زر مشاهدة التتويج */
+.view-video-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+    padding: 12px 20px;
+    background-color: #ff0000; /* لون يوتيوب */
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    gap: 8px; /* مسافة بين النص والأيقونة */
+}
+
+.view-video-btn i {
+    font-size: 1.2rem; /* حجم الأيقونة */
+}
+
+.view-video-btn:hover {
+    background-color: #cc0000; /* لون أغمق عند التمرير */
+    transform: scale(1.05); /* تكبير الزر قليلاً */
+}
+
+/* نافذة الفيديو */
 
 
+/* نافذة الفيديو */
+.video-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.video-container {
+    position: relative;
+    width: 80%; /* نسبة العرض */
+    max-width: 900px; /* الحد الأقصى للعرض */
+    aspect-ratio: 16/9; /* نسبة الأبعاد */
+    background: #000; /* خلفية سوداء */
+    border-radius: 10px; /* زوايا دائرية */
+    overflow: hidden; /* إخفاء الزوائد */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* ظل */
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none; /* إزالة الحدود */
+}
+
+
+
+/* زر الإغلاق */
+.close-popup-btn {
+    position: absolute;
+    top: 10px; /* المسافة من الأعلى */
+    right: 10px; /* المسافة من اليمين */
+    background: #ff4d4d; /* لون الزر */
+    color: #fff; /* لون النص */
+    border: none; /* إزالة الحدود */
+    border-radius: 50%; /* جعل الزر دائري */
+    width: 30px; /* عرض الزر */
+    height: 30px; /* ارتفاع الزر */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem; /* حجم الخط */
+    cursor: pointer; /* تغيير مؤشر الفأرة */
+    transition: background 0.3s ease;
+}
+
+.close-popup-btn:hover {
+    background: #d93636; /* لون الزر عند التمرير */
+}
 
 
 
