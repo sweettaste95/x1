@@ -775,7 +775,6 @@ function showChampionshipsByYear(data, year) {
     }
 }
 
-// عرض تفاصيل البطولة
 function showChampionshipInfo(championship) {
     const infoContainer = document.getElementById("championship-info");
     const detailsContainer = document.getElementById("championship-details");
@@ -846,7 +845,6 @@ function showVideoPopup(videoId) {
     document.body.appendChild(popup);
 }
 
-// دالة إغلاق النافذة المنبثقة
 function closeVideoPopup() {
     const popup = document.querySelector(".video-popup");
     if (popup) {
