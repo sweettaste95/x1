@@ -2032,7 +2032,7 @@ border-left: 1px solid #fcf5fa;
 
 /*========================================================================================*/
 
-/* زر مشاهدة التتويج */
+//* زر مشاهدة التتويج */
 .view-video-btn {
     display: inline-flex;
     align-items: center;
@@ -2062,71 +2062,54 @@ border-left: 1px solid #fcf5fa;
 }
 
 /* نافذة الفيديو */
-
-
-/* نافذة الفيديو */
 .video-popup {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
 }
 
+/* تصميم حاوية الفيديو */
 .video-container {
     position: relative;
-    width: 80%; /* نسبة العرض */
-    max-width: 900px; /* الحد الأقصى للعرض */
-    aspect-ratio: 16/9; /* نسبة الأبعاد */
-    background: #000; /* خلفية سوداء */
-    border-radius: 10px; /* زوايا دائرية */
-    overflow: hidden; /* إخفاء الزوائد */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* ظل */
+    background-color: #000;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 90%;
+    max-width: 800px;
+    aspect-ratio: 16 / 9; /* نسبة الفيديو */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
-.video-container iframe {
-    width: 100%;
-    height: 100%;
-    border: none; /* إزالة الحدود */
-}
-
-
-
-/* زر الإغلاق */
+/* زر إغلاق الفيديو */
 .close-popup-btn {
     position: absolute;
-    top: 10px; /* المسافة من الأعلى */
-    right: 10px; /* المسافة من اليمين */
-    background: #ff4d4d; /* لون الزر */
-    color: #fff; /* لون النص */
-    border: none; /* إزالة الحدود */
-    border-radius: 50%; /* جعل الزر دائري */
-    width: 30px; /* عرض الزر */
-    height: 30px; /* ارتفاع الزر */
+    top: 10px;
+    right: 10px;
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    font-size: 1.5rem;
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.2rem; /* حجم الخط */
-    cursor: pointer; /* تغيير مؤشر الفأرة */
-    transition: background 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
 }
 
 .close-popup-btn:hover {
-    background: #d93636; /* لون الزر عند التمرير */
+    background-color: #cc0000;
 }
-
-
-
-
-
-
-
-
 
 
 
