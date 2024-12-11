@@ -83,7 +83,7 @@ body {
     body {
         margin: 0;
         padding: 0;
-        overflow-x: hidden; /* منع التحرك الجانبي */
+        overflow-x: ; /* منع التحرك الجانبي */
     }
     .container {
         width: 100%; /* جعل الحاوية تأخذ العرض بالكامل */
@@ -230,7 +230,7 @@ body {
 /*======================================================================*/
 
 /* إخفاء العناصر الأخرى عند وجود شاشة التسجيل */
-.hidden {
+. {
     display: none;
 }
 
@@ -534,7 +534,7 @@ body {
 /* هذا خاص بتفاصيل داخل البطاقة الي تعرض تفاصيل البطولة ومعلوماتها */
 /* تحسين البطاقة */
 /* تصميم البطاقة */
-.hidden {
+. {
     display: none; /* إخفاء العناصر بشكل افتراضي */
 }
 
@@ -550,7 +550,13 @@ body {
     text-align: center;
     font-family: Arial, sans-serif;
 }
-
+#championship-logo {
+    width: 150px; /* تكبير الشعار */
+    height: auto; /* الحفاظ على النسبة */
+    display: block;
+    margin: 0 auto; /* توسيط الشعار */
+    margin-bottom: 5px; /* تقليل المسافة تحت الشعار */
+}
 
 .info-title {
     margin-top: 5px; /* تقليل المسافة العلوية للعنوان */
@@ -690,7 +696,7 @@ body {
     margin-top: 20px;
     background-color: #001f3f; /* خلفية الجدول */
     border-radius: 10px; /* زوايا دائرية */
-    overflow: hidden; /* لإخفاء أي شيء خارج الحواف */
+    overflow: ; /* لإخفاء أي شيء خارج الحواف */
     border: 2px solid #005fbf; /* حواف خارجية بلون أزرق داكن */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* إضافة ظل لطيف */
 }
@@ -750,7 +756,7 @@ body {
     margin-top: 20px;
     background-color: #001f3f; /* لون الخلفية */
     border-radius: 10px;
-    overflow: hidden;
+    overflow: ;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* ظل خفيف */
 }
 
@@ -865,7 +871,7 @@ body {
     border: 3px solid #3b97f5 !important; /* لون الإطار */
     border-radius: 10px; /* زوايا دائرية */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* إضافة ظل */
-    overflow: hidden;
+    overflow: ;
     background: linear-gradient(135deg, #35004e, #001f5c);
     transition: transform 0.3s, box-shadow 0.3s;
     display: flex;
@@ -896,7 +902,7 @@ body {
     text-align: center;
     font-weight: bold;
     white-space: nowrap;
-    overflow: hidden;
+    overflow: ;
     text-overflow: ellipsis;
 }
 
@@ -2028,88 +2034,16 @@ border-left: 1px solid #fcf5fa;
     border-top: 1px solid #87CEEB;
 }
 
-/*=======================================================================================*/
 
-/*========================================================================================*/
 
-//* زر مشاهدة التتويج */
-.view-video-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin: 20px auto;
-    padding: 12px 20px;
-    background-color: #ff0000; /* لون يوتيوب */
-    color: #fff;
-    font-size: 1.1rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    text-align: center;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    gap: 8px; /* مسافة بين النص والأيقونة */
-}
 
-.view-video-btn i {
-    font-size: 1.2rem; /* حجم الأيقونة */
-}
 
-.view-video-btn:hover {
-    background-color: #cc0000; /* لون أغمق عند التمرير */
-    transform: scale(1.05); /* تكبير الزر قليلاً */
-}
 
-/* نافذة الفيديو */
-.video-popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
 
-/* تصميم حاوية الفيديو */
-.video-container {
-    position: relative;
-    background-color: #000;
-    border-radius: 10px;
-    overflow: hidden;
-    width: 90%;
-    max-width: 800px;
-    aspect-ratio: 16 / 9; /* نسبة الفيديو */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
 
-/* زر إغلاق الفيديو */
-.close-popup-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #ff0000;
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    width: 35px;
-    height: 35px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transition: background-color 0.3s ease;
-}
 
-.close-popup-btn:hover {
-    background-color: #cc0000;
-}
+
+
 
 
 
@@ -2185,9 +2119,11 @@ img {
 
 /* إصلاح الحاويات التي قد تحتوي على محتويات عريضة */
 .hidden {
+    display: none; /* إخفاء العنصر تمامًا */
     overflow-x: hidden;
     max-width: 100%;
 }
+
 
 /* التأكد من أن الأقسام القابلة للتمرير تعمل بشكل سليم */
 .hidden, .popup, .map-card, #feedback-section {
@@ -2249,7 +2185,7 @@ tr:hover td {
 
 /* ترتيب الأزرار العلوية */
 .buttons {
-    display: flex;
+    display: noun;
     flex-wrap: wrap; /* جعل الأزرار تنتقل لصف جديد عند عدم توفر المساحة */
     gap: 10px; /* المسافة بين الأزرار */
     justify-content: center; /* توسيط الأزرار */
