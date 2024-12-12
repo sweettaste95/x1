@@ -19,7 +19,7 @@ body {
   
   
   
-}
+
 /* حاوية المحتوى الرئيسي */
 .container {
     max-width: 500px; /* أقصى عرض للحاوية */
@@ -83,7 +83,7 @@ body {
     body {
         margin: 0;
         padding: 0;
-        overflow-x: ; /* منع التحرك الجانبي */
+        overflow-x: hidden; /* منع التحرك الجانبي */
     }
     .container {
         width: 100%; /* جعل الحاوية تأخذ العرض بالكامل */
@@ -230,7 +230,7 @@ body {
 /*======================================================================*/
 
 /* إخفاء العناصر الأخرى عند وجود شاشة التسجيل */
-. {
+.hidden {
     display: none;
 }
 
@@ -534,7 +534,7 @@ body {
 /* هذا خاص بتفاصيل داخل البطاقة الي تعرض تفاصيل البطولة ومعلوماتها */
 /* تحسين البطاقة */
 /* تصميم البطاقة */
-. {
+.hidden {
     display: none; /* إخفاء العناصر بشكل افتراضي */
 }
 
@@ -696,7 +696,7 @@ body {
     margin-top: 20px;
     background-color: #001f3f; /* خلفية الجدول */
     border-radius: 10px; /* زوايا دائرية */
-    overflow: ; /* لإخفاء أي شيء خارج الحواف */
+    overflow: hidden; /* لإخفاء أي شيء خارج الحواف */
     border: 2px solid #005fbf; /* حواف خارجية بلون أزرق داكن */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* إضافة ظل لطيف */
 }
@@ -756,7 +756,7 @@ body {
     margin-top: 20px;
     background-color: #001f3f; /* لون الخلفية */
     border-radius: 10px;
-    overflow: ;
+    overflow: hidden;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* ظل خفيف */
 }
 
@@ -871,7 +871,7 @@ body {
     border: 3px solid #3b97f5 !important; /* لون الإطار */
     border-radius: 10px; /* زوايا دائرية */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* إضافة ظل */
-    overflow: ;
+    overflow: hidden;
     background: linear-gradient(135deg, #35004e, #001f5c);
     transition: transform 0.3s, box-shadow 0.3s;
     display: flex;
@@ -902,7 +902,7 @@ body {
     text-align: center;
     font-weight: bold;
     white-space: nowrap;
-    overflow: ;
+    overflow: hidden;
     text-overflow: ellipsis;
 }
 
@@ -1555,7 +1555,9 @@ border-left: 1px solid #fcf5fa;
 }
 
 /*===================================================================*/
+/* قسم الخرائط 
 
+/*===================================================================*/
 
 
 /* إطار للخريطة */
@@ -1589,9 +1591,6 @@ border-left: 1px solid #fcf5fa;
    
     border-radius: 15px; /* زوايا دائرية */
 }
-
-
-
 
 /* تخصيص الجوال */
 @media (max-width: 767px) {
@@ -1740,10 +1739,14 @@ border-left: 1px solid #fcf5fa;
     outline: 2px solid #87CEEB; /* حدود التركيز */
 }
 
+
+
+
+
 /* بطاقة الإحصائيات */
 .stats-popup {
     position: absolute;
-    top: 50%;
+    top:50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #001f3f; /* لون أزرق غامق */
@@ -1752,15 +1755,15 @@ border-left: 1px solid #fcf5fa;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     z-index: 1000;
-    width: 90%;
-    max-width: 500px;
+    width:110%;
+    max-width: 700px;
     text-align: center;
     border: 2px solid #005fbf;
 }
 
 .stats-popup h3 {
     margin-bottom: 15px;
-    font-size: 22px;
+    font-size: 28px;
     font-weight: bold;
     color: #f7f7f0; /* أزرق فاتح */
     border-bottom: 1px solid #ccc;
@@ -1768,7 +1771,7 @@ border-left: 1px solid #fcf5fa;
 }
 
 .stats-list {
-    max-height: 200px;
+    max-height: 350px;
     overflow-y: auto; /* للسماح بالتمرير إذا زاد المحتوى */
     text-align: left;
     padding-right: 10px; /* لإبعاد شريط التمرير */
@@ -1787,7 +1790,7 @@ border-left: 1px solid #fcf5fa;
 }
 
 .stadium-name {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bold; /* خط عريض */
     color: #ffffff;
 }
@@ -1815,21 +1818,21 @@ border-left: 1px solid #fcf5fa;
 
 .total-stats {
     margin-top: 15px;
-    font-size: 18px;
+    font-size: 25px;
     font-weight: bold;
     color: #ffffff; /* أبيض */
     text-align: center;
 }
 
 .total-stats .cup-icon {
-    margin-left: 5px;
+    margin-left: 10px;
     width: 20px;
     height: 20px;
 }
 
 /* زر الإغلاق */
 .stats-popup .close-btn {
-    background-color: #005fbf; /* لون أزرق */
+    background-color: #db0404; /* لون احمر */
     color: white;
     border: none;
     padding: 10px 15px;
@@ -1886,8 +1889,12 @@ border-left: 1px solid #fcf5fa;
 
 /* شاشات الكمبيوتر */
 @media (min-width: 1025px) {
-    .map-card, .stats-popup {
-        width: 600px;
+    .map-card,  {
+        width:2000px;
+    }
+  
+   .stats-popup {
+        width:5000px;
     }
 
     .reset-btn, .stats-btn {
@@ -2119,11 +2126,9 @@ img {
 
 /* إصلاح الحاويات التي قد تحتوي على محتويات عريضة */
 .hidden {
-    display: none; /* إخفاء العنصر تمامًا */
     overflow-x: hidden;
     max-width: 100%;
 }
-
 
 /* التأكد من أن الأقسام القابلة للتمرير تعمل بشكل سليم */
 .hidden, .popup, .map-card, #feedback-section {
