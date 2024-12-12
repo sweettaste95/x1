@@ -1852,7 +1852,7 @@ border-left: 1px solid #fcf5fa;
 
 /* شاشات الجوال */
 @media (max-width: 767px) {
-    .map-card, .stats-popup {
+    .map-card, .stats-popup, .close-btn {
         width: 90%;
         padding: 15px;
     }
@@ -1889,13 +1889,11 @@ border-left: 1px solid #fcf5fa;
 
 /* شاشات الكمبيوتر */
 @media (min-width: 1025px) {
-    .map-card,  {
+    .map-card, .stats-popup  {
         width:2000px;
     }
   
-   .stats-popup {
-        width:5000px;
-    }
+   
 
     .reset-btn, .stats-btn {
         width: 200px;
