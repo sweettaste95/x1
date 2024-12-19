@@ -42,12 +42,22 @@ if ('serviceWorker' in navigator) {
     <img src="icon.png" alt="شعار" id="logo">
   </div>
  <div class="top-nav-buttons">
-    <a href="javascript:void(0);" onclick="showAboutCard()">من نحن</a>
-    <a href="javascript:void(0);" onclick="showSuggestions()">مقترحاتكم</a>
-    <a href="javascript:void(0);" onclick="subscribeChannel()">اشترك معنا</a>
+    <a id="about-btn" title="من نحن" onclick="showAboutCard()">
+        <i class="fa fa-user"></i>
+        <span>من نحن</span>
+    </a>
+    <a id="suggestions-btn" title="مقترحاتكم" onclick="showFeedbackForm()">
+        <i class="fa fa-comment"></i>
+        <span>مقترحاتكم</span>
+    </a>
+    <a id="subscribe-btn" title="اشترك معنا" onclick="subscribeChannel()">
+        <i class="fa fa-bell"></i>
+        <span>اشترك معنا</span>
+    </a>
 </div>
 
 </div>
+
 
     <div id="menu-content" class="hidden">
         <button onclick="showCompetitionSearch()">⭐ المسابقة</button>
