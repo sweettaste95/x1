@@ -48,17 +48,19 @@
         gap: 10px;
     }
 
+   
+/* عند عرض الجوالات، نخفي النصوص */
+@media screen and (max-width: 768px) {
+    .top-nav-buttons a span {
+        display: none; /* إخفاء النصوص */
+    }
+
     .top-nav-buttons a {
-        background-color: #004e92;
-        color: #fff;
-        border-radius: 50%; /* أزرار دائرية */
-        width: 40px; /* حجم الزر */
-        height: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-decoration: none;
-        font-size: 1.2rem; /* حجم الأيقونة */
+        padding: 10px; /* حشوة مناسبة للأيقونة فقط */
+        font-size: 1.2rem; /* تكبير حجم الأيقونة */
+        width: 50px;
+        height: 50px;
+        border-radius: 50%; /* جعل الأزرار دائرية */
     }
 
     .top-nav-buttons a:hover {
