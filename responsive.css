@@ -2,11 +2,25 @@
 @media screen and (max-width: 768px) {
     /* الحاوية العامة */
     .content-wrapper {
-        width: 95%; /* عرض مخصص للجوال */
-        margin: 10px auto; /* توسيط الحاوية */
-        padding: 15px; /* تقليل الحشوة */
-        border-radius: 10px; /* تقليل الزوايا */
-        box-shadow: none; /* إزالة الظل */
+        width: 95%; /* عرض الحاوية ليتناسب مع الشاشات الصغيرة */
+        margin: 10px auto;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: none;
+    }
+
+    /* الشعار */
+    #logo-container {
+        display: flex;
+        justify-content: center; /* توسيط أفقي */
+        align-items: center; /* توسيط عمودي */
+        margin: 10px auto;
+        width: 100%;
+    }
+
+    #logo {
+        width: 70px; /* تقليل حجم الشعار */
+        height: auto;
     }
 
     /* تخصيص النصوص داخل الحاوية */
@@ -17,55 +31,39 @@
 
    
 
- /* إعدادات خاصة للجوالات والأجهزة اللوحية */
-@media screen and (max-width: 768px) {
-    /* الشعار */
-    #logo-container {
-        display: flex;
-        justify-content: center; /* توسيط الشعار أفقيًا */
-        align-items: center; /* توسيط الشعار عموديًا */
-        margin: 10px auto; /* مسافة علوية وسفلية متساوية */
-        width: 100%; /* عرض كامل */
-    }
 
-    #logo {
-        width: 70px; /* تقليل حجم الشعار */
-        height: auto;
-    }
 
-    /* شريط الميني بار */
+     /* شريط الميني بار */
     .menu-bar {
         display: flex;
-        flex-direction: column; /* جعل المحتويات في عمود */
-        align-items: center; /* توسيط المحتويات */
-        padding: 15px; /* حشوة داخلية للشريط */
+        flex-direction: column; /* ترتيب المحتويات في عمود */
+        align-items: center;
+        gap: 15px; /* مسافة بين العناصر */
+        padding: 10px;
         background-color: #000; /* لون الخلفية */
         border-radius: 10px;
-        gap: 10px; /* مسافة بين العناصر */
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* ظل */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
 
     /* الأزرار */
     .menu-bar .top-nav-buttons {
         display: flex;
-        flex-direction: row; /* جعل الأزرار في صف واحد */
-        gap: 8px; /* مسافة صغيرة بين الأزرار */
+        flex-wrap: wrap; /* السماح بلف الأزرار */
+        gap: 10px; /* مسافة بين الأزرار */
         justify-content: center; /* توسيط الأزرار */
-        flex-wrap: wrap; /* السماح للأزرار بالنزول عند الحاجة */
         width: 100%; /* عرض كامل */
     }
 
-    /* الأزرار الفردية */
     .menu-bar .top-nav-buttons a {
         color: #ffffff;
         text-decoration: none;
-        font-size: 0.85rem;
+        font-size: 0.85rem; /* حجم نص أصغر */
         background-color: #004e92;
-        padding: 8px 15px; /* حشوة داخلية مناسبة */
+        padding: 8px 15px;
         border-radius: 5px;
         transition: background-color 0.3s ease;
-        text-align: center; /* توسيط النص داخل الأزرار */
-        min-width: 90px; /* عرض أدنى للأزرار */
+        text-align: center;
+        min-width: 100px; /* عرض أدنى */
     }
 
     .menu-bar .top-nav-buttons a:hover {
@@ -76,12 +74,32 @@
     body {
         margin: 0;
         padding: 0;
-        font-size: 1rem; /* حجم النص الأساسي */
+        font-size: 1rem;
         text-align: center;
         overflow-x: hidden; /* منع التمرير الأفقي */
     }
 
+    /* محتوى القائمة */
+    #menu-content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
 
+    #menu-content button {
+        margin: 5px 0; /* مسافة بين الأزرار */
+        font-size: 0.9rem;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-align: center;
+        background-color: #005fbf;
+        color: #fff;
+    }
+}
   /* الشريط المتحرك */
     .marquee-container {
         font-size: 0.8rem; /* تصغير النص */
