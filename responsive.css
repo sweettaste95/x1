@@ -33,37 +33,39 @@
 
 
 
-     /* شريط الميني بار */
+    /* شريط الميني بار */
     .menu-bar {
         display: flex;
-        flex-direction: column; /* ترتيب المحتويات في عمود */
-        align-items: center;
-        gap: 15px; /* مسافة بين العناصر */
-        padding: 10px;
+        flex-direction: column; /* جعل المحتويات في عمود */
+        align-items: center; /* توسيط المحتويات */
+        padding: 15px; /* حشوة داخلية للشريط */
         background-color: #000; /* لون الخلفية */
         border-radius: 10px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        gap: 10px; /* مسافة بين العناصر */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* ظل */
     }
 
     /* الأزرار */
     .menu-bar .top-nav-buttons {
         display: flex;
-        flex-wrap: wrap; /* السماح بلف الأزرار */
-        gap: 10px; /* مسافة بين الأزرار */
+        flex-direction: row; /* جعل الأزرار في صف واحد */
+        gap: 8px; /* مسافة صغيرة بين الأزرار */
         justify-content: center; /* توسيط الأزرار */
+        flex-wrap: wrap; /* السماح للأزرار بالنزول عند الحاجة */
         width: 100%; /* عرض كامل */
     }
 
+    /* الأزرار الفردية */
     .menu-bar .top-nav-buttons a {
         color: #ffffff;
         text-decoration: none;
-        font-size: 0.85rem; /* حجم نص أصغر */
+        font-size: 0.85rem;
         background-color: #004e92;
-        padding: 8px 15px;
+        padding: 8px 15px; /* حشوة داخلية مناسبة */
         border-radius: 5px;
         transition: background-color 0.3s ease;
-        text-align: center;
-        min-width: 100px; /* عرض أدنى */
+        text-align: center; /* توسيط النص داخل الأزرار */
+        min-width: 90px; /* عرض أدنى للأزرار */
     }
 
     .menu-bar .top-nav-buttons a:hover {
@@ -74,32 +76,12 @@
     body {
         margin: 0;
         padding: 0;
-        font-size: 1rem;
+        font-size: 1rem; /* حجم النص الأساسي */
         text-align: center;
         overflow-x: hidden; /* منع التمرير الأفقي */
     }
 
-    /* محتوى القائمة */
-    #menu-content {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        background-color: #fff;
-        padding: 10px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
 
-    #menu-content button {
-        margin: 5px 0; /* مسافة بين الأزرار */
-        font-size: 0.9rem;
-        padding: 10px 15px;
-        border-radius: 5px;
-        text-align: center;
-        background-color: #005fbf;
-        color: #fff;
-    }
-}
   /* الشريط المتحرك */
     .marquee-container {
         font-size: 0.8rem; /* تصغير النص */
