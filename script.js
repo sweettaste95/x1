@@ -686,6 +686,12 @@ function resetView() {
     }
 }
 
+// هذا داله توديك لرابط التلقرام مباشره للاشتراك 
+
+function subscribeChannel() {
+    const telegramLink = "https://t.me/AlHilalFansChannel"; // رابط القناة
+    window.open(telegramLink, "_blank"); // فتح الرابط في نافذة جديدة
+}
 
 
 
@@ -1153,12 +1159,6 @@ document.getElementById("send-last-match").addEventListener("click", () => {
             alert("حدث خطأ أثناء الإرسال.");
         });
 });
-// هذا داله توديك لرابط التلقرام مباشره للاشتراك 
-
-function subscribeChannel() {
-    const telegramLink = "https://t.me/AlHilalFansChannel"; // رابط القناة
-    window.open(telegramLink, "_blank"); // فتح الرابط في نافذة جديدة
-}
 
 
 
