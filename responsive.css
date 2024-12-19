@@ -15,59 +15,54 @@
         margin-top: 10px;
     }
 
-    /* الجسم */
-    body {
-        padding: 0;
-        font-size: 1rem; /* تصغير حجم النص */
-        text-align: center;
-        overflow-x: hidden; /* منع التمرير الأفقي */
-    }
+   
 
+  /* إعدادات خاصة للجوالات والأجهزة اللوحية */
+@media screen and (max-width: 768px) {
     /* الشعار */
     #logo-container {
         display: flex;
         justify-content: center; /* توسيط الشعار أفقيًا */
         align-items: center; /* توسيط الشعار عموديًا */
-        margin-bottom: 10px; /* مسافة بين الشعار والأزرار */
+        margin: 15px 0; /* مسافة علوية وسفلية متساوية */
         width: 100%; /* عرض كامل */
     }
 
     #logo {
-        width: 80px; /* حجم الشعار */
+        width: 70px; /* تقليل حجم الشعار */
         height: auto;
     }
 
-    /* شريط الميني بار */
+   /* شريط الميني بار */
     .menu-bar {
         display: flex;
-        flex-direction: column; /* عند العرض الضيق يتحول إلى عمود */
-        align-items: center; /* محاذاة العناصر في المنتصف */
+        flex-direction: column; /* عرض العناصر في عمود */
+        align-items: center; /* توسيط العناصر */
         justify-content: center; /* توسيط المحتويات */
-        padding: 10px 20px;
+        padding: 10px;
         background-color: #000; /* لون الخلفية */
         border-radius: 10px;
-        height: auto; /* ضبط الارتفاع تلقائيًا */
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* ظل */
-        gap: 15px; /* مسافة بين العناصر */
+        gap: 10px; /* مسافة بين العناصر */
     }
 
-    /* الأزرار */
+
+      /* الأزرار */
     .menu-bar .top-nav-buttons {
         display: flex;
         flex-direction: row; /* جعل الأزرار في صف واحد */
-        gap: 10px; /* مسافة بين الأزرار */
+        gap: 8px; /* مسافة صغيرة بين الأزرار */
         justify-content: center; /* توسيط الأزرار */
-        flex-wrap: wrap; /* السماح للأزرار بالانتقال لصف جديد إذا لزم */
+        flex-wrap: wrap; /* السماح للأزرار بالنزول عند الحاجة */
         width: 100%; /* عرض كامل */
     }
 
-    /* الأزرار الفردية */
+     /* الأزرار الفردية */
     .menu-bar .top-nav-buttons a {
         color: #ffffff;
         text-decoration: none;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         background-color: #004e92;
-        padding: 8px 12px;
+        padding: 6px 10px; /* تقليل الحشوة الداخلية */
         border-radius: 5px;
         transition: background-color 0.3s ease;
         text-align: center; /* توسيط النص داخل الأزرار */
@@ -77,7 +72,14 @@
         background-color: #8623ad;
     }
 
-    /* الشريط المتحرك */
+    /* النصوص العامة */
+    body {
+        padding: 0;
+        font-size: 1rem; /* تصغير النص */
+        text-align: center;
+        overflow-x: hidden; /* منع التمرير الأفقي */
+    }
+  /* الشريط المتحرك */
     .marquee-container {
         font-size: 0.8rem; /* تصغير النص */
     }
