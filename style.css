@@ -76,6 +76,21 @@ body {
   padding: 8px 12px;
   border-radius: 5px;
   transition: background-color 0.3s ease;
+
+  
+   display: flex;
+    align-items: center; /* توسيط النص والأيقونة عموديًا */
+    justify-content: center; /* توسيط النص والأيقونة أفقيًا */
+    gap: 5px; /* مسافة بين الأيقونة والنص */
+}
+
+  
+
+    
+   
+/* النصوص تبقى ظاهرة في الديسكتوب */
+.top-nav-buttons a span {
+    display: inline-block; /* النص يظهر */
 }
 
 .menu-bar .top-nav-buttons a:hover {
