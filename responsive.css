@@ -41,16 +41,6 @@
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* ظل */
     }
 
-    /* الأزرار */
-    .menu-bar .top-nav-buttons {
-        display: flex;
-        flex-direction: row; /* جعل الأزرار في صف واحد */
-        gap: 8px; /* مسافة صغيرة بين الأزرار */
-        justify-content: center; /* توسيط الأزرار */
-        flex-wrap: wrap; /* السماح للأزرار بالنزول عند الحاجة */
-        width: 100%; /* عرض كامل */
-    }
-
     /* الأزرار الفردية كأيقونات */
     .menu-bar .top-nav-buttons a {
         color: #ffffff;
@@ -76,10 +66,6 @@
         font-size: 1.2rem; /* تكبير الأيقونات */
     }
 
-    .menu-bar .top-nav-buttons a:hover {
-        background-color: #8623ad;
-    }
-
     /* النصوص العامة */
     body {
         margin: 0;
@@ -88,6 +74,8 @@
         text-align: center;
         overflow-x: hidden; /* منع التمرير الأفقي */
     }
+
+
 
 
   /* الشريط المتحرك */
