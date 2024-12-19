@@ -2,25 +2,11 @@
 @media screen and (max-width: 768px) {
     /* الحاوية العامة */
     .content-wrapper {
-        width: 95%; /* عرض الحاوية ليتناسب مع الشاشات الصغيرة */
-        margin: 10px auto;
-        padding: 15px;
-        border-radius: 10px;
-        box-shadow: none;
-    }
-
-    /* الشعار */
-    #logo-container {
-        display: flex;
-        justify-content: center; /* توسيط أفقي */
-        align-items: center; /* توسيط عمودي */
-        margin: 10px auto;
-        width: 100%;
-    }
-
-    #logo {
-        width: 70px; /* تقليل حجم الشعار */
-        height: auto;
+        width: 95%; /* عرض مخصص للجوال */
+        margin: 10px auto; /* توسيط الحاوية */
+        padding: 15px; /* تقليل الحشوة */
+        border-radius: 10px; /* تقليل الزوايا */
+        box-shadow: none; /* إزالة الظل */
     }
 
     /* تخصيص النصوص داخل الحاوية */
@@ -31,7 +17,21 @@
 
    
 
+ /* إعدادات خاصة للجوالات والأجهزة اللوحية */
+@media screen and (max-width: 768px) {
+    /* الشعار */
+    #logo-container {
+        display: flex;
+        justify-content: center; /* توسيط الشعار أفقيًا */
+        align-items: center; /* توسيط الشعار عموديًا */
+        margin: 10px auto; /* مسافة علوية وسفلية متساوية */
+        width: 100%; /* عرض كامل */
+    }
 
+    #logo {
+        width: 70px; /* تقليل حجم الشعار */
+        height: auto;
+    }
 
     /* شريط الميني بار */
     .menu-bar {
