@@ -17,14 +17,14 @@
 
    
 
-  /* إعدادات خاصة للجوالات والأجهزة اللوحية */
+ /* إعدادات خاصة للجوالات والأجهزة اللوحية */
 @media screen and (max-width: 768px) {
     /* الشعار */
     #logo-container {
         display: flex;
         justify-content: center; /* توسيط الشعار أفقيًا */
         align-items: center; /* توسيط الشعار عموديًا */
-        margin: 15px 0; /* مسافة علوية وسفلية متساوية */
+        margin: 10px auto; /* مسافة علوية وسفلية متساوية */
         width: 100%; /* عرض كامل */
     }
 
@@ -33,20 +33,19 @@
         height: auto;
     }
 
-   /* شريط الميني بار */
+    /* شريط الميني بار */
     .menu-bar {
         display: flex;
-        flex-direction: column; /* عرض العناصر في عمود */
-        align-items: center; /* توسيط العناصر */
-        justify-content: center; /* توسيط المحتويات */
-        padding: 10px;
+        flex-direction: column; /* جعل المحتويات في عمود */
+        align-items: center; /* توسيط المحتويات */
+        padding: 15px; /* حشوة داخلية للشريط */
         background-color: #000; /* لون الخلفية */
         border-radius: 10px;
         gap: 10px; /* مسافة بين العناصر */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* ظل */
     }
 
-
-      /* الأزرار */
+    /* الأزرار */
     .menu-bar .top-nav-buttons {
         display: flex;
         flex-direction: row; /* جعل الأزرار في صف واحد */
@@ -56,16 +55,17 @@
         width: 100%; /* عرض كامل */
     }
 
-     /* الأزرار الفردية */
+    /* الأزرار الفردية */
     .menu-bar .top-nav-buttons a {
         color: #ffffff;
         text-decoration: none;
         font-size: 0.85rem;
         background-color: #004e92;
-        padding: 6px 10px; /* تقليل الحشوة الداخلية */
+        padding: 8px 15px; /* حشوة داخلية مناسبة */
         border-radius: 5px;
         transition: background-color 0.3s ease;
         text-align: center; /* توسيط النص داخل الأزرار */
+        min-width: 90px; /* عرض أدنى للأزرار */
     }
 
     .menu-bar .top-nav-buttons a:hover {
@@ -74,11 +74,14 @@
 
     /* النصوص العامة */
     body {
+        margin: 0;
         padding: 0;
-        font-size: 1rem; /* تصغير النص */
+        font-size: 1rem; /* حجم النص الأساسي */
         text-align: center;
         overflow-x: hidden; /* منع التمرير الأفقي */
     }
+
+
   /* الشريط المتحرك */
     .marquee-container {
         font-size: 0.8rem; /* تصغير النص */
