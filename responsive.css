@@ -50,19 +50,21 @@
 
    
 /* عند عرض الجوالات، نخفي النصوص */
+/* عند عرض الجوالات، نخفي النصوص ونزيل المربعات */
 @media screen and (max-width: 768px) {
+    .top-nav-buttons a {
+        background-color: transparent; /* إزالة الخلفية */
+        padding: 0; /* إزالة الحشوة */
+        border-radius: 0; /* إزالة الحواف الدائرية */
+        font-size: 1.5rem; /* تكبير حجم الأيقونة */
+        width: auto; /* السماح للأيقونة بأخذ حجمها الطبيعي */
+        height: auto;
+    }
+
     .top-nav-buttons a span {
         display: none; /* إخفاء النصوص */
     }
-
-    .top-nav-buttons a {
-        padding: 10px; /* حشوة مناسبة للأيقونة فقط */
-        font-size: 1.2rem; /* تكبير حجم الأيقونة */
-        width: 50px;
-        height: 50px;
-        border-radius: 50%; /* جعل الأزرار دائرية */
-    }
-
+}
     .top-nav-buttons a:hover {
         background-color: #8623ad;
     }
