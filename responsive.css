@@ -15,56 +15,61 @@
         margin-top: 10px;
     }
 
-    /* الشعار */
-    #logo-container {
-        display: flex;
-        justify-content: center; /* توسيط الشعار أفقيًا */
-        align-items: center; /* توسيط الشعار عموديًا */
-        margin: 10px auto; /* مسافة علوية وسفلية متساوية */
-        width: 100%; /* عرض كامل */
-    }
-
-    #logo {
-        width: 70px; /* تقليل حجم الشعار */
-        height: auto;
-    }
-
+   /* إعدادات خاصة للجوالات والأجهزة اللوحية */
+@media screen and (max-width: 768px) {
     /* شريط الميني بار */
     .menu-bar {
         display: flex;
-        flex-direction: column; /* جعل المحتويات في عمود */
-        align-items: center; /* توسيط المحتويات */
-        padding: 15px; /* حشوة داخلية للشريط */
+        flex-direction: row; /* جعل العناصر في صف واحد */
+        align-items: center; /* توسيط عمودي */
+        justify-content: space-between; /* توزيع العناصر بالتساوي */
+        padding: 10px;
         background-color: #000; /* لون الخلفية */
         border-radius: 10px;
-        gap: 10px; /* مسافة بين العناصر */
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* ظل */
     }
 
-    /* الأزرار الفردية كأيقونات */
-    .menu-bar .top-nav-buttons a {
-        color: #ffffff;
-        text-decoration: none;
-        font-size: 0.85rem;
+    /* الشعار */
+    #logo-container {
+        flex: 1; /* الشعار يأخذ مساحة مناسبة */
+        text-align: center; /* توسيط أفقي */
+    }
+
+    #logo {
+        width: 50px; /* حجم الشعار */
+        height: auto;
+    }
+
+    /* الأزرار كأيقونات */
+    .top-nav-buttons {
+        display: flex;
+        flex: 2; /* مساحة للأزرار */
+        justify-content: space-evenly; /* توزيع الأزرار بالتساوي */
+        gap: 10px;
+    }
+
+    .top-nav-buttons a {
         background-color: #004e92;
-        padding: 8px; /* حشوة داخلية مناسبة */
-        border-radius: 50%; /* جعل الأزرار دائرية */
-        transition: background-color 0.3s ease;
-        text-align: center; /* توسيط النص داخل الأزرار */
-        width: 50px; /* عرض دائري */
-        height: 50px; /* طول دائري */
+        color: #fff;
+        border-radius: 50%; /* أزرار دائرية */
+        width: 40px; /* حجم الزر */
+        height: 40px;
         display: flex;
         justify-content: center;
         align-items: center;
+        text-decoration: none;
+        font-size: 1.2rem; /* حجم الأيقونة */
     }
 
-    .menu-bar .top-nav-buttons a span {
-        display: none; /* إخفاء النصوص */
+    .top-nav-buttons a:hover {
+        background-color: #8623ad;
     }
 
-    .menu-bar .top-nav-buttons a i {
-        font-size: 1.2rem; /* تكبير الأيقونات */
+    /* إخفاء النصوص داخل الأزرار */
+    .top-nav-buttons a span {
+        display: none;
     }
+}
 
     /* النصوص العامة */
     body {
