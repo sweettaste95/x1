@@ -1,13 +1,15 @@
-/* إعدادات خاصة للجوالات والأجهزة اللوحية */
+
 @media screen and (max-width: 768px) {
-    /* الحاوية العامة */
     .content-wrapper {
-        width: 95%; /* عرض مخصص للجوال */
-        margin: 10px auto; /* توسيط الحاوية */
-        padding: 15px; /* تقليل الحشوة */
-        border-radius: 10px; /* تقليل الزوايا */
-        box-shadow: none; /* إزالة الظل */
+        min-height: 100vh; /* جعل الحاوية تغطي كامل ارتفاع الشاشة */
+        display: flex; /* لتفعيل التوسيط */
+        flex-direction: column; /* تنظيم العناصر عمودياً */
+        justify-content: center; /* توسيط المحتوى عمودياً */
+        align-items: center; /* توسيط المحتوى أفقياً */
+        padding: 20px; /* حشوة داخلية */
+        box-sizing: border-box; /* تضمين الحشوة ضمن الأبعاد */
     }
+
 
     /* تخصيص النصوص داخل الحاوية */
     #dynamic-content {
