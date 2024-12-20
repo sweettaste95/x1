@@ -172,16 +172,15 @@ body {
 /* المايكرو المتحرك تسلسل زمني علوي  */
 /*======================================================================*/
 .marquee-container {
-    width: 80%; /* نفس عرض الكنتينر */
-    margin: 20px auto; /* توسيط الشريط مع إضافة مسافة بينه وبين الكنتينر */
-    background-color: #005fbf; /* لون خلفية مناسب */
-    color: white;
-    padding: 10px; /* حشوة داخلية */
-    border-radius: 15px; /* حواف مستديرة */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* إضافة ظل خفيف */
-    overflow: hidden; /* لإخفاء النص الذي يخرج عن الحدود */
+    width: 90%; /* توسيع العرض */
+    margin: 15px auto; /* تقليل المسافة الخارجية */
+    background-color: #004080; /* تعديل لون الخلفية */
+    padding: 12px; /* زيادة الحشوة الداخلية */
+    border-radius: 10px; /* تقليل الحواف المستديرة */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); /* زيادة ظل الحواف */
+    font-size: 1rem; /* تكبير حجم النص */
+    overflow: hidden; /* التأكد من عدم ظهور النصوص الزائدة */
 }
-
 
 @keyframes marquee {
     0% {
@@ -198,18 +197,16 @@ body {
 
 
 .marquee-content {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  animation: marquee 20s linear infinite;
-  white-space: nowrap;
+    animation: marquee 15s linear infinite; /* تسريع الحركة */
+    white-space: nowrap; /* منع النصوص من الانتقال لسطر جديد */
+    align-items: center; /* توسيط العناصر داخل الشريط */
 }
 
 .marquee-content span {
-  font-size: 1.1rem;
-  color: #fff;
+    font-size: 1rem; /* تحسين حجم النص */
+    color: #f0f3f7; /* استخدام لون مميز */
+    font-weight: bold; /* جعل النص بارزًا */
 }
-
 .telegram-link {
   color: #f0f3f7;
   text-decoration: none;
