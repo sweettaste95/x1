@@ -1,335 +1,294 @@
-
+/* إعدادات خاصة للجوالات والأجهزة اللوحية */
 @media screen and (max-width: 768px) {
+    /* الحاوية العامة */
     .content-wrapper {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-        box-sizing: border-box;
+        width: 95%; /* عرض مخصص للجوال */
+        margin: 10px auto; /* توسيط الحاوية */
+        padding: 15px; /* تقليل الحشوة */
+        border-radius: 10px; /* تقليل الزوايا */
+        box-shadow: none; /* إزالة الظل */
     }
 
+    /* تخصيص النصوص داخل الحاوية */
     #dynamic-content {
         font-size: 1rem;
         margin-top: 10px;
     }
 
-    .menu-bar {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px;
-        background-color: #000;
-        border-radius: 10px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* الجسم */
+    body {
+        padding: 0;
+        font-size: 1rem; /* تصغير حجم النص */
+        text-align: center;
+        overflow-x: hidden; /* منع التمرير الأفقي */
     }
 
+    /* الشعار */
     #logo-container {
-        flex: 1;
-        text-align: center;
+        display: flex;
+        justify-content: center; /* توسيط الشعار أفقيًا */
+        align-items: center; /* توسيط الشعار عموديًا */
+        margin-bottom: 10px; /* مسافة بين الشعار والأزرار */
+        width: 100%; /* عرض كامل */
     }
 
     #logo {
-        width: 50px;
+        width: 80px; /* حجم الشعار */
         height: auto;
     }
 
-    .top-nav-buttons {
+    /* شريط الميني بار */
+    .menu-bar {
         display: flex;
-        flex: 2;
-        justify-content: space-evenly;
-        gap: 10px;
+        flex-direction: column; /* عند العرض الضيق يتحول إلى عمود */
+        align-items: center; /* محاذاة العناصر في المنتصف */
+        justify-content: center; /* توسيط المحتويات */
+        padding: 10px 20px;
+        background-color: #000; /* لون الخلفية */
+        border-radius: 10px;
+        height: auto; /* ضبط الارتفاع تلقائيًا */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* ظل */
+        gap: 15px; /* مسافة بين العناصر */
     }
 
-    .top-nav-buttons a {
-        background-color: transparent;
-        padding: 0;
-        border-radius: 0;
-        font-size: 1.5rem;
-        width: auto;
-        height: auto;
+    /* الأزرار */
+    .menu-bar .top-nav-buttons {
+        display: flex;
+        flex-direction: row; /* جعل الأزرار في صف واحد */
+        gap: 10px; /* مسافة بين الأزرار */
+        justify-content: center; /* توسيط الأزرار */
+        flex-wrap: wrap; /* السماح للأزرار بالانتقال لصف جديد إذا لزم */
+        width: 100%; /* عرض كامل */
     }
 
-    .top-nav-buttons a span {
-        display: none;
+    /* الأزرار الفردية */
+    .menu-bar .top-nav-buttons a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 0.9rem;
+        background-color: #004e92;
+        padding: 8px 12px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+        text-align: center; /* توسيط النص داخل الأزرار */
     }
 
-    .top-nav-buttons a:hover {
+    .menu-bar .top-nav-buttons a:hover {
         background-color: #8623ad;
     }
 
-    body {
-        margin: 0;
-        padding: 0;
-        font-size: 1rem;
-        text-align: center;
-        overflow-x: hidden;
-    }
-
+    /* الشريط المتحرك */
     .marquee-container {
-        width: 100%;
-        overflow: hidden;
-        padding: 10px;
-        font-size: 0.9rem;
+        font-size: 0.8rem; /* تصغير النص */
     }
 
-    .marquee-content {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 20px;
-        white-space: nowrap;
-        overflow: hidden;
-    }
-
-    .marquee-content span,
-    .marquee-content a {
-        flex: 0 0 auto;
-        text-align: center;
-        white-space: nowrap;
-    }
-
+    /* الروابط */
     .telegram-link {
-        font-size: 0.8rem;
+        font-size: 0.8rem; /* تقليل حجم النص */
     }
-
-
-
-    @media screen and (max-width: 768px) {
+}
     /* القوائم المنسدلة */
     .content-wrapper select,
     #dynamic-content select {
-        width: 100%;
-        font-size: 1rem;
-        margin: 10px auto;
-        padding: 8px; /* تقليل الحشوة لتحسين المظهر */
-        border: 1px solid #ccc; /* إضافة حدود خفيفة */
-        border-radius: 5px; /* تحسين الشكل */
+        width: 100%; /* عرض كامل */
+        font-size: 1rem; /* تقليل حجم النص */
+        margin: 10px auto; /* تقليل المسافة الخارجية */
     }
 
     /* الخيارات داخل select */
     .content-wrapper select option,
     #dynamic-content select option {
-        font-size: 0.9rem;
-        padding: 6px; /* تحسين الحشوة */
+        font-size: 0.9rem; /* تقليل حجم النص داخل الخيارات */
     }
 
     /* روابط السوشيال ميديا */
     .social-links {
-        gap: 10px;
-        margin-top: 15px;
-        justify-content: center; /* توسيط الأيقونات */
+        gap: 10px; /* تقليل المسافة بين الأيقونات */
+        margin-top: 15px; /* تقليل المسافة العلوية */
     }
 
     .social-links a {
-        font-size: 1.1em;
-        padding: 5px; /* إضافة حشوة لتحسين الضغط */
-        border-radius: 5px; /* زوايا مستديرة */
+        font-size: 1.1em; /* تصغير حجم النص */
     }
 
-    /* حقوق الطبع والنشر */
-    .footer-copyright {
-        font-size: 0.8rem;
-        padding-bottom: 60px;
-        text-align: center; /* توسيط النص */
+    /* حقوق الطبع والنشر (الفوتر) */
+    .footer-text {
+        font-size: 0.6em; /* تصغير حجم النص */
+        padding: 8px; /* تقليل الحشوة */
+        border-radius: 10px; /* تقليل زوايا الحاوية */
     }
 
     /* نموذج الملاحظات */
     #feedback-section {
-        width: 90%;
-        padding: 15px;
-        background-color: #f9f9f9; /* لون خلفية خفيف */
-        border: 1px solid #ddd; /* إضافة حدود */
-        border-radius: 8px;
+        width: 90%; /* تكبير العرض ليناسب الشاشات الصغيرة */
+        padding: 15px; /* تقليل الحشوة */
     }
 
     #feedbackSubject,
     #feedbackMessage {
-        width: 100%;
-        padding: 8px; /* زيادة الحشوة قليلاً */
-        font-size: 0.9rem;
-        border: 1px solid #ccc; /* تحسين الحواف */
-        border-radius: 5px; /* زوايا مستديرة */
+        width: 100%; /* عرض كامل للحقل */
+        padding: 6px; /* تقليل الحشوة */
+        font-size: 0.9rem; /* تقليل حجم النص */
     }
 
     .feedback-btn {
-        padding: 10px 15px; /* تحسين الحشوة */
-        font-size: 0.9rem;
-        background-color: #007bff; /* لون مميز */
-        color: white;
-        border: none;
-        border-radius: 5px;
-        transition: background-color 0.3s, transform 0.2s;
+        padding: 8px 15px; /* تقليل الحشوة الداخلية */
+        font-size: 0.9rem; /* تقليل حجم النص */
     }
 
     .feedback-btn:hover {
-        transform: scale(1.03);
-        background-color: #0056b3; /* لون أغمق عند التمرير */
+        transform: scale(1.03); /* تقليل التكبير عند التمرير */
     }
 
     .feedback-btn:active {
-        transform: scale(0.92);
+        transform: scale(0.92); /* تقليل التصغير عند الضغط */
     }
 
     #feedback-section h2 {
-        font-size: 1.2rem;
-        margin-bottom: 15px;
-        color: #333; /* لون داكن للعنوان */
+        font-size: 1.2rem; /* تقليل حجم العنوان */
+        margin-bottom: 15px; /* تقليل المسافة السفلية */
     }
 
-    /* زر "من نحن" */
+   /* زر "من نحن" */
     .about-button {
-        font-size: 0.9rem;
-        padding: 10px 15px; /* تحسين الحشوة */
-        margin: 5px;
-        background-color: #007bff; /* لون مميز */
-        color: white;
-        border: none;
-        border-radius: 5px;
-        transition: background-color 0.3s, transform 0.2s;
-    }
-
-    .about-button:hover {
-        transform: scale(1.03);
-        background-color: #0056b3;
-    }
-
-    .about-button:active {
-        transform: scale(0.93);
+        font-size: 0.9rem; /* تقليل حجم النص */
+        padding: 8px 12px; /* تقليل الحشوة */
+        margin: 5px; /* مسافة حول الزر */
     }
 
     /* بطاقة "من نحن" */
-.about-card {
-    width: 90%; /* العرض يتناسب مع الشاشات الصغيرة */
-    max-width: 400px; /* حد أقصى للعرض */
-    padding: 15px; /* تقليل الحشوة الداخلية */
-    background-color: #f9f9f9; /* لون خلفية مريح */
-    border: 1px solid #ddd; /* حدود خفيفة */
-    border-radius: 8px; /* زوايا مستديرة */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* ظل خفيف */
-    margin: 10px auto; /* توسيط البطاقة */
-}
+    .about-card {
+        width: 90%; /* توسيع العرض */
+        padding: 15px; /* تقليل الحشوة الداخلية */
+    }
 
-/* زر الإغلاق داخل البطاقة */
-.close-btn {
-    font-size: 1.2em; /* حجم مناسب للزر */
-    top: 5px; /* تقليل المسافة العلوية */
-    right: 5px; /* تقليل المسافة من اليمين */
-}
+    .about-button:hover {
+        transform: scale(1.03); /* تقليل التكبير عند التمرير */
+    }
 
-/* النصوص */
-#loading-spinner {
-    font-size: 0.9rem; /* حجم النص صغير ومناسب */
-    margin-top: 8px; /* تقليل المسافة العلوية */
-}
+    .about-button:active {
+        transform: scale(0.93); /* تقليل التصغير عند الضغط */
+    }
 
-/* تخصيص زر التسجيل عند التعطيل */
-.register-btn:disabled {
-    font-size: 0.9rem; /* تصغير النص قليلاً */
-}
+   
 
-/* روابط التليجرام */
-.telegram-link {
-    font-size: 0.9rem; /* حجم مناسب للنص */
-    margin-left: 5px; /* مسافة يسارية بسيطة */
-}
+    /* زر الإغلاق داخل البطاقة */
+    .close-btn {
+        font-size: 1.2em; /* تصغير حجم الزر */
+        top: 5px; /* تقليل المسافة العلوية */
+        right: 5px; /* تقليل المسافة من اليمين */
+    }
 
+    /* النصوص */
+    #loading-spinner {
+        font-size: 0.9rem; /* تقليل حجم النص */
+        margin-top: 8px; /* تقليل المسافة العلوية */
+    }
+
+    /* تخصيص التنسيق لزر التسجيل عند التعطيل */
+    .register-btn:disabled {
+        font-size: 0.9rem; /* تصغير حجم النص */
+    }
+
+    /* روابط التليجرام */
+    .telegram-link {
+        font-size: 0.9rem; /* تصغير حجم النص */
+        margin-left: 5px; /* تقليل المسافة اليسارية */
+    }
+}
 /*************************************************************************
- إعدادات خاصة للجوالات والأجهزة اللوحية
-**************************************************************************/
+/* إعدادات خاصة للجوالات والأجهزة اللوحية */
 @media screen and (max-width: 768px) {
     /* شاشة التسجيل */
     #register-screen h2 {
-        font-size: 1.5rem; /* حجم العنوان مناسب */
+        font-size: 1.5rem; /* تصغير حجم العنوان */
     }
 
     #register-screen p {
-        font-size: 0.9rem; /* حجم النص */
+        font-size: 0.9rem; /* تصغير النص */
     }
 
     #register-screen input[type="text"],
     #register-screen input[type="email"] {
         padding: 10px; /* تقليل الحشوة */
-        font-size: 0.9rem; /* تصغير النص */
+        font-size: 0.9rem; /* تقليل حجم النص */
     }
 
     #register-screen button {
         padding: 10px; /* تقليل الحشوة */
-        font-size: 1rem; /* حجم النص مناسب */
+        font-size: 1rem; /* تقليل حجم النص */
     }
-
-    /************************************************************************
-     بطاقات عرض البطولة
-    ************************************************************************/
+/*=======================================================================
+   
+/*================================================================
+/* إعدادات خاصة للجوالات والأجهزة اللوحية */
+@media screen and (max-width: 768px) {
+    /* بطاقات عرض البطولة */
     #competition-results p,
     #championship-details p {
-        width: 90%; /* العرض يتناسب مع الشاشة */
-        font-size: 1rem; /* حجم النص */
-        padding: 10px; /* حشوة داخلية متوسطة */
-        margin: 10px auto; /* توسيط النصوص */
+        width: 90%; /* جعل العرض يناسب الشاشة الصغيرة */
+        font-size: 1rem; /* تقليل حجم النص */
+        padding: 10px; /* تقليل الحشوة */
+        margin: 10px auto; /* توسيط مع مسافة أقل */
     }
 
     /* شعار البطولة */
     #championship-logo {
-        width: 120px; /* حجم مناسب للشعار */
-        margin-bottom: 10px; /* مسافة أسفل الشعار */
+        width: 120px; /* تقليل حجم الشعار */
+        margin-bottom: 10px;
     }
 
     /* معلومات البطولة */
     #championship-info {
-        max-width: 90%; /* العرض يتناسب مع الشاشات الصغيرة */
-        padding: 15px; /* حشوة متوسطة */
-        font-size: 1rem; /* حجم النص */
+        max-width: 90%; /* ملاءمة العرض */
+        padding: 15px; /* تقليل الحشوة */
+        font-size: 1rem; /* تقليل حجم النص */
     }
 
     /* العنوان */
     .info-title {
-        font-size: 1.5rem; /* حجم مناسب للعناوين */
-        margin-bottom: 15px; /* مسافة أسفل العنوان */
+        font-size: 1.5rem; /* تقليل حجم العنوان */
+        margin-bottom: 15px;
     }
 
     /* قائمة المعلومات */
     .info-section {
-        flex-direction: column; /* عرض العناصر عمودياً */
+        flex-direction: column; /* عرض العناصر في عمود للجوالات */
         align-items: flex-start; /* محاذاة النصوص على اليمين */
-        gap: 5px; /* فجوة صغيرة بين العناصر */
+        gap: 5px; /* تقليل الفجوة بين العناصر */
     }
 
     /* النصوص والأيقونات داخل المعلومات */
     .info-section i {
-        font-size: 1.2rem; /* حجم الأيقونات */
+        font-size: 1.2rem; /* تصغير حجم الأيقونة */
     }
 
     .info-section span {
-        font-size: 0.9rem; /* حجم النصوص */
+        font-size: 0.9rem; /* تقليل حجم النص */
     }
 
     /* زر العودة */
     .return-btn {
-        width: 100%; /* زر كامل العرض */
-        font-size: 1rem; /* حجم النص */
-        padding: 8px 15px; /* حشوة مناسبة */
+        width: 100%; /* عرض كامل على الشاشة الصغيرة */
+        font-size: 1rem; /* تقليل حجم النص */
+        padding: 8px 15px; /* تقليل الحشوة */
     }
 
     /* هوامش وأحجام النصوص */
     #championship-details a {
-        font-size: 1rem; /* حجم النص */
+        font-size: 1rem; /* تصغير النص */
     }
 
     #championship-details a:hover {
-        font-size: 1rem; /* تثبيت النص عند التحويم */
+        font-size: 1rem; /* تثبيت النص عند التمرير */
     }
-
-
+}
 /****************************************************************************
 /* إعدادات خاصة للجوالات والأجهزة اللوحية */
 @media screen and (max-width: 768px) {
     /* قسم الفيديوهات */
     #youtube-videos {
-        display: grid; /* استخدام شبكة لعرض الفيديوهات */
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* عرض الفيديوهات بشكل متجاوب */
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* تصغير العرض ليكون مناسباً للجوالات */
         gap: 15px; /* تقليل المسافة بين الفيديوهات */
         padding: 10px; /* تقليل الحشوة حول الشبكة */
     }
@@ -338,22 +297,17 @@
     .video-card {
         padding: 8px; /* تقليل الحشوة الداخلية */
         border: 2px solid #3b97f5; /* تقليل عرض الإطار */
-        border-radius: 8px; /* زوايا مستديرة صغيرة */
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* إضافة ظل خفيف */
+        border-radius: 8px; /* تصغير زوايا الكارد */
     }
 
     .video-card iframe {
         border-radius: 5px; /* تصغير زوايا الفيديو */
-        width: 100%; /* ملاءمة الفيديو بعرض الكارد */
-        height: auto; /* ضبط الارتفاع تلقائيًا */
     }
 
     /* عنوان الفيديو */
     .video-title {
-        font-size: 0.9rem; /* تصغير حجم النص */
+        font-size: 0.9rem; /* تقليل حجم النص */
         margin-top: 8px; /* تقليل المسافة العلوية */
-        text-align: center; /* توسيط العنوان */
-        color: #333; /* لون النص */
     }
 
     /* أزرار التنقل */
@@ -361,349 +315,564 @@
         padding: 8px 15px; /* تقليل الحشوة الداخلية */
         font-size: 0.9rem; /* تقليل حجم النص */
         margin: 3px; /* تقليل المسافات بين الأزرار */
-        border: 1px solid #ddd; /* حدود خفيفة */
-        border-radius: 5px; /* زوايا مستديرة */
-        background-color: #007bff; /* لون أزرق */
-        color: white; /* لون النص */
-        cursor: pointer; /* مؤشر على الزر */
-        transition: background-color 0.3s ease; /* تأثير عند التفاعل */
     }
 
     .pagination-button:hover {
-        background-color: #9400D3; /* تغيير لون الخلفية عند التمرير */
+        background-color: #9400D3; /* الحفاظ على نفس التأثير عند التمرير */
     }
 
     /* رقم الصفحة */
     .page-number {
-        font-size: 1rem; /* حجم النص */
-        margin: 0 10px; /* مسافات بين الأرقام */
-        font-weight: bold; /* نص عريض */
-        color: #555; /* لون رمادي */
+        font-size: 1rem; /* تصغير حجم النص */
+        margin: 0 10px; /* تقليل المسافة بين الأرقام */
     }
+}
 
 
-
-
+/********************************************************************
+/* إعدادات خاصة للجوالات والأجهزة اللوحية */
 @media screen and (max-width: 768px) {
-    /* إطار الخريطة */
-    .map-wrapper {
-        border: 3px solid #87CEEB;
-        border-radius: 10px;
-        margin-bottom: 15px;
-        width: 100%; /* تغطية العرض الكامل */
+    /* الجزء العلوي من البطاقة */
+    .manager-card .header {
+        padding: 10px; /* تقليل المسافة الداخلية */
     }
 
-    /* البطاقة */
-    .map-card {
-        margin-top: 20px;
-        padding: 15px;
-        max-width: 95%; /* تقليل الحد الأقصى للعرض */
-        width: 95%;
-        border-radius: 10px;
+    .manager-card .header img {
+        width: 80px; /* تقليل عرض الصورة */
+        height: 80px; /* تقليل ارتفاع الصورة */
+        border: 2px solid #00BFFF; /* تصغير الإطار */
+        margin-bottom: 8px; /* تقليل المسافة أسفل الصورة */
     }
 
-    /* عناصر البحث */
-    #search-box,
-    #search-dropdown,
-    .search-btn {
-        flex: 1 1 100%; /* جعل العناصر بعرض كامل في صف واحد */
-        max-width: 100%;
-        padding: 8px;
-        font-size: 12px;
+    .manager-card .header h3 {
+        font-size: 1rem; /* تصغير حجم النص */
     }
 
-    /* الأزرار الإضافية */
-    .map-buttons {
+    /* الرقم (#) في الزاوية */
+    .manager-card .manager-number {
+        top: 5px; /* تقليل المسافة العلوية */
+        right: 5px; /* تقليل المسافة اليمنى */
+        padding: 3px 7px; /* تقليل الحشوة الداخلية */
+        font-size: 0.8em; /* تصغير النص */
+    }
+
+    /* الجزء السفلي من البطاقة */
+    .manager-card .body {
+        padding: 15px; /* تقليل الحشوة الداخلية */
+        font-size: 0.9rem; /* تصغير النص */
+    }
+
+    /* النص الخاص بعدد الكؤوس */
+    .achievements {
+        font-size: 1rem; /* تقليل حجم النص */
+        margin-top: 5px; /* تقليل المسافة العلوية */
+        padding-right: 10px; /* تقليل الحشوة اليمنى */
+    }
+
+    .achievements i {
+        font-size: 1rem; /* تقليل حجم الأيقونة */
+    }
+
+    /* أزرار التنقل بين المدراء */
+    .manager-card .buttons {
+        padding: 10px 0; /* تقليل المسافة الداخلية */
         flex-direction: column; /* ترتيب الأزرار عموديًا */
-        gap: 8px;
+        gap: 10px; /* إضافة مسافة بين الأزرار */
     }
 
-    .reset-btn,
-    .stats-btn {
-        padding: 8px;
-        font-size: 12px;
+    .manager-card .buttons button {
+        padding: 8px 15px; /* تقليل الحشوة الداخلية */
+        font-size: 0.9rem; /* تقليل حجم النص */
     }
 
-    /* النصوص */
-    .description-text {
-        font-size: 16px;
-        margin-bottom: 10px;
+    /* النصوص الأخرى */
+    .manager-card .body .manager-years,
+    .manager-card .body .manager-wins,
+    .manager-card .body .manager-stats {
+        font-size: 1rem; /* تقليل حجم النص */
+        line-height: 1.5; /* تحسين المسافة بين الأسطر */
+        margin-bottom: 10px; /* تقليل المسافة السفلية */
+        padding: 8px; /* تقليل الحشوة الداخلية */
     }
 
-    /* بطاقة الإحصائيات */
-    .stats-popup {
-        padding: 15px;
-        width: 95%; /* ملاءمة العرض مع الشاشة */
-        max-width: 400px;
+    /* تحسين أيقونات النصوص */
+    .manager-card .body .manager-stats::before,
+    .manager-card .body .manager-years::before,
+    .manager-card .body .manager-wins::before {
+        font-size: 1rem; /* تقليل حجم الأيقونة */
+        margin-right: 3px; /* تقليل المسافة بين النص والأيقونة */
     }
+}
+/*************************************************************************
+/* إعدادات خاصة للجوالات والأجهزة اللوحية */
+/* إطار للخريطة */
+.map-wrapper {
+    border: 4px solid #87CEEB; /* إطار أزرق فاتح */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    overflow: hidden;
+    width: 100%;
+}
 
-    .stats-popup h3 {
-        font-size: 18px;
-        margin-bottom: 10px;
-    }
+/* البطاقة */
+.map-card {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f8f5e1; /* لون بيج مريح */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    max-width: 600px; /* الحد الأقصى للعرض */
+    width: 90%; /* عرض افتراضي */
+    margin-left: auto;
+    margin-right: auto;
+    color: #333;
+    border: 2px solid #87CEEB;
+    box-sizing: border-box;
+}
 
-    .stats-list {
-        max-height: 200px; /* تقليل الارتفاع */
-        padding-right: 8px;
-    }
+/* تنسيق عناصر البحث */
+.map-controls {
+    display: flex;
+    flex-wrap: wrap; /* السماح بتكدس العناصر في الأسطر إذا لزم */
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
 
-    .stats-item {
-        padding: 8px 0;
-    }
+#search-box, #search-dropdown, .search-btn {
+    flex: 1;
+    min-width: 120px;
+    max-width: 200px; /* عرض معقول */
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
 
-    .stadium-name {
-        font-size: 14px;
-    }
+#search-box:focus, #search-dropdown:focus {
+    outline: none;
+    border-color: #87CEEB;
+    box-shadow: 0 0 5px rgba(135, 206, 235, 0.7);
+}
 
-    .stadium-count {
-        padding: 4px 8px;
-    }
+.search-btn {
+    background-color: #005fbf;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
-    .total-stats {
-        font-size: 16px;
-        margin-top: 10px;
-    }
+.search-btn:hover {
+    background-color: #003f7f;
+}
 
-    /* زر الإغلاق */
-    .stats-popup .close-btn {
-        padding: 8px 10px;
-        font-size: 12px;
-    }
+/* الأزرار الإضافية */
+.map-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 15px;
+}
 
+.reset-btn, .stats-btn {
+    min-width: 120px;
+    text-align: center;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
+.reset-btn {
+    background-color: #db0404;
+    color: white;
+}
 
-/@media screen and (max-width: 768px) {
-    /* إطار للخريطة */
+.reset-btn:hover {
+    background-color: #8B0000;
+}
+
+.stats-btn {
+    background-color: #005fbf;
+    color: white;
+}
+
+.stats-btn:hover {
+    background-color: #003f7f;
+}
+
+/* النص الوصفي */
+.description-text {
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* بطاقة الإحصائيات */
+.stats-popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #001f3f;
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    width: 90%; /* عرض افتراضي */
+    max-width: 500px; /* حد أقصى للعرض */
+    text-align: center;
+    border: 2px solid #005fbf;
+}
+
+.stats-popup h3 {
+    margin-bottom: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #f7f7f0;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.stats-list {
+    max-height: 300px;
+    overflow-y: auto;
+    text-align: left;
+    padding-right: 10px;
+}
+
+.stats-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ffffff;
+}
+
+.stats-item:last-child {
+    border-bottom: none;
+}
+
+.stadium-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.stadium-count {
+    display: flex;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #00aaff;
+    margin-left: 10px;
+}
+
+.stadium-count .count {
+    font-weight: bold;
+    margin-right: 5px;
+    color: #005fbf;
+}
+
+.stadium-count .cup-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.total-stats {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+}
+
+.total-stats .cup-icon {
+    margin-left: 5px;
+    width: 20px;
+    height: 20px;
+}
+
+.stats-popup .close-btn {
+    background-color: #db0404;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.stats-popup .close-btn:hover {
+    background-color: #8B0000;
+}
+
+/* استعلامات الوسائط للأجهزة اللوحية والجوالات */
+@media (max-width: 768px) {
     .map-card {
         width: 95%;
         padding: 15px;
-        margin: 0 auto;
     }
 
-    /* نافذة الإحصائيات */
     .stats-popup {
         width: 95%;
         max-width: 400px;
-        padding: 15px;
-        border-radius: 8px;
     }
 
-    /* صناديق البحث */
-    #search-box,
-    #search-dropdown,
-    .search-btn {
-        width: 100%;
+    #search-box, #search-dropdown, .search-btn {
         max-width: 100%;
-        margin-bottom: 10px;
-        font-size: 0.85rem;
+        width: 100%;
     }
 
     .map-buttons {
         flex-direction: column;
         gap: 10px;
     }
+}
 
-    /* بطاقات كأس العالم */
+/***********************************************************************
+/
+
+    /* نموذج المقترحات والملاحظات */
+    .section {
+        padding: 15px; /* تقليل الحشوة الداخلية */
+        margin: 10px; /* تقليل المسافة الخارجية */
+        font-size: 0.9rem; /* تصغير النص */
+        border-radius: 8px; /* زوايا أقل دائرية */
+    }
+
+    /* حقوق الطبع والنشر */
+    .footer-copyright {
+        font-size: 0.8rem; /* تصغير النص */
+        padding-bottom: 60px; /* ترك مساحة إضافية لشريط التنقل */
+    }
+}
+/***************************************************************
+/* إعدادات خاصة للجوالات والأجهزة اللوحية */
+@media screen and (max-width: 768px) {
+    /* زر كأس العالم */
+    #fifa-world-cup-btn {
+        font-size: 1rem; /* تصغير حجم النص */
+        padding: 8px 15px; /* تقليل الحشوة */
+    }
+
+    /* بطاقات البطولات */
     .fifa-world-cup-container {
-        gap: 10px;
-        margin: 10px auto;
+        gap: 10px; /* تقليل المسافة بين البطاقات */
+        margin: 10px auto; /* تقليل المسافة الخارجية */
     }
 
     .fifa-card {
-        width: 150px;
-        padding: 10px;
-        text-align: center;
+        width: 150px; /* تصغير عرض البطاقة */
+        padding: 8px; /* تقليل الحشوة الداخلية */
     }
 
     .fifa-card h3 {
-        font-size: 0.9rem;
+        font-size: 0.9rem; /* تصغير حجم النص */
     }
 
     .fifa-card p {
-        font-size: 0.8rem;
+        font-size: 0.8rem; /* تصغير النصوص داخل البطاقة */
     }
 
     .fifa-card img {
-        width: 20px;
+        width: 20px; /* تصغير حجم الأيقونة */
         height: 20px;
     }
 
-    /* بطاقات تفاصيل المباريات */
+    /* تفاصيل المباريات */
     .fifa-details-container {
-        gap: 10px;
-        margin-top: 10px;
+        gap: 10px; /* تقليل المسافة بين البطاقات */
+        margin-top: 10px; /* تقليل المسافة العلوية */
     }
 
     .fifa-detail-card {
-        width: 200px;
-        padding: 10px;
-        text-align: center;
+        width: 200px; /* تقليل عرض البطاقة */
+        padding: 8px; /* تقليل الحشوة الداخلية */
     }
 
     .fifa-detail-card h3 {
-        font-size: 0.9rem;
+        font-size: 0.9rem; /* تصغير حجم النص */
     }
 
     .fifa-detail-card p {
-        font-size: 0.75rem;
+        font-size: 0.75rem; /* تصغير النصوص */
+        gap: 3px; /* تقليل المسافة بين الأيقونة والنص */
     }
 
     .fifa-detail-card i {
-        font-size: 0.85rem;
+        font-size: 0.9rem; /* تصغير حجم الأيقونات */
     }
 
     .fifa-detail-card a {
-        font-size: 0.85rem;
+        font-size: 0.85rem; /* تصغير النص للرابط */
     }
 
     /* زر العودة */
     .fifa-back-btn {
-        font-size: 0.9rem;
-        padding: 6px 10px;
+        font-size: 0.9rem; /* تصغير حجم النص */
+        padding: 6px 10px; /* تقليل الحشوة الداخلية */
     }
-
-
-//*********************************************************************
+}
+/*********************************************************************
 /* إعدادات خاصة للجوالات والأجهزة اللوحية */
 @media screen and (max-width: 768px) {
     /* العنوان الرئيسي */
     .today-event-title {
-        font-size: 1.2rem;
-        margin: 10px 0;
+        font-size: 1.2rem; /* تصغير حجم النص */
+        margin: 10px 0; /* تقليل المسافة العلوية والسفلية */
     }
 
     /* البطاقة */
     .event-card {
-        width: 100%;
-        max-width: none;
-        padding: 15px;
+        width: 100%; /* عرض البطاقة بالكامل */
+        max-width: none; /* إزالة الحد الأقصى للعرض */
+        padding: 15px; /* تقليل الحشوة الداخلية */
     }
 
     .event-card img {
-        height: 120px;
+        height: 120px; /* تصغير ارتفاع الصورة */
     }
 
     /* النصوص الداخلية */
     .event-info {
-        font-size: 1rem;
+        font-size: 1rem; /* تصغير حجم النص */
     }
 
     .event-date, .event-score {
-        font-size: 0.8rem;
+        font-size: 0.8rem; /* تقليل حجم النصوص */
     }
 
     .event-result .vs {
-        font-size: 1rem;
+        font-size: 1rem; /* تصغير النص */
     }
 
     /* الشبكة الرئيسية للبطاقات */
     .events-container {
-        gap: 10px;
+        gap: 10px; /* تقليل المسافة بين البطاقات */
     }
 
     /* بطاقات الشهر */
     .events-month-container {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* تقليل عرض البطاقة */
+        gap: 10px; /* تقليل المسافات بين البطاقات */
     }
 
     /* زر الشهر */
     .month-btn {
-        font-size: 0.9rem;
-        padding: 8px 15px;
+        font-size: 0.9rem; /* تصغير النص */
+        padding: 8px 15px; /* تقليل الحشوة */
     }
 
-    /* البطاقة الخاصة باليوم */
+    /* البطاقة الخاصة باليوم في المنتصف */
     .today-card-container {
-        flex-direction: column;
-        align-items: stretch;
+        flex-direction: column; /* تغيير التخطيط إلى عمودي */
+        align-items: stretch; /* تمديد البطاقات لملء العرض */
     }
 
     .center-card {
-        width: 90%;
-        margin: 10px auto;
+        width: 90%; /* تقليل العرض */
+        margin: 10px auto; /* تحسين التوسيط */
     }
 
     /* رسالة عدم وجود بطولات */
     .no-event-message {
-        font-size: 1rem;
-        padding: 15px;
+        font-size: 1rem; /* تقليل حجم النص */
+        padding: 15px; /* تقليل الحشوة */
     }
 
     .no-event-message h2 {
-        font-size: 1.2rem;
+        font-size: 1.2rem; /* تصغير حجم النص */
     }
 
     .no-event-message p {
-        font-size: 0.9rem;
+        font-size: 0.9rem; /* تصغير النصوص */
     }
 
     /* أيقونة ترتيب البطولة */
     .rank-badge {
-        font-size: 0.8rem;
-        padding: 4px 6px;
+        font-size: 0.8rem; /* تصغير النص */
+        padding: 4px 6px; /* تقليل الحشوة */
     }
-
+}
+/**************************************************
+/* إعدادات خاصة للجوالات والأجهزة اللوحية */
+@media screen and (max-width: 768px) {
     /* حاوية البطاقات */
     .team-stats-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        justify-content: space-between;
-        margin: 10px auto;
-        padding: 10px;
+        display: flex; /* تفعيل Flexbox */
+        flex-wrap: wrap; /* السماح بلف العناصر إلى صفوف */
+        gap: 10px; /* المسافة بين البطاقات */
+        justify-content: space-between; /* توزيع البطاقات بالتساوي */
+        margin: 10px auto; /* مسافة علوية وسفلية */
+        padding: 10px; /* حشوة داخلية */
     }
 
     .team-stat-card {
-        flex: 0 1 calc(50% - 10px);
-        max-width: calc(50% - 10px);
-        padding: 10px;
-        box-sizing: border-box;
-        text-align: center;
+        flex: 0 1 calc(50% - 10px); /* عرض البطاقة ليكون 50% مع فجوة */
+        max-width: calc(50% - 10px); /* الحد الأقصى للعرض */
+        padding: 10px; /* حشوة داخلية */
+        box-sizing: border-box; /* ضمان عدم تجاوز الحدود */
+        text-align: center; /* توسيط النص */
     }
 
     .team-stat-card i {
-        font-size: 1.5rem;
+        font-size: 1.5rem; /* تقليل حجم الأيقونة */
     }
 
     .team-stat-card h3 {
-        font-size: 0.9rem;
+        font-size: 0.9rem; /* تقليل حجم النص */
     }
 
     .team-stat-card p {
-        font-size: 1rem;
+        font-size: 1rem; /* تقليل حجم النص */
     }
 
     /* جدول الإحصائيات */
     #team-stats-table {
-        font-size: 0.9rem;
-        margin: 10px auto;
+        font-size: 0.9rem; /* تقليل حجم النصوص داخل الجدول */
     }
 
     #team-stats-table th,
     #team-stats-table td {
-        padding: 8px;
-        text-align: center;
+        padding: 8px; /* تقليل الحشوة الداخلية للخلايا */
     }
 
     #team-stats-table th {
-        font-size: 1rem;
+        font-size: 1rem; /* تقليل حجم النصوص في العناوين */
     }
 
     /* أزرار الفلترة */
     .team-filter-btn {
-        font-size: 0.9rem;
-        padding: 8px 10px;
-        margin: 3px;
+        font-size: 0.9rem; /* تصغير حجم النص */
+        padding: 8px 10px; /* تقليل الحشوة الداخلية */
+        margin: 3px; /* تقليل المسافة بين الأزرار */
     }
 
     /* أيقونات القسم */
     h2 i.fa-futbol {
-        font-size: 1.2rem;
+        font-size: 1.2rem; /* تصغير حجم الأيقونة */
     }
 
     label i.fa-users {
-        font-size: 1rem;
+        font-size: 1rem; /* تقليل حجم الأيقونة */
     }
 }
 
@@ -712,58 +881,76 @@
 @media screen and (max-width: 768px) {
     /* القائمة المنسدلة */
     #year-stats-select {
-        font-size: 14px;
-        padding: 8px;
-        width: 100%;
+        font-size: 14px; /* تقليل حجم النص */
+        padding: 8px; /* تقليل الحشوة الداخلية */
+        width: 100%; /* التأكد من ملء العرض بالكامل */
     }
 
+    /* الخيارات داخل القائمة */
     #year-stats-select option {
-        font-size: 14px;
-        padding: 8px;
+        font-size: 14px; /* تقليل حجم النص */
+        padding: 8px; /* تقليل الحشوة الداخلية */
     }
 
     /* الجدول */
     #year-stats-table {
-        font-size: 12px;
-        max-width: 95%; /* تحديد الحد الأقصى للعرض */
-        margin: 0 auto; /* توسيط الجدول */
+        font-size: 12px; /* تقليل حجم النصوص داخل الجدول */
     }
 
     #year-stats-table th,
     #year-stats-table td {
-        padding: 8px;
-        text-align: center;
+        padding: 8px; /* تقليل الحشوة الداخلية للخلايا */
     }
 
     #year-stats-table th:nth-child(1),
     #year-stats-table td:nth-child(1),
     #year-stats-table th:nth-child(2),
     #year-stats-table td:nth-child(2) {
-        width: auto;
-        white-space: normal;
-        overflow: hidden;
+        width: auto; /* السماح للعرض بالتكيف */
+        white-space: normal; /* السماح بانتقال النص إلى سطر جديد */
     }
 
     /* أزرار الفلترة */
     .year-filter-btn {
-        font-size: 12px;
-        padding: 8px 10px;
-        margin: 3px;
-        width: 100%; /* عرض كامل على الجوال */
+        font-size: 12px; /* تصغير حجم النص داخل الأزرار */
+        padding: 8px 10px; /* تقليل الحشوة الداخلية */
+        margin: 3px; /* تقليل المسافة بين الأزرار */
     }
 
-     /* الجدول الخاص بالمباريات القادمة */
+    /* أيقونات القسم */
+    h2 i.fa-chart-bar,
+    label i.fa-calendar {
+        font-size: 1rem; /* تقليل حجم الأيقونات */
+    }
+}
+/********************************************************************
+/* إعدادات خاصة للجوالات والأجهزة اللوحية */
+@media screen and (max-width: 768px) {
+    /* حاوية الأزرار */
+    .upcoming-filter-buttons {
+        margin: 10px 0; /* تقليل المسافات حول الأزرار */
+        text-align: center;
+    }
+
+    /* الأزرار */
+    .upcoming-filter-btn {
+        font-size: 12px; /* تصغير حجم النص */
+        padding: 8px 10px; /* تقليل الحشوة الداخلية */
+        margin: 3px; /* تقليل المسافات بين الأزرار */
+        width: 100%; /* جعل الأزرار تمتد بعرض الشاشة */
+        box-sizing: border-box; /* ضمان الحفاظ على الحواف الداخلية */
+    }
+
+    /* الجدول */
     #upcoming-matches-table {
-        font-size: 12px;
-        margin-top: 10px;
-        max-width: 95%; /* تحديد الحد الأقصى للعرض */
-        margin: 0 auto; /* توسيط الجدول */
+        font-size: 12px; /* تقليل حجم النصوص داخل الجدول */
+        margin-top: 10px; /* تقليل المسافة العلوية */
     }
 
     #upcoming-matches-table th,
     #upcoming-matches-table td {
-        padding: 8px;
-        white-space: nowrap;
+        padding: 8px; /* تقليل الحشوة الداخلية للخلايا */
+        white-space: nowrap; /* منع النصوص من الانتقال إلى سطر جديد */
     }
 
     /* الأعمدة */
@@ -771,196 +958,23 @@
     #upcoming-matches-table td:nth-child(1),
     #upcoming-matches-table th:nth-child(2),
     #upcoming-matches-table td:nth-child(2) {
-        width: auto;
-        white-space: normal;
-        overflow: hidden;
-        text-overflow: ellipsis; /* نقاط عند تجاوز النص العرض */
-    }
-
-    #upcoming-matches-table td {
-        font-size: 12px;
-        color: #555;
+        width: auto; /* السماح بتعديل العرض تلقائيًا */
+        white-space: normal; /* السماح بانتقال النص إلى سطر جديد */
+        overflow: hidden; /* إخفاء النص الزائد */
     }
 
     /* الصفوف عند التحويم */
     #upcoming-matches-table tr:hover {
-        background-color: #e0f7fa;
+        background-color: #e0f7fa; /* خلفية زرقاء فاتحة */
     }
 
-    /* أزرار التصفية */
-    .upcoming-filter-btn {
-        font-size: 12px;
-        padding: 8px 10px;
-        margin: 3px;
-        width: 100%;
-        max-width: 200px; /* تحديد عرض الأزرار */
-        box-sizing: border-box;
-    }
-
-    /* الأيقونات */
-    h2 i.fa-chart-bar,
-    label i.fa-calendar {
-        font-size: 1rem;
+    /* النصوص */
+    #upcoming-matches-table td {
+        font-size: 12px; /* حجم نص أصغر */
+        color: #555; /* لون رمادي غامق */
     }
 }
+/************************************************
 
-/********************************************************************
-/*======================================================================*/
-/* خاص بالسلايدر لرؤساء - التنسيقات العامة ok*/
-/*======================================================================*/
 
-/* تصميم الجزء العلوي من البطاقة */
-.manager-card .header {
-    text-align: center;
-    padding: 15px;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-}
 
-.manager-frame {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(145deg, #005fbf, #0073e6);
-    border: 2px solid #ffffff;
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 60%;
-    margin: 0 auto 20px;
-}
-
-.manager-frame img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 3px solid #ffffff;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.manager-frame h3 {
-    font-size: 1.5rem;
-    color: #ffffff;
-    margin: 0;
-    text-align: center;
-    font-weight: bold;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
-}
-
-/* الرقم في الزاوية */
-.manager-frame .manager-number {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: #FFD700;
-    color: #005fbf;
-    border-radius: 50%;
-    padding: 5px 10px;
-    font-weight: bold;
-    font-size: 1rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    z-index: 10;
-}
-
-/* تحسين تصميم النصوص داخل البطاقة */
-.manager-card .body {
-    max-width: 80%;
-    margin: 0 auto;
-    background: #f9f9f9;
-    border: 2px solid #8B008B;
-    padding: 20px;
-    color: #333;
-    text-align: center;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.manager-card .body p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-/*======================================================================*/
-/* تحسين التنسيقات للأجهزة اللوحية والهواتف المحمولة */
-/*======================================================================*/
-
-@media screen and (max-width: 768px) {
-    .manager-frame {
-        width: 90%; /* زيادة العرض على الأجهزة الصغيرة */
-        padding: 15px; /* تقليل الحشوة */
-    }
-
-    .manager-frame img {
-        width: 80px; /* تصغير حجم الصورة */
-        height: 80px;
-    }
-
-    .manager-frame h3 {
-        font-size: 1.2rem; /* تقليل حجم النص */
-    }
-
-    .manager-frame .manager-number {
-        top: 5px; /* تقليل المسافة العلوية */
-        right: 5px;
-        font-size: 0.8rem; /* تقليل حجم النص */
-        padding: 4px 8px; /* تقليل الحشوة */
-    }
-
-    .manager-card .body {
-        max-width: 95%; /* توسيع الحاوية لتناسب الشاشة الصغيرة */
-        padding: 15px; /* تقليل الحشوة */
-    }
-
-    .manager-card .body p {
-        font-size: 1rem; /* تقليل حجم النص */
-        line-height: 1.5; /* تحسين المسافة بين الأسطر */
-    }
-
-    .manager-card .buttons {
-        flex-direction: column; /* ترتيب الأزرار عموديًا */
-        gap: 10px; /* مسافة بين الأزرار */
-        padding: 10px 0;
-    }
-
-    .manager-card .buttons button {
-        padding: 10px; /* تقليل الحشوة */
-        font-size: 1rem; /* تصغير حجم النص */
-    }
-}
-
-/*======================================================================*/
-/* تحسين التنسيقات للأجهزة اللوحية (عرض أكبر من الهواتف) */
-/*======================================================================*/
-
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-    .manager-frame {
-        width: 80%; /* عرض أكبر قليلاً من الأجهزة الصغيرة */
-        padding: 20px;
-    }
-
-    .manager-frame img {
-        width: 90px; /* حجم متوسط للصورة */
-        height: 90px;
-    }
-
-    .manager-frame h3 {
-        font-size: 1.3rem;
-    }
-
-    .manager-frame .manager-number {
-        font-size: 0.9rem;
-        padding: 5px 10px;
-    }
-
-    .manager-card .body {
-        max-width: 80%;
-    }
-}
