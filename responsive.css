@@ -350,79 +350,166 @@
 
 
 /********************************************************************
-/* إعدادات خاصة للجوالات والأجهزة اللوحية */
+/*======================================================================*/
+/* خاص بالسلايدر لرؤساء - التنسيقات العامة ok*/
+/*======================================================================*/
+
+/* تصميم الجزء العلوي من البطاقة */
+.manager-card .header {
+    text-align: center;
+    padding: 15px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.manager-frame {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg, #005fbf, #0073e6);
+    border: 2px solid #ffffff;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 60%;
+    margin: 0 auto 20px;
+}
+
+.manager-frame img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #ffffff;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.manager-frame h3 {
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin: 0;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* الرقم في الزاوية */
+.manager-frame .manager-number {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #FFD700;
+    color: #005fbf;
+    border-radius: 50%;
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+/* تحسين تصميم النصوص داخل البطاقة */
+.manager-card .body {
+    max-width: 80%;
+    margin: 0 auto;
+    background: #f9f9f9;
+    border: 2px solid #8B008B;
+    padding: 20px;
+    color: #333;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.manager-card .body p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/*======================================================================*/
+/* تحسين التنسيقات للأجهزة اللوحية والهواتف المحمولة */
+/*======================================================================*/
+
 @media screen and (max-width: 768px) {
-    /* الجزء العلوي من البطاقة */
-    .manager-card .header {
-        padding: 10px; /* تقليل المسافة الداخلية */
+    .manager-frame {
+        width: 90%; /* زيادة العرض على الأجهزة الصغيرة */
+        padding: 15px; /* تقليل الحشوة */
     }
 
-    .manager-card .header img {
-        width: 80px; /* تقليل عرض الصورة */
-        height: 80px; /* تقليل ارتفاع الصورة */
-        border: 2px solid #00BFFF; /* تصغير الإطار */
-        margin-bottom: 8px; /* تقليل المسافة أسفل الصورة */
+    .manager-frame img {
+        width: 80px; /* تصغير حجم الصورة */
+        height: 80px;
     }
 
-    .manager-card .header h3 {
-        font-size: 1rem; /* تصغير حجم النص */
+    .manager-frame h3 {
+        font-size: 1.2rem; /* تقليل حجم النص */
     }
 
-    /* الرقم (#) في الزاوية */
-    .manager-card .manager-number {
+    .manager-frame .manager-number {
         top: 5px; /* تقليل المسافة العلوية */
-        right: 5px; /* تقليل المسافة اليمنى */
-        padding: 3px 7px; /* تقليل الحشوة الداخلية */
-        font-size: 0.8em; /* تصغير النص */
+        right: 5px;
+        font-size: 0.8rem; /* تقليل حجم النص */
+        padding: 4px 8px; /* تقليل الحشوة */
     }
 
-    /* الجزء السفلي من البطاقة */
     .manager-card .body {
-        padding: 15px; /* تقليل الحشوة الداخلية */
-        font-size: 0.9rem; /* تصغير النص */
+        max-width: 95%; /* توسيع الحاوية لتناسب الشاشة الصغيرة */
+        padding: 15px; /* تقليل الحشوة */
     }
 
-    /* النص الخاص بعدد الكؤوس */
-    .achievements {
+    .manager-card .body p {
         font-size: 1rem; /* تقليل حجم النص */
-        margin-top: 5px; /* تقليل المسافة العلوية */
-        padding-right: 10px; /* تقليل الحشوة اليمنى */
+        line-height: 1.5; /* تحسين المسافة بين الأسطر */
     }
 
-    .achievements i {
-        font-size: 1rem; /* تقليل حجم الأيقونة */
-    }
-
-    /* أزرار التنقل بين المدراء */
     .manager-card .buttons {
-        padding: 10px 0; /* تقليل المسافة الداخلية */
         flex-direction: column; /* ترتيب الأزرار عموديًا */
-        gap: 10px; /* إضافة مسافة بين الأزرار */
+        gap: 10px; /* مسافة بين الأزرار */
+        padding: 10px 0;
     }
 
     .manager-card .buttons button {
-        padding: 8px 15px; /* تقليل الحشوة الداخلية */
-        font-size: 0.9rem; /* تقليل حجم النص */
-    }
-
-    /* النصوص الأخرى */
-    .manager-card .body .manager-years,
-    .manager-card .body .manager-wins,
-    .manager-card .body .manager-stats {
-        font-size: 1rem; /* تقليل حجم النص */
-        line-height: 1.5; /* تحسين المسافة بين الأسطر */
-        margin-bottom: 10px; /* تقليل المسافة السفلية */
-        padding: 8px; /* تقليل الحشوة الداخلية */
-    }
-
-    /* تحسين أيقونات النصوص */
-    .manager-card .body .manager-stats::before,
-    .manager-card .body .manager-years::before,
-    .manager-card .body .manager-wins::before {
-        font-size: 1rem; /* تقليل حجم الأيقونة */
-        margin-right: 3px; /* تقليل المسافة بين النص والأيقونة */
+        padding: 10px; /* تقليل الحشوة */
+        font-size: 1rem; /* تصغير حجم النص */
     }
 }
+
+/*======================================================================*/
+/* تحسين التنسيقات للأجهزة اللوحية (عرض أكبر من الهواتف) */
+/*======================================================================*/
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .manager-frame {
+        width: 80%; /* عرض أكبر قليلاً من الأجهزة الصغيرة */
+        padding: 20px;
+    }
+
+    .manager-frame img {
+        width: 90px; /* حجم متوسط للصورة */
+        height: 90px;
+    }
+
+    .manager-frame h3 {
+        font-size: 1.3rem;
+    }
+
+    .manager-frame .manager-number {
+        font-size: 0.9rem;
+        padding: 5px 10px;
+    }
+
+    .manager-card .body {
+        max-width: 80%;
+    }
+}
+
 /*************************************************************************
 /* إعدادات خاصة للجوالات والأجهزة اللوحية */
 /* إطار للخريطة */
