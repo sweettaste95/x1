@@ -1198,9 +1198,11 @@ function displayManager(index) {
     container.innerHTML = `
         <div class="manager-card">
             <div class="header">
-                <span class="manager-number">#${manager.no}</span>
-                <img src="${manager.ImageURL}" alt="${manager.mangertName}">
-                <h3>${manager.mangertName}</h3>
+                <div class="manager-frame">
+                    <span class="manager-number">#${manager.no}</span>
+                    <img src="${manager.ImageURL}" alt="${manager.mangertName}">
+                    <h3>${manager.mangertName}</h3>
+                </div>
             </div>
             <div class="body">
                 <!-- الفقرة الزمنية -->
@@ -1221,14 +1223,14 @@ function displayManager(index) {
                 </p>
                 <!-- الأزرار -->
                 <div class="buttons">
-                 
+                    <button onclick="prevManager()">السابق</button>
                     <button onclick="nextManager()">التالي</button>
-                     <button onclick="prevManager()">السابق</button>
                 </div>
             </div>
         </div>
     `;
 }
+
 // دالة للانتقال إلى المدير السابق
 function prevManager() {
     currentManagerIndex = (currentManagerIndex - 1 + managers.length) % managers.length;
@@ -1255,7 +1257,7 @@ function fetchManagersData(callback) {
 }
 
 
-
+//==========================================================================================
 let map;
 let markers = [];
 
