@@ -15,7 +15,7 @@
         margin-top: 10px;
     }
 
-    /* شريط الميني بار */
+     /* شريط الميني بار */
     .menu-bar {
         display: flex;
         flex-direction: row; /* جعل العناصر في صف واحد */
@@ -38,7 +38,7 @@
         height: auto;
     }
 
-    /* الأزرار كأيقونات */
+     /* الأزرار كأيقونات */
     .top-nav-buttons {
         display: flex;
         flex: 2; /* مساحة للأزرار */
@@ -46,7 +46,7 @@
         gap: 10px;
     }
 
-    /* عند عرض الجوالات، نخفي النصوص ونزيل المربعات */
+      /* عند عرض الجوالات، نخفي النصوص ونزيل المربعات */
     .top-nav-buttons a {
         background-color: transparent; /* إزالة الخلفية */
         padding: 0; /* إزالة الحشوة */
@@ -56,7 +56,8 @@
         height: auto;
     }
 
-    .top-nav-buttons a span {
+
+     .top-nav-buttons a span {
         display: none; /* إخفاء النصوص */
     }
 
@@ -72,8 +73,7 @@
         text-align: center;
         overflow-x: hidden; /* منع التمرير الأفقي */
     }
-
-    @media (max-width: 768px) {
+     /* الشريط المتحرك */
     .marquee-container {
         width: 95%; /* الشريط يغطي 95% من عرض الشاشة */
         padding: 10px; /* حشوة متناسقة */
@@ -102,7 +102,7 @@
 
 
 
-    /* القوائم المنسدلة */
+     /* القوائم المنسدلة */
     .content-wrapper select,
     #dynamic-content select {
         width: 100%; /* عرض كامل */
@@ -128,13 +128,12 @@
         font-size: 1.1em; /* تصغير حجم النص */
     }
 
-    /* حقوق الطبع والنشر (الفوتر) */
-    .footer-text {
-        font-size: 0.6em; /* تصغير حجم النص */
-        padding: 8px; /* تقليل الحشوة */
-        border-radius: 10px; /* تقليل زوايا الحاوية */
+    
+    /* حقوق الطبع والنشر */
+    .footer-copyright {
+        font-size: 0.8rem; /* تصغير النص */
+        padding-bottom: 60px; /* ترك مساحة إضافية لشريط التنقل */
     }
-
     /* نموذج الملاحظات */
     #feedback-section {
         width: 90%; /* تكبير العرض ليناسب الشاشات الصغيرة */
@@ -991,7 +990,6 @@
         color: #555; /* لون رمادي غامق */
     }
 }
-
 
 
 
