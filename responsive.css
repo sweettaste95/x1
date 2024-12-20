@@ -19,7 +19,7 @@
   text-align: center;
   margin-top: 20px;
 }
-
+/*=================================================================
 /* تحسين قسم الفيديوهات */
 #youtube-videos {
   display: grid;
@@ -132,4 +132,208 @@
   #youtube-videos {
     grid-template-columns: repeat(2, 1fr); /* صفين في كل صف فيديوين */
   }
+}
+/*=============================================================================
+
+/* قسم "رؤساء الهلال" */
+.manager-frame {
+    width: 90%;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    margin: 0 auto 15px;
+    background: linear-gradient(135deg, #004080, #0056b3);
+    color: white;
+    text-align: center;
+}
+
+.manager-frame img {
+    width: 80px;
+    height: 80px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    margin-bottom: 8px;
+}
+
+.manager-frame h3 {
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+    margin-bottom: 5px;
+}
+
+.manager-card .body {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1rem;
+    text-align: left;
+    color: #333;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.manager-card .body p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.manager-card .body .manager-years,
+.manager-card .body .manager-wins,
+.manager-card .body .manager-stats {
+    font-size: 1rem;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.manager-card .buttons button {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 5px;
+}
+
+.manager-card .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* الجداول */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.table th, .table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #0056b3;
+    color: white;
+    font-weight: bold;
+}
+
+.table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.table tr:nth-child(odd) {
+    background-color: #e2e6ea;
+}
+
+.table tr:hover {
+    background-color: #cce5ff;
+    color: #000;
+}
+
+/* البطاقات */
+.card {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin: 10px auto;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card h3 {
+    font-size: 1.2rem;
+    color: #0056b3;
+    margin: 10px 0;
+}
+
+.card p {
+    font-size: 1rem;
+    color: #333;
+}
+
+/* قسم "في مثل هذا اليوم" */
+.event-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    padding: 10px;
+}
+
+.event-card {
+    background: #ffffff;
+    border: 2px solid #0056b3;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.event-card img {
+    width: 100%;
+    height: 150px;
+    border-radius: 10px;
+}
+
+.event-card h3 {
+    font-size: 1rem;
+    color: #0056b3;
+    margin: 10px 0;
+}
+
+.event-card p {
+    font-size: 0.9rem;
+    color: #333;
+}
+
+/* تحسين عرض الأجهزة المحمولة */
+@media screen and (max-width: 768px) {
+    .manager-card .buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .table th, .table td {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+
+    .event-container {
+        grid-template-columns: 1fr;
+    }
+
+    .event-card {
+        padding: 10px;
+    }
+
+    .card {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
 }
