@@ -15,8 +15,6 @@
         margin-top: 10px;
     }
 
-   /* إعدادات خاصة للجوالات والأجهزة اللوحية */
-@media screen and (max-width: 768px) {
     /* شريط الميني بار */
     .menu-bar {
         display: flex;
@@ -48,10 +46,7 @@
         gap: 10px;
     }
 
-   
-/* عند عرض الجوالات، نخفي النصوص */
-/* عند عرض الجوالات، نخفي النصوص ونزيل المربعات */
-@media screen and (max-width: 768px) {
+    /* عند عرض الجوالات، نخفي النصوص ونزيل المربعات */
     .top-nav-buttons a {
         background-color: transparent; /* إزالة الخلفية */
         padding: 0; /* إزالة الحشوة */
@@ -64,16 +59,10 @@
     .top-nav-buttons a span {
         display: none; /* إخفاء النصوص */
     }
-}
+
     .top-nav-buttons a:hover {
         background-color: #8623ad;
     }
-
-    /* إخفاء النصوص داخل الأزرار */
-    .top-nav-buttons a span {
-        display: none;
-    }
-}
 
     /* النصوص العامة */
     body {
@@ -84,33 +73,31 @@
         overflow-x: hidden; /* منع التمرير الأفقي */
     }
 
-
-
-
-  /* الشريط المتحرك على الشاشات الصغيرة */
-@media (max-width: 768px) {
+    /* الشريط المتحرك على الشاشات الصغيرة */
     .marquee-container {
-        width: 95%; /* توسيع العرض قليلاً */
-        padding: 10px; /* تقليل الحشوة */
+        width: 95%; /* عرض الشريط بالكامل على الجوال */
+        padding: 10px; /* حشوة داخلية متناسقة */
         font-size: 0.9rem; /* تصغير النص قليلاً */
-        border-radius: 8px; /* تقليل الحواف */
     }
 
     .marquee-content {
-        animation: marquee 12s linear infinite; /* تسريع الحركة على الجوال */
+        display: flex;
+        flex-wrap: wrap; /* السماح بتقسيم العناصر إذا كانت الشاشة صغيرة جدًا */
+        gap: 10px; /* مسافة بين العناصر */
+        justify-content: space-between; /* توزيع العناصر بالتساوي */
     }
 
-    .marquee-content span {
-        font-size: 0.8rem; /* تصغير النصوص */
+    .marquee-content span,
+    .marquee-content a {
+        flex: 1 1 100%; /* جعل العناصر تظهر في أسطر منفصلة إذا كانت المساحة ضيقة */
+        text-align: center; /* توسيط النصوص */
     }
-}
-
 
     /* الروابط */
     .telegram-link {
         font-size: 0.8rem; /* تقليل حجم النص */
     }
-}
+
     /* القوائم المنسدلة */
     .content-wrapper select,
     #dynamic-content select {
@@ -118,6 +105,8 @@
         font-size: 1rem; /* تقليل حجم النص */
         margin: 10px auto; /* تقليل المسافة الخارجية */
     }
+}
+
 
     /* الخيارات داخل select */
     .content-wrapper select option,
@@ -998,7 +987,7 @@
         color: #555; /* لون رمادي غامق */
     }
 }
-/************************************************
+
 
 
 
