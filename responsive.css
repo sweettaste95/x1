@@ -73,21 +73,23 @@
         text-align: center;
         overflow-x: hidden; /* منع التمرير الأفقي */
     }
-     /* الشريط المتحرك */
+    @media screen and (max-width: 768px) {
     .marquee-container {
-        width: 95%; /* الشريط يغطي 95% من عرض الشاشة */
-        padding: 10px; /* حشوة متناسقة */
-        font-size: 0.9rem; /* تقليل حجم النص قليلاً */
-        overflow: hidden; /* إخفاء العناصر الزائدة */
+        width: 100%; /* تغطية كامل عرض الشاشة */
+        overflow: hidden; /* منع التمرير الزائد */
+        padding: 10px;
+        font-size: 0.9rem; /* تصغير النصوص */
     }
 
     .marquee-content {
-        display: flex;
-        flex-direction: row; /* إبقاء العناصر في صف واحد */
-        align-items: center; /* توسيط العناصر عمودياً */
-        gap: 15px; /* مسافة بين العناصر */
-        animation: marquee 15s linear infinite; /* حركة متواصلة */
+        display: flex; /* تفعيل Flexbox */
+        flex-direction: row; /* العناصر في صف واحد */
+        align-items: center; /* توسيط العناصر عموديًا */
+        gap: 20px; /* مسافة بين العناصر */
+        white-space: nowrap; /* منع التفاف النصوص */
+        overflow: hidden; /* منع تجاوز الحاوية */
     }
+
 
     .marquee-content span,
     .marquee-content a {
