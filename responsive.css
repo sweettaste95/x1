@@ -20,976 +20,116 @@
   margin-top: 20px;
 }
 
-#content-container {
-  background-image: url('https://github.com/sweettaste95/hilal-images/blob/main/signal-2024-11-09-092357_007.jpeg?raw=true');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: white;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  min-height: 300px;
-}
-
-/* تحسين التنسيق للهواتف المحمولة */
-@media screen and (max-width: 768px) {
-  .content-wrapper {
-    max-width: 100%; /* ملء الشاشة بالكامل */
-    padding: 10px; /* تقليل الحشوة */
-    border-radius: 5px; /* تقليل الزوايا الدائرية */
-    box-shadow: none; /* إزالة الظل */
-  }
-
-  #dynamic-content {
-    font-size: 1rem; /* تصغير النص */
-    margin-top: 10px;
-  }
-
-  #content-container {
-    padding: 10px; /* تقليل الحشوة */
-    border-radius: 5px; /* تقليل الزوايا الدائرية */
-    box-shadow: none; /* إزالة الظل */
-  }
-
-  .menu-bar {
-    flex-wrap: wrap; /* توزيع العناصر عمودياً عند الحاجة */
-    padding: 10px;
-    height: auto; /* السماح بالتمدد */
-    justify-content: center; /* توسيط العناصر */
-  }
-
-  .menu-bar .top-nav-buttons {
-    gap: 10px; /* تقليل المسافة بين الأزرار */
-  }
-
-  .menu-bar .top-nav-buttons a {
-    padding: 6px 10px; /* تقليل الحشوة الداخلية */
-    font-size: 0.8rem; /* تصغير النص */
-  }
-
-  #logo {
-    width: 60px; /* تصغير الشعار */
-  }
-
-  .marquee-container {
-    padding: 5px; /* تقليل الحشوة */
-    font-size: 0.8rem; /* تصغير النصوص */
-  }
-
-  .marquee-content {
-    gap: 10px; /* تقليل المسافات بين العناصر */
-  }
-
-  .marquee-content span {
-    font-size: 0.9rem; /* تصغير حجم النص */
-  }
-
-
-  /* تحسين زر العودة للقائمة الرئيسية */
-#main-menu-btn {
-    margin-top: 20px; 
-    padding: 8px 16px; /* تقليل الحشوة */
-    font-size: 0.9rem; /* تصغير النص */
-    font-weight: bold;
-    color: #ffffff;
-    background: #8e26a3;
-    border: none;
-    border-radius: 25px; /* تقليل الزوايا الدائرية */
-    cursor: pointer;
-    transition: transform 0.2s, background 0.3s;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2); /* تقليل الظل */
-}
-
-#main-menu-btn:hover {
-    background: linear-gradient(145deg, #005fbf, #0077ff);
-    transform: scale(1.1); /* تقليل التكبير عند التمرير */
-    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.3);
-}
-
-#main-menu-btn:active {
-    transform: scale(0.96); /* تصغير الزر قليلاً عند الضغط */
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* تصغير الظل */
-}
-
-/* تحسين شاشة التسجيل */
-#register-screen h2 {
-    font-size: 1.5rem; /* تصغير العنوان */
-    margin-bottom: 15px;
-    color: #fff;
-}
-
-#register-screen p {
-    font-size: 0.9rem; /* تصغير النص */
-    margin-bottom: 15px;
-    color: #b3c7e6;
-}
-
-#register-screen input[type="text"],
-#register-screen input[type="email"] {
-    width: 100%;
-    padding: 10px; /* تقليل الحشوة */
-    margin: 8px 0;
-    border: none;
-    border-radius: 6px; /* تقليل الزوايا الدائرية */
-    font-size: 0.9rem; /* تصغير النص */
-}
-
-#register-screen button {
-    width: 100%;
-    padding: 10px; /* تقليل الحشوة */
-    margin-top: 15px;
-    font-size: 1rem; /* تصغير النص */
-    font-weight: bold;
-    color: #fff;
-    background: #005fbf;
-    border: none;
-    border-radius: 6px; /* تقليل الزوايا الدائرية */
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-#register-screen button:hover {
-    background: #004a99; /* لون أغمق عند التمرير */
-}
-
-/* تحسين القوائم المنسدلة */
-.content-wrapper select,
-#dynamic-content select {
-    display: block;
-    margin: 15px auto; /* تقليل الهوامش */
-    padding: 8px; /* تقليل الحشوة */
-    width: 90%; /* عرض مرن */
-    font-size: 0.9rem; /* تصغير النص */
-    text-align: center;
-    border: 1px solid #005fbf; /* حدود أرق */
-    border-radius: 8px; /* تقليل الزوايا الدائرية */
-    background-color: #fcfafc;
-    color: #333;
-    transition: border-color 0.3s ease, background-color 0.3s ease;
-}
-
-.content-wrapper select:hover,
-#dynamic-content select:hover {
-    border-color: #8B008B; 
-    background-color: #f8f0fa; 
-}
-
-.content-wrapper select:focus,
-#dynamic-content select:focus {
-    border-color: #8B008B;
-    outline: none;
-    box-shadow: 0 0 3px rgba(139, 0, 139, 0.5); /* ظل أخف */
-}
-
-/* تحسين الخيارات داخل select */
-.content-wrapper select option,
-#dynamic-content select option {
-    font-weight: bold;
-    font-size: 0.9rem; /* تصغير النص */
-    color: #333;
-    background-color: #fff;
-}
-
-/* تحسين التنسيق للأجهزة الصغيرة */
-@media screen and (max-width: 768px) {
-    #main-menu-btn {
-        padding: 6px 12px; /* تقليل الحشوة */
-        font-size: 0.8rem; /* تقليل حجم النص */
-        border-radius: 20px;
-    }
-
-    #register-screen h2 {
-        font-size: 1.2rem; /* تصغير النص */
-    }
-
-    #register-screen p {
-        font-size: 0.8rem; /* تقليل حجم النص */
-    }
-
-    #register-screen input[type="text"],
-    #register-screen input[type="email"] {
-        padding: 8px; /* تقليل الحشوة */
-        font-size: 0.8rem;
-    }
-
-    #register-screen button {
-        padding: 8px; /* تقليل الحشوة */
-        font-size: 0.9rem;
-    }
-
-    .content-wrapper select,
-    #dynamic-content select {
-        margin: 10px auto;
-        width: 100%; /* ملء الشاشة بالكامل */
-        font-size: 0.8rem; /* تصغير النص */
-    }
-}
-
-  /* تحسين بطاقات البطولات والنتائج */
-#competition-results p, 
-#championship-details p {
-    background: #001f5c;
-    color: #ffffff;
-    border: 2px solid #005fbf;
-    border-radius: 15px;
-    padding: 15px;
-    margin: 10px auto;
-    width: 80%; /* زيادة العرض قليلاً */
-    text-align: center;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s, box-shadow 0.3s;
-}
-
-#competition-results p:hover, 
-#championship-details p:hover {
-    background-color: #6e0068;
-    transform: scale(1.02); /* تقليل التأثير عند التمرير */
-    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
-}
-
-/* تحسين البطاقة الرئيسية */
-#championship-info {
-    background: linear-gradient(135deg, #001f5c, #004080);
-    color: #ffffff;
-    padding: 15px; /* تقليل الحشوة */
-    border-radius: 10px; /* تقليل الزوايا الدائرية */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    max-width: 90%; /* عرض مرن */
-    margin: 15px auto;
-    font-size: 1rem; /* تقليل حجم النص */
-}
-
-/* تحسين الصور */
-#championship-info img, #championship-logo {
-    width: 80%; /* تقليل حجم الصورة */
-    margin-bottom: 10px;
-    border-radius: 8px; /* تقليل الزوايا الدائرية */
-}
-
-/* تحسين الشبكة الخاصة بالفيديوهات */
+/* تحسين قسم الفيديوهات */
 #youtube-videos {
-    grid-template-columns: 1fr; /* فيديو واحد لكل صف */
-    gap: 15px; /* تقليل المسافة بين الفيديوهات */
-    padding: 10px; /* تقليل الحشوة */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* صفين من الفيديوهات */
+  gap: 15px;
+  padding: 10px;
 }
 
 .video-card {
-    padding: 8px; /* تقليل الحشوة */
-    box
+  padding: 8px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.video-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* تحسين الجداول */
+#team-stats-table, #year-stats-table, #upcoming-matches-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#team-stats-table th, #year-stats-table th, #upcoming-matches-table th {
+  background-color: #0056b3;
+  color: white;
+  padding: 12px;
+  font-weight: bold;
+}
+
+#team-stats-table td, #year-stats-table td, #upcoming-matches-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  color: #333;
+}
+
+/* تحسين الجداول على الشاشات الصغيرة */
+@media screen and (max-width: 768px) {
+  #team-stats-table, #year-stats-table, #upcoming-matches-table {
+    font-size: 0.8rem; /* تقليل حجم النص */
+    overflow-x: auto; /* السماح بالتمرير الأفقي */
   }
-/* تحسين روابط السوشال ميديا */
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
-    flex-wrap: wrap; /* السماح بالالتفاف على عدة أسطر */
 }
 
-.social-links a {
-    color: #87CEEB;
-    font-size: 1.2em; /* تصغير الأيقونات قليلاً */
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.social-links a:hover {
-    color: #fefaff;
-}
-
-/* تحسين نموذج الملاحظات */
-#feedback-section {
-    width: 90%; /* تقليل العرض */
-    max-width: 350px; /* عرض أقصى */
-    padding: 15px; /* تقليل الحشوة */
-    border-radius: 10px; /* تقليل الزوايا */
-    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.4); /* تقليل الظل */
-}
-
-#feedbackSubject,
-#feedbackMessage {
-    width: 90%; /* توسيع الحقول قليلاً */
-    padding: 10px; /* تقليل الحشوة */
-    font-size: 0.9rem; /* تصغير النص */
-    border-radius: 8px;
-}
-
-/* تحسين الأزرار */
-.feedback-btn {
-    padding: 8px 16px; /* 
-  
-  
-  
-  /* تحسين إطارات المدراء */
-.manager-frame {
-    width: 90%; /* تصغير العرض لتناسب الأجهزة الصغيرة */
-    padding: 15px; /* تقليل الحشوة */
-    border-radius: 10px; /* تقليل الزوايا الدائرية */
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* تقليل الظل */
-    margin: 0 auto 15px; /* تقليل المسافة السفلية */
-}
-
-.manager-frame img {
-    width: 80px; /* تصغير حجم الصورة */
-    height: 80px;
-    border: 2px solid #ffffff; /* تصغير الإطار */
-    margin-bottom: 8px; /* تقليل المسافة أسفل الصورة */
-}
-
-.manager-frame h3 {
-    font-size: 1.2rem; /* تصغير النص */
-    text-shadow: none; /* إزالة الظل */
-    margin-bottom: 5px; /* تقليل المسافة السفلية */
-}
-
-/* تحسين النصوص داخل البطاقات */
-.manager-card .body {
-    max-width: 100%; /* السماح بملء الشاشة الصغيرة */
-    padding: 15px; /* تقليل الحشوة */
-    border-radius: 10px; /* تقليل الزوايا */
-    font-size: 0.9rem; /* تصغير النص */
-}
-
-.manager-card .body p {
-    font-size: 0.9rem; /* تقليل النص */
-    line-height: 1.6; /* تقليل المسافة بين الأسطر */
-    margin-bottom: 10px; /* تقليل المسافة السفلية */
-}
-
-.manager-card .body .manager-years,
-.manager-card .body .manager-wins,
-.manager-card .body .manager-stats {
-    font-size: 1rem; /* تصغير النص */
-    line-height: 1.6; /* تحسين المسافة بين الأسطر */
-    padding: 8px; /* تقليل الحشوة */
-    border-radius: 6px; /* تقليل الزوايا الدائرية */
-    border: 1px solid #071bf0; /* تصغير الحدود */
-}
-
-/* تحسين الأزرار */
-.manager-card .buttons button {
-    padding: 8px 12px; /* تقليل الحشوة */
-    font-size: 0.9rem; /* تصغير النص */
-    border-radius: 6px; /* تقليل الزوايا الدائرية */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* تقليل الظل */
-}
-
-.manager-card .buttons {
-    flex-direction: column; /* ترتيب الأزرار عموديًا على الشاشات الصغيرة */
-    gap: 10px; /* إضافة مسافة بين الأزرار */
-    margin-top: 15px; /* تقليل المسافة العلوية */
-}
-
-/* تحسين أيقونات النصوص */
-.manager-card .body .manager-stats::before,
-.manager-card .body .manager-years::before,
-.manager-card .body .manager-wins::before {
-    font-size: 1rem; /* تقليل حجم الأيقونة */
-    margin-right: 3px; /* تقليل المسافة بين الأيقونة والنص */
-}
-
-/* تحسين التصميم للأجهزة الصغيرة */
-@media screen and (max-width: 768px) {
-    .manager-frame {
-        width: 100%; /* ملء الشاشة بالكامل */
-        padding: 10px; /* تقليل الحشوة */
-    }
-
-    .manager-frame img {
-        width: 70px; /* تصغير حجم الصورة */
-        height: 70px;
-    }
-
-    .manager-frame h3 {
-        font-size: 1rem; /* تصغير النص */
-    }
-
-    .manager-card .body {
-        padding: 10px; /* تقليل الحشوة */
-    }
-
-    .manager-card .body p {
-        font-size: 0.8rem; /* تصغير النص */
-    }
-
-    .manager-card .buttons {
-        gap: 8px; /* تقليل المسافة بين الأزرار */
-    }
-
-    .manager-card .buttons button {
-        padding: 6px 10px; /* تصغير الحشوة */
-        font-size: 0.8rem; /* تصغير النص */
-    }
-
-    .manager-card .body .manager-years,
-    .manager-card .body .manager-wins,
-    .manager-card .body .manager-stats {
-        font-size: 0.9rem; /* تصغير النص */
-        padding: 6px; /* تقليل الحشوة */
-    }
-}
-/* تحسين إطار الخريطة */
-.map-wrapper {
-    border: 2px solid #87CEEB; /* تقليل سماكة الإطار */
-    border-radius: 10px; /* تقليل الزوايا الدائرية */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* تقليل الظل */
-    margin-bottom: 15px; /* تقليل المسافة أسفل الخريطة */
-    width: 100%; /* العرض الكامل */
-}
-
-/* تحسين بطاقة الخريطة */
-.map-card {
-    margin-top: 20px; /* تقليل المسافة العلوية */
-    padding: 15px; /* تقليل الحشوة */
-    background: #f5f5f5; /* خلفية أفتح */
-    border-radius: 10px; /* تقليل الزوايا الدائرية */
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* تقليل الظل */
-    max-width: 100%; /* ملء الشاشة */
-    width: 95%; /* تقليل العرض */
-    margin-left: auto;
-    margin-right: auto;
-    color: #333;
-    border: 1px solid #87CEEB; /* تقليل سماكة الحدود */
-}
-
-/* تحسين عناصر التحكم في الخريطة */
-.map-controls {
-    display: flex;
-    flex-direction: column; /* ترتيب العناصر عموديًا */
-    gap: 10px; /* مسافة بين الحقول */
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px; /* تقليل المسافة العلوية */
-}
-
-#search-box, #search-dropdown, .search-btn {
-    width: 90%; /* توسيع العرض */
-    padding: 8px; /* حشوة أقل */
-    font-size: 12px; /* تقليل حجم النص */
-    border-radius: 5px;
-}
-
-.search-btn {
-    padding: 8px 10px; /* تقليل الحشوة */
-    font-size: 12px; /* تصغير النص */
-    border-radius: 5px;
-}
-
-/* تحسين بطاقات الإحصائيات */
-.stats-popup {
-    width: 90%; /* تقليل العرض */
-    max-width: 350px; /* عرض أقصى للشاشات الصغيرة */
-    padding: 15px; /* تقليل الحشوة */
-    border-radius: 10px; /* تقليل الزوايا */
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3); /* تقليل الظل */
-    text-align: center;
-    font-size: 0.9rem; /* تقليل النصوص */
-}
-
-/* تحسين قائمة الإحصائيات */
-.stats-list {
-    max-height: 250px; /* تقليل الطول المسموح للتمرير */
-    padding-right: 5px; /* تقليل الحشوة */
-    font-size: 0.85rem; /* تصغير النص */
-}
-
-/* تحسين العناصر داخل قائمة الإحصائيات */
-.stats-item {
-    padding: 5px 0; /* تقليل الحشوة العلوية والسفلية */
-    font-size: 0.85rem; /* تصغير النص */
-}
-
-/* تحسين أزرار الإغلاق */
-.stats-popup .close-btn {
-    padding: 8px 12px; /* تقليل الحشوة */
-    font-size: 12px; /* تصغير النص */
-    border-radius: 5px; /* تقليل الزوايا */
-}
-
-/* تحسين التركيز على الحقول */
-#search-box:focus, #search-dropdown:focus {
-    border-color: #87CEEB;
-    box-shadow: 0 0 3px rgba(135, 206, 235, 0.5); /* تقليل الظل */
-}
-
-/* تحسين التصميم للأجهزة الصغيرة */
-@media screen and (max-width: 768px) {
-    .map-card {
-        padding: 10px; /* تقليل الحشوة */
-    }
-
-    .map-controls {
-        gap: 5px; /* تقليل المسافة بين العناصر */
-    }
-
-    #search-box, #search-dropdown, .search-btn {
-        width: 100%; /* ملء العرض بالكامل */
-        font-size: 10px; /* تصغير النصوص */
-    }
-
-    .stats-popup {
-        padding: 10px; /* تقليل الحشوة */
-    }
-
-    .stats-list {
-        max-height: 200px; /* تقليل الطول */
-    }
-
-    .stats-item {
-        padding: 3px 0; /* تقليل الحشوة */
-    }
-
-    .stats-popup .close-btn {
-        padding: 6px 8px; /* تصغير الحشوة */
-        font-size: 10px; /* تصغير النص */
-    }
-}
-/* تحسين زر كأس العالم */
-#fifa-world-cup-btn {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px; /* تقليل الحشوة */
-    border-radius: 5px;
-    font-size: 1rem; /* تصغير النص */
-    transition: background 0.3s ease;
-    width: 90%; /* العرض المناسب */
-    max-width: 300px;
-    margin: 10px auto; /* توسيط الزر */
-}
-
-#fifa-world-cup-btn:hover {
-    background-color: #0056b3;
-}
-
-/* تحسين بطاقات البطولات */
-.fifa-world-cup-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* ترتيب تلقائي */
-    gap: 10px; /* تقليل المسافة */
-    margin: 10px auto; /* تقليل الهوامش */
-    padding: 10px; /* حشوة إضافية */
-}
-
-.fifa-card {
-    width: 100%; /* ضبط العرض */
-    padding: 10px; /* تقليل الحشوة */
-    font-size: 0.85rem; /* تصغير النص */
-    border-radius: 5px; /* تقليل الزوايا */
-}
-
-.fifa-card img {
-    width: 20px; /* تصغير الأيقونة */
-    height: 20px;
-    top: 5px; /* تقليل المسافة من الأعلى */
-    left: 5px;
-}
-
-/* تحسين تفاصيل المباريات */
-.fifa-details-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* عرض تلقائي */
-    gap: 10px;
-    padding: 10px;
-}
-
-.fifa-detail-card {
-    padding: 10px;
-    font-size: 0.8rem; /* تصغير النص */
-    border-radius: 5px; /* تقليل الزوايا */
-}
-
-/* تحسين زر العودة */
-.fifa-back-btn {
-    width: 90%; /* ضبط العرض */
-    max-width: 300px;
-    padding: 8px 10px;
-    font-size: 0.9rem; /* تصغير النص */
-    border-radius: 5px;
-}
-
-/* تحسين العناصر للأجهزة الصغيرة */
-@media screen and (max-width: 768px) {
-    .fifa-card {
-        font-size: 0.8rem; /* تصغير النص */
-        padding: 8px; /* تقليل الحشوة */
-    }
-
-    .fifa-detail-card {
-        font-size: 0.75rem; /* تصغير النص */
-        padding: 8px;
-    }
-
-    #fifa-world-cup-btn, .fifa-back-btn {
-        font-size: 0.85rem; /* تصغير النص */
-        padding: 8px;
-    }
-}
-/* تحسين تصميم البطاقة */
-.event-card {
-    background-color: #f9f9f9;
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 100%; /* العرض تلقائي */
-    max-width: 300px; /* أقصى عرض */
-    margin: 10px auto;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.event-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* تحسين الشبكة */
-.events-container,
-.events-month-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-    margin: 20px;
-    padding: 10px;
-}
-
-/* تحسين العناوين */
-.event-title {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #0056b3;
-    margin: 10px 0;
-}
-
-.event-date,
-.event-score {
-    font-size: 0.85rem;
-    color: #333;
-    font-weight: bold;
-}
-
-.event-score {
-    color: #28a745; /* لون أخضر */
-}
-
-/* تحسين رقم الترتيب */
-.rank-badge {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: #d4af37;
-    color: #fff;
-    font-weight: bold;
-    font-size: 0.8rem; /* تقليل الحجم */
-    padding: 5px;
-    border-radius: 50%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-/* تحسين التصميم للأزرار */
-.month-btn {
-    background-color: #007bff;
-    color: #ffffff;
-    padding: 8px 15px;
-    border: none;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.month-btn:hover {
-    background-color: #0056b3;
-}
-
-/* تحسين تصميم البطاقة الخاصة باليوم */
-.today-card-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 0;
-}
-
-.center-card {
-    width: 90%; /* العرض تلقائي */
-    max-width: 300px; /* أقصى عرض */
-    margin: 0 auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    background-color: #fdfdfd;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    overflow: hidden;
-    padding: 15px;
-}
-
-/* تحسين تصميم الصور */
-.event-card img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-bottom: 1px solid #ddd;
-}
-
-/* تحسين تصميم الرسائل */
-.no-event-message {
-    padding: 20px;
-    background-color: #004080;
-    color: #fff;
-    border-radius: 10px;
-    text-align: center;
-    max-width: 400px;
-    margin: 20px auto;
-    font-size: 1rem;
-}
-
-/* تحسين التجاوب */
-@media screen and (max-width: 768px) {
-    .event-card {
-        font-size: 0.85rem;
-        padding: 10px;
-    }
-
-    .rank-badge {
-        font-size: 0.7rem; /* تصغير النص */
-        padding: 4px;
-    }
-
-    .month-btn {
-        font-size: 0.85rem;
-        padding: 8px;
-    }
-
-    .today-card-container .center-card {
-        max-width: 250px; /* تصغير البطاقة */
-    }
-
-/* حاوية البطاقات الخاصة بالإحصائيات */
+/* تحسين البطاقات (الكروت) */
 .team-stats-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 20px;
-    margin: 20px auto;
-    padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* عرض ديناميكي */
+  gap: 15px;
+  padding: 10px;
 }
 
-/* تحسين البطاقة */
 .team-stat-card {
-    background-color: #f8f9fa;
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    text-align: center;
-    padding: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #f8f9fa;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .team-stat-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* أيقونات البطاقات */
-.team-stat-card i {
-    font-size: 2rem;
-    color: #007bff;
-    margin-bottom: 10px;
+/* تحسين الأزرار */
+.manager-card .buttons {
+  display: flex;
+  flex-wrap: wrap; /* السماح بالالتفاف */
+  justify-content: center;
+  gap: 10px;
 }
 
-.team-stat-card h3 {
-    font-size: 1rem;
-    color: #333;
+.manager-card .buttons button {
+  padding: 10px 15px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  transition: transform 0.3s ease;
 }
 
-.team-stat-card p {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #000;
+.manager-card .buttons button:hover {
+  transform: scale(1.05);
 }
 
-/* تنسيق جدول الإحصائيات */
-#team-stats-table {
-    width: 100%;
-    margin-top: 20px;
-    border-collapse: collapse;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    font-size: 0.9rem; /* تحسين حجم النص */
-}
-
-#team-stats-table th,
-#team-stats-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-    color: #333;
-    font-weight: bold;
-}
-
-#team-stats-table th {
-    background-color: #007bff;
-    color: white;
-    text-transform: uppercase; /* جعل النصوص كبيرة */
-}
-
-#team-stats-table tr:nth-child(even) {
-    background-color: #e2e6ea;
-}
-
-#team-stats-table tr:nth-child(odd) {
-    background-color: #f8f9fa;
-}
-
-#team-stats-table tr:hover {
-    background-color: #cce5ff;
-}
-
-/* أزرار قسم المواجهات */
-.team-filter-btn {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    margin: 5px;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.team-filter-btn:hover {
-    transform: scale(1.05);
-}
-
-.team-filter-btn.wins {
-    background-color: #28a745;
-}
-
-.team-filter-btn.losses {
-    background-color: #dc3545;
-}
-
-.team-filter-btn.draws {
-    background-color: #ffc107;
-
-/* تحسين عرض البطاقات والجدول على الشاشات الصغيرة */
+/* تحسين التصميم للأجهزة المحمولة */
 @media screen and (max-width: 768px) {
-    .team-stat-card {
-        padding: 10px;
-    }
-
-    #team-stats-table th,
-    #team-stats-table td {
-        font-size: 0.8rem;
-        padding: 8px;
-    }
-
-/* تنسيق القائمة المنسدلة */
-#year-stats-select {
-    width: 100%; /* عرض القائمة بالكامل */
-    padding: 12px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f8f9fa;
-    font-size: 16px;
-    color: #333;
-    appearance: none;
-    cursor: pointer;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-#year-stats-select:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-/* النصوص داخل الخيارات */
-#year-stats-select option {
+  .team-stat-card {
     padding: 10px;
-    font-size: 16px;
-    color: #333;
-    background-color: #fff;
-}
+  }
 
-/* الجدول العام */
-#year-stats-table, #upcoming-matches-table {
-    width: 100%;
-    margin-top: 20px;
-    border-collapse: collapse;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
+  .video-card {
+    padding: 5px;
+    font-size: 0.9rem;
+  }
 
-/* رأس الجدول */
-#year-stats-table th, #upcoming-matches-table th {
-    background-color: #0056b3; /* أزرق */
-    color: white; /* أبيض */
-    padding: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-}
+  .manager-card .buttons {
+    flex-direction: column;
+    gap: 5px;
+  }
 
-/* الصفوف الفردية والزوجية */
-#year-stats-table tr:nth-child(odd), 
-#upcoming-matches-table tr:nth-child(odd) {
-    background-color: #f8f9fa; /* رمادي فاتح */
-}
-
-#year-stats-table tr:nth-child(even), 
-#upcoming-matches-table tr:nth-child(even) {
-    background-color: #e2e6ea; /* رمادي أفتح */
-}
-
-#year-stats-table tr:hover, 
-#upcoming-matches-table tr:hover {
-    background-color: #cce5ff; /* أزرق فاتح */
-    color: #000; /* لون النص عند التحويم */
-}
-
-/* أزرار التصفية */
-.upcoming-filter-btn, .year-filter-btn {
-    padding: 10px 15px;
-    margin: 5px;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    color: white;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.upcoming-filter-btn:hover, .year-filter-btn:hover {
-    transform: scale(1.05);
-}
-
-.upcoming-filter-btn.super { background-color: #28a745; }
-.upcoming-filter-btn.league { background-color: #17a2b8; }
-.upcoming-filter-btn.king { background-color: #ffc107; color: #333; }
-.upcoming-filter-btn.asia { background-color: #6f42c1; }
-.upcoming-filter-btn.world { background-color: #dc3545; }
-.upcoming-filter-btn.all { background-color: #343a40; }
-
-/* تحسين الجدول للشاشات الكبيرة */
-@media screen and (min-width: 1024px) {
-    #year-stats-table, #upcoming-matches-table {
-        max-width: 80%;
-        margin: 0 auto;
-    }
-}
-
-/* الفوتر */
-.footer-copyright {
-    text-align: center;
-    font-size: 1rem;
-    color: #ffffff;
-    background-color: #001f3f;
-    padding: 15px;
-    margin-top: 20px;
-    border-top: 1px solid #87CEEB;
-    padding-bottom: 50px; /* ترك مساحة لتجنب تغطيته من عناصر أخرى */
+  #youtube-videos {
+    grid-template-columns: repeat(2, 1fr); /* صفين في كل صف فيديوين */
+  }
 }
