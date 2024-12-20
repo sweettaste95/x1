@@ -73,30 +73,34 @@
         overflow-x: hidden; /* منع التمرير الأفقي */
     }
 
-    /* الشريط المتحرك على الشاشات الصغيرة */
+    @media (max-width: 768px) {
     .marquee-container {
-        width: 95%; /* عرض الشريط بالكامل على الجوال */
-        padding: 10px; /* حشوة داخلية متناسقة */
-        font-size: 0.9rem; /* تصغير النص قليلاً */
+        width: 95%; /* الشريط يغطي 95% من عرض الشاشة */
+        padding: 10px; /* حشوة متناسقة */
+        font-size: 0.9rem; /* تقليل حجم النص قليلاً */
+        overflow: hidden; /* إخفاء العناصر الزائدة */
     }
 
     .marquee-content {
         display: flex;
-        flex-wrap: wrap; /* السماح بتقسيم العناصر إذا كانت الشاشة صغيرة جدًا */
-        gap: 10px; /* مسافة بين العناصر */
-        justify-content: space-between; /* توزيع العناصر بالتساوي */
+        flex-direction: row; /* إبقاء العناصر في صف واحد */
+        align-items: center; /* توسيط العناصر عمودياً */
+        gap: 15px; /* مسافة بين العناصر */
+        animation: marquee 15s linear infinite; /* حركة متواصلة */
     }
 
     .marquee-content span,
     .marquee-content a {
-        flex: 1 1 100%; /* جعل العناصر تظهر في أسطر منفصلة إذا كانت المساحة ضيقة */
+        flex: 0 0 auto; /* الحفاظ على الحجم الطبيعي للعناصر */
         text-align: center; /* توسيط النصوص */
+        white-space: nowrap; /* منع العناصر من الانتقال لسطر جديد */
     }
 
-    /* الروابط */
     .telegram-link {
         font-size: 0.8rem; /* تقليل حجم النص */
     }
+
+
 
     /* القوائم المنسدلة */
     .content-wrapper select,
@@ -987,7 +991,7 @@
         color: #555; /* لون رمادي غامق */
     }
 }
-/************************************************
+
 
 
 
