@@ -1,980 +1,995 @@
-/* إعدادات خاصة للجوالات والأجهزة اللوحية */
+/* تحسين الحاوية العامة للمحتويات */
+.content-wrapper {
+  width: 100%;
+  max-width: 1200px; /* أقصى عرض للشاشات الكبيرة */
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  color: #000;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  min-height: 300px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+#dynamic-content {
+  font-size: 1.2rem;
+  color: #ffffff;
+  text-align: center;
+  margin-top: 20px;
+}
+
+#content-container {
+  background-image: url('https://github.com/sweettaste95/hilal-images/blob/main/signal-2024-11-09-092357_007.jpeg?raw=true');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  min-height: 300px;
+}
+
+/* تحسين التنسيق للهواتف المحمولة */
 @media screen and (max-width: 768px) {
-    /* الحاوية العامة */
-    .content-wrapper {
-        width: 95%; /* عرض مخصص للجوال */
-        margin: 10px auto; /* توسيط الحاوية */
-        padding: 15px; /* تقليل الحشوة */
-        border-radius: 10px; /* تقليل الزوايا */
-        box-shadow: none; /* إزالة الظل */
-    }
+  .content-wrapper {
+    max-width: 100%; /* ملء الشاشة بالكامل */
+    padding: 10px; /* تقليل الحشوة */
+    border-radius: 5px; /* تقليل الزوايا الدائرية */
+    box-shadow: none; /* إزالة الظل */
+  }
 
-    /* تخصيص النصوص داخل الحاوية */
-    #dynamic-content {
-        font-size: 1rem;
-        margin-top: 10px;
-    }
+  #dynamic-content {
+    font-size: 1rem; /* تصغير النص */
+    margin-top: 10px;
+  }
 
-    /* الجسم */
-    body {
-        padding: 0;
-        font-size: 1rem; /* تصغير حجم النص */
-        text-align: center;
-        overflow-x: hidden; /* منع التمرير الأفقي */
-    }
+  #content-container {
+    padding: 10px; /* تقليل الحشوة */
+    border-radius: 5px; /* تقليل الزوايا الدائرية */
+    box-shadow: none; /* إزالة الظل */
+  }
 
-    /* الشعار */
-    #logo-container {
-        display: flex;
-        justify-content: center; /* توسيط الشعار أفقيًا */
-        align-items: center; /* توسيط الشعار عموديًا */
-        margin-bottom: 10px; /* مسافة بين الشعار والأزرار */
-        width: 100%; /* عرض كامل */
-    }
+  .menu-bar {
+    flex-wrap: wrap; /* توزيع العناصر عمودياً عند الحاجة */
+    padding: 10px;
+    height: auto; /* السماح بالتمدد */
+    justify-content: center; /* توسيط العناصر */
+  }
 
-    #logo {
-        width: 80px; /* حجم الشعار */
-        height: auto;
-    }
+  .menu-bar .top-nav-buttons {
+    gap: 10px; /* تقليل المسافة بين الأزرار */
+  }
 
-    /* شريط الميني بار */
-    .menu-bar {
-        display: flex;
-        flex-direction: column; /* عند العرض الضيق يتحول إلى عمود */
-        align-items: center; /* محاذاة العناصر في المنتصف */
-        justify-content: center; /* توسيط المحتويات */
-        padding: 10px 20px;
-        background-color: #000; /* لون الخلفية */
-        border-radius: 10px;
-        height: auto; /* ضبط الارتفاع تلقائيًا */
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* ظل */
-        gap: 15px; /* مسافة بين العناصر */
-    }
+  .menu-bar .top-nav-buttons a {
+    padding: 6px 10px; /* تقليل الحشوة الداخلية */
+    font-size: 0.8rem; /* تصغير النص */
+  }
 
-    /* الأزرار */
-    .menu-bar .top-nav-buttons {
-        display: flex;
-        flex-direction: row; /* جعل الأزرار في صف واحد */
-        gap: 10px; /* مسافة بين الأزرار */
-        justify-content: center; /* توسيط الأزرار */
-        flex-wrap: wrap; /* السماح للأزرار بالانتقال لصف جديد إذا لزم */
-        width: 100%; /* عرض كامل */
-    }
+  #logo {
+    width: 60px; /* تصغير الشعار */
+  }
 
-    /* الأزرار الفردية */
-    .menu-bar .top-nav-buttons a {
-        color: #ffffff;
-        text-decoration: none;
-        font-size: 0.9rem;
-        background-color: #004e92;
-        padding: 8px 12px;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-        text-align: center; /* توسيط النص داخل الأزرار */
-    }
+  .marquee-container {
+    padding: 5px; /* تقليل الحشوة */
+    font-size: 0.8rem; /* تصغير النصوص */
+  }
 
-    .menu-bar .top-nav-buttons a:hover {
-        background-color: #8623ad;
-    }
+  .marquee-content {
+    gap: 10px; /* تقليل المسافات بين العناصر */
+  }
 
-    /* الشريط المتحرك */
-    .marquee-container {
-        font-size: 0.8rem; /* تصغير النص */
-    }
+  .marquee-content span {
+    font-size: 0.9rem; /* تصغير حجم النص */
+  }
 
-    /* الروابط */
-    .telegram-link {
+
+  /* تحسين زر العودة للقائمة الرئيسية */
+#main-menu-btn {
+    margin-top: 20px; 
+    padding: 8px 16px; /* تقليل الحشوة */
+    font-size: 0.9rem; /* تصغير النص */
+    font-weight: bold;
+    color: #ffffff;
+    background: #8e26a3;
+    border: none;
+    border-radius: 25px; /* تقليل الزوايا الدائرية */
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2); /* تقليل الظل */
+}
+
+#main-menu-btn:hover {
+    background: linear-gradient(145deg, #005fbf, #0077ff);
+    transform: scale(1.1); /* تقليل التكبير عند التمرير */
+    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.3);
+}
+
+#main-menu-btn:active {
+    transform: scale(0.96); /* تصغير الزر قليلاً عند الضغط */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* تصغير الظل */
+}
+
+/* تحسين شاشة التسجيل */
+#register-screen h2 {
+    font-size: 1.5rem; /* تصغير العنوان */
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+#register-screen p {
+    font-size: 0.9rem; /* تصغير النص */
+    margin-bottom: 15px;
+    color: #b3c7e6;
+}
+
+#register-screen input[type="text"],
+#register-screen input[type="email"] {
+    width: 100%;
+    padding: 10px; /* تقليل الحشوة */
+    margin: 8px 0;
+    border: none;
+    border-radius: 6px; /* تقليل الزوايا الدائرية */
+    font-size: 0.9rem; /* تصغير النص */
+}
+
+#register-screen button {
+    width: 100%;
+    padding: 10px; /* تقليل الحشوة */
+    margin-top: 15px;
+    font-size: 1rem; /* تصغير النص */
+    font-weight: bold;
+    color: #fff;
+    background: #005fbf;
+    border: none;
+    border-radius: 6px; /* تقليل الزوايا الدائرية */
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#register-screen button:hover {
+    background: #004a99; /* لون أغمق عند التمرير */
+}
+
+/* تحسين القوائم المنسدلة */
+.content-wrapper select,
+#dynamic-content select {
+    display: block;
+    margin: 15px auto; /* تقليل الهوامش */
+    padding: 8px; /* تقليل الحشوة */
+    width: 90%; /* عرض مرن */
+    font-size: 0.9rem; /* تصغير النص */
+    text-align: center;
+    border: 1px solid #005fbf; /* حدود أرق */
+    border-radius: 8px; /* تقليل الزوايا الدائرية */
+    background-color: #fcfafc;
+    color: #333;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.content-wrapper select:hover,
+#dynamic-content select:hover {
+    border-color: #8B008B; 
+    background-color: #f8f0fa; 
+}
+
+.content-wrapper select:focus,
+#dynamic-content select:focus {
+    border-color: #8B008B;
+    outline: none;
+    box-shadow: 0 0 3px rgba(139, 0, 139, 0.5); /* ظل أخف */
+}
+
+/* تحسين الخيارات داخل select */
+.content-wrapper select option,
+#dynamic-content select option {
+    font-weight: bold;
+    font-size: 0.9rem; /* تصغير النص */
+    color: #333;
+    background-color: #fff;
+}
+
+/* تحسين التنسيق للأجهزة الصغيرة */
+@media screen and (max-width: 768px) {
+    #main-menu-btn {
+        padding: 6px 12px; /* تقليل الحشوة */
         font-size: 0.8rem; /* تقليل حجم النص */
-    }
-}
-    /* القوائم المنسدلة */
-    .content-wrapper select,
-    #dynamic-content select {
-        width: 100%; /* عرض كامل */
-        font-size: 1rem; /* تقليل حجم النص */
-        margin: 10px auto; /* تقليل المسافة الخارجية */
+        border-radius: 20px;
     }
 
-    /* الخيارات داخل select */
-    .content-wrapper select option,
-    #dynamic-content select option {
-        font-size: 0.9rem; /* تقليل حجم النص داخل الخيارات */
-    }
-
-    /* روابط السوشيال ميديا */
-    .social-links {
-        gap: 10px; /* تقليل المسافة بين الأيقونات */
-        margin-top: 15px; /* تقليل المسافة العلوية */
-    }
-
-    .social-links a {
-        font-size: 1.1em; /* تصغير حجم النص */
-    }
-
-    /* حقوق الطبع والنشر (الفوتر) */
-    .footer-text {
-        font-size: 0.6em; /* تصغير حجم النص */
-        padding: 8px; /* تقليل الحشوة */
-        border-radius: 10px; /* تقليل زوايا الحاوية */
-    }
-
-    /* نموذج الملاحظات */
-    #feedback-section {
-        width: 90%; /* تكبير العرض ليناسب الشاشات الصغيرة */
-        padding: 15px; /* تقليل الحشوة */
-    }
-
-    #feedbackSubject,
-    #feedbackMessage {
-        width: 100%; /* عرض كامل للحقل */
-        padding: 6px; /* تقليل الحشوة */
-        font-size: 0.9rem; /* تقليل حجم النص */
-    }
-
-    .feedback-btn {
-        padding: 8px 15px; /* تقليل الحشوة الداخلية */
-        font-size: 0.9rem; /* تقليل حجم النص */
-    }
-
-    .feedback-btn:hover {
-        transform: scale(1.03); /* تقليل التكبير عند التمرير */
-    }
-
-    .feedback-btn:active {
-        transform: scale(0.92); /* تقليل التصغير عند الضغط */
-    }
-
-    #feedback-section h2 {
-        font-size: 1.2rem; /* تقليل حجم العنوان */
-        margin-bottom: 15px; /* تقليل المسافة السفلية */
-    }
-
-   /* زر "من نحن" */
-    .about-button {
-        font-size: 0.9rem; /* تقليل حجم النص */
-        padding: 8px 12px; /* تقليل الحشوة */
-        margin: 5px; /* مسافة حول الزر */
-    }
-
-    /* بطاقة "من نحن" */
-    .about-card {
-        width: 90%; /* توسيع العرض */
-        padding: 15px; /* تقليل الحشوة الداخلية */
-    }
-
-    .about-button:hover {
-        transform: scale(1.03); /* تقليل التكبير عند التمرير */
-    }
-
-    .about-button:active {
-        transform: scale(0.93); /* تقليل التصغير عند الضغط */
-    }
-
-   
-
-    /* زر الإغلاق داخل البطاقة */
-    .close-btn {
-        font-size: 1.2em; /* تصغير حجم الزر */
-        top: 5px; /* تقليل المسافة العلوية */
-        right: 5px; /* تقليل المسافة من اليمين */
-    }
-
-    /* النصوص */
-    #loading-spinner {
-        font-size: 0.9rem; /* تقليل حجم النص */
-        margin-top: 8px; /* تقليل المسافة العلوية */
-    }
-
-    /* تخصيص التنسيق لزر التسجيل عند التعطيل */
-    .register-btn:disabled {
-        font-size: 0.9rem; /* تصغير حجم النص */
-    }
-
-    /* روابط التليجرام */
-    .telegram-link {
-        font-size: 0.9rem; /* تصغير حجم النص */
-        margin-left: 5px; /* تقليل المسافة اليسارية */
-    }
-}
-/*************************************************************************
-/* إعدادات خاصة للجوالات والأجهزة اللوحية */
-@media screen and (max-width: 768px) {
-    /* شاشة التسجيل */
     #register-screen h2 {
-        font-size: 1.5rem; /* تصغير حجم العنوان */
+        font-size: 1.2rem; /* تصغير النص */
     }
 
     #register-screen p {
-        font-size: 0.9rem; /* تصغير النص */
+        font-size: 0.8rem; /* تقليل حجم النص */
     }
 
     #register-screen input[type="text"],
     #register-screen input[type="email"] {
-        padding: 10px; /* تقليل الحشوة */
-        font-size: 0.9rem; /* تقليل حجم النص */
+        padding: 8px; /* تقليل الحشوة */
+        font-size: 0.8rem;
     }
 
     #register-screen button {
-        padding: 10px; /* تقليل الحشوة */
-        font-size: 1rem; /* تقليل حجم النص */
+        padding: 8px; /* تقليل الحشوة */
+        font-size: 0.9rem;
     }
-/*=======================================================================
-   
-/*================================================================
-/* إعدادات خاصة للجوالات والأجهزة اللوحية */
+
+    .content-wrapper select,
+    #dynamic-content select {
+        margin: 10px auto;
+        width: 100%; /* ملء الشاشة بالكامل */
+        font-size: 0.8rem; /* تصغير النص */
+    }
+}
+
+  /* تحسين بطاقات البطولات والنتائج */
+#competition-results p, 
+#championship-details p {
+    background: #001f5c;
+    color: #ffffff;
+    border: 2px solid #005fbf;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 10px auto;
+    width: 80%; /* زيادة العرض قليلاً */
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+#competition-results p:hover, 
+#championship-details p:hover {
+    background-color: #6e0068;
+    transform: scale(1.02); /* تقليل التأثير عند التمرير */
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* تحسين البطاقة الرئيسية */
+#championship-info {
+    background: linear-gradient(135deg, #001f5c, #004080);
+    color: #ffffff;
+    padding: 15px; /* تقليل الحشوة */
+    border-radius: 10px; /* تقليل الزوايا الدائرية */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    max-width: 90%; /* عرض مرن */
+    margin: 15px auto;
+    font-size: 1rem; /* تقليل حجم النص */
+}
+
+/* تحسين الصور */
+#championship-info img, #championship-logo {
+    width: 80%; /* تقليل حجم الصورة */
+    margin-bottom: 10px;
+    border-radius: 8px; /* تقليل الزوايا الدائرية */
+}
+
+/* تحسين الشبكة الخاصة بالفيديوهات */
+#youtube-videos {
+    grid-template-columns: 1fr; /* فيديو واحد لكل صف */
+    gap: 15px; /* تقليل المسافة بين الفيديوهات */
+    padding: 10px; /* تقليل الحشوة */
+}
+
+.video-card {
+    padding: 8px; /* تقليل الحشوة */
+    box
+}
+  }
+/* تحسين روابط السوشال ميديا */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap; /* السماح بالالتفاف على عدة أسطر */
+}
+
+.social-links a {
+    color: #87CEEB;
+    font-size: 1.2em; /* تصغير الأيقونات قليلاً */
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.social-links a:hover {
+    color: #fefaff;
+}
+
+/* تحسين نموذج الملاحظات */
+#feedback-section {
+    width: 90%; /* تقليل العرض */
+    max-width: 350px; /* عرض أقصى */
+    padding: 15px; /* تقليل الحشوة */
+    border-radius: 10px; /* تقليل الزوايا */
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.4); /* تقليل الظل */
+}
+
+#feedbackSubject,
+#feedbackMessage {
+    width: 90%; /* توسيع الحقول قليلاً */
+    padding: 10px; /* تقليل الحشوة */
+    font-size: 0.9rem; /* تصغير النص */
+    border-radius: 8px;
+}
+
+/* تحسين الأزرار */
+.feedback-btn {
+    padding: 8px 16px; /* 
+  
+  
+  
+  /* تحسين إطارات المدراء */
+.manager-frame {
+    width: 90%; /* تصغير العرض لتناسب الأجهزة الصغيرة */
+    padding: 15px; /* تقليل الحشوة */
+    border-radius: 10px; /* تقليل الزوايا الدائرية */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* تقليل الظل */
+    margin: 0 auto 15px; /* تقليل المسافة السفلية */
+}
+
+.manager-frame img {
+    width: 80px; /* تصغير حجم الصورة */
+    height: 80px;
+    border: 2px solid #ffffff; /* تصغير الإطار */
+    margin-bottom: 8px; /* تقليل المسافة أسفل الصورة */
+}
+
+.manager-frame h3 {
+    font-size: 1.2rem; /* تصغير النص */
+    text-shadow: none; /* إزالة الظل */
+    margin-bottom: 5px; /* تقليل المسافة السفلية */
+}
+
+/* تحسين النصوص داخل البطاقات */
+.manager-card .body {
+    max-width: 100%; /* السماح بملء الشاشة الصغيرة */
+    padding: 15px; /* تقليل الحشوة */
+    border-radius: 10px; /* تقليل الزوايا */
+    font-size: 0.9rem; /* تصغير النص */
+}
+
+.manager-card .body p {
+    font-size: 0.9rem; /* تقليل النص */
+    line-height: 1.6; /* تقليل المسافة بين الأسطر */
+    margin-bottom: 10px; /* تقليل المسافة السفلية */
+}
+
+.manager-card .body .manager-years,
+.manager-card .body .manager-wins,
+.manager-card .body .manager-stats {
+    font-size: 1rem; /* تصغير النص */
+    line-height: 1.6; /* تحسين المسافة بين الأسطر */
+    padding: 8px; /* تقليل الحشوة */
+    border-radius: 6px; /* تقليل الزوايا الدائرية */
+    border: 1px solid #071bf0; /* تصغير الحدود */
+}
+
+/* تحسين الأزرار */
+.manager-card .buttons button {
+    padding: 8px 12px; /* تقليل الحشوة */
+    font-size: 0.9rem; /* تصغير النص */
+    border-radius: 6px; /* تقليل الزوايا الدائرية */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* تقليل الظل */
+}
+
+.manager-card .buttons {
+    flex-direction: column; /* ترتيب الأزرار عموديًا على الشاشات الصغيرة */
+    gap: 10px; /* إضافة مسافة بين الأزرار */
+    margin-top: 15px; /* تقليل المسافة العلوية */
+}
+
+/* تحسين أيقونات النصوص */
+.manager-card .body .manager-stats::before,
+.manager-card .body .manager-years::before,
+.manager-card .body .manager-wins::before {
+    font-size: 1rem; /* تقليل حجم الأيقونة */
+    margin-right: 3px; /* تقليل المسافة بين الأيقونة والنص */
+}
+
+/* تحسين التصميم للأجهزة الصغيرة */
 @media screen and (max-width: 768px) {
-    /* بطاقات عرض البطولة */
-    #competition-results p,
-    #championship-details p {
-        width: 90%; /* جعل العرض يناسب الشاشة الصغيرة */
-        font-size: 1rem; /* تقليل حجم النص */
+    .manager-frame {
+        width: 100%; /* ملء الشاشة بالكامل */
         padding: 10px; /* تقليل الحشوة */
-        margin: 10px auto; /* توسيط مع مسافة أقل */
     }
 
-    /* شعار البطولة */
-    #championship-logo {
-        width: 120px; /* تقليل حجم الشعار */
-        margin-bottom: 10px;
+    .manager-frame img {
+        width: 70px; /* تصغير حجم الصورة */
+        height: 70px;
     }
 
-    /* معلومات البطولة */
-    #championship-info {
-        max-width: 90%; /* ملاءمة العرض */
-        padding: 15px; /* تقليل الحشوة */
-        font-size: 1rem; /* تقليل حجم النص */
-    }
-
-    /* العنوان */
-    .info-title {
-        font-size: 1.5rem; /* تقليل حجم العنوان */
-        margin-bottom: 15px;
-    }
-
-    /* قائمة المعلومات */
-    .info-section {
-        flex-direction: column; /* عرض العناصر في عمود للجوالات */
-        align-items: flex-start; /* محاذاة النصوص على اليمين */
-        gap: 5px; /* تقليل الفجوة بين العناصر */
-    }
-
-    /* النصوص والأيقونات داخل المعلومات */
-    .info-section i {
-        font-size: 1.2rem; /* تصغير حجم الأيقونة */
-    }
-
-    .info-section span {
-        font-size: 0.9rem; /* تقليل حجم النص */
-    }
-
-    /* زر العودة */
-    .return-btn {
-        width: 100%; /* عرض كامل على الشاشة الصغيرة */
-        font-size: 1rem; /* تقليل حجم النص */
-        padding: 8px 15px; /* تقليل الحشوة */
-    }
-
-    /* هوامش وأحجام النصوص */
-    #championship-details a {
+    .manager-frame h3 {
         font-size: 1rem; /* تصغير النص */
     }
 
-    #championship-details a:hover {
-        font-size: 1rem; /* تثبيت النص عند التمرير */
-    }
-}
-/****************************************************************************
-/* إعدادات خاصة للجوالات والأجهزة اللوحية */
-@media screen and (max-width: 768px) {
-    /* قسم الفيديوهات */
-    #youtube-videos {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* تصغير العرض ليكون مناسباً للجوالات */
-        gap: 15px; /* تقليل المسافة بين الفيديوهات */
-        padding: 10px; /* تقليل الحشوة حول الشبكة */
-    }
-
-    /* الفيديو كارد */
-    .video-card {
-        padding: 8px; /* تقليل الحشوة الداخلية */
-        border: 2px solid #3b97f5; /* تقليل عرض الإطار */
-        border-radius: 8px; /* تصغير زوايا الكارد */
-    }
-
-    .video-card iframe {
-        border-radius: 5px; /* تصغير زوايا الفيديو */
-    }
-
-    /* عنوان الفيديو */
-    .video-title {
-        font-size: 0.9rem; /* تقليل حجم النص */
-        margin-top: 8px; /* تقليل المسافة العلوية */
-    }
-
-    /* أزرار التنقل */
-    .pagination-button {
-        padding: 8px 15px; /* تقليل الحشوة الداخلية */
-        font-size: 0.9rem; /* تقليل حجم النص */
-        margin: 3px; /* تقليل المسافات بين الأزرار */
-    }
-
-    .pagination-button:hover {
-        background-color: #9400D3; /* الحفاظ على نفس التأثير عند التمرير */
-    }
-
-    /* رقم الصفحة */
-    .page-number {
-        font-size: 1rem; /* تصغير حجم النص */
-        margin: 0 10px; /* تقليل المسافة بين الأرقام */
-    }
-}
-
-
-/********************************************************************
-/* إعدادات خاصة للجوالات والأجهزة اللوحية */
-@media screen and (max-width: 768px) {
-    /* الجزء العلوي من البطاقة */
-    .manager-card .header {
-        padding: 10px; /* تقليل المسافة الداخلية */
-    }
-
-    .manager-card .header img {
-        width: 80px; /* تقليل عرض الصورة */
-        height: 80px; /* تقليل ارتفاع الصورة */
-        border: 2px solid #00BFFF; /* تصغير الإطار */
-        margin-bottom: 8px; /* تقليل المسافة أسفل الصورة */
-    }
-
-    .manager-card .header h3 {
-        font-size: 1rem; /* تصغير حجم النص */
-    }
-
-    /* الرقم (#) في الزاوية */
-    .manager-card .manager-number {
-        top: 5px; /* تقليل المسافة العلوية */
-        right: 5px; /* تقليل المسافة اليمنى */
-        padding: 3px 7px; /* تقليل الحشوة الداخلية */
-        font-size: 0.8em; /* تصغير النص */
-    }
-
-    /* الجزء السفلي من البطاقة */
     .manager-card .body {
-        padding: 15px; /* تقليل الحشوة الداخلية */
-        font-size: 0.9rem; /* تصغير النص */
+        padding: 10px; /* تقليل الحشوة */
     }
 
-    /* النص الخاص بعدد الكؤوس */
-    .achievements {
-        font-size: 1rem; /* تقليل حجم النص */
-        margin-top: 5px; /* تقليل المسافة العلوية */
-        padding-right: 10px; /* تقليل الحشوة اليمنى */
+    .manager-card .body p {
+        font-size: 0.8rem; /* تصغير النص */
     }
 
-    .achievements i {
-        font-size: 1rem; /* تقليل حجم الأيقونة */
-    }
-
-    /* أزرار التنقل بين المدراء */
     .manager-card .buttons {
-        padding: 10px 0; /* تقليل المسافة الداخلية */
-        flex-direction: column; /* ترتيب الأزرار عموديًا */
-        gap: 10px; /* إضافة مسافة بين الأزرار */
+        gap: 8px; /* تقليل المسافة بين الأزرار */
     }
 
     .manager-card .buttons button {
-        padding: 8px 15px; /* تقليل الحشوة الداخلية */
-        font-size: 0.9rem; /* تقليل حجم النص */
+        padding: 6px 10px; /* تصغير الحشوة */
+        font-size: 0.8rem; /* تصغير النص */
     }
 
-    /* النصوص الأخرى */
     .manager-card .body .manager-years,
     .manager-card .body .manager-wins,
     .manager-card .body .manager-stats {
-        font-size: 1rem; /* تقليل حجم النص */
-        line-height: 1.5; /* تحسين المسافة بين الأسطر */
-        margin-bottom: 10px; /* تقليل المسافة السفلية */
-        padding: 8px; /* تقليل الحشوة الداخلية */
-    }
-
-    /* تحسين أيقونات النصوص */
-    .manager-card .body .manager-stats::before,
-    .manager-card .body .manager-years::before,
-    .manager-card .body .manager-wins::before {
-        font-size: 1rem; /* تقليل حجم الأيقونة */
-        margin-right: 3px; /* تقليل المسافة بين النص والأيقونة */
+        font-size: 0.9rem; /* تصغير النص */
+        padding: 6px; /* تقليل الحشوة */
     }
 }
-/*************************************************************************
-/* إعدادات خاصة للجوالات والأجهزة اللوحية */
-/* إطار للخريطة */
+/* تحسين إطار الخريطة */
 .map-wrapper {
-    border: 4px solid #87CEEB; /* إطار أزرق فاتح */
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin-bottom: 20px;
-    overflow: hidden;
-    width: 100%;
+    border: 2px solid #87CEEB; /* تقليل سماكة الإطار */
+    border-radius: 10px; /* تقليل الزوايا الدائرية */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* تقليل الظل */
+    margin-bottom: 15px; /* تقليل المسافة أسفل الخريطة */
+    width: 100%; /* العرض الكامل */
 }
 
-/* البطاقة */
+/* تحسين بطاقة الخريطة */
 .map-card {
-    margin-top: 30px;
-    padding: 20px;
-    background: #f8f5e1; /* لون بيج مريح */
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    max-width: 600px; /* الحد الأقصى للعرض */
-    width: 90%; /* عرض افتراضي */
+    margin-top: 20px; /* تقليل المسافة العلوية */
+    padding: 15px; /* تقليل الحشوة */
+    background: #f5f5f5; /* خلفية أفتح */
+    border-radius: 10px; /* تقليل الزوايا الدائرية */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* تقليل الظل */
+    max-width: 100%; /* ملء الشاشة */
+    width: 95%; /* تقليل العرض */
     margin-left: auto;
     margin-right: auto;
     color: #333;
-    border: 2px solid #87CEEB;
-    box-sizing: border-box;
+    border: 1px solid #87CEEB; /* تقليل سماكة الحدود */
 }
 
-/* تنسيق عناصر البحث */
+/* تحسين عناصر التحكم في الخريطة */
 .map-controls {
     display: flex;
-    flex-wrap: wrap; /* السماح بتكدس العناصر في الأسطر إذا لزم */
-    gap: 10px;
+    flex-direction: column; /* ترتيب العناصر عموديًا */
+    gap: 10px; /* مسافة بين الحقول */
     justify-content: center;
     align-items: center;
-    margin-bottom: 15px;
+    margin-top: 10px; /* تقليل المسافة العلوية */
 }
 
 #search-box, #search-dropdown, .search-btn {
-    flex: 1;
-    min-width: 120px;
-    max-width: 200px; /* عرض معقول */
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
+    width: 90%; /* توسيع العرض */
+    padding: 8px; /* حشوة أقل */
+    font-size: 12px; /* تقليل حجم النص */
     border-radius: 5px;
-}
-
-#search-box:focus, #search-dropdown:focus {
-    outline: none;
-    border-color: #87CEEB;
-    box-shadow: 0 0 5px rgba(135, 206, 235, 0.7);
 }
 
 .search-btn {
-    background-color: #005fbf;
-    color: white;
-    border: none;
-    padding: 10px 15px;
+    padding: 8px 10px; /* تقليل الحشوة */
+    font-size: 12px; /* تصغير النص */
     border-radius: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
-.search-btn:hover {
-    background-color: #003f7f;
-}
-
-/* الأزرار الإضافية */
-.map-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 15px;
-}
-
-.reset-btn, .stats-btn {
-    min-width: 120px;
-    text-align: center;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.reset-btn {
-    background-color: #db0404;
-    color: white;
-}
-
-.reset-btn:hover {
-    background-color: #8B0000;
-}
-
-.stats-btn {
-    background-color: #005fbf;
-    color: white;
-}
-
-.stats-btn:hover {
-    background-color: #003f7f;
-}
-
-/* النص الوصفي */
-.description-text {
-    font-weight: bold;
-    font-size: 18px;
-    text-align: center;
-    margin-bottom: 15px;
-    color: #333;
-}
-
-/* بطاقة الإحصائيات */
+/* تحسين بطاقات الإحصائيات */
 .stats-popup {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #001f3f;
-    color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    width: 90%; /* عرض افتراضي */
-    max-width: 500px; /* حد أقصى للعرض */
+    width: 90%; /* تقليل العرض */
+    max-width: 350px; /* عرض أقصى للشاشات الصغيرة */
+    padding: 15px; /* تقليل الحشوة */
+    border-radius: 10px; /* تقليل الزوايا */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3); /* تقليل الظل */
     text-align: center;
-    border: 2px solid #005fbf;
+    font-size: 0.9rem; /* تقليل النصوص */
 }
 
-.stats-popup h3 {
-    margin-bottom: 15px;
-    font-size: 22px;
-    font-weight: bold;
-    color: #f7f7f0;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 10px;
-}
-
+/* تحسين قائمة الإحصائيات */
 .stats-list {
-    max-height: 300px;
-    overflow-y: auto;
-    text-align: left;
-    padding-right: 10px;
+    max-height: 250px; /* تقليل الطول المسموح للتمرير */
+    padding-right: 5px; /* تقليل الحشوة */
+    font-size: 0.85rem; /* تصغير النص */
 }
 
+/* تحسين العناصر داخل قائمة الإحصائيات */
 .stats-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #ffffff;
+    padding: 5px 0; /* تقليل الحشوة العلوية والسفلية */
+    font-size: 0.85rem; /* تصغير النص */
 }
 
-.stats-item:last-child {
-    border-bottom: none;
-}
-
-.stadium-name {
-    font-size: 16px;
-    font-weight: bold;
-    color: #ffffff;
-}
-
-.stadium-count {
-    display: flex;
-    align-items: center;
-    background-color: #f5f5f5;
-    padding: 5px 10px;
-    border-radius: 5px;
-    border: 1px solid #00aaff;
-    margin-left: 10px;
-}
-
-.stadium-count .count {
-    font-weight: bold;
-    margin-right: 5px;
-    color: #005fbf;
-}
-
-.stadium-count .cup-icon {
-    width: 20px;
-    height: 20px;
-}
-
-.total-stats {
-    margin-top: 15px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #ffffff;
-    text-align: center;
-}
-
-.total-stats .cup-icon {
-    margin-left: 5px;
-    width: 20px;
-    height: 20px;
-}
-
+/* تحسين أزرار الإغلاق */
 .stats-popup .close-btn {
-    background-color: #db0404;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background-color 0.3s ease;
+    padding: 8px 12px; /* تقليل الحشوة */
+    font-size: 12px; /* تصغير النص */
+    border-radius: 5px; /* تقليل الزوايا */
 }
 
-.stats-popup .close-btn:hover {
-    background-color: #8B0000;
+/* تحسين التركيز على الحقول */
+#search-box:focus, #search-dropdown:focus {
+    border-color: #87CEEB;
+    box-shadow: 0 0 3px rgba(135, 206, 235, 0.5); /* تقليل الظل */
 }
 
-/* استعلامات الوسائط للأجهزة اللوحية والجوالات */
-@media (max-width: 768px) {
+/* تحسين التصميم للأجهزة الصغيرة */
+@media screen and (max-width: 768px) {
     .map-card {
-        width: 95%;
-        padding: 15px;
+        padding: 10px; /* تقليل الحشوة */
     }
 
-    .stats-popup {
-        width: 95%;
-        max-width: 400px;
+    .map-controls {
+        gap: 5px; /* تقليل المسافة بين العناصر */
     }
 
     #search-box, #search-dropdown, .search-btn {
-        max-width: 100%;
-        width: 100%;
+        width: 100%; /* ملء العرض بالكامل */
+        font-size: 10px; /* تصغير النصوص */
     }
 
-    .map-buttons {
-        flex-direction: column;
-        gap: 10px;
-    }
-}
-
-/***********************************************************************
-/
-
-    /* نموذج المقترحات والملاحظات */
-    .section {
-        padding: 15px; /* تقليل الحشوة الداخلية */
-        margin: 10px; /* تقليل المسافة الخارجية */
-        font-size: 0.9rem; /* تصغير النص */
-        border-radius: 8px; /* زوايا أقل دائرية */
+    .stats-popup {
+        padding: 10px; /* تقليل الحشوة */
     }
 
-    /* حقوق الطبع والنشر */
-    .footer-copyright {
-        font-size: 0.8rem; /* تصغير النص */
-        padding-bottom: 60px; /* ترك مساحة إضافية لشريط التنقل */
+    .stats-list {
+        max-height: 200px; /* تقليل الطول */
+    }
+
+    .stats-item {
+        padding: 3px 0; /* تقليل الحشوة */
+    }
+
+    .stats-popup .close-btn {
+        padding: 6px 8px; /* تصغير الحشوة */
+        font-size: 10px; /* تصغير النص */
     }
 }
-/***************************************************************
-/* إعدادات خاصة للجوالات والأجهزة اللوحية */
+/* تحسين زر كأس العالم */
+#fifa-world-cup-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px; /* تقليل الحشوة */
+    border-radius: 5px;
+    font-size: 1rem; /* تصغير النص */
+    transition: background 0.3s ease;
+    width: 90%; /* العرض المناسب */
+    max-width: 300px;
+    margin: 10px auto; /* توسيط الزر */
+}
+
+#fifa-world-cup-btn:hover {
+    background-color: #0056b3;
+}
+
+/* تحسين بطاقات البطولات */
+.fifa-world-cup-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* ترتيب تلقائي */
+    gap: 10px; /* تقليل المسافة */
+    margin: 10px auto; /* تقليل الهوامش */
+    padding: 10px; /* حشوة إضافية */
+}
+
+.fifa-card {
+    width: 100%; /* ضبط العرض */
+    padding: 10px; /* تقليل الحشوة */
+    font-size: 0.85rem; /* تصغير النص */
+    border-radius: 5px; /* تقليل الزوايا */
+}
+
+.fifa-card img {
+    width: 20px; /* تصغير الأيقونة */
+    height: 20px;
+    top: 5px; /* تقليل المسافة من الأعلى */
+    left: 5px;
+}
+
+/* تحسين تفاصيل المباريات */
+.fifa-details-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* عرض تلقائي */
+    gap: 10px;
+    padding: 10px;
+}
+
+.fifa-detail-card {
+    padding: 10px;
+    font-size: 0.8rem; /* تصغير النص */
+    border-radius: 5px; /* تقليل الزوايا */
+}
+
+/* تحسين زر العودة */
+.fifa-back-btn {
+    width: 90%; /* ضبط العرض */
+    max-width: 300px;
+    padding: 8px 10px;
+    font-size: 0.9rem; /* تصغير النص */
+    border-radius: 5px;
+}
+
+/* تحسين العناصر للأجهزة الصغيرة */
 @media screen and (max-width: 768px) {
-    /* زر كأس العالم */
-    #fifa-world-cup-btn {
-        font-size: 1rem; /* تصغير حجم النص */
-        padding: 8px 15px; /* تقليل الحشوة */
-    }
-
-    /* بطاقات البطولات */
-    .fifa-world-cup-container {
-        gap: 10px; /* تقليل المسافة بين البطاقات */
-        margin: 10px auto; /* تقليل المسافة الخارجية */
-    }
-
     .fifa-card {
-        width: 150px; /* تصغير عرض البطاقة */
-        padding: 8px; /* تقليل الحشوة الداخلية */
-    }
-
-    .fifa-card h3 {
-        font-size: 0.9rem; /* تصغير حجم النص */
-    }
-
-    .fifa-card p {
-        font-size: 0.8rem; /* تصغير النصوص داخل البطاقة */
-    }
-
-    .fifa-card img {
-        width: 20px; /* تصغير حجم الأيقونة */
-        height: 20px;
-    }
-
-    /* تفاصيل المباريات */
-    .fifa-details-container {
-        gap: 10px; /* تقليل المسافة بين البطاقات */
-        margin-top: 10px; /* تقليل المسافة العلوية */
+        font-size: 0.8rem; /* تصغير النص */
+        padding: 8px; /* تقليل الحشوة */
     }
 
     .fifa-detail-card {
-        width: 200px; /* تقليل عرض البطاقة */
-        padding: 8px; /* تقليل الحشوة الداخلية */
+        font-size: 0.75rem; /* تصغير النص */
+        padding: 8px;
     }
 
-    .fifa-detail-card h3 {
-        font-size: 0.9rem; /* تصغير حجم النص */
-    }
-
-    .fifa-detail-card p {
-        font-size: 0.75rem; /* تصغير النصوص */
-        gap: 3px; /* تقليل المسافة بين الأيقونة والنص */
-    }
-
-    .fifa-detail-card i {
-        font-size: 0.9rem; /* تصغير حجم الأيقونات */
-    }
-
-    .fifa-detail-card a {
-        font-size: 0.85rem; /* تصغير النص للرابط */
-    }
-
-    /* زر العودة */
-    .fifa-back-btn {
-        font-size: 0.9rem; /* تصغير حجم النص */
-        padding: 6px 10px; /* تقليل الحشوة الداخلية */
+    #fifa-world-cup-btn, .fifa-back-btn {
+        font-size: 0.85rem; /* تصغير النص */
+        padding: 8px;
     }
 }
-/*********************************************************************
-/* إعدادات خاصة للجوالات والأجهزة اللوحية */
-@media screen and (max-width: 768px) {
-    /* العنوان الرئيسي */
-    .today-event-title {
-        font-size: 1.2rem; /* تصغير حجم النص */
-        margin: 10px 0; /* تقليل المسافة العلوية والسفلية */
-    }
+/* تحسين تصميم البطاقة */
+.event-card {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%; /* العرض تلقائي */
+    max-width: 300px; /* أقصى عرض */
+    margin: 10px auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-    /* البطاقة */
+.event-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* تحسين الشبكة */
+.events-container,
+.events-month-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 20px;
+    padding: 10px;
+}
+
+/* تحسين العناوين */
+.event-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #0056b3;
+    margin: 10px 0;
+}
+
+.event-date,
+.event-score {
+    font-size: 0.85rem;
+    color: #333;
+    font-weight: bold;
+}
+
+.event-score {
+    color: #28a745; /* لون أخضر */
+}
+
+/* تحسين رقم الترتيب */
+.rank-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #d4af37;
+    color: #fff;
+    font-weight: bold;
+    font-size: 0.8rem; /* تقليل الحجم */
+    padding: 5px;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* تحسين التصميم للأزرار */
+.month-btn {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.month-btn:hover {
+    background-color: #0056b3;
+}
+
+/* تحسين تصميم البطاقة الخاصة باليوم */
+.today-card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.center-card {
+    width: 90%; /* العرض تلقائي */
+    max-width: 300px; /* أقصى عرض */
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #fdfdfd;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 15px;
+}
+
+/* تحسين تصميم الصور */
+.event-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+}
+
+/* تحسين تصميم الرسائل */
+.no-event-message {
+    padding: 20px;
+    background-color: #004080;
+    color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 400px;
+    margin: 20px auto;
+    font-size: 1rem;
+}
+
+/* تحسين التجاوب */
+@media screen and (max-width: 768px) {
     .event-card {
-        width: 100%; /* عرض البطاقة بالكامل */
-        max-width: none; /* إزالة الحد الأقصى للعرض */
-        padding: 15px; /* تقليل الحشوة الداخلية */
+        font-size: 0.85rem;
+        padding: 10px;
     }
 
-    .event-card img {
-        height: 120px; /* تصغير ارتفاع الصورة */
-    }
-
-    /* النصوص الداخلية */
-    .event-info {
-        font-size: 1rem; /* تصغير حجم النص */
-    }
-
-    .event-date, .event-score {
-        font-size: 0.8rem; /* تقليل حجم النصوص */
-    }
-
-    .event-result .vs {
-        font-size: 1rem; /* تصغير النص */
-    }
-
-    /* الشبكة الرئيسية للبطاقات */
-    .events-container {
-        gap: 10px; /* تقليل المسافة بين البطاقات */
-    }
-
-    /* بطاقات الشهر */
-    .events-month-container {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* تقليل عرض البطاقة */
-        gap: 10px; /* تقليل المسافات بين البطاقات */
-    }
-
-    /* زر الشهر */
-    .month-btn {
-        font-size: 0.9rem; /* تصغير النص */
-        padding: 8px 15px; /* تقليل الحشوة */
-    }
-
-    /* البطاقة الخاصة باليوم في المنتصف */
-    .today-card-container {
-        flex-direction: column; /* تغيير التخطيط إلى عمودي */
-        align-items: stretch; /* تمديد البطاقات لملء العرض */
-    }
-
-    .center-card {
-        width: 90%; /* تقليل العرض */
-        margin: 10px auto; /* تحسين التوسيط */
-    }
-
-    /* رسالة عدم وجود بطولات */
-    .no-event-message {
-        font-size: 1rem; /* تقليل حجم النص */
-        padding: 15px; /* تقليل الحشوة */
-    }
-
-    .no-event-message h2 {
-        font-size: 1.2rem; /* تصغير حجم النص */
-    }
-
-    .no-event-message p {
-        font-size: 0.9rem; /* تصغير النصوص */
-    }
-
-    /* أيقونة ترتيب البطولة */
     .rank-badge {
-        font-size: 0.8rem; /* تصغير النص */
-        padding: 4px 6px; /* تقليل الحشوة */
+        font-size: 0.7rem; /* تصغير النص */
+        padding: 4px;
     }
+
+    .month-btn {
+        font-size: 0.85rem;
+        padding: 8px;
+    }
+
+    .today-card-container .center-card {
+        max-width: 250px; /* تصغير البطاقة */
+    }
+
+/* حاوية البطاقات الخاصة بالإحصائيات */
+.team-stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    margin: 20px auto;
+    padding: 10px;
 }
-/**************************************************
-/* إعدادات خاصة للجوالات والأجهزة اللوحية */
+
+/* تحسين البطاقة */
+.team-stat-card {
+    background-color: #f8f9fa;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-stat-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* أيقونات البطاقات */
+.team-stat-card i {
+    font-size: 2rem;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.team-stat-card h3 {
+    font-size: 1rem;
+    color: #333;
+}
+
+.team-stat-card p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #000;
+}
+
+/* تنسيق جدول الإحصائيات */
+#team-stats-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 0.9rem; /* تحسين حجم النص */
+}
+
+#team-stats-table th,
+#team-stats-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    color: #333;
+    font-weight: bold;
+}
+
+#team-stats-table th {
+    background-color: #007bff;
+    color: white;
+    text-transform: uppercase; /* جعل النصوص كبيرة */
+}
+
+#team-stats-table tr:nth-child(even) {
+    background-color: #e2e6ea;
+}
+
+#team-stats-table tr:nth-child(odd) {
+    background-color: #f8f9fa;
+}
+
+#team-stats-table tr:hover {
+    background-color: #cce5ff;
+}
+
+/* أزرار قسم المواجهات */
+.team-filter-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.team-filter-btn:hover {
+    transform: scale(1.05);
+}
+
+.team-filter-btn.wins {
+    background-color: #28a745;
+}
+
+.team-filter-btn.losses {
+    background-color: #dc3545;
+}
+
+.team-filter-btn.draws {
+    background-color: #ffc107;
+
+/* تحسين عرض البطاقات والجدول على الشاشات الصغيرة */
 @media screen and (max-width: 768px) {
-    /* حاوية البطاقات */
-    .team-stats-container {
-        display: flex; /* تفعيل Flexbox */
-        flex-wrap: wrap; /* السماح بلف العناصر إلى صفوف */
-        gap: 10px; /* المسافة بين البطاقات */
-        justify-content: space-between; /* توزيع البطاقات بالتساوي */
-        margin: 10px auto; /* مسافة علوية وسفلية */
-        padding: 10px; /* حشوة داخلية */
-    }
-
     .team-stat-card {
-        flex: 0 1 calc(50% - 10px); /* عرض البطاقة ليكون 50% مع فجوة */
-        max-width: calc(50% - 10px); /* الحد الأقصى للعرض */
-        padding: 10px; /* حشوة داخلية */
-        box-sizing: border-box; /* ضمان عدم تجاوز الحدود */
-        text-align: center; /* توسيط النص */
-    }
-
-    .team-stat-card i {
-        font-size: 1.5rem; /* تقليل حجم الأيقونة */
-    }
-
-    .team-stat-card h3 {
-        font-size: 0.9rem; /* تقليل حجم النص */
-    }
-
-    .team-stat-card p {
-        font-size: 1rem; /* تقليل حجم النص */
-    }
-
-    /* جدول الإحصائيات */
-    #team-stats-table {
-        font-size: 0.9rem; /* تقليل حجم النصوص داخل الجدول */
+        padding: 10px;
     }
 
     #team-stats-table th,
     #team-stats-table td {
-        padding: 8px; /* تقليل الحشوة الداخلية للخلايا */
+        font-size: 0.8rem;
+        padding: 8px;
     }
 
-    #team-stats-table th {
-        font-size: 1rem; /* تقليل حجم النصوص في العناوين */
-    }
+/* تنسيق القائمة المنسدلة */
+#year-stats-select {
+    width: 100%; /* عرض القائمة بالكامل */
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    font-size: 16px;
+    color: #333;
+    appearance: none;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
 
-    /* أزرار الفلترة */
-    .team-filter-btn {
-        font-size: 0.9rem; /* تصغير حجم النص */
-        padding: 8px 10px; /* تقليل الحشوة الداخلية */
-        margin: 3px; /* تقليل المسافة بين الأزرار */
-    }
+#year-stats-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
 
-    /* أيقونات القسم */
-    h2 i.fa-futbol {
-        font-size: 1.2rem; /* تصغير حجم الأيقونة */
-    }
+/* النصوص داخل الخيارات */
+#year-stats-select option {
+    padding: 10px;
+    font-size: 16px;
+    color: #333;
+    background-color: #fff;
+}
 
-    label i.fa-users {
-        font-size: 1rem; /* تقليل حجم الأيقونة */
+/* الجدول العام */
+#year-stats-table, #upcoming-matches-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* رأس الجدول */
+#year-stats-table th, #upcoming-matches-table th {
+    background-color: #0056b3; /* أزرق */
+    color: white; /* أبيض */
+    padding: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* الصفوف الفردية والزوجية */
+#year-stats-table tr:nth-child(odd), 
+#upcoming-matches-table tr:nth-child(odd) {
+    background-color: #f8f9fa; /* رمادي فاتح */
+}
+
+#year-stats-table tr:nth-child(even), 
+#upcoming-matches-table tr:nth-child(even) {
+    background-color: #e2e6ea; /* رمادي أفتح */
+}
+
+#year-stats-table tr:hover, 
+#upcoming-matches-table tr:hover {
+    background-color: #cce5ff; /* أزرق فاتح */
+    color: #000; /* لون النص عند التحويم */
+}
+
+/* أزرار التصفية */
+.upcoming-filter-btn, .year-filter-btn {
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.upcoming-filter-btn:hover, .year-filter-btn:hover {
+    transform: scale(1.05);
+}
+
+.upcoming-filter-btn.super { background-color: #28a745; }
+.upcoming-filter-btn.league { background-color: #17a2b8; }
+.upcoming-filter-btn.king { background-color: #ffc107; color: #333; }
+.upcoming-filter-btn.asia { background-color: #6f42c1; }
+.upcoming-filter-btn.world { background-color: #dc3545; }
+.upcoming-filter-btn.all { background-color: #343a40; }
+
+/* تحسين الجدول للشاشات الكبيرة */
+@media screen and (min-width: 1024px) {
+    #year-stats-table, #upcoming-matches-table {
+        max-width: 80%;
+        margin: 0 auto;
     }
 }
 
-/******************************************************************
-/* إعدادات خاصة للجوالات والأجهزة اللوحية */
-@media screen and (max-width: 768px) {
-    /* القائمة المنسدلة */
-    #year-stats-select {
-        font-size: 14px; /* تقليل حجم النص */
-        padding: 8px; /* تقليل الحشوة الداخلية */
-        width: 100%; /* التأكد من ملء العرض بالكامل */
-    }
-
-    /* الخيارات داخل القائمة */
-    #year-stats-select option {
-        font-size: 14px; /* تقليل حجم النص */
-        padding: 8px; /* تقليل الحشوة الداخلية */
-    }
-
-    /* الجدول */
-    #year-stats-table {
-        font-size: 12px; /* تقليل حجم النصوص داخل الجدول */
-    }
-
-    #year-stats-table th,
-    #year-stats-table td {
-        padding: 8px; /* تقليل الحشوة الداخلية للخلايا */
-    }
-
-    #year-stats-table th:nth-child(1),
-    #year-stats-table td:nth-child(1),
-    #year-stats-table th:nth-child(2),
-    #year-stats-table td:nth-child(2) {
-        width: auto; /* السماح للعرض بالتكيف */
-        white-space: normal; /* السماح بانتقال النص إلى سطر جديد */
-    }
-
-    /* أزرار الفلترة */
-    .year-filter-btn {
-        font-size: 12px; /* تصغير حجم النص داخل الأزرار */
-        padding: 8px 10px; /* تقليل الحشوة الداخلية */
-        margin: 3px; /* تقليل المسافة بين الأزرار */
-    }
-
-    /* أيقونات القسم */
-    h2 i.fa-chart-bar,
-    label i.fa-calendar {
-        font-size: 1rem; /* تقليل حجم الأيقونات */
-    }
+/* الفوتر */
+.footer-copyright {
+    text-align: center;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #001f3f;
+    padding: 15px;
+    margin-top: 20px;
+    border-top: 1px solid #87CEEB;
+    padding-bottom: 50px; /* ترك مساحة لتجنب تغطيته من عناصر أخرى */
 }
-/********************************************************************
-/* إعدادات خاصة للجوالات والأجهزة اللوحية */
-@media screen and (max-width: 768px) {
-    /* حاوية الأزرار */
-    .upcoming-filter-buttons {
-        margin: 10px 0; /* تقليل المسافات حول الأزرار */
-        text-align: center;
-    }
-
-    /* الأزرار */
-    .upcoming-filter-btn {
-        font-size: 12px; /* تصغير حجم النص */
-        padding: 8px 10px; /* تقليل الحشوة الداخلية */
-        margin: 3px; /* تقليل المسافات بين الأزرار */
-        width: 100%; /* جعل الأزرار تمتد بعرض الشاشة */
-        box-sizing: border-box; /* ضمان الحفاظ على الحواف الداخلية */
-    }
-
-    /* الجدول */
-    #upcoming-matches-table {
-        font-size: 12px; /* تقليل حجم النصوص داخل الجدول */
-        margin-top: 10px; /* تقليل المسافة العلوية */
-    }
-
-    #upcoming-matches-table th,
-    #upcoming-matches-table td {
-        padding: 8px; /* تقليل الحشوة الداخلية للخلايا */
-        white-space: nowrap; /* منع النصوص من الانتقال إلى سطر جديد */
-    }
-
-    /* الأعمدة */
-    #upcoming-matches-table th:nth-child(1),
-    #upcoming-matches-table td:nth-child(1),
-    #upcoming-matches-table th:nth-child(2),
-    #upcoming-matches-table td:nth-child(2) {
-        width: auto; /* السماح بتعديل العرض تلقائيًا */
-        white-space: normal; /* السماح بانتقال النص إلى سطر جديد */
-        overflow: hidden; /* إخفاء النص الزائد */
-    }
-
-    /* الصفوف عند التحويم */
-    #upcoming-matches-table tr:hover {
-        background-color: #e0f7fa; /* خلفية زرقاء فاتحة */
-    }
-
-    /* النصوص */
-    #upcoming-matches-table td {
-        font-size: 12px; /* حجم نص أصغر */
-        color: #555; /* لون رمادي غامق */
-    }
-}
-/************************************************
-
-
-
