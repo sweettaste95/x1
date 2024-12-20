@@ -780,67 +780,83 @@ body {
     align-items: center; /* جعل العناصر (مثل الصورة) في الوسط أفقياً */
     justify-content: flex-end; /* وضع الاسم أسفل العناصر الأخرى */
 }
+.manager-frame {
+    position: relative; /* لتحديد مرجعية العنصر */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg, #005fbf, #0073e6); /* تدرج أزرق */
+    border: 2px solid #ffffff; /* إطار أبيض */
+    border-radius: 15px; /* زوايا دائرية */
+    padding: 20px; /* حشوة داخلية */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* إضافة ظل خفيف */
+    width: 60%; /* عرض مخصص */
+    margin: 0 auto 20px; /* توسيط الإطار وإضافة مسافة أسفل */
+}
 
-/* تصميم صورة المدير */
-.manager-card .header img {
-    width: 120px; /* عرض الصورة */
-    height: 120px; /* ارتفاع الصورة */
-    border-radius: 50%; /* تحويل الصورة إلى شكل دائري */
+.manager-frame img {
+    width: 100px; /* حجم الصورة */
+    height: 100px; /* حجم الصورة */
+    border-radius: 50%; /* جعل الصورة دائرية */
+    border: 3px solid #ffffff; /* إطار أبيض حول الصورة */
     margin-bottom: 10px; /* مسافة أسفل الصورة */
-    border: 3px solid white; /* إضافة إطار أبيض حول الصورة */
-      border: 2px solid #00BFFF; /* لون أزرق فاتح */
-
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* ظل خفيف للصورة */
 }
 
-/* تصميم اسم المدير */
-.manager-card .header h3 {
-    margin-top: auto; /* يجعل الاسم يتحرك إلى أسفل */
-    font-size: 1.2em; /* حجم الخط للاسم */
-    text-align: center; /* توسيط الاسم أفقياً */
+.manager-frame h3 {
+    font-size: 1.5rem; /* حجم النص */
+    color: #ffffff; /* لون النص أبيض */
+    margin: 0; /* إزالة الهوامش */
+    text-align: center; /* توسيط النص */
+    font-weight: bold; /* جعل النص عريض */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4); /* ظل خفيف للنص */
 }
 
-/* تصميم الرقم (#) في الزاوية اليمنى */
-.manager-card .manager-number {
-    position: absolute; /* الوضع مطلق بالنسبة للبطاقة */
-    top: 10px; /* المسافة من أعلى البطاقة */
+/* الرقم في الزاوية */
+.manager-frame .manager-number {
+    position: absolute; /* الوضع مطلق */
+    top: 10px; /* المسافة من أعلى الفريم */
     right: 10px; /* المسافة من الجانب الأيمن */
-    background: #FFD700; /* اللون الأصفر للخلفية */
+    background: #FFD700; /* خلفية صفراء */
     color: #005fbf; /* لون النص */
-    border-radius: 50%; /* جعل الرقم داخل دائرة */
-    padding: 5px 10px; /* مسافة داخلية حول الرقم */
-    font-weight: bold; /* جعل الرقم بالخط العريض */
+    border-radius: 50%; /* دائرة */
+    padding: 5px 10px; /* مسافة داخلية */
+    font-weight: bold; /* خط عريض */
+    font-size: 1rem; /* حجم النص */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* ظل خفيف */
+    z-index: 10; /* يظهر فوق العناصر */
 }
 
-/* تصميم الجزء السفلي من البطاقة */
+/* تنسيق الحاوية الخاصة بالجدول */
 .manager-card .body {
-    background: #f9f9f9; /* لون رمادي خفيف */
-    border: 2px solid #8B008B; /* لون عنابي خفيف للحواف */
-    padding: 20px;
-
-
+    max-width: 80%; /* تحديد الحد الأقصى للعرض ليكون 80% من عرض الشاشة */
+    margin: 0 auto; /* توسيط الجدول داخل الصفحة */
+    background: #f9f9f9; /* لون خلفية رمادي خفيف */
+    border: 2px solid #8B008B; /* لون حدود */
+    padding: 20px; /* حشوة داخلية */
     color: #333; /* لون النص */
-    text-align: center; /* توسيط النصوص والعناصر داخل الجزء السفلي */
-      position: relative; /* لتفعيل التحكم بالموقع */
-   background: #f9f9f9; /* لون رمادي خفيف */
-    padding: 20px;
-  
+    text-align: center; /* توسيط النصوص */
+    border-radius: 15px; /* زوايا دائرية */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* ظل خفيف */
+}
+/* تحسين تصميم النصوص داخل الجدول */
+.manager-card .body p {
+    font-size: 1.1rem; /* حجم النص */
+    line-height: 1.8; /* تحسين المسافة بين الأسطر */
+    margin-bottom: 15px; /* مسافة أسفل كل فقرة */
+    text-align: left; /* النصوص محاذاة لليسار */
 }
 
-/* تصميم النص الخاص بعدد الكؤوس */
-.achievements {
-    font-size: 1.2em; /* حجم النص */
-    color: #333; /* لون النص */
-    margin-top: 10px; /* مسافة أعلى النص */
-  text-align: center; /* تحريك النص لليمين */
-    padding-right: 20px; /* مسافة إضافية على اليمين */
-}
+/* تقليل العرض فقط على الشاشات الكبيرة */
+@media screen and (min-width: 1024px) {
+    .manager-card .body {
+        max-width: 60%; /* تقليل عرض الحاوية على الشاشات الكبيرة */
+    }
 
 
-/* تصميم أيقونة الكأس */
-.achievements i {
-    margin-left: 5px; /* مسافة صغيرة بين العدد وأيقونة الكأس */
-    color: #ffd700; /* لون ذهبي للكأس */
-}
+   
+
 
 /* تصميم أزرار التنقل بين المدراء */
 .manager-card .buttons {
@@ -1736,6 +1752,12 @@ label i.fa-users {
     font-size: 1.2rem; /* حجم الأيقونة */
     color: #17a2b8; /* لون أزرق سماوي */
 }
+/* تحسين عرض الجدول على الشاشات الكبيرة */
+@media screen and (min-width: 1024px) {
+    #team-stats-table {
+        max-width: 80%; /* تقليص عرض الجدول ليكون 80% فقط من الشاشة */
+        margin: 0 auto; /* توسيط الجدول داخل الصفحة */
+    }
 
 
 
@@ -1754,6 +1776,7 @@ label i.fa-users {
     color: #333;
     appearance: none;
     cursor: pointer;
+  
 }
 
 /* تنسيق النصوص داخل الخيارات */
@@ -1766,12 +1789,11 @@ label i.fa-users {
 
 /* تنسيق عام للجدول */
 #year-stats-table {
-    width: 100%;
-    border-collapse: collapse;
+     width: 100%;
     margin-top: 20px;
+    border-collapse: collapse;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
 #year-stats-table th,
 #year-stats-table td {
  border: 1px solid #ddd;
@@ -1854,6 +1876,19 @@ h2 i.fa-chart-bar {
     font-size: 1.5rem; /* حجم الأيقونة */
     color: #FFD700; /* اللون الذهبي */
 }
+/* تحسين عرض الجدول على الشاشات الكبيرة */
+
+/* تحسين عرض الجدول على الشاشات الكبيرة */
+@media screen and (min-width: 1024px) {
+   #year-stats-table {
+        max-width: 80%; /* تقليص عرض الجدول ليكون 80% فقط من الشاشة */
+        margin: 0 auto; /* توسيط الجدول داخل الصفحة */
+    }
+
+ 
+  
+
+
 
 /***********************************************************************************/
 /* حاوية الأزرار */
@@ -1930,6 +1965,13 @@ h2 i.fa-chart-bar {
 #upcoming-matches-table td {
     color: #333; /* لون النص الرمادي الداكن */
 }
+ 
+  /* تحسين عرض الجدول على الشاشات الكبيرة */
+@media screen and (min-width: 1024px) {
+  #upcoming-matches-table {
+        max-width: 80%; /* تقليص عرض الجدول ليكون 80% فقط من الشاشة */
+        margin: 0 auto; /* توسيط الجدول داخل الصفحة */
+    }
 
 
 
