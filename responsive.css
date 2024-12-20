@@ -87,10 +87,24 @@
 
 
 
-  /* الشريط المتحرك */
+  /* الشريط المتحرك على الشاشات الصغيرة */
+@media (max-width: 768px) {
     .marquee-container {
-        font-size: 0.8rem; /* تصغير النص */
+        width: 95%; /* توسيع العرض قليلاً */
+        padding: 10px; /* تقليل الحشوة */
+        font-size: 0.9rem; /* تصغير النص قليلاً */
+        border-radius: 8px; /* تقليل الحواف */
     }
+
+    .marquee-content {
+        animation: marquee 12s linear infinite; /* تسريع الحركة على الجوال */
+    }
+
+    .marquee-content span {
+        font-size: 0.8rem; /* تصغير النصوص */
+    }
+}
+
 
     /* الروابط */
     .telegram-link {
