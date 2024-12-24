@@ -30,62 +30,65 @@ if ('serviceWorker' in navigator) {
     <meta name="theme-color" content="#005fbf">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
   <!-------------------------------------------------------------------------------------------->
 
 <body>
-<div id="content-container" class="content-wrapper">
+  <div id="content-container" class="content-wrapper">
 
-   <div class="menu-bar">
-  <button id="menu-toggle">☰</button>
-  <div id="logo-container">
-    <img src="icon.png" alt="شعار" id="logo">
-  </div>
- <div class="top-nav-buttons">
-    <a id="about-btn" title="من نحن" onclick="showAboutCard()">
-        <i class="fa fa-user"></i>
-        <span>من نحن</span>
-    </a>
-    <a id="suggestions-btn" title="مقترحاتكم" onclick="showSuggestions()">
-        <i class="fa fa-comment"></i>
-        <span>مقترحاتكم</span>
-    </a>
-    <a id="subscribe-btn" title="اشترك معنا" onclick="subscribeChannel()">
-        <i class="fa fa-bell"></i>
-        <span>اشترك معنا</span>
-    </a>
-</div>
+    <!-- شريط الميني بار -->
+    <div class="menu-bar">
+      <button id="menu-toggle">☰</button>
+      <div id="logo-container">
+        <img src="icon.png" alt="شعار" id="logo">
+      </div>
+      <div class="top-nav-buttons">
+        <a id="about-btn" title="من نحن" onclick="showAboutCard()">
+          <i class="fa fa-user"></i>
+          <span>من نحن</span>
+        </a>
+        <a id="suggestions-btn" title="مقترحاتكم" onclick="showSuggestions()">
+          <i class="fa fa-comment"></i>
+          <span>مقترحاتكم</span>
+        </a>
+        <a id="subscribe-btn" title="اشترك معنا" onclick="subscribeChannel()">
+          <i class="fa fa-bell"></i>
+          <span>اشترك معنا</span>
+        </a>
+      </div>
+    </div>
 
-</div>
-
-  
- 
-  
-  
-  
-  
-  
-
-    <div id="menu-content" class="hidden">
-        <button onclick="showCompetitionSearch()">⭐ المسابقة</button>
-        <button onclick="showTimeline()">🏆 التتويجات</button>
-        <button onclick="showYouTubeVideos()">📹 مقاطع التتويج</button>
-        <button onclick="showHilalMap()">🗺️ منصات الهلال</button>
-        <button onclick="showManagers()">👥 رؤساء الهلال</button>
-        <button onclick="showYearStats()">⚽ حسميات الدوري</button>
-<button onclick="showUpcomingMatches()">🗓️ مباريات الهلال القادمة</button>
-
+    <!-- القائمة المنسدلة -->
+    <div id="menu-content" class="menu-content">
+      <div class="menu-section">
+        <div class="menu-section-header">معلومات الهلال</div>
+         <button onclick="showCompetitionSearch()">⭐ المسابقة</button>
+         <button onclick="showTimeline()">🏆 التتويجات</button>
+         <button onclick="showYouTubeVideos()">📹 مقاطع التتويج</button>
+         <button onclick="showHilalMap()">🗺️ منصات الهلال</button>
+         <button onclick="showManagers()">👥 رؤساء الهلال</button>
+         <button onclick="showYearStats()">⚽ حسميات الدوري</button>
+         <button onclick="showUpcomingMatches()">🗓️ مباريات الهلال القادمة</button>
+         <button onclick="showTeamPlayers()">👥 الفريق الأول</button>
         <button onclick="showFifaWorldCup()">🌍 كأس العالم</button>
-      <button onclick="showTodayEvent()">📅 في مثل هذا اليوم</button>
-<button onclick="showTeamMatches()">⚽ تاريخ المواجهات</button>
+        <button onclick="showTodayEvent()">📅 في مثل هذا اليوم</button>
+        <button onclick="showTeamMatches()">⚽ تاريخ المواجهات</button>
 
+      </div>
+      <div class="menu-section">
+        <div class="menu-section-header">الدعم</div>
+<button onclick="showPrivacyPolicy()">سياسة الخصوصية</button>
+        
+        
+        <button onclick="showAboutUs()">من نحن</button>
+        <button onclick="contactUs()">راسلنا</button>
+      </div>
     </div>
 
     <!-- الرسالة الترحيبية -->
     <div id="dynamic-content">
-      
-      
-  
 
      <!-------------------------------------------------------------------------------------------->
      
@@ -139,7 +142,8 @@ if ('serviceWorker' in navigator) {
          <!-------------------------------------------------------------------------------------------->
  
     <!-- إطار للخريطة -->
- <main>
+   <!-- إطار للخريطة -->
+<main>
     <section id="hilal-map-section" class="hidden">
         <!-- عنوان القسم مع أيقونة في نهاية النص -->
         <h2 style="display: flex; align-items: center; justify-content: center; gap: 8px;">
@@ -157,9 +161,8 @@ if ('serviceWorker' in navigator) {
 
         <!-- بطاقة البحث -->
         <div class="map-card">
-            <p class="description-text">ابحث عن البطولة باستخدام النص أو اختر من القائمة:</p>
+            <p class="description-text">اختر البطولة أو الملعب من القائمة:</p>
             <div class="map-controls">
-                <input type="text" id="search-box" placeholder="أدخل اسم البطولة أو الملعب" />
                 <select id="search-dropdown" onchange="highlightSearchButton()">
                     <option value="">اختر من القائمة</option>
                     <option value="كأس ولي العهد - ملعب الملك فهد">كأس ولي العهد - ملعب الملك فهد</option>
@@ -177,10 +180,11 @@ if ('serviceWorker' in navigator) {
 
     <!-------------------------------------------------------------------------------------------->
       
-<div id="fifa-world-cup-section" class="hidden">
+      <div id="fifa-world-cup-section" class="hidden">
     <h2>مباريات الهلال في كأس العالم</h2>
     <div id="fifa-world-cup-matches"></div>
 </div>
+
 
       <!-------------------------------------------------------------------------------------------->
  
@@ -213,6 +217,59 @@ if ('serviceWorker' in navigator) {
     <div id="competition-results" class="results"></div>
 </div>
        <!-------------------------------------------------------------------------------------------->
+      
+    
+<!-- قسم الفريق الأول -->
+<div id="team-players-section" class="hidden">
+    <h2>👥 لاعبو الفريق الأول</h2>
+    <div id="players-container" class="players-grid">
+        <!-- بطاقات اللاعبين ستُضاف هنا ديناميكيًا -->
+    </div>
+    <div class="pagination-controls">
+      
+        <button id="next-page-btn" onclick="nextPage()">التالي</button>
+        <button id="prev-page-btn" onclick="prevPage()">السابق</button>
+    </div>
+</div>
+
+
+
+             <!-------------------------------------------------------------------------------------------->
+<div id="privacy-policy-section" class="hidden">
+  <div class="modal-content">
+        <button class="close-btn" onclick="hidePrivacyPolicy()">×</button>
+
+    <h1>سياسة الخصوصية</h1>
+    <p>مرحبًا بكم في تطبيق "بطولات الهلال". هذا التطبيق تم تطويره باجتهاد شخصي ويهدف إلى جمع معلومات حول تاريخ وإنجازات نادي الهلال بشكل شامل ومفيد للجمهور.</p>
+
+    <h2>بيان الاستقلالية</h2>
+    <p>هذا التطبيق غير تابع أو مدعوم من قبل نادي الهلال الرسمي أو أي جهة رسمية أخرى. جميع الجهود المبذولة هنا شخصية ومستقلة.</p>
+
+    <h2>مصادر المحتوى</h2>
+    <p>تم جمع جميع البيانات والمعلومات من مصادر عامة موثوقة مثل الإنترنت. مقاطع الفيديو المعروضة من مصادرها الأصلية (مثل قنوات اليوتيوب) ولم يتم تعديلها. إذا كنت مالكًا لأي محتوى وترغب في إزالته، يرجى التواصل معنا.</p>
+
+    <h2>حقوق النشر</h2>
+    <p>جميع حقوق الملكية الفكرية للتطبيق محفوظة. يمنع نسخ أو تعديل أو استخدام التطبيق لأغراض تجارية دون إذن مسبق.</p>
+
+    <h2>سياسة البيانات</h2>
+    <p>نحن لا نجمع أو نشارك بيانات المستخدمين مع أطراف ثالثة. إذا قمت بالتسجيل في التطبيق، سيتم استخدام بياناتك فقط لتحسين تجربة الاستخدام.</p>
+
+    <div class="contact">
+        <h2>تواصل معنا</h2>
+        <p>إذا كان لديك أي استفسارات أو اعتراضات، يمكنك التواصل معنا عبر البريد التالي:</p>
+        <a href="mailto:your-email@example.com">تواصل معنا</a>
+    </div>
+  </div>
+</div>
+
+
+      
+  
+      
+
+   
+
+             <!-------------------------------------------------------------------------------------------->
 
 
         <!-- قسم التتويجات مع قائمة منسدلة -->
@@ -436,7 +493,11 @@ if ('serviceWorker' in navigator) {
 </div>
       
       
+     
       
+
+   
+       
       
       
       
@@ -468,20 +529,6 @@ if ('serviceWorker' in navigator) {
       
   <!-- حقوق الطبع والنشر -->
 <div class="footer-copyright">
-    <p> 2024 © جميع الحقوق محفوظة لحساب حالي الذوق الإصدار الأول  B_S_2000@</p> 
+  <p>© جميع الحقوق محفوظة لتطبيق "إنجازات الهلال" الخاص بحساب "حالي الذوق" - الإصدار الأول 2024</p>
 </div>
     <!-------------------------------------------------------------------------------------------->
-
-
-  
-
-
-      
-  
-      
-
-   
-      
-
-   
-      
