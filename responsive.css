@@ -1,6 +1,18 @@
 
 /* تخصيص للجوال والأجهزة اللوحية */
 @media screen and (max-width: 768px) {
+  
+  body {
+    overflow-x: hidden; /* منع التمرير الأفقي */
+    position: relative; /* يضمن تثبيت المحتوى */
+    width: 100%; /* يتأكد من أن العرض بالكامل داخل الشاشة */
+    
+
+
+}
+
+  
+  
   .content-wrapper {
     padding: 10px;
     border-radius: 10px;
@@ -16,23 +28,12 @@
     min-height: 200px;
   }
 
-  .menu-bar {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .menu-bar .top-nav-buttons {
-    justify-content: center;
-  }
-
+  
   #logo {
     width: 60px;
   }
 
-  #menu-content {
-    width: 90%;
-    right: 5%;
-  }
+ 
 
   .marquee-container {
     padding: 5px;
@@ -46,40 +47,117 @@
 /*=========================================
 
 /* ========= قسم الأزرار والقوائم المنسدلة - تحسين التصميم للأجهزة المحمولة ========= */
-@media screen and (max-width: 768px) {
-    /* زر القائمة الرئيسية */
-    #main-menu-btn {
-        padding: 8px 16px; /* تقليل الحشوة */
-        font-size: 0.9rem; /* تصغير حجم النص */
-        border-radius: 30px; /* تقليل انحناء الحواف */
-        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2); /* تقليل الظل */
-        margin-top: 15px; /* تقليل المسافة العلوية */
-    }
+/* استعلامات الوسائط (Media Queries) */
+  @media (max-width: 768px) {
+  #menu-content {
+    top: calc(50px + 10px); /* تقليل المسافة للشاشات الصغيرة */
+    width: 200px; /* تقليل العرض للشاشات الأصغر */
+    right: 5px; /* تقليل المسافة من الحافة اليمنى */
+  }
 
-    /* شاشة التسجيل */
+
+
+
+
+  #menu-content button {
+    font-size: 12px; /* تقليل حجم النص للأزرار */
+    padding: 8px; /* تقليل الحشوة */
+  }
+
+  .menu-section-header {
+    font-size: 1rem; /* تقليل حجم النص للعناوين */
+  }
+
+  hr {
+    margin: 8px 0; /* تقليل المسافة حول الخط الفاصل */
+  }
+}
+
+@media (max-width: 480px) {
+  #menu-content {
+    top: calc(40px + 5px); /* تقليل المسافة أكثر للجوالات */
+    width: 180px; /* تقليل العرض للجوالات الصغيرة */
+    right: 5px; /* تقليل المسافة من الحافة اليمنى */
+  }
+
+
+  #menu-content button {
+    font-size: 11px; /* تصغير النص */
+    padding: 6px; /* تقليل الحشوة */
+  }
+
+  .menu-section-header {
+    font-size: 0.9rem; /* تصغير النص للعناوين */
+  }
+
+  hr {
+    margin: 6px 0; /* تقليل المسافة أكثر */
+  }
+}
+
+    /* تحسين العنوان */
     #register-screen h2 {
-        font-size: 1.5rem; /* تصغير حجم العنوان */
-        margin-bottom: 15px; /* تقليل المسافة السفلية */
+        font-size: 1.2rem; /* حجم أصغر قليلاً */
+        margin-bottom: 10px;
+        text-align: center; /* توسيط النص */
     }
 
+    /* تحسين النصوص الإرشادية */
     #register-screen p {
-        font-size: 0.9rem; /* تصغير النصوص */
-        margin-bottom: 15px; /* تقليل المسافة السفلية */
+        font-size: 0.85rem;
+        margin-bottom: 10px;
     }
 
-    #register-screen input[type="text"],
-    #register-screen input[type="email"] {
-        padding: 10px; /* تقليل الحشوة الداخلية */
-        font-size: 0.9rem; /* تصغير النص */
-        border-radius: 6px; /* تقليل انحناء الحواف */
+    /* الحقول النصية */
+#register-screen input[type="text"],
+#register-screen input[type="email"] {
+    width: 90%; /* تقليل العرض */
+    max-width: 300px; /* أقصى عرض */
+    margin: 10px auto; /* إضافة مسافة بين الحقول وتوسيطها */
+    font-size: 0.9rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    color: #000; /* اللون الافتراضي أسود */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    display: block; /* ضمان توسيط الحقول */
+}
+
+
+  
+    /* تأثير عند التركيز */
+    #register-screen input[type="text"]:focus,
+    #register-screen input[type="email"]:focus {
+        border-color: #007bff; /* تغيير لون الحدود */
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* إضافة ظل */
+        outline: none; /* إزالة الإطار الافتراضي */
+         color: #007bff; /* يتحول إلى أزرق فاتح */
+    border-color: #007bff; /* حدود زرقاء */
+      
     }
 
-    #register-screen button {
-        padding: 10px; /* تقليل الحشوة */
-        font-size: 1rem; /* تصغير النص */
-        border-radius: 6px; /* تقليل انحناء الحواف */
-    }
+ 
+   /* تحسين شكل زر التسجيل */
+#register-screen button {
+    background-color: #007bff; /* زر باللون الأزرق */
+    color: #fff; /* النص أبيض */
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+   width: 70%; /* تقليل عرض الزر */
+    margin: 10px auto; /* توسيط الزر */
+}
 
+#register-screen button:hover {
+    background-color: #0056b3; /* أزرق غامق عند التمرير */
+}
+
+#register-screen button:active {
+    background-color: #003f7f; /* أزرق داكن عند الضغط */
+}
     /* القوائم المنسدلة */
     .content-wrapper select,
     #dynamic-content select {
@@ -101,6 +179,197 @@
         box-shadow: 0 0 4px rgba(106, 13, 173, 0.7); /* ظل أقل وضوحًا */
     }
 }
+
+
+
+
+
+
+/*******************************************************/
+@media only screen and (max-width: 768px) {
+    /* تنسيق قائمة بطولات كأس العالم */
+    .fifa-world-cup-container {
+        display: flex;
+        flex-direction: column; /* جعل البطاقات عمودية */
+        align-items: center; /* توسيط البطاقات */
+        gap: 20px; /* زيادة المسافة بين البطاقات */
+        padding: 10px; /* حشوة داخلية للحاوية */
+      
+}
+      
+     
+  /* تصميم الإطار الذهبي للبطاقات */
+.fifa-detail-card {
+      background-color: #003b62; /* خلفية البطاقة زرقاء */
+
+    border: 2px solid #ebf0f5; /* إطار ذهبي */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* ظل خفيف */
+    padding: 15px; /* حشوة داخلية */
+    border-radius: 10px; /* زوايا دائرية */
+    margin-bottom: 20px; /* مسافة أسفل البطاقة */
+  
+  
+}
+    
+
+/* تعديل ألوان العناوين (دور الـ 16، ربع النهائي، نصف النهائي) */
+.match-stage-title {
+    font-size: 1.3rem; /* تكبير حجم الخط */
+    font-weight: bold; /* خط عريض */
+    color: #e6ebf0; /* لون برتقالي */
+    text-align: center; /* محاذاة في الوسط */
+    margin: 15px 0; /* مسافة حول العنوان */
+}
+
+
+    /* تنسيق البطاقات */
+    .fifa-card {
+        width: 90%; /* عرض مناسب للجوال */
+        padding: 15px; /* حشوة داخلية */
+        border: 2px solid #007bff; /* حدود زرقاء */
+        border-radius: 10px; /* زوايا دائرية */
+    background-color: #ded3d3;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* ظل خفيف */
+        text-align: center; /* محاذاة النصوص للوسط */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      
+      
+     
+
+    }
+
+    .fifa-card h3 {
+        font-size: 1.2rem; /* تكبير الخط */
+        font-weight: bold; /* خط عريض */
+        color: #0056b3; /* لون أزرق */
+        margin-bottom: 10px; /* مسافة تحت العنوان */
+    }
+
+    .fifa-card p {
+        font-size: 1rem; /* حجم خط مناسب */
+        color: #333; /* لون النص */
+        margin: 5px 0; /* مسافة بين الفقرات */
+    }
+
+    /* أيقونات داخل البطاقات */
+    .fifa-card img {
+        width: 30px;
+        height: 30px;
+        position: relative;
+        margin-bottom: 10px;
+    }
+
+    /* تفاصيل المباريات */
+    #fifa-world-cup-section {
+        padding: 10px; /* حشوة داخلية */
+        text-align: center; /* توسيط النص */
+    }
+
+    /* فيديو المباريات */
+    .video-container iframe {
+        width: 100%; /* جعل الفيديو متناسبًا مع الشاشة */
+        height: 200px; /* ارتفاع مناسب */
+      
+         border: 2px solid #e6ebf0; /* إطار ذهبي */
+
+    border-radius: 8px; /* زوايا دائرية للفيديو */
+    overflow: hidden; /* إخفاء العناصر الزائدة */
+    margin-top: 15px; /* مسافة أعلى الفيديو */
+
+    }
+
+    /* جدول المباريات */
+    .details-table {
+        width: 100%; /* ملائمة الجدول لعرض الشاشة */
+        font-size: 0.9rem; /* تصغير حجم النص */
+    }
+
+  
+    .fifa-btn {
+        background-color: #007bff; /* أزرق */
+        color: white; /* الخط أبيض */
+        border-radius: 5px; /* حواف دائرية */
+    }
+
+
+    .details-table th,
+    .details-table td {
+        padding: 8px; /* تقليل الحشوة */
+        text-align: center; /* توسيط النصوص */
+    }
+
+    .details-table th {
+        background-color: #1e3a8a; /* لون أزرق داكن */
+        color: #fff; /* نص أبيض */
+    }
+
+    .details-table td {
+        background-color: #f4f4f4; /* خلفية فاتحة */
+        color: #333; /* نص غامق */
+    }
+
+    /* أزرار العودة */
+    .fifa-back-btn {
+        width: 90%;
+        font-size: 1rem;
+        padding: 10px;
+        background-color: #007bff; /* خلفية زرقاء */
+        color: #fff; /* نص أبيض */
+        border-radius: 8px;
+        margin: 15px auto; /* توسيط الزر */
+    }
+
+    .fifa-back-btn:hover {
+        background-color: #0056b3; /* لون أزرق داكن عند التحويم */
+    }
+}
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /************************************************************
 /* ===== قسم البطولات والتتويجات - تحسين التصميم للأجهزة المحمولة ===== */
 @media screen and (max-width: 768px) {
@@ -190,53 +459,95 @@
     }
 }
 /*========================================================================
-/* ===== قسم الفيديوهات - تصميم صفين، كل صف يحتوي على فيديوهين ===== */
+/* تصميم الفيديوهات لأجهزة الجوال والأجهزة اللوحية */
 @media screen and (max-width: 768px) {
     #youtube-videos {
         display: grid;
-        grid-template-columns: repeat(2, 1fr); /* كل صف يحتوي على عنصرين */
-        gap: 15px; /* مسافة صغيرة بين الفيديوهات */
-        padding: 10px; /* تقليل الحشوة لتناسب الجوال */
-        max-width: 100%; /* عرض كامل للشاشة */
+        grid-template-columns: repeat(1, 1fr); /* صفين، كل صف يحتوي على عنصرين */
+        gap: 15px; /* المسافة بين الفيديوهات */
+        justify-content: center; /* توسيط العناصر أفقياً */
+        align-items: center; /* توسيط العناصر عمودياً */
+        padding: 10px; /* حشوة حول الشبكة */
+        max-width: 100%; /* عرض الشبكة بالكامل */
         margin: 0 auto; /* توسيط الشبكة داخل الصفحة */
     }
 
-    /* تنسيق كروت الفيديو */
+    /* تنسيق كل فيديو كارد */
     .video-card {
-        width: 95%; /* تقليل العرض ليناسب الجوال */
-        padding: 8px; /* تقليل الحشوة الداخلية */
-        border-radius: 8px; /* تقليل الزوايا */
-        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2); /* تقليل الظل */
+        width: 95%; /* تقليل العرض لتناسب الجوال */
+        height: auto;
+        border: none; /* إزالة الإطار */
+        border-radius: 10px; /* زوايا دائرية */
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* ظل خفيف */
+        overflow: hidden;
+        background: linear-gradient(135deg, #35004e, #001f5c);
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* توسيط العناصر داخل البطاقة */
+        justify-content: center; /* توسيط النصوص والصورة */
+        padding: 5px;
     }
 
+    /* إزالة تأثير التكبير */
+    .video-card:hover {
+        transform: none; /* إلغاء التكبير */
+        box-shadow: none; /* إلغاء تأثير الظل عند التمرير */
+    }
+
+    /* تنسيق iframe */
     .video-card iframe {
-        width: 100%; /* ملء العرض داخل الكارد */
-        height: auto; /* ضبط النسبة */
-        border-radius: 6px; /* تقليل الزوايا */
+        width: 100%; /* عرض كامل داخل البطاقة */
+        height: 180px; /* ارتفاع الفيديو */
+        border-radius: 7px; /* نفس زوايا الكارد */
+        border: none; /* إزالة الإطار الأبيض */
     }
 
+    /* تنسيق عنوان الفيديو */
     .video-title {
-        font-size: 0.9rem; /* تصغير النص */
-        margin-top: 5px; /* تقليل المسافة العلوية */
+        margin-top: 10px; /* مسافة بين الفيديو والعنوان */
+        font-size: 0.9rem;
+        color: #FFFFFF;
+        text-align: center;
+        font-weight: bold;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
-    /* أزرار التنقل */
+    /* تنسيق أزرار التنقل لجعلها ثلاثية الأبعاد */
     .pagination-button {
-        padding: 8px 15px; /* تقليل الحشوة */
-        font-size: 0.9rem; /* تصغير النص */
-        border-radius: 8px; /* تقليل الزوايا */
-        box-shadow: 0 3px #5D005D; /* تقليل الظل */
+        background-color: #8B008B; /* لون بنفسجي */
+        color: #FFFFFF;
+        border: none;
+        padding: 8px 15px;
+        margin: 5px auto;
+        font-size: 0.9em;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px #5D005D; /* تأثير الظل لثلاثي الأبعاد */
+    }
+
+    .pagination-button:hover {
+        background-color: #9400D3; /* لون بنفسجي أفتح قليلاً عند التمرير */
     }
 
     .pagination-button:active {
-        transform: translateY(1px); /* تقليل تأثير الضغط */
+        box-shadow: 0 2px #5D005D;
+        transform: translateY(2px); /* تأثير الضغط */
     }
 
+    /* تنسيق رقم الصفحة */
     .page-number {
-        font-size: 1rem; /* تقليل حجم النص */
-        margin: 0 10px; /* تقليل المسافة بين الأرقام */
+        font-size: 1em;
+        margin: 0 10px;
+        color: #fffcfe; /* لون بنفسجي */
+        font-weight: bold;
+        display: inline-block;
+        vertical-align: middle;
     }
 }
+
 /*===================================================================
 /* ===== قسم الأيقونات للقوائم المنسدلة في الميني بار ===== */
 @media screen and (max-width: 768px) {
@@ -305,6 +616,76 @@
         color: #fefaff; /* لون عند التمرير */
     }
 }
+
+
+/*=======================================================
+/* تصميم مخصص لشاشات الجوال */
+@media (max-width: 768px) {
+  /* تحسين مظهر سياسة الخصوصية */
+  #privacy-policy-section {
+    padding: 15px; /* تقليل الحشوة */
+    width: 95%; /* زيادة عرض البطاقة لتناسب الشاشة الصغيرة */
+    margin: 15px auto; /* تقليل الهوامش */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* تقليل تأثير الظلال */
+  }
+
+  /* تصميم العناوين */
+  #privacy-policy-section h1, #privacy-policy-section h2 {
+    font-size: 1.2rem; /* تقليل حجم الخط */
+    padding: 8px; /* تقليل الحشوة داخل العناوين */
+  }
+
+  /* تصميم النصوص */
+  #privacy-policy-section p {
+    font-size: 0.9rem; /* تقليل حجم النص */
+    line-height: 1.4; /* تقليل التباعد بين السطور */
+  }
+
+  /* تصميم زر الإغلاق */
+  .close-btn {
+    width: 25px; /* تصغير عرض الزر */
+    height: 25px; /* تصغير ارتفاع الزر */
+    font-size: 16px; /* تقليل حجم الخط داخل الزر */
+    top: 5px; /* تقليل المسافة من أعلى البطاقة */
+    right: 5px; /* تقليل المسافة من يمين البطاقة */
+  }
+}
+
+/* تصميم مخصص لشاشات أصغر من 480px */
+@media (max-width: 480px) {
+  /* تحسين مظهر سياسة الخصوصية */
+  #privacy-policy-section {
+    padding: 10px; /* تقليل الحشوة أكثر */
+    width: 100%; /* جعل البطاقة تأخذ عرض الشاشة بالكامل */
+    margin: 10px auto; /* تقليل الهوامش */
+    border-radius: 5px; /* تقليل الزوايا */
+  }
+
+  /* تصميم العناوين */
+  #privacy-policy-section h1, #privacy-policy-section h2 {
+    font-size: 1rem; /* تقليل حجم الخط أكثر */
+    padding: 5px; /* تقليل الحشوة داخل العناوين */
+  }
+
+  /* تصميم النصوص */
+  #privacy-policy-section p {
+    font-size: 0.8rem; /* تقليل حجم النص أكثر */
+    line-height: 1.3; /* تقليل التباعد بين السطور أكثر */
+  }
+
+  /* تصميم زر الإغلاق */
+  .close-btn {
+    width: 20px; /* تصغير الزر أكثر */
+    height: 20px; /* تصغير الزر أكثر */
+    font-size: 14px; /* تقليل حجم الخط داخل الزر */
+    top: 5px; /* تقليل المسافة من أعلى البطاقة */
+    right: 5px; /* تقليل المسافة من يمين البطاقة */
+  }
+}
+
+
+
+
 /*=======================================================
 /* ===== قسم الميديا - تحسين عرض بطاقات المدراء ===== */
 @media screen and (max-width: 768px) {
@@ -334,37 +715,70 @@
         padding: 5px; /* تقليل الحشوة الداخلية */
     }
 
-    /* تحسين تصميم النصوص داخل الجدول */
-    .manager-card .body {
-        max-width: 95%; /* جعل الجدول يملأ الشاشة تقريبًا */
-        padding: 10px; /* تقليل الحشوة */
-        font-size: 0.9rem; /* تصغير النص */
+    
+     /* إضافة الأيقونات بجانب النصوص */
+    .manager-card .body .manager-years::before {
+        content: "\f073"; /* أيقونة التقويم */
+        font-family: "Font Awesome 5 Free"; /* تحميل الخط */
+        font-weight: 900; /* جعل الأيقونة عريضة */
+        margin-right: 5px; /* مسافة بين الأيقونة والنص */
+        color: #3f51b5; /* لون أزرق داكن */
+        font-size: 1rem; /* حجم الأيقونة */
     }
 
-    .manager-card .body p {
-        font-size: 0.9rem; /* تصغير النص */
-        margin-bottom: 10px; /* تقليل المسافة السفلية */
+    .manager-card .body .manager-wins::before {
+        content: "\f091"; /* أيقونة الكأس */
+        font-family: "Font Awesome 5 Free";
+        margin-right: 5px; /* مسافة بين الأيقونة والنص */
+        color: #d4af37; /* لون ذهبي لامع يشبه الكأس الحقيقي */
+        font-size: 1rem; /* حجم الأيقونة */
     }
 
-    /* تحسين تصميم النصوص الرئيسية */
+    .manager-card .body .manager-stats::before {
+        content: "\f080"; /* أيقونة الرسم البياني */
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900; /* جعل الأيقونة عريضة */
+        margin-right: 5px; /* مسافة صغيرة بين الأيقونة والنص */
+        color: #00bcd4; /* لون أزرق سماوي */
+        font-size: 1rem; /* حجم الأيقونة */
+    }
+
+     /* إعادة تفعيل الحدود والألوان */
     .manager-card .body .manager-years,
     .manager-card .body .manager-wins,
     .manager-card .body .manager-stats {
-        font-size: 1rem; /* تقليل حجم النص */
-        line-height: 1.6; /* تحسين المسافة بين الأسطر */
-        padding: 8px; /* تقليل الحشوة الداخلية */
+        border: 1px solid #ccc; /* حدود رمادية خفيفة */
+       background: rgba(0, 0, 0, 0.05); /* خلفية رمادية خفيفة */
+        border-radius: 8px; /* زوايا دائرية */
+        padding: 10px; /* حشوة داخلية */
+        margin-bottom: 10px; /* مسافة بين المربعات */
+        color: #333; /* لون النص */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* إضافة ظل */
     }
 
+   
     /* تحسين تصميم الأزرار */
     .manager-card .buttons {
         flex-direction: column; /* ترتيب الأزرار عموديًا */
         gap: 10px; /* مسافة بين الأزرار */
     }
 
+    /* تعديل ألوان الأزرار السابق والتالي */
     .manager-card .buttons button {
-        padding: 8px 12px; /* تقليل الحشوة */
-        font-size: 0.9rem; /* تقليل حجم النص */
+        background-color: #8623ad; /* لون عنابي */
+        color: white; /* لون النص */
+        border: none;
+        padding: 10px 15px;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s ease;
     }
+   .manager-card .buttons button:hover {
+        background-color: #660066; /* لون أغمق عند التمرير */
+    }
+
 
     /* تحسين أيقونات النصوص */
     .manager-card .body .manager-stats::before,
@@ -375,85 +789,168 @@
     }
 
     /* تحسين التباين والألوان */
+   /* تعديل الإطار حول المربعات */
     .manager-card .body .manager-years,
     .manager-card .body .manager-wins,
     .manager-card .body .manager-stats {
-        background: rgba(255, 255, 255, 0.8); /* خلفية بيضاء شفافة */
-        color: #333; /* لون النص داكن */
-        border: 1px solid #ccc; /* لون الحدود رمادي */
+        border: 2px solid #0056b3; /* لون أزرق خفيف */
+        background: rgba(255, 255, 255, 0.9); /* خلفية بيضاء شفافة */
+        border-radius: 8px; /* زوايا دائرية */
+        padding: 10px;
+        margin-bottom: 10px;
+        color: #333; /* لون النص */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* إضافة ظل خفيف */
     }
 }
-/**************************************************************************
-/* ===== قسم الميديا - تحسين الخريطة وأدوات البحث ===== */
+
+/***********************************************************/
+
+
 @media screen and (max-width: 768px) {
-    /* تحسين تصميم إطار الخريطة */
+    /* إطار الخريطة */
     .map-wrapper {
-        width: 95%; /* جعل عرض الخريطة متناسب مع الجوال */
-        margin: 0 auto 15px; /* توسيط الخريطة وإضافة مسافة سفلية */
-        border: 3px solid #87CEEB; /* تقليل سماكة الإطار */
-        border-radius: 10px; /* تقليل الزوايا الدائرية */
+        border: 3px solid #87CEEB; /* إطار أزرق فاتح */
+        border-radius: 10px; /* زوايا أقل دائرية */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* ظل خفيف */
+        margin-bottom: 15px; /* تقليل المسافة تحت الخريطة */
+        width: 100%; /* عرض كامل */
     }
 
     .map-card {
-        width: 100%; /* جعل عرض البطاقة ملائمًا للجوال */
+        margin-top: 20px; /* تقليل التباعد عن الخريطة */
         padding: 15px; /* تقليل الحشوة */
-        font-size: 0.9rem; /* تصغير النص */
+        background: #d1d1be; /* لون بيج */
+        border-radius: 10px; /* زوايا أقل دائرية */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* ظل خفيف */
+        max-width: 95%; /* تقليل الحد الأقصى للعرض */
+        width: 95%; /* العرض يشغل 95% من العرض المتاح */
+        margin: 0 auto; /* توسيط البطاقة */
+        color: #333; /* النص باللون الداكن */
+        border: 2px solid #87CEEB; /* حواف زرقاء فاتحة */
+        box-sizing: border-box; /* لضمان عدم تجاوز الحدود */
     }
 
-    /* تحسين تصميم أدوات البحث */
     .map-controls {
-        flex-wrap: wrap; /* السماح بتعدد الصفوف عند الحاجة */
-        gap: 10px; /* مسافة بين العناصر */
-        justify-content: center; /* توسيط الأدوات أفقياً */
-        margin-bottom: 10px; /* إضافة مسافة تحت الأدوات */
+        flex-direction: column; /* جعل الحاوية عمودية */
+        gap: 15px; /* زيادة المسافة بين العناصر */
+        align-items: stretch; /* تمديد العناصر لتملأ العرض */
     }
 
-    #search-box, #search-dropdown, .search-btn {
-        flex: none; /* تعطيل الحجم التلقائي */
-        width: 90%; /* توسيع العرض للأجهزة الصغيرة */
-        padding: 10px; /* حشوة مريحة */
-        font-size: 0.9rem; /* تقليل حجم النص */
-        border-radius: 8px; /* زوايا دائرية لطيفة */
-    }
-
-    /* تحسين الأزرار */
+    /* فقط للقائمة المنسدلة وزر البحث */
+    #search-dropdown,
     .search-btn {
-        width: 90%; /* توسيع الزر ليتناسب مع حجم الشاشة */
-        font-size: 1rem; /* تكبير النص داخل الزر */
-        margin: 5px auto; /* توسيط الزر */
+        flex: 1;
+        width: 100%; /* عرض كامل على الشاشة الصغيرة */
+        padding: 10px; /* زيادة الحشوة لتناسب العرض */
+        font-size: 14px; /* تصغير النص قليلاً */
+        border: 1px solid #ccc; /* حدود الحقول */
+        border-radius: 5px; /* زوايا دائرية */
     }
 
-    /* تحسين تصميم الإحصائيات */
+    /* الحالة الافتراضية للزر */
+    .search-btn {
+        background-color: #005fbf; /* أزرق */
+        color: white;
+        border: none;
+        padding: 10px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 100%; /* جعل الزر بعرض كامل */
+    }
+
+    /* عند التمرير */
+    .search-btn:hover {
+        background-color: #003f7f;
+    }
+
+    /* الأزرار */
+    .map-buttons {
+        flex-direction: column; /* ترتيب الأزرار عموديًا */
+        gap: 10px; /* مسافة بين الأزرار */
+        margin-top: 15px;
+    }
+
+    .reset-btn,
+    .stats-btn {
+        width: 100%; /* الأزرار بعرض كامل */
+        text-align: center;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .reset-btn {
+        background-color: #8B0000; /* لون عنابي */
+        color: white;
+    }
+
+    .reset-btn:hover {
+        background-color: #660000; /* لون غامق عند التمرير */
+    }
+
+    .stats-btn {
+        background-color: #005fbf; /* لون أزرق */
+        color: white;
+    }
+
+    .stats-btn:hover {
+        background-color: #003f7f; /* لون غامق عند التمرير */
+    }
+
+    .description-text {
+        font-weight: bold; /* اجعل النص بولد */
+        font-size: 16px; /* تقليل حجم الخط */
+        text-align: center; /* توسيط النص */
+        margin-bottom: 10px; /* تقليل التباعد تحت النص */
+        color: #333; /* لون النص */
+    }
+
+    /* بطاقة الإحصائيات */
     .stats-popup {
-        width: 90%; /* تقليل عرض النافذة */
-        max-width: 350px; /* تحديد الحد الأقصى للعرض */
         padding: 15px; /* تقليل الحشوة */
-        font-size: 0.9rem; /* تصغير النصوص */
+        width: 90%; /* ملاءمة العرض مع الشاشة */
+        max-width: 350px; /* تقليل الحد الأقصى للعرض */
+        text-align: center;
     }
 
     .stats-popup h3 {
-        font-size: 1.5rem; /* تقليل حجم العنوان */
-        margin-bottom: 10px; /* تقليل المسافة السفلية */
+        font-size: 20px; /* تقليل حجم النص */
     }
 
     .stats-list {
-        max-height: 250px; /* تقليل ارتفاع القائمة */
-        padding-right: 8px; /* تقليل الحشوة الجانبية */
+        max-height: 200px; /* تقليل الارتفاع */
+        overflow-y: auto; /* السماح بالتمرير */
     }
 
     .stats-item {
-        font-size: 0.85rem; /* تقليل النص */
-        padding: 5px 0; /* تقليل المسافة العلوية والسفلية */
+        padding: 8px 0; /* تقليل التباعد بين العناصر */
     }
 
-    /* تحسين تصميم زر الإغلاق */
+    .stadium-name {
+        font-size: 16px; /* تصغير النص */
+    }
+
+    .stadium-count {
+        padding: 4px 8px; /* تقليل الحشوة */
+    }
+
+    .total-stats {
+        font-size: 18px; /* تقليل حجم النص */
+    }
+
+    /* زر الإغلاق */
     .stats-popup .close-btn {
-        width: 90%; /* توسيع الزر */
-        margin: 10px auto; /* توسيط الزر */
-        font-size: 0.9rem; /* تقليل حجم النص */
+        padding: 8px 10px; /* تقليل الحشوة */
+        font-size: 12px; /* تصغير النص */
     }
 }
-/**************************************************************************
+
+/* *************************************************************************
 /* ===== قسم الميديا - تحسين ظهور البطاقات للجوال ===== */
 @media screen and (max-width: 768px) {
     /* تحسين تصميم البطاقات */
@@ -516,185 +1013,508 @@
         font-size: 0.9rem; /* تصغير النص */
     }
 }
-/********************************************************************
 
-/* ===== قسم الميديا - تحسين ظهور بطاقات الإحصائيات ===== */
-@media screen and (max-width: 768px) {
-    /* جعل بطاقات الإحصائيات صفين */
+ /* ==================================================================== */
+
+
+@media only screen and (max-width: 768px) {
+    /* تعديل البطاقات لتتناسب مع الشاشات الصغيرة */
     .team-stats-container {
         display: grid;
-        grid-template-columns: repeat(2, 1fr); /* صفين، كل صف يحتوي على بطاقتين */
-        gap: 15px; /* مسافة بين البطاقات */
-        justify-content: center;
-        align-items: center;
-        padding: 10px; /* حشوة داخلية للحاوية */
+        grid-template-columns: repeat(2, 1fr); /* بطاقتين في كل صف */
+        gap: 10px;
+        justify-content: center; /* محاذاة البطاقات إلى الوسط */
+        margin: 0 auto;
+        padding: 10px;
     }
 
+      /* تعديل الكروت */
     .team-stat-card {
-        width: 90%; /* عرض البطاقة يتناسب مع شاشة الجوال */
-        padding: 10px; /* تقليل الحشوة الداخلية */
-        text-align: center; /* توسيط النصوص داخل البطاقة */
+        background-color: #f9f7f3; /* بيج فاتح */
+        border: 2px solid #007bff; /* لون الحدود أزرق */
+        color: #000; /* النص أسود */
+        width: 90%;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* إضافة ظل خفيف */
+        border-radius: 10px;
+        margin: auto;
     }
 
     .team-stat-card i {
-        font-size: 1.8rem; /* تقليل حجم الأيقونة */
+        font-size: 1.8rem; /* تصغير الأيقونة */
+        margin-bottom: 5px; /* تخفيض الأيقونة قليلاً */
+        color: #007bff;
     }
 
     .team-stat-card h3 {
-        font-size: 0.9rem; /* تصغير حجم النص قليلاً */
-        margin-bottom: 5px; /* تحسين المسافة السفلية */
+        font-size: 1rem;
+        color: #007bff;
     }
 
     .team-stat-card p {
-        font-size: 1rem; /* تصغير النص داخل البطاقة */
+        font-size: 1.2rem;
+        color: #333;
     }
 
-    /* تحسين تصميم جدول الإحصائيات */
+    /* تعديل الجدول ليتناسب مع الشاشات الصغيرة */
     #team-stats-table {
-        font-size: 0.9rem; /* تصغير حجم النص داخل الجدول */
-        width: 100%; /* جعل الجدول بعرض كامل الشاشة */
-    }
-
-    #team-stats-table th,
-    #team-stats-table td {
-        padding: 8px; /* تقليل الحشوة داخل الخلايا */
+        width: 100%; /* عرض الجدول بالكامل */
+        margin: 20px auto; /* توسيط الجدول */
+        font-size: 14px; /* حجم نص مناسب */
+        border-spacing: 0; /* إزالة الفراغات بين الخلايا */
+        border-collapse: collapse;
     }
 
     #team-stats-table th {
-        font-size: 1rem; /* حجم النص داخل عناوين الأعمدة */
+        background-color: #007bff; /* خلفية رأس الجدول */
+        color: white; /* نص أبيض */
+        font-size: 14px; /* حجم نص مناسب */
+        padding: 10px;
     }
 
-    #team-stats-table tr:nth-child(even),
+    #team-stats-table td {
+        background-color: #f8f9fa; /* خلفية الخلايا */
+        color: #333; /* لون النص */
+        padding: 8px;
+        border: 1px solid #ddd; /* حدود خفيفة */
+    }
+
+    #team-stats-table tr:nth-child(even) {
+        background-color: #e2e6ea; /* صفوف زوجية بلون رمادي فاتح */
+    }
+
     #team-stats-table tr:nth-child(odd) {
-        font-size: 0.9rem; /* حجم النص داخل الخلايا */
+        background-color: #ffffff; /* صفوف فردية بيضاء */
     }
 
-    /* تحسين أزرار الفلترة */
+    #team-stats-table tr:hover {
+        background-color: #800000; /* لون عنابي عند تمرير الفأرة */
+        color: #fff; /* تغيير النص إلى الأبيض للوضوح */
+    }
+
+    #team-stats-table tr:hover td {
+        font-weight: bold; /* جعل النص داخل الصفوف عريض */
+    }
+
+    /* أزرار قسم المواجهات */
+    .map-buttons {
+        display: flex; /* تحويل الأزرار إلى صف واحد */
+        justify-content: center; /* توسيط الأزرار */
+        gap: 10px; /* مسافة بين الأزرار */
+        flex-wrap: wrap; /* السماح بالتفاف الأزرار عند صغر الشاشة */
+        margin-top: 15px;
+    }
+
+   
+ /* تعديل الأزرار */
     .team-filter-btn {
-        width: 100%; /* جعل الأزرار بعرض الشاشة */
-        margin: 5px 0; /* مسافة صغيرة بين الأزرار */
-        padding: 8px; /* تقليل الحشوة الداخلية */
-        font-size: 0.9rem; /* تصغير حجم النص داخل الأزرار */
+        width: 24%; /* حجم الزر في صف واحد */
+        font-size: 14px; /* حجم النص */
+        padding: 10px;
+        border-radius: 5px;
+        margin: 5px auto;
+        background-color: #007bff; /* لون أزرق */
+        color: white; /* لون النص أبيض */
+        text-align: center;
+        transition: background-color 0.3s ease, transform 0.2s;
+    }
+    .team-filter-btn:hover {
+        background-color: #8b0000; /* لون عنابي عند المرور */
+        transform: scale(1.05); /* تكبير بسيط عند المرور */
+    }
+
+    /* تعديل الجدول */
+    #team-stats-table tr:hover {
+        background-color: #8b0000; /* لون عنابي عند التمرير */
+        color: white; /* لون النص أبيض */
+        font-weight: bold; /* النص غامق */
     }
 }
-/**********************************************************
-/* ===== قسم الميديا - تحسين عرض بطاقات واختيار السنة ===== */
-@media screen and (max-width: 768px) {
-    /* تحسين عرض القائمة المنسدلة */
+
+/**********************************************************/
+@media only screen and (max-width: 768px) {
+    /* تعديل الزر الخاص بالمواجهات */
+    .year-filter-btn {
+        width: 24%; /* حجم الزر في صف واحد */
+        font-size: 14px; /* حجم النص */
+        padding: 10px;
+        border-radius: 5px;
+        margin: 5px auto;
+        background-color: #007bff; /* لون أزرق */
+        color: white; /* لون النص أبيض */
+        text-align: center;
+        transition: background-color 0.3s ease, transform 0.2s; /* تأثير عند التمرير */
+    }
+
+    .year-filter-btn:hover {
+        background-color: #8b0000; /* لون عنابي عند المرور */
+        transform: scale(1.05); /* تكبير بسيط عند المرور */
+    }
+
+    /* تعديل الجدول الخاص بالمواجهات */
+    #year-stats-table tr:hover {
+        background-color: #8b0000; /* لون عنابي عند التحويم */
+        color: white; /* لون النص أبيض */
+        font-weight: bold; /* النص غامق */
+    }
+
+    /* تعديل القائمة المنسدلة */
     #year-stats-select {
-        width: 100%; /* عرض كامل للشاشة */
-        padding: 8px; /* تقليل الحشوة لتناسب الجوال */
-        font-size: 14px; /* تصغير النص قليلاً */
+        width: 100%; /* عرض القائمة بالكامل */
+        padding: 10px;
+        margin: 10px 0;
+        border: 2px solid #007bff; /* حدود زرقاء */
+        border-radius: 5px;
+        background-color: #f8f9fa; /* خلفية بيج فاتح */
+        font-size: 16px;
+        color: #333;
+        appearance: none;
+        cursor: pointer;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* ظل خفيف */
     }
-
-    /* جعل البطاقات تظهر بصف واحد بطاقتين */
-    .year-stats-container {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr); /* صف واحد يحتوي على بطاقتين */
-        gap: 15px; /* مسافة بين البطاقات */
-        justify-content: center; /* توسيط الشبكة */
-        padding: 10px; /* حشوة داخلية للحاوية */
-    }
-
-    .year-stat-card {
-        width: 90%; /* عرض البطاقة يتناسب مع شاشة الجوال */
-        padding: 10px; /* تقليل الحشوة الداخلية */
-        text-align: center; /* توسيط النصوص داخل البطاقة */
-        border-radius: 10px; /* زوايا البطاقة دائرية */
+ #year-stats-table {
+        width: 100%; /* عرض الجدول بالكامل */
+        margin: 20px auto; /* توسيط الجدول */
+        font-size: 14px; /* حجم نص مناسب */
+        border-spacing: 0; /* إزالة الفراغات بين الخلايا */
+        border-collapse: collapse; /* دمج الحدود */
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* ظل خفيف */
     }
 
-    /* تحسين تصميم الجدول */
-    #year-stats-table {
-        font-size: 0.8rem; /* تصغير النص داخل الجدول */
-        width: 100%; /* جعل الجدول بعرض كامل الشاشة */
-    }
-
-    #year-stats-table th,
-    #year-stats-table td {
-        padding: 6px; /* تقليل الحشوة داخل الخلايا */
-    }
-
     #year-stats-table th {
-        font-size: 0.9rem; /* حجم النص داخل عناوين الأعمدة */
+        background-color: #007bff; /* خلفية رأس الجدول */
+        color: white; /* نص أبيض */
+        font-size: 14px; /* حجم نص مناسب */
+        padding: 10px; /* مسافة داخلية */
+        text-align: center; /* محاذاة النص إلى الوسط */
     }
 
-    #year-stats-table tr:nth-child(even),
+    #year-stats-table td {
+        background-color: #f8f9fa; /* خلفية الخلايا */
+        color: #333; /* لون النص */
+        padding: 8px;
+        text-align: center; /* محاذاة النص إلى الوسط */
+        border: 1px solid #ddd; /* حدود خفيفة */
+    }
+
+    #year-stats-table tr:nth-child(even) {
+        background-color: #e2e6ea; /* لون رمادي فاتح للصفوف الزوجية */
+    }
+
     #year-stats-table tr:nth-child(odd) {
-        font-size: 0.8rem; /* حجم النص داخل الخلايا */
+        background-color: #ffffff; /* لون أبيض للصفوف الفردية */
     }
 
-    /* تحسين أزرار قسم الحسميات */
-    .year-filter-btn {
-        width: 100%; /* جعل الأزرار بعرض الشاشة */
-        margin: 5px 0; /* مسافة صغيرة بين الأزرار */
-        padding: 8px; /* تقليل الحشوة الداخلية */
-        font-size: 0.8rem; /* تصغير حجم النص داخل الأزرار */
+    #year-stats-table tr:hover {
+        background-color: #8b0000; /* تغيير لون الصف عند التحويم إلى عنابي */
+        color: white; /* تغيير لون النص إلى أبيض */
+        font-weight: bold; /* جعل النص غامق */
+    }
+
+    #year-stats-table th:nth-child(2),
+    #year-stats-table td:nth-child(2) {
+        width: 80px; /* عرض محدد للعمود */
+        max-width: 80px; /* عرض أقصى */
+        text-overflow: ellipsis; /* إظهار "..." إذا تجاوز النص العرض */
+        white-space: nowrap; /* منع النص من الانتقال إلى سطر جديد */
+        overflow: hidden; /* إخفاء النص الزائد */
+    }
+
+    #year-stats-table th:nth-child(1),
+    #year-stats-table td:nth-child(1) {
+        width: 80px; /* عرض محدد للعمود */
+        max-width: 80px; /* عرض أقصى */
+        text-overflow: ellipsis; /* إظهار "..." إذا تجاوز النص العرض */
+        white-space: nowrap; /* منع النص من الانتقال إلى سطر جديد */
+        overflow: hidden; /* إخفاء النص الزائد */
+    }
+    /* النصوص داخل الخيارات */
+    #year-stats-select option {
+        padding: 10px;
+        font-size: 16px;
+        color: #333;
+        background-color: #ffffff;
     }
 }
-/******************************************************************************
-/* ===== قسم الميديا - تحسين الأزرار والجدول ===== */
-@media screen and (max-width: 768px) {
-    /* جعل الأزرار تظهر على صف واحد مع الحفاظ على الألوان */
+
+/******************************************************************************/
+@media only screen and (max-width: 768px) {
+    /* حاوية الأزرار */
     .upcoming-filter-buttons {
-        display: flex; /* عرض الأزرار بجانب بعضها */
-        flex-wrap: wrap; /* السماح بالالتفاف عند الحاجة */
+        display: flex; /* جعل الأزرار على صف واحد */
+        flex-wrap: wrap; /* السماح بتفاف الأزرار إذا ضاق العرض */
         justify-content: center; /* توسيط الأزرار */
         gap: 10px; /* مسافة بين الأزرار */
-        margin: 10px 0; /* تحسين الهوامش العلوية والسفلية */
+        margin: 15px 0;
     }
 
+    /* تنسيق الأزرار */
     .upcoming-filter-btn {
-        flex: 1 1 auto; /* توزيع الأزرار بالتساوي */
-        min-width: 120px; /* عرض الأدنى للزر */
-        max-width: 150px; /* عرض الأقصى للزر */
-        padding: 8px 10px; /* تقليل الحشوة الداخلية */
-        font-size: 0.9rem; /* تصغير النص قليلاً */
-        border-radius: 5px; /* الحفاظ على الزوايا الدائرية */
+        flex: 1 1 calc(33.33% - 10px); /* جعل الأزرار تأخذ ثلث عرض الصف مع مسافة */
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 5px;
+        font-weight: bold;
+        text-align: center;
+        cursor: pointer;
+        background-color: #007bff; /* اللون الأساسي للأزرار */
+        color: white; /* النص بالأبيض */
+        transition: background-color 0.3s ease;
     }
 
-    /* الحفاظ على ألوان الأزرار */
-    .upcoming-filter-btn.super { background-color: #28a745; }
-    .upcoming-filter-btn.league { background-color: #17a2b8; }
-    .upcoming-filter-btn.king { background-color: #ffc107; color: #333; }
-    .upcoming-filter-btn.asia { background-color: #6f42c1; }
-    .upcoming-filter-btn.world { background-color: #dc3545; }
-    .upcoming-filter-btn.all { background-color: #343a40; }
+    /* ألوان مخصصة للأزرار */
+    .upcoming-filter-btn.super { background-color: #28a745; } /* أخضر */
+    .upcoming-filter-btn.league { background-color: #17a2b8; } /* أزرق سماوي */
+    .upcoming-filter-btn.king { background-color: #ffc107; color: #333; } /* أصفر */
+    .upcoming-filter-btn.asia { background-color: #6f42c1; } /* بنفسجي */
+    .upcoming-filter-btn.world { background-color: #dc3545; } /* أحمر */
+    .upcoming-filter-btn.all { background-color: #343a40; } /* رمادي غامق */
 
-    /* تحسين تصميم الجدول ليظهر متناسقاً على الجوال */
+    .upcoming-filter-btn:hover {
+        background-color: #0056b3; /* لون أزرق داكن عند التحويم */
+        opacity: 0.9;
+    }
+
+    .upcoming-filter-btn:active {
+        background-color: #8b0000; /* لون أحمر داكن عند الضغط */
+        color: white;
+    }
+
+    /* تنسيق الجدول */
     #upcoming-matches-table {
-        font-size: 0.8rem; /* تصغير حجم النص */
-        margin-top: 10px; /* تقليل المسافة العلوية */
-        width: 100%; /* عرض الجدول كامل الشاشة */
+        width: 100%; /* ملائمة الجدول لعرض الشاشة بالكامل */
+        margin: 20px auto; /* توسيط الجدول */
+        border-collapse: collapse;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* ظل خفيف */
+        text-align: center;
+        background-color: #ffffff; /* جعل خلفية الجدول بيضاء */
     }
 
     #upcoming-matches-table th,
     #upcoming-matches-table td {
-        padding: 8px; /* تقليل الحشوة */
-        font-size: 0.8rem; /* تصغير النص داخل الخلايا */
+        padding: 10px;
+        border: 1px solid #ddd; /* حدود خفيفة */
+        font-weight: bold;
+        font-size: 12px; /* تصغير النص ليتناسب مع الجوال */
+        color: #000; /* لون النص أسود */
     }
 
+    /* رأس الجدول */
     #upcoming-matches-table th {
-        background-color: #0056b3; /* أزرق داكن */
-        color: white; /* الحفاظ على النص بالأبيض */
+        background-color: #007bff; /* خلفية أزرق */
+        color: white; /* نص أبيض */
     }
 
+    /* الصفوف الزوجية */
     #upcoming-matches-table tr:nth-child(even) {
-        background-color: #f8f9fa; /* خلفية رمادية فاتحة */
+        background-color: #f8f9fa; /* رمادي فاتح */
     }
 
+    /* الصفوف الفردية */
     #upcoming-matches-table tr:nth-child(odd) {
-        background-color: #e2e6ea; /* خلفية رمادية أفتح */
+        background-color: #ffffff; /* أبيض */
     }
 
+    /* عند التحويم على الصف */
     #upcoming-matches-table tr:hover {
-        background-color: #cce5ff; /* خلفية زرقاء فاتحة عند التحويم */
+        background-color: #8b0000; /* لون عنابي عند التحويم */
+        color: white; /* النص بالأبيض */
     }
 
-    /* تحسين عرض العمود */
-    #upcoming-matches-table td {
-        white-space: nowrap; /* منع التفاف النصوص */
-        text-overflow: ellipsis; /* إضافة "..." للنصوص الطويلة */
+    /* تصغير عرض العمود الأخير (الموقع) */
+    #upcoming-matches-table td:last-child,
+    #upcoming-matches-table th:last-child {
+        width: 100px; /* عرض محدد للعمود الأخير */
+        text-overflow: ellipsis; /* اقتصاص النص إذا تجاوز العرض */
+        white-space: nowrap; /* منع التفاف النص */
         overflow: hidden; /* إخفاء النص الزائد */
     }
+
+    /* جعل الجدول قابلاً للتكيف */
+    #upcoming-matches-table {
+        overflow-x: auto; /* السماح بالتمرير الأفقي إذا لزم الأمر */
+    }
 }
+
+/***********************************************************************************/
+@media only screen and (max-width: 768px) {
+    /* تعديل حاوية البطاقات */
+    .events-container {
+        display: flex;
+        flex-direction: column; /* جعل البطاقات فوق بعضها */
+        align-items: center; /* توسيط البطاقات */
+        gap: 20px; /* مسافة بين البطاقات */
+        padding: 10px; /* حشوة داخلية للحاوية */
+    }
+
+    /* تعديل البطاقات */
+    .event-card {
+        background-color: #ffffff; /* خلفية بيضاء */
+        border: 2px solid #007bff; /* حدود زرقاء */
+        border-radius: 10px; /* زوايا دائرية */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* ظل خفيف */
+        text-align: center;
+        width: 90%; /* عرض مناسب للجوال */
+        padding: 15px; /* حشوة داخلية */
+        position: relative; /* لإظهار رقم البطولة */
+    }
+
+    /* تعديل الصور داخل البطاقات */
+    .event-card img {
+        width: 100%; /* عرض الصورة بالكامل */
+        height: auto; /* الحفاظ على النسبة */
+        margin-bottom: 10px; /* مسافة تحت الصورة */
+        border-radius: 5px; /* زوايا دائرية للصورة */
+    }
+
+    /* النصوص داخل البطاقة */
+    .event-title {
+        font-size: 1.2rem; /* تكبير حجم العنوان */
+        font-weight: bold; /* خط عريض */
+        color: #0056b3; /* أزرق */
+        margin-bottom: 10px; /* مسافة أسفل العنوان */
+    }
+
+    .event-date {
+        font-size: 1rem; /* حجم التاريخ */
+        font-weight: bold; /* خط عريض */
+        color: #333; /* لون داكن */
+        margin-bottom: 5px;
+    }
+
+    .event-result {
+        font-size: 1.1rem; /* حجم الخط للأسماء */
+        font-weight: bold;
+        color: #0056b3; /* أزرق للأسماء */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .event-result .vs {
+        color: red; /* اللون الأحمر للإكس */
+        margin: 0 5px;
+    }
+
+    .event-score {
+        font-size: 1rem; /* حجم الخط */
+        color: #28a745; /* أخضر */
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+   
+ /* تعديل المسافة بين العناصر */
+    .event-footer {
+        font-size: 1rem; /* تكبير النص */
+        color: #555;
+        margin-top: 5px;
+        font-weight: bold;
+    }
+    /* رقم البطولة */
+    .rank-badge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: #d4af37; /* لون ذهبي */
+        color: #fff; /* لون النص أبيض */
+        font-size: 0.9rem;
+        font-weight: bold;
+        padding: 5px 10px;
+        border-radius: 50%; /* دائرة */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+}
+
+
+/* صور الاعبين  */
+
+@media (max-width: 768px) {
+    /* الشبكة لعرض اللاعبين */
+    .players-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important; /* عمودين */
+        gap: 20px 15px !important; /* مسافة بين الكروت: 20px عموديًا، 15px أفقيًا */
+        margin: 0 auto !important; /* توسيط الشبكة */
+        justify-content: center !important; /* توسيط البطاقات */
+    }
+
+    .player-card {
+        background: #1e3a8a !important; /* لون أزرق فاتح */
+        color: #ffffff;
+        border-radius: 15px !important; /* زوايا دائرية */
+        box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.5); /* ظل خفيف */
+        padding: 15px !important;
+        position: relative;
+        width: 90% !important; /* تصغير العرض قليلاً */
+        margin: 0 auto !important;
+        border: 2px solid #ffffff !important; /* حدود بيضاء */
+        font-size: 0.9rem !important;
+    }
+
+    .player-image {
+        width: 80px !important;
+        height: 80px !important;
+        margin: 0 auto !important;
+        border-radius: 50%; /* صورة دائرية */
+        border: 3px solid #FFA500 !important; /* إطار برتقالي للصورة */
+    }
+
+    .player-number {
+        position: absolute !important;
+        top: 10px !important;
+        right: 10px !important;
+        font-size: 1.2rem !important;
+        font-weight: bold !important;
+        color: #FFD700 !important; /* لون ذهبي */
+        background: transparent !important; /* خلفية شفافة */
+    }
+
+    .player-name {
+        font-size: 1.2rem !important;
+        font-weight: bold !important;
+        color: #ffffff !important; /* لون أبيض */
+        margin-bottom: 5px !important;
+    }
+
+    .player-position {
+        font-size: 1rem !important;
+        font-weight: bold !important;
+        color: #FFA500 !important; /* لون برتقالي فاتح */
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important;
+    }
+
+    .player-position i {
+        color: #FFD700 !important; /* لون ذهبي */
+        font-size: 1.2rem !important;
+    }
+
+    .pagination-controls {
+        display: flex !important;
+        justify-content: center !important;
+        gap: 10px !important;
+        margin-top: 15px !important;
+    }
+
+    .pagination-controls button {
+        background: #005fbf !important; /* لون أزرق */
+        color: #ffffff !important;
+        border: none !important;
+        padding: 10px 20px !important;
+        border-radius: 5px !important;
+        cursor: pointer !important;
+        font-size: 1rem !important;
+        transition: background-color 0.3s ease !important;
+    }
+
+    .pagination-controls button:hover {
+        background: #8623ad !important; /* لون عنابي عند التمرير */
+    }
+}
+
+
+
+
