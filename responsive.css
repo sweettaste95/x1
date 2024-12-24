@@ -180,6 +180,82 @@
     }
 }
 
+/*=======================================================
+/* تصميم مخصص لشاشات الجوال */
+@media (max-width: 768px) {
+  /* تحسين مظهر سياسة الخصوصية */
+  #privacy-policy-section {
+    padding: 15px;
+    width: 95%;
+    margin: 15px auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background-color: #fff6e6 !important; /* تأكد من ظهور لون الخلفية */
+    border-radius: 10px;
+    text-align: center; /* توسيط النصوص */
+  }
+
+  /* تصميم العناوين */
+  #privacy-policy-section h1, #privacy-policy-section h2 {
+    font-size: 1.2rem;
+    padding: 8px;
+    background-color: rgba(0, 78, 146, 0.1) !important;
+    color: #004e92 !important; /* تأكد من لون النص */
+  }
+
+  /* تصميم النصوص */
+  #privacy-policy-section p {
+    font-size: 0.9rem !important;
+    line-height: 1.4;
+    color: #333 !important; /* تأكد من لون النص */
+    text-align: justify; /* محاذاة النصوص إلى الجانبين */
+  }
+
+  /* تصميم زر الإغلاق */
+  .close-btn {
+    width: 25px;
+    height: 25px;
+    font-size: 16px;
+    top: 10px; /* تأكد من محاذاة الزر */
+    right: 10px;
+    background-color: #004e92 !important; /* تأكد من اللون الأزرق */
+    color: white !important;
+  }
+}
+
+/* تصميم مخصص لشاشات أصغر من 480px */
+@media (max-width: 480px) {
+  #privacy-policy-section {
+    padding: 10px !important;
+    width: 100%;
+    margin: 10px auto;
+    border-radius: 5px !important;
+    background-color: #fff6e6 !important;
+  }
+
+  #privacy-policy-section h1, #privacy-policy-section h2 {
+    font-size: 1rem;
+    padding: 5px;
+    background-color: rgba(0, 78, 146, 0.1) !important;
+    color: #004e92 !important;
+  }
+
+  #privacy-policy-section p {
+    font-size: 0.8rem;
+    line-height: 1.3;
+    color: #333 !important;
+    text-align: justify; /* محاذاة النصوص إلى الجانبين */
+  }
+
+  .close-btn {
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+    top: 5px;
+    right: 5px;
+    background-color: #004e92 !important;
+    color: white !important;
+  }
+}
 
 
 
@@ -619,79 +695,6 @@
 
 
 /*=======================================================
-/* تصميم مخصص لشاشات الجوال */
-@media (max-width: 768px) {
-  /* تحسين مظهر سياسة الخصوصية */
-  #privacy-policy-section {
-    padding: 15px;
-    width: 95%;
-    margin: 15px auto;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    background-color: #fff6e6; /* تأكد من ظهور لون الخلفية */
-    border-radius: 10px;
-  }
-
-  /* تصميم العناوين */
-  #privacy-policy-section h1, #privacy-policy-section h2 {
-    font-size: 1.2rem;
-    padding: 8px;
-    background-color: rgba(0, 78, 146, 0.1);
-    color: #004e92; /* تأكد من لون النص */
-  }
-
-  /* تصميم النصوص */
-  #privacy-policy-section p {
-    font-size: 0.9rem;
-    line-height: 1.4;
-    color: #333; /* تأكد من لون النص */
-  }
-
-  /* تصميم زر الإغلاق */
-  .close-btn {
-    width: 25px;
-    height: 25px;
-    font-size: 16px;
-    top: 10px; /* تأكد من محاذاة الزر */
-    right: 10px;
-    background-color: #004e92; /* تأكد من اللون الأزرق */
-    color: white;
-  }
-}
-
-/* تصميم مخصص لشاشات أصغر من 480px */
-@media (max-width: 480px) {
-  #privacy-policy-section {
-    padding: 10px;
-    width: 100%;
-    margin: 10px auto;
-    border-radius: 5px;
-    background-color: #fff6e6;
-  }
-
-  #privacy-policy-section h1, #privacy-policy-section h2 {
-    font-size: 1rem;
-    padding: 5px;
-    background-color: rgba(0, 78, 146, 0.1);
-    color: #004e92;
-  }
-
-  #privacy-policy-section p {
-    font-size: 0.8rem;
-    line-height: 1.3;
-    color: #333;
-  }
-
-  .close-btn {
-    width: 20px;
-    height: 20px;
-    font-size: 14px;
-    top: 5px;
-    right: 5px;
-    background-color: #004e92;
-    color: white;
-  }
-}
-
 
 
 /*=======================================================
