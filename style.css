@@ -123,50 +123,116 @@ body {
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
+/* ============================================================================================================== */
+/* القائمة المنسدلة للازرار  */
+
+/* تنسيق الميني بار */
+.menu-bar {
+  display: flex;
+  justify-content: space-between; /* توزيع العناصر على الأطراف */
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #000; /* لون الخلفية */
+  border-radius: 10px;
+  height: 60px; /* ارتفاع الشريط */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* ظل */
+}
+
+#menu-toggle {
+  background-color: #004e92;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
 
 #menu-toggle:hover {
   background-color: #8623ad;
 }
 
+
 /* القائمة المنسدلة */
+
 #menu-content {
   position: absolute;
-  top: 60px; /* تحت الشريط */
-  right: 10px; /* في الزاوية اليمنى */
-  background-color: #ffffff;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  width: 200px;
-  display: none; /* إخفاء افتراضيًا */
-  flex-direction: column;
-  z-index: 1000;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  top: calc(60px + 10px); /* 60px هو ارتفاع زر الميني بار + 10px مسافة إضافية */
+  right: 10px; /* محاذاة القائمة لليمين */
+  background-color: #004e92; /* لون خلفية القائمة */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* حدود خفيفة */
+  border-radius: 10px; /* زوايا دائرية */
+  width: 250px; /* عرض القائمة */
+  display: none; /* إخفاء القائمة افتراضيًا */
+  flex-direction: column; /* ترتيب العناصر تحت بعضها */
+  z-index: 1000; /* لجعلها فوق باقي العناصر */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* ظل القائمة */
+  padding: 10px; /* حشوة داخلية */
 }
 
-/* ظهور القائمة */
+
+/* عند فتح القائمة */
 #menu-content.active {
-  display: flex; /* عرض القائمة عند الفتح */
+  display: flex; /* عرض القائمة */
 }
+/* لضمان أن القائمة لا تغطي الأزرار */
+#menu-toggle {
+  z-index: 1100; /* جعل الزر فوق القائمة */
+  position: relative;
+}
+/* عناوين الأقسام */
 
-/* أزرار القائمة */
+/* الأزرار داخل القائمة */
 #menu-content button {
-  background: #005fbf;
+  background: #005fbf; /* لون خلفية الزر */
   border: none;
   padding: 10px;
-  text-align: left;
-  cursor: pointer;
+  text-align: center; /* محاذاة النص في الوسط */
+  margin: 5px 0; /* مسافة بين الأزرار لضمان الفصل */
   font-size: 14px;
   color: #fff;
   border-radius: 5px;
   transition: background-color 0.3s ease;
+  width: 100%; /* اجعل الأزرار تأخذ عرض القائمة بالكامل */
+  box-sizing: border-box; /* ضمان أن الحواف محسوبة ضمن العرض */
 }
-
+/* تأثير المرور */
 #menu-content button:hover {
   background-color: #8623ad;
 }
 
-#menu-content button:active {
-  background-color: #8B0000; /* لون عند الضغط */
+/* عناوين الأقسام */
+.menu-section-header {
+  font-size: 1.1rem; /* حجم النص */
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #FFD700; /* لون مميز للعناوين */
+  text-align: right; /* محاذاة النص لليمين */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* خط أقل حدة */
+  padding-bottom: 5px; /* مسافة أسفل النص */
+}
+
+/* الخط الفاصل */
+hr {
+  border: 0;
+  height: 1px;
+  background: #FFD700;
+  margin: 10px 0;
+}
+
+/* العناوين */
+.menu-section-header {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #FFD700;
+  text-align: right;
+  padding-bottom: 5px;
+}
+/* حدود القائمة */
+#menu-content {
+  border: 1px solid rgba(255, 255, 255, 0.3); /* حدود خفيفة */
 }
 /*======================================================================
 /* المايكرو المتحرك تسلسل زمني علوي  */
@@ -241,7 +307,7 @@ body {
     font-size: 1rem; /* حجم النص */
     font-weight: bold; /* النص بخط عريض */
     color: #ffffff; /* لون النص */
-    background: #8e26a3; /* لون الخلفية */
+    background:  #005fbf; /* لون الخلفية */
     border: none; /* إزالة الحدود */
     border-radius: 50px; /* زوايا مستديرة */
     cursor: pointer; /* تغيير المؤشر عند التمرير */
@@ -251,7 +317,7 @@ body {
 
 /* تأثير عند تمرير الماوس فوق الزر */
 #main-menu-btn:hover {
-    background: linear-gradient(145deg, #005fbf, #0077ff); /* تدرج لوني عند التمرير */
+    background: linear-gradient(145deg, #005fbf, #9836d1); /* تدرج لوني عند التمرير */
     transform: scale(1.22); /* تكبير الزر قليلاً */
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4); /* تكبير الظل */
 }
@@ -271,39 +337,66 @@ body {
     display: none;
 }
 
+
+
+/* تحسين تصميم الحقول النصية */
+#register-screen input[type="text"],
+#register-screen input[type="email"] {
+    width: 60%; /* تقليل العرض إلى 60% */
+    max-width: 400px; /* أقصى عرض */
+    margin: 10px auto; /* توسيط الحقول */
+    padding: 10px; /* تقليل الحشوة */
+    border: 1px solid #ccc; /* حدود رمادية */
+    border-radius: 6px; /* زوايا دائرية */
+    font-size: 1rem; /* حجم النص متوسط */
+    display: block; /* ضمان التوسيط */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* تأثير سلس */
+    color: #000; /* اللون الافتراضي للنص أسود */
+}
+
+/* تأثير عند التركيز (الكتابة) */
+#register-screen input[type="text"]:focus,
+#register-screen input[type="email"]:focus {
+    border-color: #007bff; /* تغيير لون الحدود إلى أزرق */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* تأثير ظل أزرق */
+}
+
+/* تحسين تصميم زر التسجيل */
+#register-screen button {
+    width: 60%; /* تقليل العرض إلى 60% */
+    max-width: 400px; /* أقصى عرض */
+    padding: 10px; /* تقليل الحشوة */
+    margin: 15px auto; /* توسيط الزر */
+    font-size: 1rem; /* حجم النص متوسط */
+    font-weight: bold; /* خط عريض */
+    color: #fff; /* لون النص أبيض */
+    background: #005fbf; /* لون الخلفية أزرق */
+    border: none; /* إزالة الحدود */
+    border-radius: 6px; /* زوايا دائرية */
+    cursor: pointer; /* مؤشر التفاعل */
+    display: block; /* ضمان التوسيط */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* تأثير سلس */
+}
+
+/* تأثير عند التمرير فوق الزر */
+#register-screen button:hover {
+    background-color: #003f8f; /* لون أغمق عند التمرير */
+    transform: scale(1.05); /* تكبير بسيط */
+}
+
+/* تحسين العنوان والنصوص */
 #register-screen h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #fff;
+    font-size: 1.8rem; /* حجم النص متوسط */
+    margin-bottom: 20px; /* مسافة أسفل العنوان */
+    text-align: center; /* توسيط النص */
+    color: #fff; /* لون النص أبيض */
 }
 
 #register-screen p {
-    font-size: 1rem;
-    margin-bottom: 20px;
-    color: #b3c7e6;
-}
-
-#register-screen input[type="text"],
-#register-screen input[type="email"] {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-}
-
-#register-screen button {
-    width: 100%;
-    padding: 12px;
-    margin-top: 20px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: #fff;
-    background: #005fbf;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
+    font-size: 1rem; /* حجم النص متوسط */
+    margin-bottom: 15px; /* تقليل المسافة السفلية */
+    text-align: center; /* توسيط النص */
+    color: #b3c7e6; /* لون النص */
 }
 
 
@@ -516,7 +609,7 @@ body {
     color: #ffffff; /* النص يبقى أبيض */
     transform: scale(1.05); /* تكبير الزر قليلاً عند التمرير */
 }
-
+/************************************************************************/
 
 #youtube-videos {
     display: grid;
@@ -855,7 +948,7 @@ body {
     }
 
 
-   
+
 
 
 /* تصميم أزرار التنقل بين المدراء */
@@ -867,7 +960,7 @@ body {
 
 /* تصميم الزر */
 .manager-card .buttons button {
-    background: #8B008B; /* لون الخلفية للزر */
+       background: linear-gradient(145deg, #005fbf, #9836d1); /* تدرج لوني عند التمرير */
     color: white; /* لون النص */
     border: none; /* إزالة الحدود */
     border-radius: 8px; /* زوايا الزر دائرية */
@@ -978,6 +1071,9 @@ body {
 /*======================================================================
 /* كل مايتعلق بالخرائط */
 /*======================================================================*/
+/*======================================================================
+/* كل مايتعلق بالخرائط */
+/*======================================================================*/
 /* إطار للخريطة */
 .map-wrapper {
     border: 4px solid #87CEEB; /* إطار أزرق فاتح */
@@ -998,13 +1094,10 @@ body {
     width: 90%; /* عرض افتراضي يشغل 90% من العرض المتاح */
     margin-left: auto;
     margin-right: auto;
-   color: #333; /* النص باللون الداكن */
+    color: #333; /* النص باللون الداكن */
     border: 2px solid #87CEEB; /* حواف زرقاء فاتحة */
     box-sizing: border-box; /* لضمان عدم تجاوز الحدود */
 }
-
- 
-   
 
 .map-controls {
     display: flex; /* جعل الحاوية أفقية */
@@ -1013,7 +1106,8 @@ body {
     align-items: center; /* توسيط عمودي للعناصر */
 }
 
-#search-box, #search-dropdown, .search-btn {
+/* فقط للقائمة المنسدلة وزر البحث */
+#search-dropdown, .search-btn {
     flex: 1;
     width: 200px; /* نفس العرض */
     padding: 8px; /* نفس التباعد الداخلي */
@@ -1024,24 +1118,6 @@ body {
 
 .search-btn:hover {
     background-color: #003f7f; /* لون أزرق غامق عند التمرير */
-}
-
-#search-box {
-    flex: 1;
-    width: 100%;
-    padding: 8px; /* نفس التباعد الداخلي */
-    font-size: 14px; /* حجم النص */
-    border: 2px solid #ccc; /* حدود بنفس تصميم الكومبو بوكس */
-    border-radius: 5px; /* زوايا دائرية */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* نفس التأثير */
-    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* تأثير سلس */
-}
-
-/* التركيز على الحقل */
-#search-box:focus {
-    outline: none; /* إزالة الإطار الافتراضي */
-    border-color: #87CEEB; /* حدود زرقاء عند التركيز */
-    box-shadow: 0 0 5px rgba(135, 206, 235, 0.7); /* ظل أزرق عند التركيز */
 }
 
 /* الحالة الافتراضية للزر */
@@ -1112,14 +1188,8 @@ body {
     background-color: #003f7f; /* لون غامق عند التمرير */
 }
 
-/* التركيز على الحقول */
-#search-box:focus,
-#search-dropdown:focus {
-    outline: 2px solid #87CEEB; /* حدود التركيز */
-}
 /*****************************************************************************
 /* بطاقة الإحصائيات */
-
 
 /* بطاقة الإحصائيات */
 .stats-popup {
@@ -1225,6 +1295,7 @@ body {
 .stats-popup .close-btn:hover {
     background-color: #003f7f; /* لون أزرق غامق عند التمرير */
 }
+
 /*======================================================================
 /* لشريط السفلي للبرنامج  */
 /*======================================================================*/
@@ -1268,11 +1339,12 @@ body {
     gap: 15px;
     margin: 20px auto;
     max-width: 1200px;
+
 }
 
 .fifa-card {
     width: 180px; /* تصغير حجم البطاقة */
-    background-color: #ffffff;
+    background-color: #E6E6E6;
     border: 2px solid #007bff; /* إضافة حدود بلون أزرق */
     border-radius: 8px;
     text-align: center;
@@ -1308,7 +1380,7 @@ body {
 }
 
 .fifa-btn {
-    background-color: #0056b3;
+       background: linear-gradient(145deg, #005fbf, #9836d1); /* تدرج لوني عند التمرير */
     color: white;
     padding: 8px 12px;
     border-radius: 5px;
@@ -1321,83 +1393,159 @@ body {
 .fifa-btn:hover {
     background-color: #004080;
 }
+/* تفاصيل */
+/* تنسيق القسم العام */
+#fifa-world-cup-section {
+    padding: 20px;
+    text-align: center;
+}
 
-/* تفاصيل المباريات */
+/* تنسيق الحاوية التي تحتوي على البطاقات */
+#fifa-world-cup-matches {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* بطاقتين في صف واحد */
+    gap: 20px; /* مسافة بين البطاقات */
+    justify-content: center; /* توسيط البطاقات */
+    margin-top: 20px; /* مسافة من الأعلى */
+}
+
+  
+  
+  
+  
+  
+  
+/* تنسيق البطاقة */
+/* الحاوية الأساسية لبطاقات التفاصيل */
 .fifa-details-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* تجعل البطاقات تصطف ببطاقتين لكل صف */
+    gap: 20px; /* مسافة بين البطاقات */
     margin-top: 20px;
+    justify-content: center; /* توسيط المحتوى */
 }
 
+/* تصميم البطاقة */
 .fifa-detail-card {
-    background-color: #ffffff;
-    border: 2px solid #007bff; /* حدود زرقاء */
-    border-radius: 8px;
-    width: 250px; /* تصغير البطاقة */
-    padding: 10px;
-    text-align: right;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    background-color: #0056b3; /* خلفية البطاقة زرقاء */
+  
+    color: #ffffff; /* النصوص بلون أبيض */
+    border-radius: 12px; /* زوايا دائرية */
+    border: 2px solid #ebf0f5; /* إطار ذهبي */
+    padding: 20px; /* حشوة داخلية */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* ظل خفيف */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* تأثير عند التمرير */
+    overflow: hidden;
+    text-align: center; /* محاذاة النصوص في المنتصف */
+    max-width: 400px; /* عرض البطاقة */
+    margin: auto; /* توسيط البطاقة */
 }
 
+/* تأثير عند التمرير */
 .fifa-detail-card:hover {
     transform: scale(1.03);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
 }
 
+/* العنوان الرئيسي داخل البطاقة */
 .fifa-detail-card h3 {
-    font-size: 1rem;
-    color: #007bff;
-    margin-bottom: 8px;
+    font-size: 1.5rem; /* تكبير العنوان */
+    font-weight: bold;
+    color: #e6ebf0; /* اللون الذهبي */
+    margin-bottom: 15px;
     text-align: center;
 }
 
+/* النصوص داخل البطاقة */
 .fifa-detail-card p {
-    margin: 5px 0;
-    font-size: 0.85rem;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    color: #333;
-}
-
-.fifa-detail-card i {
-    color: #0056b3;
+    margin: 10px 0;
     font-size: 1rem;
+    line-height: 1.6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffffff; /* النصوص بلون أبيض */
 }
 
-.fifa-detail-card a {
-    display: block;
-    color: #007bff;
-    text-decoration: none;
-    text-align: center;
-    margin-top: 10px;
+/* النصوص البارزة */
+.fifa-detail-card p strong {
+    color: #FFD700; /* النصوص المهمة بلون ذهبي */
+    font-weight: bold;
 }
 
-.fifa-detail-card a:hover {
-    text-decoration: underline;
-    color: #004080;
+/* أيقونات النصوص */
+.fifa-detail-card p i {
+    margin-right: 5px;
+    color: #FFD700; /* لون الأيقونة */
 }
+
+/* تنسيق الجدول داخل البطاقة */
+.details-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+}
+
+.details-table th,
+.details-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.details-table th {
+    background-color: #0091ff; /* لون خلفية العنوان */
+    color: #fff; /* لون النص */
+    font-weight: bold;
+}
+
+.details-table td {
+    background-color: #f4f4f4; /* لون خلفية البيانات */
+    color: #333; /* لون النص */
+}
+
+.details-table tr:nth-child(even) td {
+    background-color: #e9e9e9; /* لون خلفية الصفوف الزوجية */
+}
+
+/* تصميم الفيديو داخل البطاقة */
+.video-container {
+    margin-top: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid #e6ebf0; /* إطار ذهبي */
+  
+  
+ 
+
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 200px;
+}
+
 
 /* زر العودة */
 .fifa-back-btn {
     display: block;
-    margin: 20px auto;
-    background-color: #007bff;
-    color: white;
-    padding: 8px 15px;
-    border-radius: 5px;
+    margin: 20px auto 0;
+       background: linear-gradient(145deg, #005fbf, #9836d1); /* تدرج لوني عند التمرير */
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 8px;
     border: none;
     cursor: pointer;
     font-size: 1rem;
-    transition: background 0.3s ease;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .fifa-back-btn:hover {
-    background-color: #0056b3;
+    background: linear-gradient(145deg, #005fbf, #9836d1); /* تدرج لوني عند التمرير */
+    transform: scale(1.22); /* تكبير الزر قليلاً */
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4); /* تكبير الظل */
 }
-
 
 /*********************************************************************
 /* قسم في مثل هذا اليوم */
@@ -1989,10 +2137,176 @@ h2 i.fa-chart-bar {
 
 
 
+/*****************************************************************************/
+/* الشبكة لعرض اللاعبين */
+.players-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* عمودين */
+    gap: 15px; /* تقليل التباعد بين البطاقات */
+    margin-top: 20px;
+}
 
+/* تصميم البطاقة */
+.player-card {
+    background: #1e3a8a; /* لون أزرق فاتح لخلفية البطاقة */
+    color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* ظل */
+    padding: 15px;
+    text-align: center;
+    position: relative;
+    width: 230px; /* تقليل عرض البطاقة قليلاً */
+    margin: 0 auto; /* توسيط البطاقة */
+    border: 2px solid #ffffff; /* حواف بيضاء */
+    transition: transform 0.3s ease;
+}
 
+.player-card:hover {
+    transform: scale(1.05); /* تكبير البطاقة عند التمرير */
+}
 
+/* صورة اللاعب */
+.player-image {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%; /* صورة دائرية */
+    margin-bottom: 10px;
+    border: 3px solid #FFD700; /* لون إطار الصورة */
+}
 
+/* رقم اللاعب */
+.player-number {
+    position: absolute;
+    top: 10px; /* في الزاوية العلوية */
+    right: 10px; /* على اليمين */
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #FFD700; /* اللون الذهبي */
+    background: #1e3a8a; /* خلفية صغيرة */
+    padding: 5px 10px;
+    border-radius: 5px;
+}
 
+/* اسم اللاعب */
+.player-name {
+    font-size: 1.4rem; /* تكبير الخط */
+    font-weight: bold;
+    margin-bottom: 5px;
+}
 
+/* مركز اللاعب */
+.player-position {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #b3c7e6;
+    margin-bottom: 5px; /* تقليل التباعد السفلي */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* مسافة بين النص والأيقونة */
+}
 
+/* الأزرار */
+.pagination-controls {
+    display: flex;
+    justify-content: center; /* توسيط الأزرار */
+    gap: 20px; /* مسافة بين الأزرار */
+    margin-top: 15px;
+}
+
+.pagination-controls button {
+    background: #005fbf;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination-controls button:hover {
+    background: #8623ad;
+}
+
+.pagination-controls button:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+}
+
+  /*==============================================================================
+  /* تنسيق زر الخصوصية 
+  /*==============================================================================
+  
+ /* تحسين مظهر سياسة الخصوصية */
+#privacy-policy-section {
+  background-color: #fff6e6;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 20px auto;
+  width: 90%;
+  max-width: 600px;
+  text-align: right;
+  direction: rtl;
+}
+
+/* تصميم العناوين */
+#privacy-policy-section h1, #privacy-policy-section h2 {
+  color: #004e92;
+  font-weight: bold;
+  text-align: center;
+  background-color: rgba(0, 78, 146, 0.1);
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+/* تصميم النصوص */
+#privacy-policy-section p {
+  color: #333;
+  font-weight: bold;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* تصميم الروابط */
+#privacy-policy-section .contact a {
+  color: #004e92;
+  text-decoration: underline;
+}
+
+#privacy-policy-section .contact a:hover {
+  text-decoration: none;
+}
+/* تصميم زر الإغلاق */
+.close-btn {
+  position: absolute; /* موضعه داخل البطاقة */
+  top: 10px; /* المسافة من الأعلى */
+  right: 10px; /* المسافة من اليمين */
+  background-color: #004e92; /* لون الخلفية أزرق */
+  color: white; /* لون النص أبيض */
+  border: none; /* إزالة الحدود */
+  border-radius: 50%; /* جعل الزر دائري */
+  width: 30px; /* عرض الزر */
+  height: 30px; /* ارتفاع الزر */
+  font-size: 18px; /* حجم الخط */
+  cursor: pointer; /* إضافة مؤشر يد عند التمرير */
+  text-align: center; /* محاذاة النص داخل الزر */
+  line-height: 30px; /* محاذاة النص في المنتصف */
+}
+
+.close-btn:hover {
+  background-color: #003366; /* تغيير اللون عند التمرير */
+}
+.modal-content {
+  position: relative; /* هذا يحدد أن الزر سيكون داخل البطاقة */
+  background-color: #fff6e6; /* لون الخلفية فاتح */
+  border-radius: 10px;
+  padding: 20px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  text-align: right;
+  direction: rtl;
+  border: 2px solid rgba(0, 78, 146, 0.3);
+  margin: auto;
