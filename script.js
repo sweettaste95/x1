@@ -138,13 +138,18 @@ function toggleVisibility(element, action) {
     }
 }
 
-// دالة عرض رسالة الترحيب
 function showWelcomeMessage() {
-    const username = localStorage.getItem("username");
+    const username = localStorage.getItem("username"); // جلب اسم المستخدم من localStorage
     const welcomeMessageElement = document.getElementById("welcome-message");
 
-    if (username && welcomeMessageElement) {
-        welcomeMessageElement.textContent = `مرحبًا بك يا زعيــم ${username}`;
+    if (welcomeMessageElement) {
+        if (username) {
+            // عند وجود اسم المستخدم
+            welcomeMessageElement.innerHTML = `مرحبًا بك يا زعيــم ${username} <i class="fas fa-trophy" style="color: gold;"></i> <i class="fas fa-smile" style="color: #f9d71c;"></i>`;
+        } else {
+            // عند عدم وجود اسم المستخدم
+            welcomeMessageElement.innerHTML = `مرحباً بك يا زعيــم <i class="fas fa-trophy" style="color: gold;"></i> <i class="fas fa-smile" style="color: #f9d71c;"></i>`;
+        }
     }
 }
 
@@ -186,64 +191,7 @@ function generateUUID() {
       });
     });
 
-    // أمثلة على دوال العرض
-    function showCompetitionSearch() {
-      alert('عرض قسم المسابقة!');
-    }
-
-    function showTimeline() {
-      alert('عرض قسم التتويجات!');
-    }
-
-    function showYouTubeVideos() {
-      alert('عرض مقاطع التتويج!');
-    }
-
-    function showHilalMap() {
-      alert('عرض منصات الهلال!');
-    }
-
-    function showManagers() {
-      alert('عرض رؤساء الهلال!');
-    }
-
-    function showFifaWorldCup() {
-      alert('عرض كأس العالم!');
-    }
-
-    function showTodayEvent() {
-      alert('عرض الأحداث اليوم!');
-    }
-
-    function showTeamMatches() {
-      alert('عرض تاريخ المواجهات!');
-    }
-
-    function showPrivacyPolicy() {
-      alert('عرض سياسة الخصوصية!');
-    }
-
-    function showAboutUs() {
-      alert('عرض من نحن!');
-    }
-
-    function contactUs() {
-      alert('عرض راسلنا!');
-    }
-
-    function showAboutCard() {
-      alert('عرض بطاقة من نحن!');
-    }
-
-    function showSuggestions() {
-      alert('عرض مقترحاتكم!');
-    }
-
-    function subscribeChannel() {
-      alert('اشترك معنا!');
-    }
-
-
+   
 // رابط Google Apps Script للإرسال
 const googleSheetURL = "https://script.google.com/macros/s/AKfycbxyqMTKxHwD370QTyACURrHE27L_KyUXH7Z3EmhcHJoNYM-g0oww6vgSyxa38kkWhhv/exec";
 
@@ -320,13 +268,19 @@ function hideAllSections() {// ====== دالة لإخفاء جميع الأقس�
     
     document.getElementById("team-players-section").classList.add("hidden");
   
- 
+   document.getElementById("feedback-section").classList.add("hidden"); // إخفاء القسم الجديد
+
     hidePagination(); // إخفاء أزرار التنقل بين الصفحات
     hideMainMenuButton(); // إخفاء زر العودة
 
     // إعادة ضبط الخريطة عند مغادرة القسم
    if (map) {
         resetMap();
+    }
+ // ===== إخفاء الصورة والنصوص الترحيبية =====
+    const appIntro = document.getElementById("app-intro");
+    if (appIntro) {
+        appIntro.style.display = "none"; // إخفاء الصورة والنصوص
     }
 
   
@@ -358,6 +312,10 @@ function goToMainMenu() {
     if (welcomeMessage) {
         welcomeMessage.classList.remove("hidden"); // إظهار رسالة الترحيب
     }
+const appIntro = document.getElementById("app-intro");
+if (appIntro) {
+    appIntro.style.display = "flex"; // إظهار الصورة والنصوص
+}
 
     hideMainMenuButton(); // إخفاء زر العودة
 }
@@ -479,11 +437,23 @@ function showPrivacyPolicy() {
 function hidePrivacyPolicy() {
     const privacySection = document.getElementById("privacy-policy-section");
     if (privacySection) {
-        privacySection.classList.add("hidden"); // إخفاء القسم
+        privacySection.classList.add("hidden"); 
+      
+      
     }
 }
 
 
+
+function showCustomFeedback() {
+    hideAllSections(); // إخفاء جميع الأقسام
+    const feedbackSection = document.getElementById("feedback-section");
+    if (feedbackSection) {
+        feedbackSection.classList.remove("hidden"); // إظهار قسم المقترحات
+    } else {
+        console.error("Feedback section not found.");
+    }
+}
 
 
 
