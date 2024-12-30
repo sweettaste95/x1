@@ -1,66 +1,116 @@
-/*css*/
-/* الحاوية العامة للمحتويات */
+
+header#header-section {
+  position: fixed; /* تثبيت الهدر */
+  top: 0;
+  left: 0;
+  width: 100%; /* يغطي عرض الصفحة بالكامل */
+  height: 60px; /* ارتفاع الهدر */
+  background-color: #000; /* لون الخلفية */
+  color: white;
+  z-index: 1000; /* فوق جميع العناصر الأخرى */
+  display: flex;
+  justify-content: space-between; /* توزيع العناصر */
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+#app-intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* ملء الحاوية بالكامل */
+  text-align: center;
+  color: white; /* لون النص */
+  padding: 20px;
+}
+
+/* ===== الصورة الرئيسية ===== */
+#intro-image {
+  width: 80%; /* تجعل الصورة تحتل 80% من عرض الحاوية */
+  max-width: 600px; /* أقصى عرض للصورة */
+  height: auto; /* تحافظ على نسبة العرض إلى الارتفاع */
+  margin-bottom: 20px; /* مسافة بين الصورة والنص */
+  border-radius: 10px; /* زوايا دائرية للصورة */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* ظل جميل للصورة */
+}
+
+/* ===== النصوص الترحيبية ===== */
+#app-intro h2 {
+  font-size: 2rem; /* تكبير النص */
+  margin: 10px 0;
+}
+
+#app-intro p {
+  font-size: 1.2rem;
+  color: #ccc; /* لون النص الفاتح */
+}
+
+
+#welcome-message {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffffff; /* لون أبيض */
+    text-align: center;
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.3); /* خلفية شفافة داكنة */
+    border-radius: 10px; /* زوايا دائرية */
+    margin: 20px auto; /* مسافة من الأعلى والأسفل */
+    text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.8); /* تأثير الضوء */
+}
+
+
+
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700;
+    }
+    100% {
+        text-shadow: 0 0 20px #FFD700, 0 0 30px #FFD700;
+    }
+}
+
 .content-wrapper {
   width: 100%;
-  max-width: 1200px; /* أقصى عرض على الشاشات الكبيرة */
-  margin: 0 auto; /* توسيط الحاوية */
-    padding: 20px;
-    background-color: #ffffff; /* لون خلفية الحاوية */
-    color: #000; /* لون النص */
-    border-radius: 15px; /* زوايا دائرية */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* ظل للحاوية */
-    min-height: 300px; /* الحد الأدنى للارتفاع */
-    box-sizing: border-box;
-    overflow-y: auto; /* السماح بالتمرير الداخلي */
-}
-
-
-/* تخصيص النصوص داخل الحاوية */
-#dynamic-content {
-    font-size: 1.2rem;
-    color: #ffffff;
-    text-align: center;
-    margin-top: 20px;
-}
-#content-container {
-    background-image: url('https://github.com/sweettaste95/hilal-images/blob/main/signal-2024-11-09-092357_007.jpeg?raw=true');
-    background-size: cover; /* لتغطية الخلفية بالكامل */
-    background-position: center; /* توسيط الصورة */
-    background-repeat: no-repeat; /* عدم تكرار الخلفية */
-    color: white; /* لجعل النص أبيض للتباين */
-    border-radius: 10px; /* حواف دائرية */
-    padding: 20px; /* حشوة داخلية للمحتوى */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* ظل خفيف */
-    min-height: 300px; /* ارتفاع أدنى للكونتينر */
-}
-
-/* تنسيق الصفحة الرئيسية */
-body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            color: #fff;
-            text-align: center;
-  justify-content: center; /* محاذاة المحتوى أفقياً في المنتصف */
-    align-items: center; /* محاذاة المحتوى عمودياً في المنتصف */
-    min-height: 100vh; /* ضبط ارتفاع الصفحة ليكون بالكامل */
-      background: #000; /* لون خلفية عام */
-
-    
-    overflow-x: hidden; /* منع التحرك الأفقي */
-}
-  
-.menu-bar {
+  height: 100vh;
+  background: url('https://github.com/sweettaste95/hilal-images/blob/main/signal-2024-11-09-092357_007.jpeg?raw=true')
+              no-repeat center center fixed;
+  background-size: cover;
   display: flex;
-  justify-content: space-between; /* توزيع العناصر على الأطراف */
-  align-items: center;
-  padding: 10px 20px;
-  background-color: #000; /* لون الخلفية */
-  border-radius: 10px;
-  height: 60px; /* ارتفاع الشريط */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* ظل */
+  flex-direction: column;
+  justify-content: space-between;
 }
 
+/* ===== الصفحة الرئيسية ===== */
+/* ===== الصفحة الرئيسية ===== */
+body {
+   width: 100%;
+    height: 100%;
+    overflow-x: hidden; /* منع التمرير الأفقي */
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  text-align: center;
+  min-height: 100vh; /* ضمان أن تغطي الصفحة الشاشة بالكامل */
+  background: url('https://github.com/sweettaste95/hilal-images/blob/main/signal-2024-11-09-092357_007.jpeg?raw=true') 
+              no-repeat center center fixed; /* خلفية الصورة */
+  background-size: cover; /* تغطية كاملة للخلفية */
+  display: flex;
+  flex-direction: column; /* ترتيب المحتويات عموديًا */
+  justify-content: space-between; /* توزيع الهيدر والفوتر بشكل مناسب */
+  
+  
+  
+}
+
+
+  
+
+
+
+  
 .menu-bar .top-nav-buttons {
   display: flex;
   gap: 15px; /* مسافة بين الأزرار */
@@ -102,40 +152,31 @@ body {
 }
 
 #logo-container {
-  flex: 1; /* الشعار يأخذ حيز مركزي */
+  flex:60; /* الشعار يأخذ حيز مركزي */
   text-align: center;
 }
 
 
 #logo {
-  width: 80px; /* حجم الشعار */
+  width: 150px; /* حجم الشعار */
   height: auto;
 }
 
-/* زر القائمة على اليمين */
-#menu-toggle {
-  background-color: #004e92;
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
+
+
 /* ============================================================================================================== */
 /* القائمة المنسدلة للازرار  */
 
-/* تنسيق الميني بار */
+  
+
+/* ===== تصميم العناصر داخل الهدر ===== */
 .menu-bar {
-  display: flex;
-  justify-content: space-between; /* توزيع العناصر على الأطراف */
-  align-items: center;
   padding: 10px 20px;
-  background-color: #000; /* لون الخلفية */
-  border-radius: 10px;
   height: 60px; /* ارتفاع الشريط */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* ظل */
+  width: 100%; /* تجعل العناصر تأخذ عرض الهدر بالكامل */
+  display: flex;
+  justify-content: space-between; /* توزع العناصر على الأطراف */
+  align-items: center;
 }
 
 #menu-toggle {
@@ -403,16 +444,15 @@ hr {
 /*======================================================================
 /* select لجميع القوائم بالبرنامج تنسيق القائمة المنسدلة */
 /*=====================================================================*/
-
-.content-wrapper select,
-#dynamic-content select {
+/* تنسيق القوائم المنسدلة بشكل عام */
+select {
     display: block;
-    margin: 20px auto; /* توسيط */
-    padding: 10px; /* حشوة */
-    width: 50%; /* عرض محدد ليتناسب مع النتائج */
+    margin: 20px auto; /* توسيط العنصر */
+    padding: 10px; /* حشوة داخلية */
+    width: 50%; /* عرض مناسب */
     font-size: 1.1rem; /* حجم النص */
-    text-align: center; /* محاذاة النص */
-    border: 2px solid #005fbf; /* حدود زرقاء افتراضية */
+    text-align: center; /* توسيط النص داخل القائمة */
+    border: 2px solid #005fbf; /* حدود زرقاء */
     border-radius: 10px; /* زوايا دائرية */
     background-color: #fcfafc; /* خلفية رمادية فاتحة */
     color: #333; /* لون النص */
@@ -420,27 +460,43 @@ hr {
 }
 
 /* التأثير عند التحويم */
-.content-wrapper select:hover,
-#dynamic-content select:hover {
+select:hover {
     border-color: #8B008B; /* لون عنابي عند التحويم */
-    background-color: #f8f0fa; /* خلفية فاتحة أقرب للعنابي */
+    background-color: #f8f0fa; /* خلفية فاتحة */
 }
 
 /* التأثير عند التركيز */
-.content-wrapper select:focus,
-#dynamic-content select:focus {
+select:focus {
     border-color: #8B008B; /* لون عنابي عند التركيز */
     outline: none; /* إزالة الإطار الافتراضي */
     box-shadow: 0 0 5px rgba(139, 0, 139, 0.7); /* ظل عنابي خفيف */
 }
 
 /* تنسيق الخيارات داخل select */
-.content-wrapper select option,
-#dynamic-content select option {
+select option {
     font-weight: bold; /* جعل النص عريض */
     font-size: 1rem; /* حجم النص */
     color: #333; /* لون النص */
     background-color: #fff; /* خلفية بيضاء */
+}
+
+/* تحسين التنسيق للشاشات الكبيرة */
+@media (min-width: 1024px) {
+    select {
+        width: 40%; /* تقليل العرض للشاشات الكبيرة */
+    }
+}
+
+/* تحسين التنسيق داخل أقسام معينة إذا لزم الأمر */
+#dynamic-content select {
+    margin: 20px auto; /* توسيط العنصر */
+    padding: 12px; /* زيادة الحشوة */
+    width: 60%; /* عرض أكبر إذا كانت داخل أقسام معينة */
+}
+
+/* التأثير الخاص داخل الديناميكي */
+#dynamic-content select:hover {
+    border-color: #004e92; /* لون أزرق أغمق */
 }
 
 /*======================================================================
@@ -721,65 +777,73 @@ body {
 /* حقوق الطبع والنشر */ 
 /*===========================================================================*/
 
-/* تنسيق حاوية نموذج الملاحظات */
 #feedback-section {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: linear-gradient(135deg, #35004e, #001f5c);
+  position: relative;
+  margin: 20px auto; /* توسيط النموذج */
+  background: linear-gradient(135deg, #35004e, #001f5c); /* خلفية متدرجة */
   color: #ffffff;
-  width: 400px;
-  padding: 20px;
+  width: 90%; /* زيادة العرض إلى 90% من الكنتينر */
+  max-width: 700px; /* أقصى عرض */
+  padding: 30px; /* زيادة الحشوة الداخلية */
   border-radius: 15px;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5); /* ظل للنموذج */
   text-align: center;
-  z-index: 1000;
 }
 
-/* تنسيق الحقول */
+
+/* العنوان الرئيسي داخل النموذج */
+#feedback-section h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  text-align: center; /* توسيط العنوان في منتصف الفورم */
+}
+
+/* الحقول النصية */
 #feedbackSubject,
 #feedbackMessage {
-  width: 80%;
-  padding: 8px;
+  width: 95%; /* توسيع العرض */
+  padding: 10px;
   margin: 10px 0;
-  border: 1px solid #005fbf;
+  border: 1px solid #005fbf; /* إضافة الإطار */
   border-radius: 10px;
   font-size: 1rem;
   background: #ffffff;
   color: #333333;
+  text-align: right; /* محاذاة النصوص لليمين */
 }
 
-/* تنسيق الأزرار */
-.feedback-btn {
-  background-color: #2b9ce3; /* لون الخلفية */
-  color: #ffffff; /* لون النص */
-  padding: 10px 20px; /* حشوة داخلية */
-  font-size: 1rem; /* حجم النص */
-  border: none; /* إزالة الحدود */
-  border-radius: 10px; /* زوايا دائرية */
-  cursor: pointer; /* مؤشر التفاعل */
-  margin: 10px 5px; /* المسافة حول الزر */
-  transition: transform 0.2s, background-color 0.3s; /* تأثيرات التحريك */
-}
-.feedback-btn:hover {
-  background-color: #8623ad; /* لون عند التمرير */
-  transform: scale(1.05); /* تكبير الزر قليلاً */
+/* العناوين النصية */
+#feedback-section label {
+  text-align: right; /* محاذاة النصوص لليمين */
+  display: block;
+  font-size: 1rem; /* حجم مناسب */
+  margin-bottom: 5px;
 }
 
-.feedback-btn:active {
-  background-color: #1e7e34; /* لون عند الضغط */
-  transform: scale(0.95); /* تصغير الزر قليلاً */
-}
-/* إخفاء القسم */
-.hidden {
-  display: none;
+/* زر الإرسال وزر الإغلاق */
+.feedback-btn,
+.close-feedback-btn {
+  background-color: #2b9ce3;
+  color: #ffffff;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 10px 5px;
+  transition: transform 0.2s, background-color 0.3s;
 }
 
-/* تنسيق العناوين */
-#feedback-section h2 {
-  margin-bottom: 20px;
-  font-size: 1.5rem;
+.feedback-btn:hover,
+.close-feedback-btn:hover {
+  background-color: #8623ad;
+  transform: scale(1.05);
+}
+
+.feedback-btn:active,
+.close-feedback-btn:active {
+  background-color: #1e7e34;
+  transform: scale(0.95);
 }
 
 /*============================================================
@@ -2233,80 +2297,88 @@ h2 i.fa-chart-bar {
     cursor: not-allowed;
 }
 
-  /*==============================================================================
-  /* تنسيق زر الخصوصية 
-  /*==============================================================================
   
- /* تحسين مظهر سياسة الخصوصية */
+  /* الخصوووووووووووووووووووووصية  */
+
 #privacy-policy-section {
-  background-color: #fff6e6;
+  background: linear-gradient(135deg, #35004e, #001f5c); /* خلفية عنابية */
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* تحسين الظل */
   margin: 20px auto;
   width: 90%;
   max-width: 600px;
   text-align: right;
   direction: rtl;
+  color: #ffffff; /* لون النصوص */
+  border: 3px solid #ffffff; /* إطار خارجي أبيض */
 }
 
-/* تصميم العناوين */
+/* تصميم المربعات الداخلية */
 #privacy-policy-section h1, #privacy-policy-section h2 {
-  color: #004e92;
+  color: #35004e; /* لون النصوص عنابي */
   font-weight: bold;
   text-align: center;
-  background-color: rgba(0, 78, 146, 0.1);
+  background-color: #f2f2f2; /* لون قريب من الأبيض */
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 8px;
   margin-bottom: 15px;
+  border: 2px solid #35004e; /* إطار داخلي عنابي */
 }
 
 /* تصميم النصوص */
 #privacy-policy-section p {
-  color: #333;
+  color: #ffffff; /* لون النصوص أبيض */
   font-weight: bold;
   line-height: 1.6;
   text-align: justify;
+  margin-bottom: 15px;
 }
 
 /* تصميم الروابط */
 #privacy-policy-section .contact a {
-  color: #004e92;
+  color: #00bfff; /* لون أزرق فاتح */
   text-decoration: underline;
 }
 
 #privacy-policy-section .contact a:hover {
   text-decoration: none;
+  color: #ffcc00; /* لون مختلف عند التمرير */
 }
+
 /* تصميم زر الإغلاق */
 .close-btn {
-  position: absolute; /* موضعه داخل البطاقة */
-  top: 10px; /* المسافة من الأعلى */
-  right: 10px; /* المسافة من اليمين */
-  background-color: #004e92; /* لون الخلفية أزرق */
-  color: white; /* لون النص أبيض */
-  border: none; /* إزالة الحدود */
-  border-radius: 50%; /* جعل الزر دائري */
-  width: 30px; /* عرض الزر */
-  height: 30px; /* ارتفاع الزر */
-  font-size: 18px; /* حجم الخط */
-  cursor: pointer; /* إضافة مؤشر يد عند التمرير */
-  text-align: center; /* محاذاة النص داخل الزر */
-  line-height: 30px; /* محاذاة النص في المنتصف */
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #8623ad; /* لون الزر بنفس التدرج */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 30px;
 }
 
 .close-btn:hover {
-  background-color: #003366; /* تغيير اللون عند التمرير */
+  background-color: #5e1d85; /* تغيير اللون عند التمرير */
 }
+
+/* تحسين تصميم الإطار */
 .modal-content {
-  position: relative; /* هذا يحدد أن الزر سيكون داخل البطاقة */
-  background-color: #fff6e6; /* لون الخلفية فاتح */
+  position: relative;
+  background: linear-gradient(135deg, #35004e, #001f5c); /* نفس الخلفية */
   border-radius: 10px;
   padding: 20px;
   width: 90%;
   max-width: 600px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   text-align: right;
   direction: rtl;
-  border: 2px solid rgba(0, 78, 146, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.3); /* إطار شفاف */
   margin: auto;
+}
+
