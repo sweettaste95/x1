@@ -346,6 +346,68 @@ hr {
     font-weight: bold;
 }
 
+/* تحسين التنسيق للشاشات الكبيرة */
+@media screen and (min-width: 1024px) {
+  /* الهيدر */
+  header#header-section {
+    height: 70px; /* زيادة ارتفاع الهيدر */
+    padding: 0 40px; /* زيادة الحواف */
+  }
+
+  /* النصوص الترحيبية */
+  #app-intro h2 {
+    font-size: 2.5rem; /* تكبير النص */
+  }
+
+  #app-intro p {
+    font-size: 1.4rem; /* زيادة حجم النص */
+  }
+
+  #intro-image {
+    width: 60%; /* تقليل العرض إلى 60% */
+    max-width: 800px; /* زيادة الحد الأقصى للعرض */
+  }
+
+  /* المحتوى الديناميكي */
+  #dynamic-content {
+    max-width: 1400px; /* توسيع الحد الأقصى للحاوية */
+    padding: 40px; /* زيادة الحشوة الداخلية */
+  }
+
+  /* أزرار الهيدر */
+  .menu-bar .top-nav-buttons a {
+    font-size: 1rem; /* زيادة حجم النص */
+    padding: 10px 15px; /* زيادة الحواف */
+  }
+
+  /* القائمة المنسدلة */
+  #menu-content {
+    width: 300px; /* زيادة عرض القائمة */
+  }
+
+  /* الرسالة الترحيبية */
+  #welcome-message {
+    font-size: 2.5rem; /* تكبير حجم النص */
+    padding: 15px 30px; /* زيادة الحواف */
+  }
+
+  /* شريط الماركيه */
+  .marquee-content {
+    gap: 30px; /* زيادة المسافة بين العناصر */
+    font-size: 1.2rem; /* تحسين حجم النص */
+  }
+
+  /* النصوص داخل الماركيه */
+  .marquee-content span {
+    font-size: 1.2rem;
+  }
+
+  /* القوائم والأزرار */
+  #menu-content button {
+    font-size: 16px; /* تكبير النص */
+    padding: 12px; /* زيادة الحشوة الداخلية */
+  }
+
 
 
 /*============================================================================
