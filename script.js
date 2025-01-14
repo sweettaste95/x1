@@ -1,2087 +1,565 @@
 
 
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js')
-            .then((registration) => {
-                console.log('Service Worker registered with scope:', registration.scope);
-            })
-            .catch((error) => {
-                console.log('Service Worker registration failed:', error);
-            });
+
+const googleSheetURL = "https://script.google.com/macros/s/AKfycbzvHbZnVRWDv0yDMoWMEDhrUBmwNI_890WfWZFYDN0Rx7l2AzJX3sq_dQz9cFtkbghW/exec";
+
+let sessionTimer;
+let countdownTimer;
+/* 
+دالة initializeApp
+تقوم بتحديد حالة المستخدم (مسجل دخول أو غير مسجل) وتعرض الشاشة المناسبة بناءً على حالته.
+*/
+function initializeApp() {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const toggleButton = document.getElementById("menu-toggle");
+    if (storedUser) {
+        showWelcomeScreen(storedUser);
+        if (toggleButton) toggleButton.style.display = "inline-block";
+    } else {
+        showRegisterScreen();
+        if (toggleButton) toggleButton.style.display = "none"; // إخفاء زر الميني بار عند الإقلاع إذا لم يكن المستخدم مسجلاً
+    }
+}
+
+
+/* 
+دالة showWelcomeScreen
+تعرض شاشة الترحيب عند تسجيل الدخول بنجاح وتقوم بتهيئة الميني بار وزر تسجيل الخروج.
+*/
+function showWelcomeScreen(user) {
+    document.getElementById("welcome-screen").style.display = "block";
+    document.getElementById("register-screen").style.display = "none";
+    document.getElementById("logout-btn").style.display = "inline-block";
+
+    const toggleButton = document.getElementById("menu-toggle");
+    if (toggleButton) toggleButton.style.display = "inline-block"; // إظهار زر الميني بار
+
+    const minibar = document.getElementById("minibar");
+    if (minibar) minibar.style.display = "block";
+
+    startSessionTimer(); // إعادة بدء مؤقت الجلسة
+}
+
+
+/* 
+دالة showRegisterScreen
+تعرض شاشة التسجيل إذا لم يكن المستخدم مسجل دخول وتقوم بإخفاء الأزرار غير الضرورية.
+*/
+function showRegisterScreen() {
+    document.getElementById("register-screen").style.display = "block";
+    document.getElementById("welcome-screen").style.display = "none";
+    document.getElementById("logout-btn").style.display = "none";
+
+    const toggleButton = document.getElementById("menu-toggle");
+    if (toggleButton) toggleButton.style.display = "none"; // إخفاء زر الميني بار
+}
+/* 
+دالة startSessionTimer
+تقوم بتشغيل عداد الجلسة (5 دقائق) وعند انتهائه يتم تسجيل الخروج تلقائيًا.
+*/
+/* دالة startSessionTimer */
+function startSessionTimer() {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const adminEmail = "Abunowaf@outlook.com";
+
+    // إذا كان المستخدم الحالي هو الإدمن، استثناء من تسجيل الخروج
+    if (storedUser && storedUser.email === adminEmail) {
+        console.log("الإدمن مسجل دخول، تم استثناؤه من تسجيل الخروج التلقائي.");
+        return;
+    }
+
+    // إلغاء أي مؤقت جلسة سابق
+    if (sessionTimer) clearTimeout(sessionTimer);
+
+    // إعداد مؤقت الجلسة
+    sessionTimer = setTimeout(() => {
+        const timerElement = document.getElementById("timer");
+        let countdown = 10; // عدد الثواني للعد التنازلي
+
+        if (timerElement) {
+            timerElement.style.display = "block"; // إظهار العداد
+            timerElement.textContent = `سيتم تسجيل خروجك بعد ${countdown} ثوانٍ...`;
+        }
+        // بدء العد التنازلي
+        countdownTimer = setInterval(() => {
+            countdown--;
+
+            if (timerElement) {
+                timerElement.textContent = `سيتم تسجيل خروجك بعد ${countdown} ثوانٍ...`;
+            }
+
+            if (countdown === 0) {
+                clearInterval(countdownTimer); // إلغاء العد التنازلي
+                if (timerElement) timerElement.style.display = "none"; // إخفاء العداد
+                logoutUser(); // تسجيل الخروج بعد انتهاء العداد
+            }
+        }, 1000);
+    }, 5 * 60 * 1000); // 5 دقائق من عدم النشاط
+}
+
+/* 
+دالة logoutUser
+تقوم بتسجيل خروج المستخدم وإعادة تعيين حالة البرنامج وإخفاء جميع العناصر المرتبطة بالمستخدم.
+*/
+// تعديل logoutUser للتأكد من إعادة تعيين الحالة بالكامل
+ function logoutUser() {
+    const minibar = document.getElementById("minibar");
+    const overlay = document.getElementById("overlay");
+    const toggleButton = document.getElementById("menu-toggle");
+    const logoutButton = document.getElementById("logout-btn");
+
+    localStorage.removeItem("user");
+
+    // إعادة ضبط الشاشات
+    document.getElementById("register-screen").style.display = "block";
+    document.getElementById("welcome-screen").style.display = "none";
+
+    // مسح محتوى التتويجات
+    const mainContent = document.getElementById("main-content");
+    mainContent.style.display = "none";
+    mainContent.innerHTML = "";
+
+    // إعادة إخفاء الأزرار والعناصر
+    if (minibar) {
+        minibar.classList.remove("open");
+        minibar.style.display = "none";
+    }
+    if (overlay) overlay.classList.remove("show");
+    if (toggleButton) toggleButton.style.display = "none";
+    if (logoutButton) logoutButton.style.display = "none";
+
+    alert("تم تسجيل خروجك بنجاح.");
+}
+
+/* 
+دالة registerUser
+تقوم بتسجيل مستخدم جديد عن طريق التحقق من البيانات وإرسالها إلى Google Sheets.
+*/
+function registerUser() {
+    const name = document.getElementById("user-name").value.trim();
+    const email = document.getElementById("user-email").value.trim();
+    const registerButton = document.getElementById("register-btn");
+
+    // إخفاء رسائل الخطأ أولاً
+    clearErrors();
+
+    // التحقق من المدخلات
+    let hasError = false;
+    if (!name) {
+        showError("user-name", "يرجى إدخال اسم المستخدم (مثال: Ali123).");
+        hasError = true;
+    }
+    if (!isValidEmail(email)) {
+        showError("user-email", "يرجى إدخال بريد إلكتروني صحيح (مثال: example@example.com).");
+        hasError = true;
+    }
+
+    if (hasError) return; // إذا كان هناك خطأ، لا تكمل العملية
+
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+
+    // إذا كان المستخدم موجودًا مسبقًا
+    if (storedUser && storedUser.name === name && storedUser.email === email) {
+        alert(`مرحبًا بعودتك، ${name}!`);
+        showWelcomeScreen(storedUser);
+        return;
+    }
+/* 
+دالة showError
+تقوم بعرض رسالة خطأ بجانب الحقل المحدد.
+*/
+function showError(fieldId, message) {
+    const errorElement = document.getElementById(`${fieldId}-error`);
+    errorElement.textContent = message;
+    errorElement.style.display = "block";
+}
+
+/* 
+دالة clearErrors
+تقوم بإخفاء جميع رسائل الخطأ.
+*/
+function clearErrors() {
+    const errorMessages = document.querySelectorAll(".error-message");
+    errorMessages.forEach((error) => {
+        error.textContent = "";
+        error.style.display = "none";
     });
 }
 
-
-
-document.addEventListener("DOMContentLoaded", () => {
-    initializeApp();
-      fetchChampionshipData();
-
-});
-
-function initializeApp() {
-    // التحقق من المستخدم المسجل
-    const registeredUUID = localStorage.getItem("userUUID");
-    const registerScreen = document.getElementById("register-screen");
-    const overlay = document.getElementById("overlay");
-    const mainButtons = document.getElementById("main-buttons");
-
-    if (registeredUUID) {
-        toggleVisibility(registerScreen, "hide");
-        toggleVisibility(overlay, "hide");
-        toggleVisibility(mainButtons, "show");
-    } else {
-        toggleVisibility(registerScreen, "show");
-        toggleVisibility(overlay, "show");
-        toggleVisibility(mainButtons, "hide");
-    }
-
-   
-    // التحقق من الآدمن
-    const adminEmail = "Abunowaf@outlook.com";
-    const registeredEmails = JSON.parse(localStorage.getItem("registeredEmails") || "[]");
-    const userEmail = registeredEmails[0];
-
-    if (userEmail !== adminEmail) {
-        const sendLastMatchButton = document.getElementById("send-last-match");
-        const telegramSendButton = document.getElementById("telegram-send-btn");
-
-        if (sendLastMatchButton) sendLastMatchButton.style.display = "none";
-        if (telegramSendButton) telegramSendButton.style.display = "none";
-    }
-
-    // تحديث رسالة الترحيب
-    showWelcomeMessage();
-
-    // إضافة الشريط النصي
-    const marquee = document.getElementById("info-content");
-    if (marquee) {
-        marquee.textContent = "جاري البحث عن آخر مباراة...";
-    }
-}
-
-function registerUser() {
-    const name = document.getElementById("user-name").value;
-    const email = document.getElementById("user-email").value;
-    const registerButton = document.getElementById("register-btn");
+    // إذا كان المستخدم جديدًا
     const uuid = generateUUID();
-    const timestamp = new Date().toISOString();
-
-    // منع النقر المتكرر على الزر
     registerButton.disabled = true;
     registerButton.textContent = "جاري التسجيل...";
 
-    if (!name || !email) {
-        alert("يرجى إدخال الاسم والبريد الإلكتروني.");
-        registerButton.disabled = false;
-        registerButton.textContent = "تسجيل";
-        return;
-    }
-
-    if (isEmailRegistered(email)) {
-        alert("هذا البريد الإلكتروني مسجل بالفعل.");
-        toggleVisibility(document.getElementById("register-screen"), "hide");
-        toggleVisibility(document.getElementById("overlay"), "hide");
-        toggleVisibility(document.getElementById("main-buttons"), "show");
-        registerButton.disabled = false;
-        registerButton.textContent = "تسجيل";
-        return;
-    }
-
-    // إرسال البيانات إلى Google Sheets وحفظها في Local Storage
     fetch(googleSheetURL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, uuid, timestamp }),
+        body: JSON.stringify({ name, email, uuid }),
         mode: "no-cors"
     })
         .then(() => {
-            alert("تم التسجيل بنجاح!");
-
-            // حفظ البيانات في Local Storage
-            const registeredEmails = JSON.parse(localStorage.getItem("registeredEmails")) || [];
-            registeredEmails.push(email);
-            localStorage.setItem("registeredEmails", JSON.stringify(registeredEmails));
-            localStorage.setItem("userUUID", uuid);
-            localStorage.setItem("username", name); // حفظ الاسم
-
-            // تحديث واجهة المستخدم
-            const welcomeMessage = document.getElementById("welcome-message");
-            if (welcomeMessage) {
-                welcomeMessage.textContent = `مرحبًا بك يا زعيــم ${name}`;
-            }
-
-            toggleVisibility(document.getElementById("register-screen"), "hide");
-            toggleVisibility(document.getElementById("overlay"), "hide");
-            toggleVisibility(document.getElementById("main-buttons"), "show");
+            const user = { name, email, uuid };
+            localStorage.setItem("user", JSON.stringify(user));
+            alert("تم تسجيلك بنجاح!");
+            showWelcomeScreen(user);
         })
-        .catch(error => {
-            console.error("Error:", error);
-            alert("حدث خطأ أثناء التسجيل. حاول مرة أخرى.");
-        })
+        .catch(() => alert("حدث خطأ أثناء التسجيل. حاول مرة أخرى."))
         .finally(() => {
             registerButton.disabled = false;
             registerButton.textContent = "تسجيل";
         });
 }
 
-
-// دالة مساعدة لإظهار أو إخفاء العناصر
-function toggleVisibility(element, action) {
-    if (element) {
-        if (action === "show") {
-            element.classList.remove("hidden");
-        } else if (action === "hide") {
-            element.classList.add("hidden");
-        }
-    }
+/* 
+دالة isValidEmail
+تتحقق من صحة عنوان البريد الإلكتروني باستخدام تعبير منتظم.
+*/
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
 }
 
-function showWelcomeMessage() {
-    const username = localStorage.getItem("username"); // جلب اسم المستخدم من localStorage
-    const welcomeMessageElement = document.getElementById("welcome-message");
 
-    if (welcomeMessageElement) {
-        if (username) {
-            // عند وجود اسم المستخدم
-            welcomeMessageElement.innerHTML = `مرحبًا بك يا زعيــم ${username} <i class="fas fa-trophy" style="color: gold;"></i> <i class="fas fa-smile" style="color: #f9d71c;"></i>`;
-        } else {
-            // عند عدم وجود اسم المستخدم
-            welcomeMessageElement.innerHTML = `مرحباً بك يا زعيــم <i class="fas fa-trophy" style="color: gold;"></i> <i class="fas fa-smile" style="color: #f9d71c;"></i>`;
-        }
-    }
-}
-
-// دالة للتحقق مما إذا كان البريد الإلكتروني مسجلًا مسبقًا
-function isEmailRegistered(email) {
-    const registeredEmails = JSON.parse(localStorage.getItem("registeredEmails")) || [];
-    return registeredEmails.includes(email);
-}
-
-// دالة لتوليد UUID فريد لكل مستخدم
+/* 
+دالة generateUUID
+تقوم بإنشاء معرف فريد عالمي (UUID) لتحديد كل مستخدم.
+*/
 function generateUUID() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-        const r = Math.random() * 16 | 0;
-        const v = c === 'x' ? r : (r & 0x3 | 0x8);
+        const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
         return v.toString(16);
     });
 }
 
-// تأكد أن الكود يتم تنفيذه بعد تحميل الصفحة بالكامل
-// الجافا سكريبت للتحكم في القائمة
-    document.addEventListener("DOMContentLoaded", () => {
-      const menuToggle = document.getElementById("menu-toggle");
-      const menuContent = document.getElementById("menu-content");
 
-      // تأكد من أن القائمة مغلقة عند التحميل
-      menuContent.classList.remove("active");
+/* 
+دالة openContent
+تعرض محتوى معين في القسم الرئيسي بناءً على الزر الذي ضغط عليه المستخدم.
+*/
+function openContent(content) {
+    clearContent(); // مسح المحتوى السابق
 
-      // فتح وغلق القائمة عند الضغط على الميني بار
-      menuToggle.addEventListener("click", () => {
-        menuContent.classList.toggle("active");
-      });
+    const mainContent = document.getElementById("main-content");
+    const welcomeScreen = document.getElementById("welcome-screen");
+    mainContent.style.display = "block";
+    welcomeScreen.style.display = "none";
 
-      // إغلاق القائمة عند الضغط على أي زر داخلها
-      const menuButtons = menuContent.querySelectorAll("button");
-      menuButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-          menuContent.classList.remove("active");
-        });
-      });
+    // إضافة المحتوى الجديد
+    mainContent.innerHTML = `<h2>${content}</h2><p>مرحبًا بك في قسم ${content}!</p>`;
+    toggleMinibar(); // إغلاق الميني بار بعد اختيار المحتوى
+}
+
+
+
+
+
+/* 
+دالة toggleMinibar
+تتحكم في فتح وإغلاق الميني بار.
+*/
+function toggleMinibar() {
+    const minibar = document.getElementById("minibar");
+    const overlay = document.getElementById("overlay");
+    const welcomeScreen = document.getElementById("welcome-screen");
+
+    minibar.classList.toggle("open");
+    if (minibar.classList.contains("open")) {
+        overlay.classList.add("show");
+        document.body.style.overflow = "hidden";
+        welcomeScreen.style.display = "none"; // إخفاء الترحيب عند فتح الميني بار
+    } else {
+        overlay.classList.remove("show");
+        document.body.style.overflow = "";
+        const mainContent = document.getElementById("main-content");
+        if (!mainContent.innerHTML.trim()) {
+            // إذا لم يتم اختيار محتوى
+            welcomeScreen.style.display = "block";
+        }
+    }
+}
+
+
+// إغلاق الميني بار عند الضغط على أي زر داخله.
+document.querySelectorAll(".minibar-buttons button").forEach(button => {
+    button.addEventListener("click", () => {
+        const minibar = document.getElementById("minibar");
+        const overlay = document.getElementById("overlay");
+
+        minibar.classList.remove("open");
+        overlay.classList.remove("show");
+        document.body.style.overflow = ""; // استعادة التمرير
     });
-
-   
-// رابط Google Apps Script للإرسال
-const googleSheetURL = "https://script.google.com/macros/s/AKfycbxyqMTKxHwD370QTyACURrHE27L_KyUXH7Z3EmhcHJoNYM-g0oww6vgSyxa38kkWhhv/exec";
-
-
-// بيانات البطولات حسب المسابقة
-const championshipsByCompetition = {
-    "كأس الملك": [1962, 1965, 1980, 1982, 1984, 1989, 2015, 2017, 2020, 2023, 2024],
-    "الدوري الممتاز": [1977, 1979, 1985, 1986, 1988, 1990, 1996, 1998, 2000, 2005, 2008, 2010, 2011, 2017, 2018, 2020, 2021, 2022, 2024],
-    "كأس ولي العهد": [1965, 1995, 2000, 2003, 2005, 2006, 2008, 2009, 2010, 2011, 2012, 2013, 2016],
-    "دوري أبطال آسيا": [ 1991, 1996, 1997, 2000 ,2000, 2002, 2019, 2021],
-    "كأس الاتحاد السعودي": [ 1986, 1989, 1993, 1995, 1999, 2005],
-    "كأس السوبر السعودي": [2015, 2018, 2021, 2023, 2024],
-    "كأس المؤسس": [2000],
-    "بطولة الأندية العربية أبطال الدوري": [1994, 1995, 2000, 2001],
-    "كأس الأندية الخليجية": [1986, 1998],
-    "كأس السوبر السعودي المصري": [2001],
-};
-  
-// ====== إدارة زر العودة ======
-function showMainMenuButton() {
-    const mainMenuButton = document.getElementById("main-menu-btn");
-    if (mainMenuButton) {
-        mainMenuButton.classList.remove("hidden");
-    }
-}
-
-
-function hideMainMenuButton() {
-    const mainMenuButton = document.getElementById("main-menu-btn");
-    if (mainMenuButton) {
-        mainMenuButton.classList.add("hidden");
-    }
-}
-
-// ====== دالة لإخفاء جميع الأقسام ======
-function hideAllSections() {// ====== دالة لإخفاء جميع الأقسام ======
-    document.getElementById("competition-search").classList.add("hidden");
-    document.querySelector(".timeline-container").classList.add("hidden");
-    document.getElementById("youtube-videos").classList.add("hidden");
-    document.getElementById("championship-details").classList.add("hidden");
-    document.getElementById("championship-info").classList.add("hidden");
-    document.getElementById("managers-section").classList.add("hidden");
-    document.getElementById("hilal-map-section").classList.add("hidden");
-   document.getElementById("fifa-world-cup-section").classList.add("hidden"); 
-  
-  
-    document.getElementById("today-event-section").classList.add("hidden");
-    document.getElementById("youtube-videos").innerHTML = ""; 
-  
-  
-    // إخفاء جدول المواجهات وأزرار التصفية
-    document.getElementById("team-stats-section").classList.add("hidden");
-    document.getElementById("team-stats-table").classList.add("hidden");
-    document.getElementById("team-matches-stats").classList.add("hidden");
-    document.getElementById("team-stats").innerHTML = ""; // تنظيف الإحصائيات
-
-   /// إخفاء قسم "حسميات الدوري"
-    document.getElementById("year-stats-section").classList.add("hidden");
-    document.getElementById("year-stats-table").classList.add("hidden");
-    document.getElementById("year-matches-stats").classList.add("hidden");
-
-   // إخفاء سياسة الخصوصية
-    const privacySection = document.getElementById("privacy-policy-section");
-    if (privacySection) {
-        privacySection.classList.add("hidden");
-    }
-
-    // تنظيف محتويات الجدول والإحصائيات
-    document.getElementById("year-stats-tbody").innerHTML = ""; // تنظيف محتوى الجدول
-    document.getElementById("year-stats").innerHTML = "";       // تنظيف الإحصائيات
-    document.getElementById("year-stats-select").value = "";    // إعادة تعيين قيمة القائمة المنسدلة
-
-    document.getElementById("upcoming-matches-section").classList.add("hidden");
-    
-    document.getElementById("team-players-section").classList.add("hidden");
-  
-   document.getElementById("feedback-section").classList.add("hidden"); // إخفاء القسم الجديد
-
-    hidePagination(); // إخفاء أزرار التنقل بين الصفحات
-    hideMainMenuButton(); // إخفاء زر العودة
-
-    // إعادة ضبط الخريطة عند مغادرة القسم
-   if (map) {
-        resetMap();
-    }
- // ===== إخفاء الصورة والنصوص الترحيبية =====
-    const appIntro = document.getElementById("app-intro");
-    if (appIntro) {
-        appIntro.style.display = "none"; // إخفاء الصورة والنصوص
-    }
-
-  
-  
-    // إعادة لون زر البحث إلى الأزرق الافتراضي عند مغادرة الخريطة
-    const searchButton = document.getElementById("search-btn");
-    searchButton.classList.remove("highlighted");
-
-    // إزالة بطاقة الإحصائيات إذا كانت موجودة
-    const statsPopup = document.querySelector(".stats-popup");
-    if (statsPopup) {
-        statsPopup.remove();
-    }
-}
-
-
-
-  
-  
-   
-
-
-// ====== دالة العودة إلى الشاشة الرئيسية ======
-
-function goToMainMenu() {
-    hideAllSections(); // إخفاء جميع الأقسام
-
-    const welcomeMessage = document.getElementById("welcome-message");
-    if (welcomeMessage) {
-        welcomeMessage.classList.remove("hidden"); // إظهار رسالة الترحيب
-    }
-const appIntro = document.getElementById("app-intro");
-if (appIntro) {
-    appIntro.style.display = "flex"; // إظهار الصورة والنصوص
-}
-
-    hideMainMenuButton(); // إخفاء زر العودة
-}
-
-
-
-
-
-
-// ====== عرض الأقسام المختلفة ======
-
-// عرض قسم البحث حسب المسابقة
-function showCompetitionSearch() {
-    hideAllSections();
-    document.getElementById("competition-select").selectedIndex = 0; // إعادة تعيين القائمة
-    document.getElementById("competition-results").innerHTML = ""; // تنظيف النتائج
-    document.getElementById("competition-search").classList.remove("hidden");
-    showMainMenuButton(); // إظهار زر العودة
-}
-
-// عرض قسم التتويجات
-function showTimeline() {
-    hideAllSections();
-    document.querySelector(".timeline-container").classList.remove("hidden");
-    document.getElementById("year-select").selectedIndex = 0; // إعادة تعيين القائمة
-    document.getElementById("championship-details").innerHTML = ""; // تنظيف تفاصيل البطولات
-    document.getElementById("championship-info").classList.add("hidden");
-    showMainMenuButton(); // إظهار زر العودة
-}
-
-
-// عرض قسم مقاطع يوتيوب
-function showYouTubeVideos() {
-    hideAllSections();
-    document.getElementById("youtube-videos").classList.remove("hidden");
-    fetchYouTubeVideos(); // جلب بيانات الفيديوهات
-    showMainMenuButton(); // إظهار زر العودة
-}
-
-// عرض قسم المدراء
-function showManagers() {
-    hideAllSections();
-    fetchManagersData((data) => {
-        managers = data;
-        currentManagerIndex = 0; // إعادة تعيين المؤشر
-        displayManager(currentManagerIndex); // عرض أول مدير
-        document.getElementById("managers-section").classList.remove("hidden");
-        showMainMenuButton(); // إظهار زر العودة
-    });
-}
-
-
-
-// دالة لعرض قسم الخريطة
-function showHilalMap() {
-    hideAllSections(); // إخفاء الأقسام الأخرى
-    document.getElementById("hilal-map-section").classList.remove("hidden"); // عرض قسم الخريطة
-    showMainMenuButton(); // إظهار زر العودة
-
-    if (!map) {
-        initializeMap(); // تهيئة الخريطة إذا لم يتم تهيئتها مسبقًا
-    } else {
-        resetMap(); // إعادة الخريطة للوضع الافتراضي
-    }
-}
-
- 
-
-
-// ====== دالة لعرض قسم كأس العالم ======
-function showFifaWorldCup() {
-    hideAllSections(); // إخفاء جميع الأقسام
-    const fifaSection = document.getElementById("fifa-world-cup-section");
-    fifaSection.classList.remove("hidden"); // عرض قسم كأس العالم
-
-    // جلب البيانات الخاصة بكأس العالم
-    fetch(fifaWorldCupUrl)
-        .then(response => {
-            if (!response.ok) throw new Error("Network response was not ok");
-            return response.text();
-        })
-         .then(data => {
-            const parsedData = Papa.parse(data, { header: true }).data; // تحويل CSV إلى كائن
-            console.log("Parsed Data:", parsedData); // تأكيد البيانات
-            renderFifaWorldCup(parsedData);
-        })
-        .catch(error => console.error("Error fetching World Cup data:", error));
-
-    showMainMenuButton(); // إظهار زر العودة
-}
-
-
-// إعادة العرض إلى الشاشة الرئيسية
-function resetView() {
-    hideAllSections();
-    document.getElementById("main-buttons").classList.remove("hidden");
-}
-
-// العودة إلى قائمة البطولات داخل التتويجات 
-function backToList() {
-    document.getElementById("championship-info").classList.add("hidden");
-    document.getElementById("championship-details").classList.remove("hidden");
-}
-
-// =============================================================================
-// داله السياسة و الخصوصية 
-//==================================================================================
-function showPrivacyPolicy() {
-    // إخفاء جميع الأقسام الأخرى
-    hideAllSections();
-
-    // إظهار قسم سياسة الخصوصية
-    const privacySection = document.getElementById("privacy-policy-section");
-    if (privacySection) {
-        privacySection.classList.remove("hidden");
-    }
-}
-
-function hidePrivacyPolicy() {
-    const privacySection = document.getElementById("privacy-policy-section");
-    if (privacySection) {
-        privacySection.classList.add("hidden"); 
-      
-      
-    }
-}
-
-
-
-function showCustomFeedback() {
-    hideAllSections(); // إخفاء جميع الأقسام
-    const feedbackSection = document.getElementById("feedback-section");
-    if (feedbackSection) {
-        feedbackSection.classList.remove("hidden"); // إظهار قسم المقترحات
-    } else {
-        console.error("Feedback section not found.");
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function showChampionshipDetails(year) {
-    if (year) {
-        showChampionshipsByYear(year);
-    } else {
-        document.getElementById("championship-details").innerHTML = "<p>يرجى اختيار سنة لعرض البطولات.</p>";
-    }
-}
-// تعبئة القائمة المنسدله باسماء المسابقات
-
-const competitionSelect = document.getElementById("competition-select");
-Object.keys(championshipsByCompetition).forEach(competition => {
-    const option = document.createElement("option");
-    option.value = competition;
-    option.textContent = competition;
-    competitionSelect.appendChild(option);
 });
 
+// تعديل دالة showWelcomeScreen لمنع تشغيل العداد مباشرة
+function showWelcomeScreen(user) {
+    const welcomeMessage = document.querySelector(".welcome-title");
+    welcomeMessage.textContent = `مرحبًا بك يا ${user.name} في تطبيق نادي الهلال!`;
 
+    // إظهار شاشة الترحيب
+    document.getElementById("welcome-screen").style.display = "block";
+    document.getElementById("register-screen").style.display = "none";
 
+    // إظهار زر تسجيل الخروج وزر الميني بار
+    document.getElementById("logout-btn").style.display = "inline-block";
+document.getElementById("menu-toggle").style.display = "inline-block";
 
+    // إعادة تمكين الميني بار
+    const minibar = document.getElementById("minibar");
+    minibar.style.display = "block";
 
+    // إعادة ضبط مؤقت الجلسة
+    clearTimeout(sessionTimer);
+    clearInterval(countdownTimer);
 
+    // لا يتم استدعاء العداد إلا بعد 5 دقائق من الخمول
+    startSessionTimer();
+}
+function clearContent() {
+    const mainContent = document.getElementById("main-content");
+    const welcomeScreen = document.getElementById("welcome-screen");
+    
+    // تنظيف جميع الأقسام
+    mainContent.innerHTML = ""; // حذف المحتوى السابق
+    mainContent.style.display = "none"; // إخفاء المحتوى الرئيسي
+    welcomeScreen.style.display = "none"; // إخفاء شاشة الترحيب
+}
 
-function searchByCompetition() {
-    const competition = document.getElementById("competition-select").value;
-    const results = document.getElementById("competition-results");
-    results.innerHTML = ""; // تنظيف النتائج السابقة
+function addHomeButton() {
+    const mainContent = document.getElementById("main-content");
+    const backButton = document.createElement("button");
+    backButton.textContent = "الرجوع إلى الصفحة الرئيسية";
+    backButton.classList.add("back-to-home-btn");
+    backButton.addEventListener("click", () => {
+        clearContent(); // تنظيف المحتوى
+        showWelcomeScreen(JSON.parse(localStorage.getItem("user"))); // عرض شاشة الترحيب
+    });
+    mainContent.appendChild(backButton);
+}
 
-    if (competition && championshipsByCompetition[competition]) {
-        // إضافة جميع البطولات حسب السنة
-        championshipsByCompetition[competition].forEach(year => {
-            const p = document.createElement("p");
-            p.innerHTML = `<i class="fas fa-trophy"></i> عام ${year}`; // إضافة أيقونة الكأس
-            results.appendChild(p);
-        });
+function handleButtonClick(event) {
+    const contentType = event.target.getAttribute("data-content");
+    const mainContent = document.getElementById("main-content");
 
-        // **إضافة هذه الأسطر في هذا المكان**
-        // إضافة كلمة المجموعة وعدد البطولات في النهاية
-        const groupInfo = document.createElement("p");
-        groupInfo.style.fontWeight = "bold";
-        groupInfo.style.marginTop = "15px";
-        groupInfo.style.color = "#FFFFFF"; // لون النص
-        groupInfo.style.backgroundColor = "#005fbf"; // لون الخلفية
-        groupInfo.style.padding = "10px"; // حشوة داخلية
-        groupInfo.style.borderRadius = "8px"; // زوايا دائرية
-        groupInfo.innerHTML = `حقق الهلال  : ${championshipsByCompetition[competition].length} بطــولة`;
-        results.appendChild(groupInfo);
+    // مسح المحتوى السابق
+    clearContent();
 
-    } else {
-        results.innerHTML = "<p>لم يتم العثور على بطولات لهذه المسابقة.</p>";
+    switch (contentType) {
+        case "championships":
+            openChampionships(); // فتح قسم التتويجات
+            break;
+        case "team-players":
+            openTeamPlayers(); // فتح قسم الفريق الأول
+            break;
+        case "team-matches":
+        openTeamMatches(); // فتح قسم المواجهات
+        break;
+        case "competitions":
+            mainContent.innerHTML = `<h2>⭐ المسابقات</h2><p>مرحبًا بك في قسم المسابقات!</p>`;
+            break;
+        case "youtube":
+            mainContent.innerHTML = `<h2>📹 اليوتيوب</h2><p>مرحبًا بك في قسم اليوتيوب!</p>`;
+            break;
+         case "year-stats": // حالة زر حسميات الدوري
+            openYearStats(); 
+            break;
+         case "today-events": // حالة زر "في مثل هذا اليوم"
+            openTodayEvents(); // فتح قسم "في مثل هذا اليوم"
+            break;
+        case "managers":
+            openManagers(); // فتح قسم المدراء
+            break;
+       case "youtube-videos":
+    openYouTubeVideos();
+    break;
+       case "world-cup":
+    openWorldCup(); // دالة عرض قسم كأس العالم
+    break;
+ 
+
+        default:
+            mainContent.innerHTML = `<h2>محتوى غير معروف</h2>`;
     }
+
+    addHomeButton(); // إضافة زر الرجوع إلى الصفحة الرئيسية
+    mainContent.style.display = "block"; // عرض المحتوى
+    toggleMinibar(); // إغلاق الميني بار
 }
 
 
 
 
+//============================================================================================================================================
 
-function resetSearch() {
-    document.getElementById("competition-search").classList.add("hidden");
-    document.getElementById("year-input").value = "";
-    document.getElementById("year-results").innerHTML = "";
-    document.getElementById("competition-results").innerHTML = "";
-    document.querySelector(".timeline-container").classList.add("hidden");
+//============================================================================================================================================
+// المتغيرات العامة والثابتة
 
-    document.getElementById("championship-details").classList.add("hidden");
-    document.getElementById("championship-info").classList.add("hidden");
-}
-
-// المعرفات المطلوبة لـ Google Sheets
+// معرف Google Sheets
 const ConsentSheetID = "1ksZhTi3JW4QP5MOk8fcWnUCeXbmTqpXW4BLxLaHtmc8";
-const championshipsSheet = "Sheet2";
-const youtubeVideosSheet = "YouTubeVideos";
-const ConsentChampionsLeagueSheet2 = "champcount";
-const pastGamesSheet = "PastGames";
-const managersSheet = "manger"; 
+
+// أسماء الشيتات
+const SHEET_CHAMPIONSHIPS = "Sheet2"; // شيت التتويجات
+const SHEET_PLAYERS = "player"; // شيت الفريق الأول
+const SHEET_PAST_GAMES = "PastGames"; // شيت المواجهات
+const managersSheet = "manger";
+const todayEventSheet = "today-event";
 const mapsSheet = "MAPS";  
 const fifaWorldCupSheet = "WorldCupParticipation";
-const todayEventSheet = "today-event";
-const upcomingMatchesSheet = "UpcomingMatches"; // إضافة هذا السطر
-const teamPlayersSheet = "player"; // شيت الفريق الأول
 
+// متغيرات الفريق الأول
+let playersData = [];
+let teamPlayersCurrentPage = 1;
+const playersPerPage = 5; // عدد اللاعبين لكل صفحة
 
-// URLs للشيتات
-const championshipsUrl = `https://docs.google.com/spreadsheets/d/${ConsentSheetID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(championshipsSheet)}`;
-const youtubeVideosUrl = `https://docs.google.com/spreadsheets/d/${ConsentSheetID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(youtubeVideosSheet)}`;
-const presidentsUrl = `https://docs.google.com/spreadsheets/d/${ConsentSheetID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(ConsentChampionsLeagueSheet2)}`;
-const pastGamesUrl = `https://docs.google.com/spreadsheets/d/${ConsentSheetID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(pastGamesSheet)}`;
-const managersUrl = `https://docs.google.com/spreadsheets/d/${ConsentSheetID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(managersSheet)}`;
-const mapsUrl = `https://docs.google.com/spreadsheets/d/${ConsentSheetID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(mapsSheet)}`;
-const fifaWorldCupUrl = `https://docs.google.com/spreadsheets/d/${ConsentSheetID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(fifaWorldCupSheet)}`;
-const todayEventUrl = `https://docs.google.com/spreadsheets/d/${ConsentSheetID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(todayEventSheet)}`;
-const upcomingMatchesUrl = `https://docs.google.com/spreadsheets/d/${ConsentSheetID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(upcomingMatchesSheet)}`; // إضافة هذا السطر
-const teamPlayersUrl = `https://docs.google.com/spreadsheets/d/${ConsentSheetID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(teamPlayersSheet)}`; // رابط الفريق الأول
+//============================================================================================================================================
+// الدوال العامة
 
-
-
-//===================================================================================
-
-function showSuggestions() {
-    hideAllSections(); // إخفاء جميع الأقسام الأخرى
-    const feedbackSection = document.getElementById("feedback-section");
-    if (feedbackSection) {
-        feedbackSection.classList.remove("hidden"); // إظهار قسم الملاحظات
-    } else {
-        console.error("Feedback section not found in the DOM.");
-    }
-}
-
-
-
-
-// دالة لإرسال الملاحظات
-function sendFeedback() {
-    const subject = document.getElementById("feedbackSubject").value.trim();
-    const message = document.getElementById("feedbackMessage").value.trim();
-    const feedbackButton = document.querySelector('.feedback-btn');
-
-    // استرجاع بيانات المستخدم من LocalStorage
-    const registeredEmails = JSON.parse(localStorage.getItem("registeredEmails")) || [];
-    const email = registeredEmails[0] || "No Email";
-    const name = localStorage.getItem("username") || "No Name";
-    const uuid = localStorage.getItem("userUUID") || "No UUID";
-
-    // تحقق من المدخلات
-    if (!subject || !message) {
-        alert("يرجى ملء جميع الحقول.");
-        return;
-    }
-
-    // تعطيل زر الإرسال أثناء المعالجة
-    feedbackButton.disabled = true;
-    feedbackButton.textContent = "جاري الإرسال...";
-
-    // إرسال البيانات
-    fetch("https://script.google.com/macros/s/AKfycbwnR6b_Wo3bLK65vBq3wuOh6uWY1_l41n3z-Mxt-tqN4-yCSHuJy2VsGdVGwg-niw5D/exec", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, uuid, subject, message }),
-        mode: "no-cors",
-    })
-        .then(() => {
-            alert("تم إرسال مقترحك بنجاح!");
-            resetView(); // إخفاء النموذج بعد الإرسال
-            document.getElementById("feedbackSubject").value = '';
-            document.getElementById("feedbackMessage").value = '';
-        })
-        .catch((error) => {
-            console.error("Error sending feedback:", error);
-            alert("حدث خطأ أثناء إرسال المقترح.");
-        })
-        .finally(() => {
-            feedbackButton.disabled = false;
-            feedbackButton.textContent = "إرسال الملاحظات";
-        });
-}
-
-// دالة لإغلاق نموذج الملاحظات
-function resetView() {
-    const feedbackSection = document.getElementById("feedback-section");
-    if (feedbackSection) {
-        feedbackSection.classList.add("hidden");
-    }
-}
-
-// هذا داله توديك لرابط التلقرام مباشره للاشتراك 
-
-function subscribeChannel() {
-    const telegramLink = "https://t.me/AlHilalFansChannel"; // رابط القناة
-    window.open(telegramLink, "_blank"); // فتح الرابط في نافذة جديدة
-}
-
-
-
-
-
-
-
-
-
-
-//======================================================================================================
-
-// جلب البيانات وعرض البطولات من Google Sheets
-function fetchChampionshipData() {
-    Papa.parse(championshipsUrl, {
+/**
+ * دالة لجلب البيانات من Google Sheets
+ * @param {string} sheetName - اسم الشيت
+ * @param {function} callback - الدالة التي سيتم تنفيذها بعد استلام البيانات
+ */
+function fetchDataFromSheet(sheetName, callback) {
+    const url = `https://docs.google.com/spreadsheets/d/${ConsentSheetID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(sheetName)}`;
+    Papa.parse(url, {
         download: true,
         header: true,
-        complete: function(results) {
-            populateYearSelect(results.data);
-              
+        complete: function (results) {
+            if (results && results.data && results.data.length > 0) {
+                callback(results.data);
+            } else {
+                console.error(`No data found in sheet: ${sheetName}`);
+            }
         },
-        error: function(error) {
-            console.error("Error fetching championships data: ", error);
-        }
+        error: function (error) {
+            console.error(`Error fetching data from sheet: ${sheetName}`, error);
+        },
     });
 }
 
-// ملء قائمة السنوات بالبطولات
-function populateYearSelect(data) {
-    const yearSelect = document.getElementById("year-select");
-    yearSelect.innerHTML = '<option value="">اختـــر سنــة التتويــج</option>';
-    const uniqueYears = [...new Set(data.map(item => item["Year"]))];
+//============================================================================================================================================
+// دوال عرض التتويجات
 
+/**
+ * دالة لفتح شاشة التتويجات
+ */
+function openChampionships() {
+    const mainContent = document.getElementById("main-content");
+    mainContent.innerHTML = `
+        <h2>🏆 تتويجات البطولات النهائية</h2>
+        <div class="dropdown-container">
+            <select id="year-select" class="styled-dropdown">
+                <option value="" disabled selected>اختر السنة</option>
+            </select>
+        </div>
+        <div id="championships-data" class="cards-container"></div>
+    `;
+
+    // جلب البيانات باستخدام الدالة العامة
+    fetchDataFromSheet(SHEET_CHAMPIONSHIPS, (data) => {
+        populateChampionshipYears(data); // ملء قائمة السنوات
+    });
+}
+
+/**
+ * دالة لملء قائمة السنوات
+ * @param {Array} data - البيانات المستلمة من الشيت
+ */
+// إصلاح عرض التتويجات
+function populateChampionshipYears(data) {
+    const uniqueYears = [...new Set(data.map(row => row.Year))].sort();
+    const yearSelect = document.getElementById("year-select");
+
+    yearSelect.innerHTML = `<option value="" disabled selected>اختر السنة</option>`;
     uniqueYears.forEach(year => {
         const option = document.createElement("option");
         option.value = year;
-        option.textContent = year;
+        option.textContent = `🏆 ${year}`;
         yearSelect.appendChild(option);
     });
 
-    yearSelect.onchange = () => {
-        showChampionshipsByYear(data, yearSelect.value);
-    };
-}
-
-// عرض البطولات حسب السنة
-function showChampionshipsByYear(data, year) {
-    const detailsContainer = document.getElementById("championship-details");
-    const infoContainer = document.getElementById("championship-info");
-    detailsContainer.classList.remove("hidden");
-    infoContainer.classList.add("hidden");
-
-    const championships = data.filter(item => item["Year"] == year); // استخدم "Year" للتصفية
-    if (championships.length > 0) {
-        detailsContainer.innerHTML = `
-            <h3>اختر البطولة لمشاهدة تفاصيلها</h3>
-            ${championships.map((championship, index) => `
-                <p><a href="#" onclick="showChampionshipInfo(${JSON.stringify(championship).replace(/"/g, '&quot;')})">${championship["Name"]}</a></p>
-            `).join("")}
-        `;
-    } else {
-        detailsContainer.innerHTML = "<p>لا توجد بطولات لهذا العام</p>";
-    }
-}
-
-// عرض تفاصيل البطولة
-// إخفاء تفاصيل البطولة عند تحميل الصفحة
-document.addEventListener("DOMContentLoaded", () => {
-    const infoContainer = document.getElementById("championship-info");
-    infoContainer.classList.add("hidden");
-});
-
-//عرض تفاصيل البطولة
-function showChampionshipInfo(championship) {
-    const infoContainer = document.getElementById("championship-info");
-    const detailsContainer = document.getElementById("championship-details");
-
-    // إخفاء قائمة البطولات
-    detailsContainer.classList.add("hidden");
-
-    // تحديث محتوى البطاقة
-    infoContainer.innerHTML = `
-    
-        <h3 class="info-title">${championship["Name"]}</h3>
-        <img src="${championship["Image URL"]}" alt="${championship["Name"]}" class="championship-image">
-        <div class="info-section">
-            <i class="fa fa-calendar-alt"></i>
-            <span>الموسم: ${championship["Date"] || "غير متوفر"}</span>
-        </div>
-        <div class="info-section">
-            <i class="fa fa-trophy"></i>
-            <span>المباراة النهائية: ${championship["Final Match"]}</span>
-        </div>
-        <div class="info-section">
-            <i class="fa fa-futbol"></i>
-            <span>النتيجة: ${championship["Score"]}</span>
-        </div>
-        <div class="info-section">
-            <i class="fa fa-user"></i>
-            <span>الكابتن: ${championship["captn"] || "غير متوفر"}</span>
-        </div>
-        <div class="info-section">
-            <i class="fa fa-hashtag"></i>
-            <span>رقم البطولة: ${championship["Championship Rank"] || "غير متوفر"}</span>
-        </div>
-        <button class="return-btn" onclick="backToList()">العودة إلى قائمة البطولات</button>
-        
-    `;
-
-  // الكود لضبط الشعار فقط
-    const logo = document.getElementById("championship-logo");
-    if (logo) {
-        logo.style.border = "none"; // إزالة أي حدود
-        logo.style.margin = "0"; // إزالة أي مسافات غير مرغوب فيها
-        logo.style.boxShadow = "none"; // إزالة أي ظل
-        logo.style.height = "auto"; // 
-      
-      
-  logo.style.width = "100px"; // تكبير العرض
-    logo.style.marginBottom = "2px"; // تقليل المسافة بين الشعار والعنوان
-}   
-
-    infoContainer.classList.remove("hidden");
- }
-  
-
-// زر العودة إلى قائمة البطولات
-function backToList() {
-    const infoContainer = document.getElementById("championship-info");
-    const detailsContainer = document.getElementById("championship-details");
-
-    // إخفاء البطاقة
-    infoContainer.classList.add("hidden");
-
-    // عرض قائمة البطولات
-    detailsContainer.classList.remove("hidden");
-}
-
-
-
-
-// دالة جديدة لجلب بيانات البطولات حسب السنة من Google Sheets
-function fetchDataByYear(year, callback) {
-    Papa.parse(championshipsUrl, {
-        download: true,
-        header: true,
-        complete: function(results) {
-            const data = results.data.filter(item => item["Year"] == year);
-            callback(data);
-        },
-        error: function(error) {
-            console.error("Error fetching championships data by year: ", error);
-        }
+    // إضافة حدث عند تغيير السنة
+    yearSelect.addEventListener("change", () => {
+        const selectedYear = yearSelect.value;
+        const filteredData = data.filter(row => row.Year === selectedYear);
+        renderChampionships(filteredData);
     });
 }
-
-// دالة البحث حسب العام باستخدام الدالة الجديدة لجلب البيانات
-function searchByYear() {
-    const yearInput = document.getElementById("year-input").value;
-    const resultsContainer = document.getElementById("year-results");
-
-    resultsContainer.innerHTML = ""; // تنظيف النتائج السابقة
-
-    if (!yearInput) {
-        resultsContainer.innerHTML = "<p>يرجى إدخال سنة للبحث.</p>";
-        return;
-    }
-
-    fetchDataByYear(yearInput, (data) => {
-        if (data.length > 0) {
-            resultsContainer.innerHTML = data.map(championship => `
-                <p><strong>${championship["Name"]}</strong></p>
-            `).join("");
-        } else {
-            resultsContainer.innerHTML = "<p>لا توجد بطولات لهذا العام.</p>";
-        }
-    });
-}
-
-
-
-
-
-
-//********************************************************************************************************************
-// الفيديو اليوتيوب 
-//********************************************************************************************************************
-
-// جلب وعرض مقاطع اليوتيوب من Google Sheets
-function fetchYouTubeVideos() {
-    Papa.parse(youtubeVideosUrl, {
-        download: true,
-        header: true,
-        complete: function(results) {
-            displayYouTubeVideos(results.data);
-        },
-        error: function(error) {
-            console.error("Error fetching YouTube videos data: ", error);
-        }
-    });
-}
-
-// عرض مقاطع اليوتيوب في شكل شبكة
-const videosPerPage = 4; // عدد الفيديوهات لكل صفحة
-let currentPage = 1;
-let videos = [];
-
-// دالة عرض الفيديوهات في الصفحة الحالية
-function displayYouTubeVideos(videosData) {
-    videos = videosData;
-    displayVideos();
-}
-
-// دالة لعرض الفيديوهات بناءً على الصفحة الحالية
-function displayVideos() {
-    const container = document.getElementById("youtube-videos");
-    container.innerHTML = ""; // إعادة تعيين الحاوية
-
-    // حساب بداية ونهاية الفيديوهات للصفحة الحالية
-    const start = (currentPage - 1) * videosPerPage;
-    const end = start + videosPerPage;
-    const currentVideos = videos.slice(start, end); // الفيديوهات في الصفحة الحالية
-
-    // عرض الفيديوهات مع العناوين
-    currentVideos.forEach(video => {
-        // إنشاء iframe للفيديو
-        const videoElement = document.createElement("iframe");
-        videoElement.src = `https://www.youtube.com/embed/${video.videoId}`;
-        videoElement.width = "100%";
-        videoElement.height = "315";
-        videoElement.frameBorder = "0";
-        videoElement.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-        videoElement.allowFullscreen = true;
-
-        // إنشاء عنصر العنوان
-        const videoTitle = document.createElement("p");
-        videoTitle.classList.add("video-title");
-        videoTitle.textContent = video.title || "عنوان غير متوفر"; // جلب العنوان من العمود title
-
-        // إنشاء كارد الفيديو
-        const videoCard = document.createElement("div");
-        videoCard.classList.add("video-card");
-        videoCard.appendChild(videoElement); // إضافة الفيديو
-        videoCard.appendChild(videoTitle);  // إضافة العنوان
-
-        // إضافة الكارد إلى الحاوية
-        container.appendChild(videoCard);
-    });
-
-  
-
-    displayPagination(); // عرض أزرار التنقل
-}
-
-// دالة عرض أزرار التنقل بين الصفحات
-function displayPagination() {
-    const paginationContainer = document.getElementById("pagination");
-    paginationContainer.innerHTML = "";
-
-    const totalPages = Math.ceil(videos.length / videosPerPage);
-
-    // زر "السابق" للصفحات
-    if (currentPage > 1) {
-        const prevButton = document.createElement("button");
-        prevButton.textContent = "السابق";
-        prevButton.className = "pagination-button";
-        prevButton.onclick = () => {
-            currentPage--;
-            displayVideos();
-        };
-        paginationContainer.appendChild(prevButton);
-    }
-
-    // عرض رقم الصفحة الحالي
-    const pageNumber = document.createElement("span");
-    pageNumber.textContent = `الصفحة ${currentPage} من ${totalPages}`;
-    pageNumber.className = "page-number";
-    paginationContainer.appendChild(pageNumber);
-
-    // زر "التالي" للصفحات
-    if (currentPage < totalPages) {
-        const nextButton = document.createElement("button");
-        nextButton.textContent = "التالي";
-        nextButton.className = "pagination-button";
-        nextButton.onclick = () => {
-            currentPage++;
-            displayVideos();
-        };
-        paginationContainer.appendChild(nextButton);
-    }
-}
-
-// دالة لإخفاء أزرار التنقل بين الصفحات
-function hidePagination() {
-    const paginationContainer = document.getElementById("pagination");
-    paginationContainer.innerHTML = ""; // إخفاء أزرار التنقل
-}
-
-  // **************************************************************************************************************** 
-
-
-function showAboutCard() {
-    const aboutCard = document.getElementById("about-card");
-    if (aboutCard) {
-        aboutCard.classList.remove("hidden"); // إظهار البطاقة
-    }
-}
-
-function closeAboutCard() {
-    const aboutCard = document.getElementById("about-card");
-    if (aboutCard) {
-        aboutCard.classList.add("hidden"); // إخفاء البطاقة
-    }
-}
-
-
-//**********************************************************************************************************
-
-//**********************************************************************************************************
-document.addEventListener("DOMContentLoaded", async () => {
-  const marqueeContent = document.querySelector(".marquee-content");
-
-  const matchesUrl = "https://docs.google.com/spreadsheets/d/1ksZhTi3JW4QP5MOk8fcWnUCeXbmTqpXW4BLxLaHtmc8/gviz/tq?tqx=out:csv&sheet=PastGames";
-  const todayEventUrl = "https://docs.google.com/spreadsheets/d/1ksZhTi3JW4QP5MOk8fcWnUCeXbmTqpXW4BLxLaHtmc8/gviz/tq?tqx=out:csv&sheet=today-event";
-
-  // دالة لجلب آخر مباراة
-  async function fetchLastMatch() {
-    try {
-      const response = await fetch(matchesUrl);
-      const csvData = await response.text();
-      const parsedData = Papa.parse(csvData, { header: true, skipEmptyLines: true }).data;
-
-      const sortedData = parsedData.sort((a, b) => parseInt(b.Index) - parseInt(a.Index));
-      const lastMatch = sortedData[0];
-      return lastMatch
-        ? `⚽ <span style="color:#f39c12; font-weight:bold;">آخر مباراة:</span> 
-            <span>${lastMatch.Team1}</span> 
-            <span style="color:red; font-weight:bold;">X</span> 
-            <span>${lastMatch.Team2}</span> 
-            انتهت <span>${lastMatch.Score1}-${lastMatch.Score2}</span>`
-        : "⚽ لم يتم العثور على مباريات.";
-    } catch (error) {
-      console.error("Error fetching matches:", error);
-      return "⚽ حدث خطأ أثناء جلب بيانات المباريات.";
-    }
-  }
-
-  // دالة لجلب البطولات الخاصة باليوم الحالي أو الشهر الحالي
-  async function fetchTodayOrMonthEvents() {
-    try {
-      const response = await fetch(todayEventUrl);
-      const csvData = await response.text();
-      const parsedData = Papa.parse(csvData, { header: true, skipEmptyLines: true }).data;
-
-      const today = new Date();
-      const formattedToday = `${today.getDate().toString().padStart(2, '0')}/${(today.getMonth() + 1).toString().padStart(2, '0')}/${today.getFullYear()}`;
-      const currentMonth = today.getMonth() + 1;
-
-      // فلترة بطولات اليوم
-      const eventsToday = parsedData.filter(event => event.date === formattedToday);
-
-      if (eventsToday.length > 0) {
-        const eventNames = eventsToday.map(event => `${event.title}`).join(" 🏆 ");
-        return `🏆 <span style="color:#f39c12; font-weight:bold;">بطولات اليوم:</span> ${eventNames}`;
-      } else {
-        // فلترة بطولات الشهر
-        const eventsThisMonth = parsedData.filter(event => {
-          const eventMonth = parseInt(event.date.split("/")[1]);
-          return eventMonth === currentMonth;
-        });
-
-        if (eventsThisMonth.length > 0) {
-          const eventNames = eventsThisMonth.map(event => `${event.title}`).join(" 🏆 ");
-          return `📅 <span style="color:#f39c12; font-weight:bold;">بطولات هذا الشهر:</span> ${eventNames}`;
-        } else {
-          return "📅 لا توجد بطولات في هذا اليوم أو الشهر.";
-        }
-      }
-    } catch (error) {
-      console.error("Error fetching today's or month's events:", error);
-      return "📅 حدث خطأ أثناء جلب البطولات.";
-    }
-  }
-
-  // تهيئة الشريط الزمني
-  async function initializeMarquee() {
-    try {
-      const lastMatchText = await fetchLastMatch(); // جلب آخر مباراة
-      const todayOrMonthEventsText = await fetchTodayOrMonthEvents(); // جلب بطولات اليوم أو الشهر
-
-      // إضافة النصوص إلى الشريط الزمني
-      marqueeContent.innerHTML = `
-        <span><a href="https://t.me/AlHilalFansChannel" target="_blank" class="telegram-link">📲 اشتركوا في قناة التليجرام للحصول على أحدث الأخبار</a></span>
-        <span style="margin: 0 20px;">${todayOrMonthEventsText}</span>
-        <span style="margin: 0 20px;">${lastMatchText}</span>
-      `;
-    } catch (error) {
-      console.error("Error initializing marquee:", error);
-      marqueeContent.innerHTML = "<span>حدث خطأ أثناء تهيئة الشريط الزمني.</span>";
-    }
-  }
-
-  initializeMarquee();
-});
-
-//**********************************************************************************************
-
-
-// وظيفة إرسال رسالة التليجرام
-function sendTelegramMessage(message) {
-    const botToken = "7182497148:AAFp5bBYHwSju9Dp_46eUhtKlMnnUMdvGes"; // التوكن الخاص بالبوت
-    const chatId = "@AlHilalFansChannel"; // اسم القناة
-    const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
-
-    const data = {
-        chat_id: chatId,
-        text: message,
-        parse_mode: "HTML",
-    };
-
-    fetch(url, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-    })
-        .then((response) => response.json())
-        .then((result) => {
-            if (result.ok) {
-                alert("تم إرسال الرسالة بنجاح!");
-                console.log("Message sent successfully:", result);
-            } else {
-                alert("فشل في إرسال الرسالة.");
-                console.error("Failed to send message:", result);
-            }
-        })
-        .catch((error) => {
-            alert("حدث خطأ أثناء الإرسال.");
-            console.error("Error sending message:", error);
-        });
-}
-
-// إضافة حدث النقر إلى زر التليجرام
-document.getElementById("telegram-send-btn").addEventListener("click", () => {
-    sendTelegramMessage("🎉 ألف مبروك فوز الهلال! 🏆 المباراة القادمة يوم الأحد.");
-});
-
-
-// كود يرسل رسالة لتلقرام اذا حدثت نتيجة مباراة الدوري 
-
-document.getElementById("send-last-match").addEventListener("click", () => {
-    fetch("https://script.google.com/macros/s/AKfycbxbyPhCg91vapZY-bma0an47bWhb2aDeSlbgu67VX5xcPToYVJjNmSOH-DDYzKY3CC_/exec")
-  
-        .then(response => response.json())
-        .then(result => {
-            if (result.status === "Success") {
-                alert("تم إرسال الرسالة بنجاح!");
-            } else {
-                alert("فشل في إرسال الرسالة. حاول مرة أخرى.");
-            }
-        })
-        .catch(error => {
-            console.error("Error sending message:", error);
-            alert("حدث خطأ أثناء الإرسال.");
-        });
-});
-
-
-
-// مصفوفة لتخزين بيانات المدراء
-let managers = [];
-let currentManagerIndex = 0;
-
-
-
-// دالة لعرض بطاقة المدير بناءً على الفهرس
-function displayManager(index) {
-    const manager = managers[index];
-    const container = document.getElementById("managers-container");
-
-    // تحويل الفترات الزمنية إلى أسطر باستخدام <br>
-    const formattedYears = manager.years
-        .split(",")
-        .map(year => `${year.trim()}`)
-        .join("<br>");
-
-    // تحويل البطولات إلى قائمة باستخدام <br>
-    const formattedWins = manager.win
-        ? manager.win
-              .split(",")
-              .map(win => `${win.trim()}`)
-              .join("<br>")
-        : "لا توجد بطولات";
-
-    // حساب إجمالي السنوات لهذا المدير
-    const totalYears = manager.years
-        .split(",")
-        .reduce((sum, range) => {
-            const [start, end] = range.split("-").map(Number);
-            return sum + (end - start + 1);
-        }, 0);
-
-    container.innerHTML = `
-        <div class="manager-card">
-            <div class="header">
-                <div class="manager-frame">
-                    <span class="manager-number">#${manager.no}</span>
-                    <img src="${manager.ImageURL}" alt="${manager.mangertName}">
-                    <h3>${manager.mangertName}</h3>
-                </div>
-            </div>
-            <div class="body">
-                <!-- الفقرة الزمنية -->
-                <p class="manager-years">
-                    <strong>:الفترة الزمنية</strong><br>
-                    ${formattedYears}
-                </p>
-                <!-- البطولات -->
-                <p class="manager-wins">
-                    <strong>:البطولات</strong><br>
-                    ${formattedWins}
-                </p>
-                <!-- الإحصائيات -->
-                <p class="manager-stats">
-                    <strong>:الإحصائيات</strong><br>
-                    إجمالي السنوات: ${totalYears} سنة<br>
-                    إجمالي البطولات: ${manager.milestoneCount || 0} بطولة
-                </p>
-                <!-- الأزرار -->
-                <div class="buttons">
-                    <button onclick="prevManager()">السابق</button>
-                    <button onclick="nextManager()">التالي</button>
-                </div>
-            </div>
-        </div>
-    `;
-}
-
-// دالة للانتقال إلى المدير السابق
-function prevManager() {
-    currentManagerIndex = (currentManagerIndex - 1 + managers.length) % managers.length;
-    displayManager(currentManagerIndex);
-}
-
-// دالة للانتقال إلى المدير التالي
-function nextManager() {
-    currentManagerIndex = (currentManagerIndex + 1) % managers.length;
-    displayManager(currentManagerIndex);
-}
-// دالة لجلب بيانات المدراء من Google Sheets
-function fetchManagersData(callback) {
-    Papa.parse(managersUrl, {
-        download: true,
-        header: true,
-        complete: function (results) {
-            callback(results.data);
-        },
-        error: function (error) {
-            console.error("Error fetching managers data: ", error);
-        },
-    });
-}
-
-
-//==========================================================================================
-let map;
-let markers = [];
-
-// دالة تهيئة الخريطة
-function initializeMap() {
-    map = L.map('map').setView([24.7136, 46.6753], 5); // الرياض كموقع افتراضي
-
-    // إضافة طبقة البلاط
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© OpenStreetMap'
-    }).addTo(map);
-
-    // جلب البيانات من جوجل شيت
-    Papa.parse(mapsUrl, {
-        download: true,
-        header: true,
-        complete: function (results) {
-            addMarkersToMap(results.data); // إضافة العلامات إلى الخريطة
-            populateDropdown(results.data); // تعبئة القائمة المنسدلة
-        },
-        error: function (error) {
-            console.error("Error fetching data from Google Sheets:", error);
-        }
-    });
-}
-
-// دالة لإضافة العلامات إلى الخريطة
-function addMarkersToMap(data) {
-    markers = []; // تفريغ العلامات القديمة
-    data.forEach(item => {
-        const coordinates = item.coordinates.split(',');
-        const lat = parseFloat(coordinates[0]);
-        const lng = parseFloat(coordinates[1]);
-        const name = item.Name;
-        const stadium = item.Stadium;
-        const year = item.Year;
-
-        if (!isNaN(lat) && !isNaN(lng)) {
-            const marker = L.marker([lat, lng], { icon: createGoldenIcon() })
-                .addTo(map)
-                .bindPopup(`<b>${name}</b><br>${stadium}<br>${year}`); // عرض التفاصيل في النافذة المنبثقة فقط
-            markers.push({ marker, name, stadium, year });
-        }
-    });
-
-    map.invalidateSize(); // تحديث حجم الخريطة
-}
-
-// دالة لإنشاء أيقونة الكأس
-function createGoldenIcon() {
-    return L.icon({
-        iconUrl: 'https://github.com/sweettaste95/hilal-images/blob/main/png-transparent-copa-del-rey-football-cup-trophy-football-color-gold-sports11.png?raw=true',
-        iconSize: [32, 32],
-        iconAnchor: [16, 32],
-        popupAnchor: [0, -32]
-    });
-}
-
-// دالة للبحث عن المواقع
-function searchMap() {
-    const dropdown = document.getElementById('search-dropdown');
-    const selectedValue = dropdown.value;
-
-    if (selectedValue) {
-        const [name] = selectedValue.split(' - ');
-        const foundMarker = markers.find(item =>
-            item.name === name
-        );
-
-        if (foundMarker) {
-            map.setView(foundMarker.marker.getLatLng(), 10); // تحريك الخريطة للموقع
-            foundMarker.marker.openPopup(); // عرض النص المنبثق
-        } else {
-            alert('لم يتم العثور على نتائج مطابقة.');
-        }
-    } else {
-        alert('يرجى اختيار عنصر من القائمة.');
-    }
-}
-
-// دالة لتعبئة القائمة المنسدلة
-function populateDropdown(data) {
-    const dropdown = document.getElementById('search-dropdown');
-    dropdown.innerHTML = '<option value="">اختر من القائمة</option>';
+/**
+ * دالة لعرض التتويجات في شكل بطاقات
+ * @param {Array} data - البيانات المفلترة حسب السنة
+ */
+function renderChampionships(data) {
+    const dataContainer = document.getElementById("championships-data");
+    dataContainer.innerHTML = ""; // تنظيف البيانات القديمة
 
     data.forEach(item => {
-        dropdown.innerHTML += `<option value="${item.Name}">${item.Name} - ${item.Stadium} - ${item.Year}</option>`;
-    });
-}
-
-// دالة إعادة ضبط الخريطة
-function resetMap() {
-    // إعادة الخريطة للموقع الافتراضي (الرياض)
-    map.setView([24.7136, 46.6753], 5);
-
-    // إعادة الحقول إلى الوضع الافتراضي
-    const dropdown = document.getElementById('search-dropdown');
-    const searchButton = document.getElementById('search-btn');
-
-    dropdown.selectedIndex = 0; // تصفية الكومبو بوكس
-
-    // إعادة لون زر البحث إلى الأزرق الافتراضي
-    searchButton.classList.remove("highlighted");
-}
-
-// حساب عدد البطولات لكل ملعب وعرض الإحصائيات
-function showCityStats() {
-    const stats = {};
-
-    // حساب عدد البطولات لكل ملعب
-    markers.forEach(item => {
-        const stadium = item.stadium;
-        stats[stadium] = (stats[stadium] || 0) + 1;
-    });
-
-    // حساب إجمالي البطولات
-    const totalChampionships = Object.values(stats).reduce((sum, count) => sum + count, 0);
-
-    // إنشاء محتوى البطاقة
-    let statsHtml = "<h3>إحصائيات البطولات حسب الملعب</h3><div class='stats-list'>";
-    for (const stadium in stats) {
-        statsHtml += `
-            <div class="stats-item">
-                <span class="stadium-name">${stadium}</span>
-                <span class="stadium-count">
-                    <span class="count">${stats[stadium]} بطولة</span>
-                    <img src="https://github.com/sweettaste95/hilal-images/blob/main/png-transparent-copa-del-rey-football-cup-trophy-football-color-gold-sports11.png?raw=true" alt="كأس" class="cup-icon" />
-                </span>
-            </div>
-        `;
-    }
-    statsHtml += `
-        <div class="total-stats">
-            إجمالي البطولات: ${totalChampionships} بطولة
-            <img src="https://github.com/sweettaste95/hilal-images/blob/main/png-transparent-copa-del-rey-football-cup-trophy-football-color-gold-sports11.png?raw=true" alt="كأس" class="cup-icon" />
-        </div>
-    `;
-    statsHtml += "</div>";
-
-    // إنشاء البطاقة
-    const statsContainer = document.createElement("div");
-    statsContainer.classList.add("stats-popup");
-    statsContainer.innerHTML = statsHtml;
-
-    // زر الإغلاق
-    const closeBtn = document.createElement("button");
-    closeBtn.textContent = "إغلاق";
-    closeBtn.classList.add("close-btn");
-    closeBtn.onclick = () => statsContainer.remove();
-
-    statsContainer.appendChild(closeBtn);
-    document.getElementById("map").appendChild(statsContainer);
-}
-
-// مراقبة تغييرات القائمة المنسدلة
-document.getElementById('search-dropdown').addEventListener('change', highlightSearchButton);
-
-// تغيير لون زر البحث عند اختيار قيمة من الكومبو بوكس
-function highlightSearchButton() {
-    const dropdown = document.getElementById('search-dropdown');
-    const searchButton = document.getElementById('search-btn');
-
-    // تحقق من وجود قيمة في القائمة
-    if (dropdown.value !== "") {
-        searchButton.classList.add("highlighted");
-    } else {
-        searchButton.classList.remove("highlighted");
-    }
-}
-
-
-
-
-//**********************************************************************************************
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ====== دالة لعرض بطاقات البطولات ======
-function renderFifaWorldCup(data) {
-    const fifaSection = document.getElementById("fifa-world-cup-section");
-    fifaSection.innerHTML = `<h2>بطولات الهلال في كأس العالم</h2>`; // عنوان القسم
-
-    const container = document.createElement("div");
-    container.className = "fifa-world-cup-container";
-
-    // تصنيف البيانات حسب السنة
-    const tournaments = {};
-    data.forEach(row => {
-        const year = row["Year"]?.trim();
-        if (year) {
-            if (!tournaments[year]) tournaments[year] = [];
-            tournaments[year].push(row);
-        }
-    });
-
-    // إنشاء بطاقات السنوات
-    for (const year in tournaments) {
         const card = document.createElement("div");
-        card.className = "fifa-card";
+        card.className = "championship-card";
         card.innerHTML = `
-            <h3>كأس العالم ${year}</h3>
-            <p>المكان: ${getLocation(year)}</p>
-            <button class="fifa-btn" onclick="showFifaWorldCupDetails('${year}')">عرض التفاصيل</button>
+            <div class="card-rank">
+                رقم البطولة: <span class="rank-value">${item["Championship Rank"]}</span>
+            </div>
+            <h3 class="card-title">${item["Name"]}</h3>
+            <img src="${item["Image URL"]}" alt="${item["Name"]}" class="championship-image">
+            <div class="info-section">
+                <i class="fa fa-trophy"></i>
+                <span class="info-label">المباراة النهائية:</span>
+                <span class="info-value">${item["Final Match"]}</span>
+            </div>
+            <div class="info-section">
+                <i class="fa fa-calendar-alt"></i>
+                <span class="info-label">الموسم:</span>
+                <span class="info-value">${item["Date"]}</span>
+            </div>
+            <div class="info-section">
+                <i class="fa fa-users"></i>
+                <span class="info-label">الفريق المهزوم:</span>
+                <span class="info-value">${item["Opponent"]}</span>
+            </div>
+            <div class="info-section">
+                <i class="fa fa-futbol"></i>
+                <span class="info-label">النتيجة:</span>
+                <span class="info-value">${item["Score"]}</span>
+            </div>
+            <div class="info-section">
+                <i class="fa fa-user"></i>
+                <span class="info-label">الكابتن:</span>
+                <span class="info-value">${item["captn"] || "غير متوفر"}</span>
+            </div>
         `;
-        container.appendChild(card);
-    }
-
-    fifaSection.appendChild(container);
-}
-
-// ====== دالة جلب مكان البطولة مع صورة العلم ======
-function getLocation(year) {
-    const locations = {
-        "2019": { name: "قطر", flag: "https://flagcdn.com/w40/qa.png" },
-        "2021": { name: "الإمارات", flag: "https://flagcdn.com/w40/ae.png" },
-        "2022": { name: "المغرب", flag: "https://flagcdn.com/w40/ma.png" },
-        "2025": { name: "أمريكا", flag: "https://flagcdn.com/w40/us.png" }
-    };
-    const location = locations[year];
-    return location 
-        ? `${location.name} <img src="${location.flag}" alt="علم ${location.name}" style="width: 20px; height: 15px;">`
-        : "غير معروف";
-}
-
-// ====== دالة عرض تفاصيل مباريات كأس العالم حسب السنة ======
-function showFifaWorldCupDetails(year) {
-    hideAllSections(); // إخفاء جميع الأقسام
-    const fifaSection = document.getElementById("fifa-world-cup-section");
-    fifaSection.classList.remove("hidden"); // عرض قسم كأس العالم
-
-    fetch(fifaWorldCupUrl)
-        .then(response => response.text())
-        .then(data => {
-            const rows = Papa.parse(data, { header: true }).data;
-            const matches = rows.filter(match => match["Year"]?.trim() === year); // تصفية البيانات حسب السنة
-            renderFifaWorldCupDetails(matches, year); // عرض التفاصيل
-        })
-        .catch(error => console.error("Error fetching match details: ", error));
-}
-
-// ====== دالة عرض تفاصيل مباريات السنة ======
-function renderFifaWorldCupDetails(matches, year) {
-    const fifaSection = document.getElementById("fifa-world-cup-section");
-    fifaSection.innerHTML = `<h2>تفاصيل مباريات كأس العالم ${year}</h2>`; // عنوان القسم
-
-    if (matches.length === 0) {
-        fifaSection.innerHTML += `<p>لا توجد بيانات متاحة لمباريات هذا العام.</p>`;
-        return;
-    }
-
-    const container = document.createElement("div");
-    container.className = "fifa-details-container";
-
-    matches.forEach(match => {
-        const videoId = match["HighlightsLink"]?.trim();
-        const card = document.createElement("div");
-        card.className = "fifa-detail-card";
-        card.innerHTML = `
-            <h3>${match["Stage"]}</h3>
-            <table class="details-table">
-                <tr><th>المنافس</th><td>${match["Opponent"]}</td></tr>
-                <tr><th>النتيجة</th><td>${match["Result"]}</td></tr>
-                <tr><th>المكان</th><td>${getLocation(match["Year"])}</td></tr>
-                <tr><th>الملعب</th><td>${match["Stadium"] || "غير متوفر"}</td></tr>
-                <tr><th>الكابتن</th><td>${match["Captain"] || "غير متوفر"}</td></tr>
-                <tr><th>التاريخ</th><td>${match["MatchDate"]}</td></tr>
-            </table>
-            ${
-                videoId
-                    ? `<div class="video-container">
-                         <iframe 
-                             src="https://www.youtube.com/embed/${videoId}" 
-                             frameborder="0" 
-                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                             allowfullscreen>
-                         </iframe>
-                       </div>`
-                    : `<p style="color: red;">فيديو الملخص غير متوفر</p>`
-            }
-        `;
-        container.appendChild(card);
+        dataContainer.appendChild(card);
     });
-
-    fifaSection.appendChild(container);
-
-    // زر العودة
-    const backButton = createBackButton();
-    fifaSection.appendChild(backButton);
 }
 
-// ====== دالة إنشاء زر العودة ======
-function createBackButton() {
-    const button = document.createElement("button");
-    button.textContent = "العودة";
-    button.className = "fifa-back-btn";
-    button.onclick = showFifaWorldCup; // العودة إلى قسم البطاقات
-    return button;
-}
+//============================================================================================================================================
+// دوال عرض الفريق الأول
 
-
-
-//*****************************************************************************************
-
-
-function showTodayEvent() {
-    const todayEventContainer = document.getElementById("today-event-section");
-    hideAllSections();
-    todayEventContainer.classList.remove("hidden");
-    showMainMenuButton();
-
-    fetch(todayEventUrl)
-        .then(response => response.text())
-        .then(data => {
-            const today = new Date();
-            const todayDayMonth = `${today.getDate().toString().padStart(2, '0')}/${(today.getMonth() + 1).toString().padStart(2, '0')}`; // اليوم والشهر فقط
-            const parsedData = Papa.parse(data, { header: true }).data;
-
-            // تصفية الأحداث التي تتطابق في اليوم والشهر فقط
-            const eventsToday = parsedData.filter(event => {
-                const eventDayMonth = event.date.split('/').slice(0, 2).join('/'); // اليوم والشهر فقط من التاريخ
-                return eventDayMonth === todayDayMonth;
-            });
-
-            if (eventsToday.length > 0) {
-                // البطاقة في المنتصف
-                let content = `<h2 class="today-title">🏆 بطولات الهلال في مثل هذا اليوم 🏆</h2>`;
-                content += `<div class="today-card-container">`;
-                eventsToday.forEach(event => {
-                    content += generateEventCard(event, true); // تحديد أنها بطاقة اليوم
-                });
-                content += `</div>`;
-                todayEventContainer.innerHTML = content;
-            } else {
-                // رسالة عدم وجود بطولة
-                todayEventContainer.innerHTML = `
-                    <h2 class="today-title">🏆 بطولات الهلال في مثل هذا اليوم 🏆</h2>
-                    <p class="no-event-msg">عذراً عزيزي الزعيم، لا توجد بطولات للهلال في هذا اليوم.</p>
-                    <button onclick="showEventsThisMonth()" class="month-btn">📅 عرض بطولات الهلال في هذا الشهر</button>
-                `;
-            }
-        })
-        .catch(error => {
-            console.error("Error fetching today's events:", error);
-            todayEventContainer.innerHTML = `<p>حدث خطأ أثناء جلب البيانات.</p>`;
-        });
-}
-
-// دالة لجلب وعرض بطولات الشهر الحالي
-function showEventsThisMonth() {
-    const todayEventContainer = document.getElementById("today-event-section");
-
-    fetch(todayEventUrl)
-        .then(response => response.text())
-        .then(data => {
-            const today = new Date();
-            const currentMonth = today.getMonth() + 1; // الشهر الحالي
-            const parsedData = Papa.parse(data, { header: true }).data;
-
-            // تصفية البطولات حسب الشهر
-            const eventsThisMonth = parsedData.filter(event => {
-                const eventMonth = parseInt(event.date.split("/")[1]); // استخراج الشهر من التاريخ
-                return eventMonth === currentMonth;
-            });
-
-            if (eventsThisMonth.length > 0) {
-                let content = `<h2 class="today-title">📅 بطولات الهلال في هذا الشهر 📅</h2>`;
-                content += `<div class="events-container">`;
-
-                // توليد البطاقات
-                eventsThisMonth.forEach(event => {
-                    content += generateEventCard(event);
-                });
-
-                content += `</div>`;
-                todayEventContainer.innerHTML = content;
-            } else {
-                todayEventContainer.innerHTML = `
-                    <h2 class="today-title">📅 بطولات الهلال في هذا الشهر 📅</h2>
-                    <p class="no-event-msg">عذراً، لا توجد بطولات للهلال في هذا الشهر.</p>
-                `;
-            }
-        })
-        .catch(error => {
-            console.error("Error fetching monthly events:", error);
-            todayEventContainer.innerHTML = `<p>حدث خطأ أثناء جلب بيانات الشهر.</p>`;
-        });
-}
-
-// دالة لتوليد البطاقة الخاصة بالبطولة
-function generateEventCard(event, isToday = false) {
-    // إذا كانت البطاقة تخص اليوم نضيف كلاس خاص "center-card"
-    const todayClass = isToday ? 'center-card' : '';
-    return `
-        <div class="event-card ${todayClass}">
-            <!-- رقم البطولة -->
-            <div class="rank-badge">#${event['Championship Rank'] || 'N/A'}</div>
-            <p class="event-date">🗓️ ${event.date}</p>
-            <p class="event-title">${event.title}</p>
-            <div class="event-result">
-                <span class="team-name">${event.alhilal}</span>
-                <span class="vs"> X </span>
-                <span class="team-name">${event.opponent}</span>
-            </div>
-            <p class="event-score">⚽ ${event.result} - ${event.G || '0'}</p>
-            <img src="${event['Image URL']}" alt="صورة البطولة" />
-            <div class="event-footer">
-                وتذكر أن هذه البطولة رقم <span style="color: #d4af37;">${event['Championship Rank'] || 'غير متوفرة'}</span>
-            </div>
+/**
+ * دالة لفتح شاشة الفريق الأول
+ */
+function openTeamPlayers() {
+    const mainContent = document.getElementById("main-content");
+    mainContent.innerHTML = `
+        <h2 id="team-players-title">👥 الفريق الأول</h2>
+        <div id="players-container" class="players-grid"></div>
+        <div class="pagination-controls">
+            <button id="prev-page-btn" onclick="prevPage()">السابق</button>
+            <button id="next-page-btn" onclick="nextPage()">التالي</button>
         </div>
     `;
-}
 
-//**********************************************************************************************
-
-
-
-// ====== دالة لعرض قسم مواجهات الهلال ======
-function showTeamMatches() {
-    hideAllSections(); // إخفاء جميع الأقسام
-    document.getElementById("team-stats-section").classList.remove("hidden"); // إظهار القسم
-    document.getElementById("team-select").value = ""; // إعادة تعيين القائمة المنسدلة
-    document.getElementById("team-stats-table").classList.add("hidden"); // إخفاء الجدول
-    document.getElementById("team-matches-stats").classList.add("hidden"); // إخفاء الأزرار
-    loadTeamNames(); // تحميل أسماء الأندية
-    showMainMenuButton(); // إظهار زر العودة
-}
-
-
-
-
-// تحميل أسماء الفرق
-function loadTeamNames() {
-    Papa.parse(pastGamesUrl, {
-        download: true,
-        header: true,
-        skipEmptyLines: true,
-        complete: function(results) {
-            const teams = [...new Set(
-                results.data.flatMap(game => [game.Team1, game.Team2]).filter(team => team.trim() !== "")
-            )];
-            const teamSelect = document.getElementById("team-select");
-            teamSelect.innerHTML = '<option value="">-- اختر الفريق --</option>';
-            teams.forEach(team => {
-                teamSelect.innerHTML += `<option value="${team}">${team}</option>`;
-            });
-        },
-        error: function(error) {
-            console.error("Error loading team names:", error);
-        }
+    // جلب البيانات باستخدام الدالة العامة
+    fetchDataFromSheet(SHEET_PLAYERS, (data) => {
+        playersData = data; // تخزين البيانات
+        teamPlayersCurrentPage = 1; // إعادة تعيين الصفحة الحالية
+        displayPlayers(); // عرض اللاعبين
     });
 }
 
-// جلب البيانات عند اختيار فريق
-function fetchTeamMatchesData() {
-    const selectedTeam = document.getElementById("team-select").value;
-    if (!selectedTeam) {
-        // إخفاء الجدول والأزرار إذا لم يتم اختيار فريق
-        document.getElementById("team-stats-table").classList.add("hidden");
-        document.getElementById("team-matches-stats").classList.add("hidden");
-        document.getElementById("team-stats").innerHTML = ""; // تنظيف الإحصائيات
-        return;
-    }
-
-    Papa.parse(pastGamesUrl, {
-        download: true,
-        header: true,
-        complete: function(results) {
-            const matches = results.data.filter(game => 
-                game.Team2 === selectedTeam || game.Team1 === selectedTeam
-            );
-
-            displayTeamMatches(matches); // عرض المواجهات
-            updateTeamStats(matches, selectedTeam); // تحديث الإحصائيات
-
-            // إظهار الجدول وأزرار التصفية بعد اختيار الفريق
-            document.getElementById("team-stats-table").classList.remove("hidden");
-            document.getElementById("team-matches-stats").classList.remove("hidden");
-        },
-        error: function(error) {
-            console.error("Error fetching team matches:", error);
-        }
-    });
-}
-
-// عرض المباريات في الجدول
-function displayTeamMatches(matches) {
-    const tableBody = document.getElementById("team-stats-tbody");
-    tableBody.innerHTML = "";
-    matches.forEach(match => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-            <td>${match.Year}</td>
-            <td>${match.Round}</td>
-            <td>${match.Team1}</td>
-            <td>${match.Team2}</td>
-            <td>${match.Score1} - ${match.Score2}</td>
-            <td>${match.Winner}</td>
-        `;
-        tableBody.appendChild(row);
-    });
-}
-
-// حساب الإحصائيات
-function updateTeamStats(matches, team) {
-    const statsContainer = document.getElementById("team-stats");
-
-    const totalMatches = matches.length;
-    const wins = matches.filter(match => match.Winner === "الهلال").length;
-    const losses = matches.filter(match => match.Winner === team).length;
-    const draws = matches.filter(match => match.Winner === "التعادل").length;
-
-    statsContainer.innerHTML = `
-        <div class="team-stats-container">
-            <div class="team-stat-card">
-                <i class="fa fa-futbol"></i><h3>المباريات</h3><p>${totalMatches}</p>
-            </div>
-            <div class="team-stat-card">
-                <i class="fa fa-trophy"></i><h3>الانتصارات</h3><p>${wins}</p>
-            </div>
-            <div class="team-stat-card">
-                <i class="fa fa-times-circle"></i><h3>الخسائر</h3><p>${losses}</p>
-            </div>
-            <div class="team-stat-card">
-                <i class="fa fa-handshake"></i><h3>التعادلات</h3><p>${draws}</p>
-            </div>
-        </div>
-    `;
-}
-function filterMatches(filterType) {
-    const selectedTeam = document.getElementById("team-select").value;
-    if (!selectedTeam) return;
-
-    Papa.parse(pastGamesUrl, {
-        download: true,
-        header: true,
-        complete: function(results) {
-            let matches = results.data.filter(
-                game => game.Team1 === selectedTeam || game.Team2 === selectedTeam
-            );
-
-            // تطبيق الفلترة حسب نوع الاختيار
-            if (filterType === "win") {
-                matches = matches.filter(game => game.Winner === "الهلال");
-            } else if (filterType === "loss") {
-                matches = matches.filter(game => game.Winner === selectedTeam);
-            } else if (filterType === "draw") {
-                matches = matches.filter(game => game.Winner === "التعادل");
-            }
-
-            displayTeamMatches(matches); // تحديث عرض الجدول بالبيانات المفلترة
-            updateTeamStats(matches, selectedTeam); // تحديث الإحصائيات
-        },
-        error: function(error) {
-            console.error("Error fetching filtered matches:", error);
-        }
-    });
-}
-//=====================================================
-
-// دالة عرض قسم "حسميات الدوري"
-function showYearStats() {
-  hideAllSections(); // إخفاء جميع الأقسام
-  document.getElementById("year-stats-section").classList.remove("hidden"); // إظهار القسم
-  document.getElementById("year-select").value = ""; // إعادة تعيين القائمة المنسدلة
-  document.getElementById("year-stats-table").classList.add("hidden"); // إخفاء الجدول
-  document.getElementById("year-matches-stats").classList.add("hidden"); // إخفاء أزرار التصفية
-  loadYears(); // تحميل الأعوام
-  showMainMenuButton(); // إظهار زر العودة
-}
-
-// تحميل الأعوام من Google Sheets
-function loadYears() {
-    Papa.parse(pastGamesUrl, {
-        download: true,
-        header: true,
-        skipEmptyLines: true,
-        complete: function(results) {
-            const years = [...new Set(results.data.map(game => game.Year))].sort();
-            const yearSelect = document.getElementById("year-stats-select");
-            if (yearSelect) {
-                yearSelect.innerHTML = '<option value="">-- اختر السنة --</option>';
-                years.forEach(year => {
-                    if (year) {
-                        yearSelect.innerHTML += `<option value="${year}">${year}</option>`;
-                    }
-                });
-            } else {
-                console.error("القائمة المنسدلة غير موجودة في HTML.");
-            }
-        },
-        error: function(error) {
-            console.error("خطأ أثناء تحميل البيانات:", error);
-        }
-    });
-}
-
-// جلب البيانات عند اختيار السنة
-function fetchYearStatsData() {
-    const selectedYear = document.getElementById("year-stats-select").value;
-    if (!selectedYear) {
-        document.getElementById("year-stats-table").classList.add("hidden");
-        document.getElementById("year-matches-stats").classList.add("hidden");
-        document.getElementById("year-stats").innerHTML = ""; // تنظيف الإحصائيات
-        return;
-    }
-
-    Papa.parse(pastGamesUrl, {
-        download: true,
-        header: true,
-        complete: function(results) {
-            const matches = results.data.filter(game => game.Year === selectedYear);
-
-            displayYearMatches(matches); // عرض المباريات
-            updateYearStats(matches); // تحديث الإحصائيات
-
-            document.getElementById("year-stats-table").classList.remove("hidden");
-            document.getElementById("year-matches-stats").classList.remove("hidden");
-        },
-        error: function(error) {
-            console.error("Error fetching year stats:", error);
-        }
-    });
-}
-
-// عرض المباريات في الجدول
-function displayYearMatches(matches) {
-    const tableBody = document.getElementById("year-stats-tbody");
-    tableBody.innerHTML = "";
-    matches.forEach(match => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-             <td>${match.Index}</td> 
-            <td>${match.Year}</td>
-            <td>${match.Round}</td>
-            <td>${match.Team1}</td>
-            <td>${match.Team2}</td>
-            <td>${match.Score1} - ${match.Score2}</td>
-            <td>${match.Winner}</td>
-        `;
-        tableBody.appendChild(row);
-    });
-}
-
-// حساب الإحصائيات
-function updateYearStats(matches) {
-    const statsContainer = document.getElementById("year-stats");
-
-    const totalMatches = matches.length;
-    const wins = matches.filter(match => match.Winner === "الهلال").length;
-    const losses = matches.filter(match => match.Winner !== "الهلال" && match.Winner !== "التعادل").length;
-    const draws = matches.filter(match => match.Winner === "التعادل").length;
-
-    statsContainer.innerHTML = `
-        <div class="team-stats-container">
-            <div class="team-stat-card">
-                <i class="fa fa-futbol"></i><h3>المباريات</h3><p>${totalMatches}</p>
-            </div>
-            <div class="team-stat-card">
-                <i class="fa fa-trophy"></i><h3>الانتصارات</h3><p>${wins}</p>
-            </div>
-            <div class="team-stat-card">
-                <i class="fa fa-times-circle"></i><h3>الخسائر</h3><p>${losses}</p>
-            </div>
-            <div class="team-stat-card">
-                <i class="fa fa-handshake"></i><h3>التعادلات</h3><p>${draws}</p>
-            </div>
-        </div>
-    `;
-}
-
-// تطبيق الفلترة حسب نوع المباراة في قسم حسميات الدوري
-function filterYearMatches(filterType) {
-    const selectedYear = document.getElementById("year-stats-select").value;
-    if (!selectedYear) return;
-
-    Papa.parse(pastGamesUrl, {
-        download: true,
-        header: true,
-        complete: function(results) {
-            let matches = results.data.filter(game => game.Year === selectedYear);
-
-            if (filterType === "win") {
-                matches = matches.filter(game => game.Winner === "الهلال");
-            } else if (filterType === "loss") {
-                matches = matches.filter(game => game.Winner !== "الهلال" && game.Winner !== "التعادل");
-            } else if (filterType === "draw") {
-                matches = matches.filter(game => game.Winner === "التعادل");
-            }
-
-            displayYearMatches(matches); // تحديث عرض الجدول
-            updateYearStats(matches); // تحديث الإحصائيات
-        },
-        error: function(error) {
-            console.error("Error fetching filtered matches:", error);
-        }
-    });
-}
-
-
-//==============================================================================================
-
-
-// ====== دالة عرض جدول مباريات الهلال القادمة ======
-function showUpcomingMatches() {
-    hideAllSections(); // إخفاء جميع الأقسام
-    document.getElementById("upcoming-matches-section").classList.remove("hidden");
-    fetchUpcomingMatches(); // جلب البيانات
-    showMainMenuButton(); // إظهار زر العودة
-}
-
-// ====== جلب البيانات من Google Sheets ======
-let allUpcomingMatches = []; // لتخزين البيانات الأصلية
-
-function fetchUpcomingMatches() {
-    Papa.parse(upcomingMatchesUrl, {
-        download: true,
-        header: true,
-        skipEmptyLines: true,
-        complete: function (results) {
-            allUpcomingMatches = results.data; // تخزين البيانات
-            displayUpcomingMatches(allUpcomingMatches); // عرض كل البيانات
-        },
-        error: function (error) {
-            console.error("Error fetching upcoming matches:", error);
-        }
-    });
-}
-
-// ====== عرض البيانات في الجدول ======
-function displayUpcomingMatches(matches) {
-    const tableBody = document.getElementById("upcoming-matches-tbody");
-    tableBody.innerHTML = ""; // تنظيف الجدول
-
-    matches.forEach(match => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-            <td>${match.Date}</td>
-            <td>${match.Opponent}</td>
-            <td>${match.Competition}</td>
-            <td>${match.Location}</td>
-        `;
-        tableBody.appendChild(row);
-    });
-}
-
-// ====== فلترة البيانات بناءً على المسابقة ======
-function filterUpcomingMatches(competition) {
-    const filteredMatches = allUpcomingMatches.filter(match => match.Competition === competition);
-    displayUpcomingMatches(filteredMatches); // عرض البيانات المفلترة
-}
-
-
-//**************************************************************
-
-// متغيرات التحكم
-let playersData = [];
-let teamPlayersCurrentPage = 1; // رقم الصفحة الحالية
-const playersPerPage = 4; // عدد اللاعبين في كل صفحة
-
-// عرض قسم الفريق الأول عند الضغط على الزر
-function showTeamPlayers() {
-    hideAllSections(); // إخفاء الأقسام الأخرى
-    document.getElementById("team-players-section").classList.remove("hidden");
-      showMainMenuButton(); // إظهار زر العودة
-
-    if (playersData.length === 0) {
-        fetchPlayersData(); // جلب البيانات إذا لم تكن محملة
-    } else {
-        displayPlayers(); // عرض اللاعبين مباشرة إذا كانت البيانات محملة
-    }
-}
-
-// جلب بيانات اللاعبين من Google Sheets
-function fetchPlayersData() {
-    Papa.parse(teamPlayersUrl, {
-        download: true,
-        header: true,
-        complete: function (results) {
-            playersData = results.data;
-            displayPlayers(); // عرض اللاعبين بعد جلب البيانات
-        },
-        error: function (error) {
-            console.error("Error fetching players data: ", error);
-        },
-    });
-}
-
-// عرض اللاعبين في الشبكة
+/**
+ * دالة لعرض اللاعبين حسب الصفحة الحالية
+ */
 function displayPlayers() {
     const playersContainer = document.getElementById("players-container");
     playersContainer.innerHTML = ""; // تنظيف المحتوى السابق
@@ -2091,25 +569,10 @@ function displayPlayers() {
     const playersToDisplay = playersData.slice(start, end);
 
     playersToDisplay.forEach((player) => {
-        // أيقونات المركز
-        let positionIcon = "";
-        switch (player['class']) {
-            case "حارس مرمى":
-                positionIcon = `<i class="fa fa-hand-paper"></i>`; // أيقونة حارس
-                break;
-            case "مدافع":
-                positionIcon = `<i class="fa fa-shield-alt"></i>`; // أيقونة مدافع
-                break;
-            case "مهاجم":
-                positionIcon = `<i class="fa fa-futbol"></i>`; // أيقونة مهاجم
-                break;
-            default:
-                positionIcon = `<i class="fa fa-user"></i>`; // أيقونة افتراضية
-        }
-
+        const positionIcon = getPositionIcon(player['class']);
         const playerCard = `
             <div class="player-card">
-                <div class="player-number">#${player['player_number']}</div>
+                <div class="player-number left">#${player['player_number']}</div>
                 <img src="${player['Image URL']}" alt="${player['neam']}" class="player-image">
                 <div class="player-name">${player['neam']}</div>
                 <div class="player-position">${positionIcon} ${player['class']}</div>
@@ -2123,17 +586,603 @@ function displayPlayers() {
     document.getElementById("next-page-btn").style.display = end < playersData.length ? "inline-block" : "none";
 }
 
-// التنقل بين الصفحات
+/**
+ * دالة لإرجاع أيقونة المركز بناءً على تصنيف اللاعب
+ */
+function getPositionIcon(playerClass) {
+    switch (playerClass) {
+        case "حارس مرمى":
+            return `<i class="fa fa-hand-paper"></i>`;
+        case "مدافع":
+            return `<i class="fa fa-shield-alt"></i>`;
+        case "مهاجم":
+            return `<i class="fa fa-futbol"></i>`;
+        default:
+            return `<i class="fa fa-user"></i>`;
+    }
+}
+
+/**
+ * التنقل للصفحة التالية
+ */
 function nextPage() {
     teamPlayersCurrentPage++;
     displayPlayers();
 }
 
+/**
+ * التنقل للصفحة السابقة
+ */
 function prevPage() {
     teamPlayersCurrentPage--;
     displayPlayers();
 }
+//============================================================================================================================================
 
-//*************************************************************************
-//زر الخصوصية 
-//**************************************************************************
+// دالة فتح قسم المواجهات
+function openTeamMatches() {
+    const mainContent = document.getElementById("main-content");
+    mainContent.innerHTML = `
+        <h2 id="team-matches-title">⚽ مواجهات الهلال</h2>
+        <select id="team-select" class="styled-dropdown" onchange="fetchTeamMatchesData()">
+            <option value="">-- اختر الفريق --</option>
+        </select>
+        <div id="team-stats" class="team-stats-container"></div>
+        <table id="team-stats-table" class="hidden">
+            <thead>
+                <tr>
+                    <th>السنة</th>
+                    <th>الدور</th>
+                    <th>الهلال</th>
+                    <th>المنافس</th>
+                    <th>النتيجة</th>
+                    <th>الفائز</th>
+                </tr>
+            </thead>
+            <tbody id="team-stats-tbody"></tbody>
+        </table>
+        <div id="team-matches-stats" class="hidden">
+            <button class="team-filter-btn all" onclick="fetchTeamMatchesData()">الكل</button>
+            <button class="team-filter-btn wins" onclick="filterMatches('win')">الانتصارات</button>
+            <button class="team-filter-btn losses" onclick="filterMatches('loss')">الخسائر</button>
+            <button class="team-filter-btn draws" onclick="filterMatches('draw')">التعادلات</button>
+        </div>
+    `;
+
+    // تأكد من إخفاء الجدول والأزرار افتراضيًا
+    document.getElementById("team-stats-table").classList.add("hidden");
+    document.getElementById("team-matches-stats").classList.add("hidden");
+
+    // تحميل أسماء الفرق
+    fetchDataFromSheet(SHEET_PAST_GAMES, populateTeamNames);
+}
+
+
+function populateTeamNames(data) {
+    const teams = [...new Set(data.flatMap(game => [game.Team1, game.Team2]).filter(team => team.trim() !== ""))];
+    const teamSelect = document.getElementById("team-select");
+    teamSelect.innerHTML = '<option value="">-- اختر الفريق --</option>';
+
+    const teamIcon = "⚽"; // أيقونة عامة للفريق
+
+    teams.forEach(team => {
+        const option = document.createElement("option");
+        option.value = team;
+        option.textContent = `${teamIcon} ${team}`; // إضافة أيقونة واحدة لجميع الخيارات
+        teamSelect.appendChild(option);
+    });
+}
+
+// دالة لجلب بيانات المواجهات وعرضها
+// دالة لجلب بيانات المواجهات
+function fetchTeamMatchesData() {
+    const selectedTeam = document.getElementById("team-select").value;
+    if (!selectedTeam) {
+        // إذا لم يتم اختيار فريق، إخفاء الجدول والأزرار
+        document.getElementById("team-stats-table").classList.add("hidden");
+        document.getElementById("team-matches-stats").classList.add("hidden");
+        document.getElementById("team-stats").innerHTML = ""; // تنظيف الإحصائيات
+        return;
+    }
+
+    fetchDataFromSheet(SHEET_PAST_GAMES, (data) => {
+        const matches = data.filter(game => game.Team1 === selectedTeam || game.Team2 === selectedTeam);
+        displayTeamMatches(matches);
+        updateTeamStats(matches, selectedTeam);
+
+        // إظهار الجدول والأزرار بعد اختيار فريق
+        document.getElementById("team-stats-table").classList.remove("hidden");
+        document.getElementById("team-matches-stats").classList.remove("hidden");
+    });
+}
+
+// دالة عرض المباريات في الجدول
+function displayTeamMatches(matches) {
+    const tableBody = document.getElementById("team-stats-tbody");
+    tableBody.innerHTML = "";
+    matches.forEach(match => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            
+          
+            
+            <td>${match.Year}</td>
+              <td>${match.Round}</td>
+              <td>${match.Team1}</td>
+                          <td>${match.Team2}</td>
+                                      <td>${match.Score1} - ${match.Score2}</td>
+                                                  <td>${match.Winner}</td>
+
+
+
+            
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+// دالة تحديث الإحصائيات
+function updateTeamStats(matches, team) {
+    const statsContainer = document.getElementById("team-stats");
+
+    const totalMatches = matches.length;
+    const wins = matches.filter(match => match.Winner === "الهلال").length;
+    const losses = matches.filter(match => match.Winner === team).length;
+    const draws = matches.filter(match => match.Winner === "التعادل").length;
+
+    statsContainer.innerHTML = `
+        <div class="team-stat-card">
+            <i class="fa fa-futbol"></i><h3>المباريات</h3><p>${totalMatches}</p>
+        </div>
+        <div class="team-stat-card">
+            <i class="fa fa-trophy"></i><h3>الانتصارات</h3><p>${wins}</p>
+        </div>
+        <div class="team-stat-card">
+            <i class="fa fa-times-circle"></i><h3>الخسائر</h3><p>${losses}</p>
+        </div>
+        <div class="team-stat-card">
+            <i class="fa fa-handshake"></i><h3>التعادلات</h3><p>${draws}</p>
+        </div>
+    `;
+}
+
+// دالة تصفية المباريات
+function filterMatches(filterType) {
+    const selectedTeam = document.getElementById("team-select").value;
+    if (!selectedTeam) return;
+
+    fetchDataFromSheet(SHEET_PAST_GAMES, (data) => {
+        let matches = data.filter(game => game.Team1 === selectedTeam || game.Team2 === selectedTeam);
+
+        if (filterType === "win") matches = matches.filter(game => game.Winner === "الهلال");
+        if (filterType === "loss") matches = matches.filter(game => game.Winner === selectedTeam);
+        if (filterType === "draw") matches = matches.filter(game => game.Winner === "التعادل");
+
+        displayTeamMatches(matches);
+        updateTeamStats(matches, selectedTeam);
+    });
+}
+//============================================================================================================================================
+
+// دالة فتح قسم "حسميات الدوري"
+function openYearStats() {
+    const mainContent = document.getElementById("main-content");
+    mainContent.innerHTML = `
+        <h2 id="year-stats-title">📊 إحصائيات حسميات الدوري</h2>
+        <label for="year-stats-select" class="styled-dropdown-label">
+            <span>اختر السنة</span>
+        </label>
+        <select id="year-stats-select" class="styled-dropdown" onchange="fetchYearStatsData()">
+            <option value="">-- اختر السنة --</option>
+        </select>
+        <div id="year-stats" class="team-stats-container hidden"></div>
+        <table id="year-stats-table" class="hidden">
+            <thead>
+                <tr>
+                    <th>رقم المباراة</th>
+                    <th>السنة</th>
+                    <th>الدور</th>
+                    <th>الهلال</th>
+                    <th>المنافس</th>
+                    <th>النتيجة</th>
+                    <th>الفائز</th>
+                </tr>
+            </thead>
+            <tbody id="year-stats-tbody"></tbody>
+        </table>
+        <div id="year-matches-stats" class="hidden">
+            <button class="team-filter-btn all" onclick="fetchYearStatsData()">الكل</button>
+            <button class="team-filter-btn wins" onclick="filterYearMatches('win')">الانتصارات</button>
+            <button class="team-filter-btn losses" onclick="filterYearMatches('loss')">الخسائر</button>
+            <button class="team-filter-btn draws" onclick="filterYearMatches('draw')">التعادلات</button>
+        </div>
+    `;
+
+    // تحميل قائمة السنوات من Google Sheets
+    fetchDataFromSheet(SHEET_PAST_GAMES, populateYearsDropdown);
+}
+
+// دالة لملء قائمة السنوات
+function populateYearsDropdown(data) {
+    const years = [...new Set(data.map(game => game.Year))].sort();
+    const yearSelect = document.getElementById("year-stats-select");
+
+    yearSelect.innerHTML = '<option value="">-- اختر السنة --</option>';
+    years.forEach(year => {
+        const option = document.createElement("option");
+        option.value = year;
+        option.textContent = `📅 ${year}`;
+        yearSelect.appendChild(option);
+    });
+}
+
+// دالة لجلب بيانات السنة
+function fetchYearStatsData() {
+    const selectedYear = document.getElementById("year-stats-select").value;
+    if (!selectedYear) {
+        document.getElementById("year-stats-table").classList.add("hidden");
+        document.getElementById("year-matches-stats").classList.add("hidden");
+        document.getElementById("year-stats").classList.add("hidden");
+        return;
+    }
+
+    fetchDataFromSheet(SHEET_PAST_GAMES, (data) => {
+        const matches = data.filter(game => game.Year === selectedYear);
+        displayYearMatches(matches);
+        updateYearStats(matches);
+
+        document.getElementById("year-stats-table").classList.remove("hidden");
+        document.getElementById("year-matches-stats").classList.remove("hidden");
+        document.getElementById("year-stats").classList.remove("hidden");
+    });
+}
+
+// دالة لعرض المباريات
+function displayYearMatches(matches) {
+    const tableBody = document.getElementById("year-stats-tbody");
+    tableBody.innerHTML = "";
+    matches.forEach(match => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${match.Index}</td>
+            <td>${match.Year}</td>
+            <td>${match.Round}</td>
+            <td>${match.Team1}</td>
+            <td>${match.Team2}</td>
+            <td>${match.Score1} - ${match.Score2}</td>
+            <td>${match.Winner}</td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+// دالة تحديث الإحصائيات
+function updateYearStats(matches) {
+    const statsContainer = document.getElementById("year-stats");
+    const totalMatches = matches.length;
+    const wins = matches.filter(match => match.Winner === "الهلال").length;
+    const losses = matches.filter(match => match.Winner !== "الهلال" && match.Winner !== "التعادل").length;
+    const draws = matches.filter(match => match.Winner === "التعادل").length;
+
+    statsContainer.innerHTML = `
+        <div class="team-stat-card">
+            <i class="fa fa-futbol"></i><h3>المباريات</h3><p>${totalMatches}</p>
+        </div>
+        <div class="team-stat-card">
+            <i class="fa fa-trophy"></i><h3>الانتصارات</h3><p>${wins}</p>
+        </div>
+        <div class="team-stat-card">
+            <i class="fa fa-times-circle"></i><h3>الخسائر</h3><p>${losses}</p>
+        </div>
+        <div class="team-stat-card">
+            <i class="fa fa-handshake"></i><h3>التعادلات</h3><p>${draws}</p>
+        </div>
+    `;
+}
+
+// دالة الفلترة
+function filterYearMatches(filterType) {
+    const selectedYear = document.getElementById("year-stats-select").value;
+    if (!selectedYear) return;
+
+    fetchDataFromSheet(SHEET_PAST_GAMES, (data) => {
+        let matches = data.filter(game => game.Year === selectedYear);
+
+        if (filterType === "win") matches = matches.filter(game => game.Winner === "الهلال");
+        if (filterType === "loss") matches = matches.filter(game => game.Winner !== "الهلال" && game.Winner !== "التعادل");
+        if (filterType === "draw") matches = matches.filter(game => game.Winner === "التعادل");
+
+        displayYearMatches(matches);
+        updateYearStats(matches);
+    });
+}
+
+//============================================================================================================================================
+// متغيرات خاصة بإدارة التنقل بين الرؤساء
+// متغيرات خاصة بإدارة التنقل بين الرؤساء
+let managers = [];
+let currentManagerIndex = 0;
+
+// دالة فتح شاشة رؤساء النادي
+function openManagers() {
+    const mainContent = document.getElementById("main-content");
+
+    // إنشاء الواجهة الأساسية
+    mainContent.innerHTML = `
+        <div id="managers-container">
+            <div class="manager-card">
+                <img id="manager-image" class="manager-image" src="" alt="صورة المدير">
+                <h3 id="manager-name" class="manager-name"></h3>
+                <p id="manager-years" class="manager-years"></p>
+                <p id="manager-wins" class="manager-wins"></p>
+                <p id="manager-stats" class="manager-stats"></p>
+                <div class="buttons">
+                    <button onclick="prevManager()">السابق</button>
+                    <button onclick="nextManager()">التالي</button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // جلب البيانات من Google Sheets باستخدام fetchDataFromSheet
+    fetchDataFromSheet("manger", (data) => {
+        managers = data;
+        currentManagerIndex = 0; // إعادة تعيين المؤشر
+        if (managers.length > 0) {
+            displayManager(currentManagerIndex); // عرض أول مدير
+        } else {
+            mainContent.innerHTML = "<p style='color: red;'>لا توجد بيانات متاحة للرؤساء.</p>";
+        }
+    });
+}
+function displayManager(index) {
+    const manager = managers[index];
+
+    const formattedYears = manager.years
+        .split(",")
+        .map(year => `<span class="highlight year">${year.trim()}</span>`)
+        .join("<br>");
+
+    const formattedWins = manager.win
+        ? manager.win
+              .split(",")
+              .map(win => `<span class="highlight win">${win.trim()}</span>`)
+              .join("<br>")
+        : "<span class='no-data'>لا توجد بطولات</span>";
+
+    const totalYears = manager.years
+        .split(",")
+        .reduce((sum, range) => {
+            const [start, end] = range.split("-").map(Number);
+            return sum + (end - start + 1);
+        }, 0);
+
+    document.getElementById("managers-container").innerHTML = `
+        <!-- العنوان -->
+        <h2 class="managers-title">
+            <i class="fa fa-crown icon"></i> رؤساء المجد لنادي الهلال
+        </h2>
+        
+        <div class="manager-container">
+            <!-- البطاقة الرئيسية للرئيس -->
+            <div class="manager-main-card">
+                <div class="manager-number">#${manager.no}</div>
+                <div class="manager-header">
+                    <img class="manager-image" src="${manager.ImageURL}" alt="${manager.mangertName}">
+                    <h3 class="manager-name">${manager.mangertName}</h3>
+                </div>
+            </div>
+
+            <!-- البطاقات الثلاث -->
+            <div class="manager-stats-row">
+                <div class="stat-card">
+                    <i class="fa fa-calendar-alt icon"></i>
+                    <h4>الفترة الزمنية</h4>
+                    <p>${formattedYears}</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fa fa-trophy icon"></i>
+                    <h4>البطولات</h4>
+                    <p>${formattedWins}</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fa fa-chart-bar icon"></i>
+                    <h4>الإحصائيات</h4>
+                    <p>
+                        إجمالي السنوات: <span class="highlight stat">${totalYears}</span> سنة<br>
+                        إجمالي البطولات: <span class="highlight stat">${manager.milestoneCount || 0}</span> بطولة
+                    </p>
+                </div>
+            </div>
+
+            <!-- أزرار التنقل -->
+            <div class="navigation-buttons">
+                <button onclick="prevManager()">السابق</button>
+                <button onclick="nextManager()">التالي</button>
+            </div>
+        </div>
+    `;
+}
+
+
+// دالة للانتقال إلى المدير السابق
+function prevManager() {
+    if (currentManagerIndex > 0) {
+        currentManagerIndex--;
+        displayManager(currentManagerIndex);
+    }
+}
+
+// دالة للانتقال إلى المدير التالي
+function nextManager() {
+    if (currentManagerIndex < managers.length - 1) {
+        currentManagerIndex++;
+        displayManager(currentManagerIndex);
+    }
+}
+//============================================================================================================================================
+// عدد الفيديوهات لكل صفحة
+const videosPerPage = 4;
+let currentPage = 1;
+let videos = [];
+
+// دالة فتح قسم مقاطع التتويج
+function openYouTubeVideos() {
+    clearContent(); // تنظيف المحتوى السابق
+    currentPage = 1; // إعادة تعيين الصفحة
+    const mainContent = document.getElementById("main-content");
+    mainContent.innerHTML = `
+        <h2 class="videos-title">
+            <i class="fa fa-play-circle"></i> مقاطع التتويج
+        </h2>
+        <div id="youtube-videos" class="youtube-videos-grid"></div>
+        <div id="pagination" class="pagination-controls"></div>
+    `;
+    fetchDataFromSheet("YouTubeVideos", (data) => {
+        videos = data;
+        displayVideos(); // عرض الفيديوهات للصفحة الأولى
+    });
+}
+
+// دالة عرض الفيديوهات بناءً على الصفحة الحالية
+function displayVideos() {
+    const container = document.getElementById("youtube-videos");
+    container.innerHTML = ""; // إعادة تعيين الحاوية
+
+    const start = (currentPage - 1) * videosPerPage;
+    const end = start + videosPerPage;
+    const currentVideos = videos.slice(start, end);
+
+    currentVideos.forEach(video => {
+        const videoElement = document.createElement("iframe");
+        videoElement.src = `https://www.youtube.com/embed/${video.videoId}`;
+        videoElement.width = "100%";
+        videoElement.height = "250";
+        videoElement.frameBorder = "0";
+        videoElement.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        videoElement.allowFullscreen = true;
+
+        const videoTitle = document.createElement("p");
+        videoTitle.classList.add("video-title");
+        videoTitle.textContent = video.title || "عنوان غير متوفر";
+
+        const videoCard = document.createElement("div");
+        videoCard.classList.add("video-card");
+        videoCard.appendChild(videoElement);
+        videoCard.appendChild(videoTitle);
+
+        container.appendChild(videoCard);
+    });
+
+    displayPagination();
+}
+
+// دالة عرض أزرار التنقل بين الصفحات
+function displayPagination() {
+    const paginationContainer = document.getElementById("pagination");
+    paginationContainer.innerHTML = "";
+
+    const totalPages = Math.ceil(videos.length / videosPerPage);
+
+    if (currentPage > 1) {
+        const prevButton = document.createElement("button");
+        prevButton.textContent = "السابق";
+        prevButton.className = "pagination-button";
+        prevButton.onclick = () => {
+            currentPage--;
+            displayVideos();
+        };
+        paginationContainer.appendChild(prevButton);
+    }
+
+    const pageNumber = document.createElement("span");
+    pageNumber.textContent = `الصفحة ${currentPage} من ${totalPages}`;
+    pageNumber.className = "page-number";
+    paginationContainer.appendChild(pageNumber);
+
+    if (currentPage < totalPages) {
+        const nextButton = document.createElement("button");
+        nextButton.textContent = "التالي";
+        nextButton.className = "pagination-button";
+        nextButton.onclick = () => {
+            currentPage++;
+            displayVideos();
+        };
+        paginationContainer.appendChild(nextButton);
+    }
+}
+//============================================================================================================================================
+function openWorldCup() {
+    // العنصر الرئيسي الذي يحتوي على المحتوى
+    const mainContent = document.getElementById("main-content");
+
+    // التأكد من وجود العنصر
+    if (!mainContent) {
+        console.error("العنصر 'main-content' غير موجود في الصفحة.");
+        return;
+    }
+
+    // إعداد المحتوى الرئيسي
+    mainContent.innerHTML = `
+        <h2>🌍 مشاركات الهلال في كأس العالم</h2>
+        <div id="world-cup-main" class="world-cup-grid"></div>
+    `;
+
+    // بيانات الأعوام والمواقع
+    const yearsData = [
+        { year: 2019, location: "قطر", flag: "https://flagcdn.com/w40/qa.png" },
+        { year: 2021, location: "الإمارات", flag: "https://flagcdn.com/w40/ae.png" },
+        { year: 2022, location: "المغرب", flag: "https://flagcdn.com/w40/ma.png" },
+        { year: 2025, location: "أمريكا", flag: "https://flagcdn.com/w40/us.png" }
+    ];
+
+    // إنشاء البطاقات
+    yearsData.reverse().forEach((entry, index) => {
+        const card = `
+            <div class="world-cup-card">
+                <div class="card-number">${yearsData.length - index}</div>
+                <h3 class="cup-title">كأس العالم ${entry.year}</h3>
+                <div class="country-info">
+                    <img src="${entry.flag}" alt="${entry.location}" class="country-flag">
+                    <p class="country-name">${entry.location}</p>
+                </div>
+                <button class="details-button" onclick="openWorldCupDetails(${entry.year})">عرض التفاصيل</button>
+            </div>
+        `;
+        document.getElementById("world-cup-main").innerHTML += card;
+    });
+}
+
+
+function openWorldCupDetails(year) {
+    const mainContent = document.getElementById("main-content");
+
+    fetchDataFromSheet(fifaWorldCupSheet, (data) => {
+        const filteredMatches = data.filter(match => match.Year == year);
+
+        mainContent.innerHTML = `
+            <div class="details-container">
+                <h2><i class="fa fa-trophy"></i> تفاصيل كأس العالم ${year}</h2>
+                <div id="world-cup-details" class="world-cup-details-grid"></div>
+                <button class="back-button" onclick="openWorldCup()">🔙 العودة لكأس العالم</button>
+            </div>
+        `;
+
+        filteredMatches.forEach(match => {
+            const card = `
+                <div class="match-card">
+                    <h3 class="match-stage">${match.Stage}</h3>
+                    <div class="match-info">
+                        <p><i class="fa fa-users"></i> الفريق المنافس: ${match.Opponent}</p>
+                        <p><i class="fa fa-calendar-alt"></i> التاريخ: ${match.MatchDate}</p>
+                        <p><i class="fa fa-map-marker-alt"></i> الملعب: ${match.Stadium}</p>
+                        <p><i class="fa fa-user"></i> الكابتن: ${match.Captain}</p>
+                        <p><i class="fa fa-futbol"></i> النتيجة: ${match.GoalsFor} - ${match.GoalsAgainst}</p>
+                    </div>
+                    <iframe src="https://www.youtube.com/embed/${match.HighlightsLink}" class="video-frame"></iframe>
+                </div>
+            `;
+            document.getElementById("world-cup-details").innerHTML += card;
+        });
+    });
+}
