@@ -1,1934 +1,771 @@
-
-header#header-section {
-  position: fixed; /* تثبيت الهدر */
-  top: 0;
-  left: 0;
-  width: 100%; /* يغطي عرض الصفحة بالكامل */
-  height: 60px; /* ارتفاع الهدر */
-  background-color: #000; /* لون الخلفية */
-  color: white;
-  z-index: 1000; /* فوق جميع العناصر الأخرى */
-  display: flex;
-  justify-content: space-between; /* توزيع العناصر */
-  align-items: center;
-  padding: 0 20px;
-  box-sizing: border-box;
-}
-
-#app-intro {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%; /* ملء الحاوية بالكامل */
-  text-align: center;
-  color: white; /* لون النص */
-  padding: 20px;
-}
-
-/* ===== الصورة الرئيسية ===== */
-#intro-image {
-  width: 80%; /* تجعل الصورة تحتل 80% من عرض الحاوية */
-  max-width: 600px; /* أقصى عرض للصورة */
-  height: auto; /* تحافظ على نسبة العرض إلى الارتفاع */
-  margin-bottom: 20px; /* مسافة بين الصورة والنص */
-  border-radius: 10px; /* زوايا دائرية للصورة */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* ظل جميل للصورة */
-}
-
-/* ===== النصوص الترحيبية ===== */
-#app-intro h2 {
-  font-size: 2rem; /* تكبير النص */
-  margin: 10px 0;
-}
-
-#app-intro p {
-  font-size: 1.2rem;
-  color: #ccc; /* لون النص الفاتح */
-}
-
-
-#welcome-message {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #ffffff; /* لون أبيض */
-    text-align: center;
-    padding: 10px 20px;
-    background: rgba(0, 0, 0, 0.3); /* خلفية شفافة داكنة */
-    border-radius: 10px; /* زوايا دائرية */
-    margin: 20px auto; /* مسافة من الأعلى والأسفل */
-    text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.8); /* تأثير الضوء */
-}
-
-
-
-@keyframes glow {
-    0% {
-        text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700;
-    }
-    100% {
-        text-shadow: 0 0 20px #FFD700, 0 0 30px #FFD700;
-    }
-}
-
-
-/* ===== الصفحة الرئيسية ===== */
-/* ===== الصفحة الرئيسية ===== */
-body {
-   width: 100%;
-    height: 100%;
-    overflow-x: hidden; /* منع التمرير الأفقي */
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  color: #fff;
-  text-align: center;
-  min-height: 100vh; /* ضمان أن تغطي الصفحة الشاشة بالكامل */
-  background: url('https://github.com/sweettaste95/hilal-images/blob/main/signal-2024-11-09-092357_007.jpeg?raw=true') 
-              no-repeat center center fixed; /* خلفية الصورة */
-  background-size: cover; /* تغطية كاملة للخلفية */
-  display: flex;
-  flex-direction: column; /* ترتيب المحتويات عموديًا */
-  justify-content: space-between; /* توزيع الهيدر والفوتر بشكل مناسب */
   
-  
-
-  
+    .hidden {
+    display: none !important;
 }
 
- 
- 
+/* القاعدة العامة ------------------------------------------------------------- */
+ html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+      
+    font-family: Arial, sans-serif;
+    background-color: #02044f;
+    color: white;
 
-#dynamic-content {
+  }
+/* الحاوية الرئيسية ---------------------------------------------------------- */
+.screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* توسيط الحاوية في المنتصف */
+    justify-content: center;
     width: 100%;
-    max-width: 1200px; /* أقصى عرض للحاوية */
-    margin: 0 auto; /* توسيط المحتوى */
-    padding: 20px;
+    max-width: 400px;
+    text-align: center; /* التأثير على النصوص داخل الحاوية */
+    margin: 0 auto; /* لضمان بقاء الحاوية في المنتصف */
+}
+#main-content {
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            padding-bottom: 60px;
   
-    color: #ffffff; /* لون النص */
-    min-height: calc(100vh - 100px); /* تأخذ ارتفاع الشاشة بالكامل مع استثناء الفوتر */
-    overflow-y: auto; /* السماح بالتمرير الداخلي */
-}
-#dynamic-content .map-wrapper, 
-#dynamic-content .styled-table {
-    max-width: 100%; /* منع التمدد الأفقي */
-    margin: 0 auto; /* توسيط العناصر */
-}
+    background-color: #02044f; /* نفس لون البدي */
+    color: white; /* لون النص */
+      text-align: center; /* لجعل النصوص في المنتصف */
 
-  
-
-
-
-  
-.menu-bar .top-nav-buttons {
-  display: flex;
-  gap: 15px; /* مسافة بين الأزرار */
-  justify-content: flex-end; /* وضع الأزرار على اليمين */
-  flex: 1;
-}
-
-.menu-bar .top-nav-buttons a {
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 0.9rem;
-  background-color: #004e92;
-  padding: 8px 12px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-
-  
-   display: flex;
-    align-items: center; /* توسيط النص والأيقونة عموديًا */
-    justify-content: center; /* توسيط النص والأيقونة أفقيًا */
-    gap: 5px; /* مسافة بين الأيقونة والنص */
-}
-
-  
-
-    
-   
-/* النصوص تبقى ظاهرة في الديسكتوب */
-.top-nav-buttons a span {
-    display: inline-block; /* النص يظهر */
-}
-
-.menu-bar .top-nav-buttons a:hover {
-  background-color: #8623ad;
-}
-
-.menu-bar #menu-toggle {
-  flex: 0; /* الزر يأخذ فقط حجمه */
-}
-
-#logo-container {
-  flex:60; /* الشعار يأخذ حيز مركزي */
-  text-align: center;
-}
-
-
-#logo {
-  width: 120px; /* حجم الشعار */
-  height: auto;
-}
-
-
-
-/* ============================================================================================================== */
-/* القائمة المنسدلة للازرار  */
-
-  
-
-/* ===== تصميم العناصر داخل الهدر ===== */
-.menu-bar {
-  padding: 10px 20px;
-  height: 60px; /* ارتفاع الشريط */
-  width: 100%; /* تجعل العناصر تأخذ عرض الهدر بالكامل */
-  display: flex;
-  justify-content: space-between; /* توزع العناصر على الأطراف */
-  align-items: center;
-}
-
-#menu-toggle {
-  background-color: #004e92;
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-#menu-toggle:hover {
-  background-color: #8623ad;
-}
-
-
-/* القائمة المنسدلة */
-
-#menu-content {
-  position: absolute;
-  top: calc(60px + 10px); /* 60px هو ارتفاع زر الميني بار + 10px مسافة إضافية */
-  right: 10px; /* محاذاة القائمة لليمين */
-  background-color: #004e92; /* لون خلفية القائمة */
-  border: 1px solid rgba(255, 255, 255, 0.3); /* حدود خفيفة */
-  border-radius: 10px; /* زوايا دائرية */
-  width: 250px; /* عرض القائمة */
-  display: none; /* إخفاء القائمة افتراضيًا */
-  flex-direction: column; /* ترتيب العناصر تحت بعضها */
-  z-index: 1000; /* لجعلها فوق باقي العناصر */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* ظل القائمة */
-  padding: 10px; /* حشوة داخلية */
-}
-
-
-/* عند فتح القائمة */
-#menu-content.active {
-  display: flex; /* عرض القائمة */
-}
-/* لضمان أن القائمة لا تغطي الأزرار */
-#menu-toggle {
-  z-index: 1100; /* جعل الزر فوق القائمة */
-  position: relative;
-}
-/* عناوين الأقسام */
-
-/* الأزرار داخل القائمة */
-#menu-content button {
-  background: #005fbf; /* لون خلفية الزر */
-  border: none;
-  padding: 10px;
-  text-align: center; /* محاذاة النص في الوسط */
-  margin: 5px 0; /* مسافة بين الأزرار لضمان الفصل */
-  font-size: 14px;
-  color: #fff;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-  width: 100%; /* اجعل الأزرار تأخذ عرض القائمة بالكامل */
-  box-sizing: border-box; /* ضمان أن الحواف محسوبة ضمن العرض */
-}
-/* تأثير المرور */
-#menu-content button:hover {
-  background-color: #8623ad;
-}
-
-/* عناوين الأقسام */
-.menu-section-header {
-  font-size: 1.1rem; /* حجم النص */
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: #FFD700; /* لون مميز للعناوين */
-  text-align: right; /* محاذاة النص لليمين */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* خط أقل حدة */
-  padding-bottom: 5px; /* مسافة أسفل النص */
-}
-
-/* الخط الفاصل */
-hr {
-  border: 0;
-  height: 1px;
-  background: #FFD700;
-  margin: 10px 0;
-}
-
-/* العناوين */
-.menu-section-header {
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: #FFD700;
-  text-align: right;
-  padding-bottom: 5px;
-}
-/* حدود القائمة */
-#menu-content {
-  border: 1px solid rgba(255, 255, 255, 0.3); /* حدود خفيفة */
-}
-/*======================================================================
-/* المايكرو المتحرك تسلسل زمني علوي  */
-/*======================================================================*/
-.marquee-container {
-    width: 100%; /* تغطية كامل عرض الشاشة */
-    overflow: hidden; /* منع التمرير الزائد */
-    padding: 10px;
-    font-size: 0.9rem; /* تصغير النصوص */
-}
-
-.marquee-content {
-    display: flex; /* تفعيل Flexbox */
-    flex-direction: row; /* العناصر في صف واحد */
-    align-items: center; /* توسيط العناصر عموديًا */
-    gap: 20px; /* مسافة بين العناصر */
-    white-space: nowrap; /* منع التفاف النصوص */
-    overflow: hidden; /* منع تجاوز الحاوية */
-}
-
-
-@keyframes marquee {
-    0% {
-        transform: translateX(100%);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
-}
-        #welcome-message {
-            margin: 20px 0;
-            font-size: 1.5rem;
         }
 
-
-.marquee-content {
-    animation: marquee 15s linear infinite; /* تسريع الحركة */
-    white-space: nowrap; /* منع النصوص من الانتقال لسطر جديد */
-    align-items: center; /* توسيط العناصر داخل الشريط */
-}
-
-.marquee-content span {
-    font-size: 1rem; /* تحسين حجم النص */
-    color: #f0f3f7; /* استخدام لون مميز */
-    font-weight: bold; /* جعل النص بارزًا */
-}
-.telegram-link {
-  color: #f0f3f7;
-  text-decoration: none;
-  font-weight: bold;
-}
-/* تخصيص لون X بين الفرق */
-.marquee-content .last-match .vs {
-    color: red; /* تغيير اللون إلى الأحمر */
-    font-weight: bold;
-}
-
-/* تخصيص لون نص البطولات */
-.marquee-content .championships {
-    color: #FFA500; /* لون برتقالي فاتح */
-    font-weight: bold;
-}
-
-/* تحسين التنسيق للشاشات الكبيرة */
-@media screen and (min-width: 1024px) {
-  /* الهيدر */
-  header#header-section {
-    height: 70px; /* زيادة ارتفاع الهيدر */
-    padding: 0 40px; /* زيادة الحواف */
-  }
-
-  /* النصوص الترحيبية */
-  #app-intro h2 {
-    font-size: 2.5rem; /* تكبير النص */
-  }
-
-  #app-intro p {
-    font-size: 1.4rem; /* زيادة حجم النص */
-  }
-
-  #intro-image {
-    width: 60%; /* تقليل العرض إلى 60% */
-    max-width: 800px; /* زيادة الحد الأقصى للعرض */
-  }
-
-  /* المحتوى الديناميكي */
-  #dynamic-content {
-    max-width: 1400px; /* توسيع الحد الأقصى للحاوية */
-    padding: 40px; /* زيادة الحشوة الداخلية */
-  }
-
-  /* أزرار الهيدر */
-  .menu-bar .top-nav-buttons a {
-    font-size: 1rem; /* زيادة حجم النص */
-    padding: 10px 15px; /* زيادة الحواف */
-  }
-
-  /* القائمة المنسدلة */
-  #menu-content {
-    width: 300px; /* زيادة عرض القائمة */
-  }
-
-  /* الرسالة الترحيبية */
-  #welcome-message {
-    font-size: 2.5rem; /* تكبير حجم النص */
-    padding: 15px 30px; /* زيادة الحواف */
-  }
-
-  /* شريط الماركيه */
-  .marquee-content {
-    gap: 30px; /* زيادة المسافة بين العناصر */
-    font-size: 1.2rem; /* تحسين حجم النص */
-  }
-
-  /* النصوص داخل الماركيه */
-  .marquee-content span {
-    font-size: 1.2rem;
-  }
-
-  /* القوائم والأزرار */
-  #menu-content button {
-    font-size: 16px; /* تكبير النص */
-    padding: 12px; /* زيادة الحشوة الداخلية */
-  }
-
-
-
-/*============================================================================
-/*زر العودة للقائمة الرئيسية  
-/*===========================================================================*/
-#main-menu-btn {
-    margin-top: 20px; /* مسافة علوية */
-    padding: 10px 20px; /* مساحة داخلية */
-    font-size: 1rem; /* حجم النص */
-    font-weight: bold; /* النص بخط عريض */
-    color: #ffffff; /* لون النص */
-    background:  #005fbf; /* لون الخلفية */
-    border: none; /* إزالة الحدود */
-    border-radius: 50px; /* زوايا مستديرة */
-    cursor: pointer; /* تغيير المؤشر عند التمرير */
-    transition: transform 0.2s, background 0.3s; /* تأثير التحويل وتغيير الخلفية */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* إضافة ظل */
-}
-
-/* تأثير عند تمرير الماوس فوق الزر */
-#main-menu-btn:hover {
-    background: linear-gradient(145deg, #005fbf, #9836d1); /* تدرج لوني عند التمرير */
-    transform: scale(1.22); /* تكبير الزر قليلاً */
-    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4); /* تكبير الظل */
-}
-
-/* تأثير عند الضغط على الزر */
-#main-menu-btn:active {
-    transform: scale(0.98); /* تصغير الزر قليلاً عند الضغط */
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2); /* تصغير الظل */
-}
-
-/*======================================================================
-/* كل مايتعلق بشاشة الدخول التسجيل  
-/*======================================================================*/
-
-/* إخفاء العناصر الأخرى عند وجود شاشة التسجيل */
-.hidden {
-    display: none;
-}
-
-
-
-/* تحسين تصميم الحقول النصية */
-#register-screen input[type="text"],
-#register-screen input[type="email"] {
-    width: 60%; /* تقليل العرض إلى 60% */
-    max-width: 400px; /* أقصى عرض */
-    margin: 10px auto; /* توسيط الحقول */
-    padding: 10px; /* تقليل الحشوة */
-    border: 1px solid #ccc; /* حدود رمادية */
-    border-radius: 6px; /* زوايا دائرية */
-    font-size: 1rem; /* حجم النص متوسط */
-    display: block; /* ضمان التوسيط */
-    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* تأثير سلس */
-    color: #000; /* اللون الافتراضي للنص أسود */
-}
-
-/* تأثير عند التركيز (الكتابة) */
-#register-screen input[type="text"]:focus,
-#register-screen input[type="email"]:focus {
-    border-color: #007bff; /* تغيير لون الحدود إلى أزرق */
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* تأثير ظل أزرق */
-}
-
-/* تحسين تصميم زر التسجيل */
-#register-screen button {
-    width: 60%; /* تقليل العرض إلى 60% */
-    max-width: 400px; /* أقصى عرض */
-    padding: 10px; /* تقليل الحشوة */
-    margin: 15px auto; /* توسيط الزر */
-    font-size: 1rem; /* حجم النص متوسط */
-    font-weight: bold; /* خط عريض */
-    color: #fff; /* لون النص أبيض */
-    background: #005fbf; /* لون الخلفية أزرق */
-    border: none; /* إزالة الحدود */
-    border-radius: 6px; /* زوايا دائرية */
-    cursor: pointer; /* مؤشر التفاعل */
-    display: block; /* ضمان التوسيط */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* تأثير سلس */
-}
-
-/* تأثير عند التمرير فوق الزر */
-#register-screen button:hover {
-    background-color: #003f8f; /* لون أغمق عند التمرير */
-    transform: scale(1.05); /* تكبير بسيط */
-}
-
-/* تحسين العنوان والنصوص */
-#register-screen h2 {
-    font-size: 1.8rem; /* حجم النص متوسط */
-    margin-bottom: 20px; /* مسافة أسفل العنوان */
-    text-align: center; /* توسيط النص */
-    color: #fff; /* لون النص أبيض */
-}
-
-#register-screen p {
-    font-size: 1rem; /* حجم النص متوسط */
-    margin-bottom: 15px; /* تقليل المسافة السفلية */
-    text-align: center; /* توسيط النص */
-    color: #b3c7e6; /* لون النص */
-}
-
-
-/*======================================================================
-/* select لجميع القوائم بالبرنامج تنسيق القائمة المنسدلة */
-/*=====================================================================*/
-/* تنسيق القوائم المنسدلة بشكل عام */
-select {
-    display: block;
-    margin: 20px auto; /* توسيط العنصر */
-    padding: 10px; /* حشوة داخلية */
-    width: 50%; /* عرض مناسب */
-    font-size: 1.1rem; /* حجم النص */
-    text-align: center; /* توسيط النص داخل القائمة */
-    border: 2px solid #005fbf; /* حدود زرقاء */
-    border-radius: 10px; /* زوايا دائرية */
-    background-color: #fcfafc; /* خلفية رمادية فاتحة */
-    color: #333; /* لون النص */
-    transition: border-color 0.3s ease, background-color 0.3s ease; /* تأثير سلس */
-}
-
-/* التأثير عند التحويم */
-select:hover {
-    border-color: #8B008B; /* لون عنابي عند التحويم */
-    background-color: #f8f0fa; /* خلفية فاتحة */
-}
-
-/* التأثير عند التركيز */
-select:focus {
-    border-color: #8B008B; /* لون عنابي عند التركيز */
-    outline: none; /* إزالة الإطار الافتراضي */
-    box-shadow: 0 0 5px rgba(139, 0, 139, 0.7); /* ظل عنابي خفيف */
-}
-
-/* تنسيق الخيارات داخل select */
-select option {
-    font-weight: bold; /* جعل النص عريض */
-    font-size: 1rem; /* حجم النص */
-    color: #333; /* لون النص */
-    background-color: #fff; /* خلفية بيضاء */
-}
-
-/* تحسين التنسيق للشاشات الكبيرة */
-@media (min-width: 1024px) {
-    select {
-        width: 40%; /* تقليل العرض للشاشات الكبيرة */
-    }
-}
-
-/* تحسين التنسيق داخل أقسام معينة إذا لزم الأمر */
-#dynamic-content select {
-    margin: 20px auto; /* توسيط العنصر */
-    padding: 12px; /* زيادة الحشوة */
-    width: 60%; /* عرض أكبر إذا كانت داخل أقسام معينة */
-}
-
-/* التأثير الخاص داخل الديناميكي */
-#dynamic-content select:hover {
-    border-color: #004e92; /* لون أزرق أغمق */
-}
-
-/*======================================================================
-/*  تنسيقق عرض البطولة بعد اختيار المسابقة */
-/*=====================================================================*/
-#competition-results p {
-     background: #001f5c; /* خلفية البطاقة */
-    color: #ffffff; /* لون النص */
-    border: 2px solid #005fbf; /* حدود */
-    border-radius: 15px; /* زوايا دائرية */
-    padding: 15px; /* حشوة داخلية */
-    margin: 10px auto; /* مسافة بين البطاقات */
-    width: 60%; /* العرض */
-    text-align: center; /* توسيط النص */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* ظل */
-    transition: transform 0.2s, box-shadow 0.3s;
-
-}
-
-#competition-results p:hover {
-    background-color: #6e0068; /* تغيير لون الخلفية عند التمرير */
-    transform: scale(1.05); /* تكبير خفيف عند التمرير */
-   
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.4); /* تكبير الظل */
   
-}
-
-#competition-results .fa-trophy {
-    color: #FFD700; /* اللون الذهبي */
-}
-
-/*======================================================================
-/*  داخل التتويجات عرض المسابقات البطولات حسب العام */
-/*=====================================================================*/
-#championship-details p {
-   background: #001f5c; /* خلفية البطاقة */
-    color: #ffffff; /* لون النص */
-    text-decoration: none; /* إزالة الخط السفلي */
-    border: 2px solid #005fbf; /* حدود */
-    border-radius: 15px; /* زوايا دائرية */
-    padding: 15px; /* حشوة داخلية */
-    margin: 10px auto; /* مسافة بين البطاقات */
-    width: 60%; /* العرض */
-    text-align: center; /* توسيط النص */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* ظل */
-    transition: transform 0.2s, box-shadow 0.3s;
-
-}
-
-#championship-details p:hover {
-     background-color: #6e0068; /* تغيير لون الخلفية عند التمرير */
-    color: #ffffff; /* تثبيت اللون الأبيض عند التمرير */
-    text-decoration: none; /* ضمان عدم ظهور الخط السفلي */
-    transform: scale(1.05); /* تكبير خفيف عند التمرير */
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.4); /* تكبير الظل */
-   
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.4); /* تكبير الظل */
-   
-}
-#championship-details a {
-    color: #ffffff; /* لون النص أبيض */
-    text-decoration: none; /* إزالة الخط السفلي */
-}
-
-#championship-details a:hover {
-    color: #ffffff; /* تثبيت اللون الأبيض عند التمرير */
-    text-decoration: none; /* منع ظهور الخط السفلي */
-}
-
-body {
-    direction: rtl; /* اتجاه النصوص */
-}
-
-#championship-info {
-    text-align: right; /* محاذاة النص لليمين */
-}
-
-/* تصميم البطاقة */
-#championship-info {
-    background: linear-gradient(135deg, #001f5c, #004080); /* خلفية متدرجة */
-    color: #ffffff;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0px 6px 14px rgba(0, 0, 0, 0.4); /* ظل */
-    max-width: 400px;
-    margin: 20px auto;
-    text-align: center;
-    font-family: Arial, sans-serif;
-}
-#championship-logo {
-    width: 150px; /* تكبير الشعار */
-    height: auto; /* الحفاظ على النسبة */
-    display: block;
-    margin: 0 auto; /* توسيط الشعار */
-    margin-bottom: 5px; /* تقليل المسافة تحت الشعار */
-}
-
-.info-title {
-    margin-top: 5px; /* تقليل المسافة العلوية للعنوان */
-    margin-bottom: 5px; /* تقليل المسافة السفلية */
-    font-size: 1.4rem; /* تكبير النص قليلاً */
-}
-
-#championship-info img {
-    display: block; /* ضمان أن الصورة كتلة منفصلة */
-    margin: 0 auto; /* توسيط الصورة */
-    width: 95%; /* حجم الصورة النسبي */
-    height: auto; /* الحفاظ على النسبة */
-    border-radius: 10px; /* زوايا دائرية */
-    margin-bottom: 10px; /* مسافة سفلية للصورة */
-    border: 3px solid #f5f3f0; /* إطار للصورة */
-}
-
-/* العنوان */
-.info-title {
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #ffffff;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
-}
-
-/* قائمة المعلومات */
-.info-section {
-    background: #ffffff;
-    color: #001f5c;
-    border-radius: 10px;
-    padding: 10px;
-    margin: 10px 0;
-    text-align: left;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-/* الأيقونات */
-.info-section i {
-    font-size: 1.5rem;
-    color: #1b29c2;
-}
-
-/* النصوص */
-.info-section span {
-    font-size: 1rem;
-    font-weight: bold;
-}
-/* زر العودة الي قائمة البطولات  */
-.return-btn {
-    background-color:#1b4dc2; /* اللون الأساسي: عنابي */
-    color: #ffffff; /* لون النص: أبيض */
-    border-radius: 8px; /* زوايا دائرية */
-    padding: 10px 20px; /* مسافة داخلية */
-    font-size: 1.2rem; /* حجم النص */
-    font-weight: bold; /* الخط عريض */
-    text-align: center; /* توسيط النص */
-    cursor: pointer; /* مؤشر الفأرة */
   
-   border: none; /* إزالة الحدود */
-  cursor: pointer; /* مؤشر التفاعل */
-  transition: transform 0.2s, background-color 0.3s; /* تأثيرات التحريك */
-}
 
-.return-btn:hover {
-    background-color:#8623ad; /* اللون عند التمرير: أزرق */
-    color: #ffffff; /* النص يبقى أبيض */
-    transform: scale(1.05); /* تكبير الزر قليلاً عند التمرير */
-}
-/************************************************************************/
 
-#youtube-videos {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* صفين، كل صف يحتوي على عنصرين */
-    gap: 30px; /* المسافة بين الفيديوهات */
-    justify-content: center; /* توسيط العناصر داخل الشبكة أفقياً */
-    align-items: center; /* توسيط العناصر داخل الشبكة عمودياً */
-    padding: 20px; /* حشوة حول الشبكة */
-    max-width: 800px; /* عرض الشبكة بالكامل */
-    margin: 0 auto; /* توسيط الشبكة داخل الصفحة */
-}
-
-/* تنسيق كل فيديو كارد */
-.video-card {
+/* الحقول النصية ------------------------------------------------------------- */
+.form-group {
+    text-align: center; /* جعل الحقول في النص */
     width: 100%;
-    height: auto;
-    border: 3px solid #3b97f5 !important; /* لون الإطار */
-    border-radius: 10px; /* زوايا دائرية */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* إضافة ظل */
-    overflow: hidden;
-    background: linear-gradient(135deg, #35004e, #001f5c);
-    transition: transform 0.3s, box-shadow 0.3s;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* توسيط العناصر داخل البطاقة */
-    justify-content: center; /* توسيط النصوص والصورة */
-    padding: 10px;
+    max-width: 300px;
+    margin-bottom: 20px;
 }
+/* التسجيل---------------------------------------------------------- */
 
-/* تأثير عند تمرير الماوس على الفيديو */
-.video-card:hover {
-    transform: scale(1.05); /* تكبير بسيط عند التمرير */
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4); /* تكبير الظل */
-}
+.register-button {
+      background:  #005fbf; /* لون الخلفية */
+    background: linear-gradient(145deg, #005fbf, #9836d1); /* تدرج لوني عند التمرير */
 
-/* تنسيق iframe */
-.video-card iframe {
-    border-radius: 7px; /* نفس زوايا الكارد */
-    border: 1px solid #ffffff; /* إطار أبيض */
-}
-
-/* تنسيق عنوان الفيديو */
-.video-title {
-    margin-top: 10px; /* مسافة بين الفيديو والعنوان */
-    font-size: 1rem;
-    color: #FFFFFF;
-    text-align: center;
-    font-weight: bold;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-/* تنسيق أزرار التنقل لجعلها ثلاثية الأبعاد */
-/*======================================================================*/
-
-.pagination-button {
-    background-color: #8B008B; /* لون بنفسجي */
-    color: #FFFFFF;
+    color: white;
     border: none;
-    padding: 10px 20px;
-    margin: 5px;
-    font-size: 1em;
-    border-radius: 10px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px #5D005D; /* تأثير الظل لثلاثي الأبعاد */
-}
-
-.pagination-button:hover {
-    background-color: #9400D3; /* لون بنفسجي أفتح قليلاً عند التمرير */
-}
-
-.pagination-button:active {
-    box-shadow: 0 2px #5D005D;
-    transform: translateY(2px); /* تأثير الضغط */
-}
-
-/* تنسيق رقم الصفحة */
-.page-number {
-    font-size: 1.2em;
-    margin: 0 15px;
-    color: #fffcfe; /* لون بنفسجي */
+    padding: 15px 0;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 5px;
+    font-size: 16px;
     font-weight: bold;
-    display: inline-block;
-    vertical-align: middle;
-}
-
-/*======================================================================
-/* خاص بروابط السوشل ميديا 
-/*======================================================================*/
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
+    transition: background-color 0.3s ease;
     margin-top: 20px;
 }
-
-.social-links a {
-    color: #87CEEB;
-    font-size: 1.3em;
-    text-decoration: none;
-    transition: color 0.2s;
+.register-button:hover {
+    background-color: #0033cc;
 }
-
-.social-links a:hover {
-    color: #fefaff;
+.register-input {
+    font-size: 16px;
+    margin: 10px 0;
+    padding: 15px;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    text-align: right; /* النص داخل الحقل يبقى لليمين */
 }
-/*============================================================================
-/* حقوق الطبع والنشر */ 
-/*===========================================================================*/
-
-#feedback-section {
-  position: relative;
-  margin: 20px auto; /* توسيط النموذج */
-  background: linear-gradient(135deg, #35004e, #001f5c); /* خلفية متدرجة */
-  color: #ffffff;
-  width: 90%; /* زيادة العرض إلى 90% من الكنتينر */
-  max-width: 700px; /* أقصى عرض */
-  padding: 30px; /* زيادة الحشوة الداخلية */
-  border-radius: 15px;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5); /* ظل للنموذج */
-  text-align: center;
-}
-
-
-/* العنوان الرئيسي داخل النموذج */
-#feedback-section h2 {
-  margin-bottom: 20px;
-  font-size: 1.5rem;
-  text-align: center; /* توسيط العنوان في منتصف الفورم */
-}
-
-/* الحقول النصية */
-#feedbackSubject,
-#feedbackMessage {
-  width: 95%; /* توسيع العرض */
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #005fbf; /* إضافة الإطار */
-  border-radius: 10px;
-  font-size: 1rem;
-  background: #ffffff;
-  color: #333333;
-  text-align: right; /* محاذاة النصوص لليمين */
-}
-
-/* العناوين النصية */
-#feedback-section label {
-  text-align: right; /* محاذاة النصوص لليمين */
-  display: block;
-  font-size: 1rem; /* حجم مناسب */
-  margin-bottom: 5px;
-}
-
-/* زر الإرسال وزر الإغلاق */
-.feedback-btn,
-.close-feedback-btn {
-  background-color: #2b9ce3;
-  color: #ffffff;
-  padding: 10px 20px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  margin: 10px 5px;
-  transition: transform 0.2s, background-color 0.3s;
-}
-
-.feedback-btn:hover,
-.close-feedback-btn:hover {
-  background-color: #8623ad;
-  transform: scale(1.05);
-}
-
-.feedback-btn:active,
-.close-feedback-btn:active {
-  background-color: #1e7e34;
-  transform: scale(0.95);
-}
-
-/*============================================================
-/* زر من نحن 
-/*============================================================*/
-.about-button {
-  background-color: #2b9ce3; /* نفس لون زر اقتراحاتكم */
-  color: #ffffff; /* لون النص */
-  padding: 10px 20px; /* نفس الحشوة */
-  font-size: 1rem; /* نفس حجم النص */
-  border: none; /* إزالة الحدود */
-  border-radius: 10px; /* زوايا دائرية */
-  cursor: pointer; /* مؤشر التفاعل */
-  margin: 10px 5px; /* المسافة حول الزر */
-  transition: transform 0.2s, background-color 0.3s; /* تأثيرات التحريك */
-}
-
-.about-button:hover {
-  background-color: #8623ad; /* لون عند التمرير */
-  transform: scale(1.05); /* تكبير الزر قليلاً */
-}
-
-.about-button:active {
-  background-color: #1e7e34; /* لون عند الضغط */
-  transform: scale(0.95); /* تصغير الزر قليلاً */
-  }
-/* تصميم البطاقة */
-.about-card {
-    position: fixed;
-  
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 300px;
-    background: linear-gradient(135deg, #35004e, #001f5c);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    color: white;
-    z-index: 1000;
-}
-/* زر الإغلاق داخل البطاقة */
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 1.5em;
-    color: white;
-    cursor: pointer;
-}
-
-#loading-spinner {
-    font-size: 1rem;
-    color: #005fbf;
-    text-align: center;
-    margin-top: 10px;
-    font-weight: bold;
-}
-
-/* تخصيص التنسيق لزر التسجيل عند التعطيل */
-.register-btn:disabled {
-    background-color: #cccccc; /* لون الخلفية عند التعطيل */
-    color: #666666; /* لون النص عند التعطيل */
-    cursor: not-allowed; /* تغيير المؤشر */
-    opacity: 0.6; /* خفاء الزر جزئيًا */
-}
-.telegram-link {
-    color: #FFD700; /* لون ذهبي */
-    font-weight: bold;
-    text-decoration: underline;
-    margin-left: 10px;
-    display: inline-block;
-}
-
-.telegram-link:hover {
-    color: #FFA500; /* لون برتقالي فاتح عند التمرير */
-    text-decoration: none;
-}
-
-/*======================================================================
-/* خاص بالسلايدر لرؤساء */
-/*======================================================================*/
-/* تصميم الجزء العلوي من البطاقة (الصورة + الاسم) */
-.manager-card .header {
-    text-align: center; /* توسيط النصوص والعناصر داخل الجزء العلوي */
-    padding: 15px; /* مسافة داخلية حول العناصر */
-    color: white; /* لون النص */
-    display: flex; /* استخدام تخطيط مرن */
-    flex-direction: column; /* ترتيب العناصر عموديًا */
-    align-items: center; /* جعل العناصر (مثل الصورة) في الوسط أفقياً */
-    justify-content: flex-end; /* وضع الاسم أسفل العناصر الأخرى */
-}
-.manager-frame {
-    position: relative; /* لتحديد مرجعية العنصر */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(145deg, #005fbf, #0073e6); /* تدرج أزرق */
-    border: 2px solid #ffffff; /* إطار أبيض */
-    border-radius: 15px; /* زوايا دائرية */
-    padding: 20px; /* حشوة داخلية */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* إضافة ظل خفيف */
-    width: 60%; /* عرض مخصص */
-    margin: 0 auto 20px; /* توسيط الإطار وإضافة مسافة أسفل */
-}
-
-.manager-frame img {
-    width: 100px; /* حجم الصورة */
-    height: 100px; /* حجم الصورة */
-    border-radius: 50%; /* جعل الصورة دائرية */
-    border: 3px solid #ffffff; /* إطار أبيض حول الصورة */
-    margin-bottom: 10px; /* مسافة أسفل الصورة */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* ظل خفيف للصورة */
-}
-
-.manager-frame h3 {
-    font-size: 1.5rem; /* حجم النص */
-    color: #ffffff; /* لون النص أبيض */
-    margin: 0; /* إزالة الهوامش */
-    text-align: center; /* توسيط النص */
-    font-weight: bold; /* جعل النص عريض */
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4); /* ظل خفيف للنص */
-}
-
-/* الرقم في الزاوية */
-.manager-frame .manager-number {
-    position: absolute; /* الوضع مطلق */
-    top: 10px; /* المسافة من أعلى الفريم */
-    right: 10px; /* المسافة من الجانب الأيمن */
-    background: #FFD700; /* خلفية صفراء */
-    color: #005fbf; /* لون النص */
-    border-radius: 50%; /* دائرة */
-    padding: 5px 10px; /* مسافة داخلية */
-    font-weight: bold; /* خط عريض */
-    font-size: 1rem; /* حجم النص */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* ظل خفيف */
-    z-index: 10; /* يظهر فوق العناصر */
-}
-
-/* تنسيق الحاوية الخاصة بالجدول */
-.manager-card .body {
-    max-width: 80%; /* تحديد الحد الأقصى للعرض ليكون 80% من عرض الشاشة */
-    margin: 0 auto; /* توسيط الجدول داخل الصفحة */
-    background: #f9f9f9; /* لون خلفية رمادي خفيف */
-    border: 2px solid #8B008B; /* لون حدود */
-    padding: 20px; /* حشوة داخلية */
-    color: #333; /* لون النص */
-    text-align: center; /* توسيط النصوص */
-    border-radius: 15px; /* زوايا دائرية */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* ظل خفيف */
-}
-/* تحسين تصميم النصوص داخل الجدول */
-.manager-card .body p {
-    font-size: 1.1rem; /* حجم النص */
-    line-height: 1.8; /* تحسين المسافة بين الأسطر */
-    margin-bottom: 15px; /* مسافة أسفل كل فقرة */
-    text-align: left; /* النصوص محاذاة لليسار */
-}
-
-/* تقليل العرض فقط على الشاشات الكبيرة */
-@media screen and (min-width: 1024px) {
-    .manager-card .body {
-        max-width: 60%; /* تقليل عرض الحاوية على الشاشات الكبيرة */
-    }
-
-
-
-
-
-/* تصميم أزرار التنقل بين المدراء */
-.manager-card .buttons {
-    display: flex; /* عرض الأزرار بجانب بعضها */
-    justify-content: space-between; /* توزيع الأزرار على جانبي البطاقة */
-    padding: 10px; /* مسافة داخلية حول الأزرار */
-}
-
-/* تصميم الزر */
-.manager-card .buttons button {
-       background: linear-gradient(145deg, #005fbf, #9836d1); /* تدرج لوني عند التمرير */
-    color: white; /* لون النص */
-    border: none; /* إزالة الحدود */
-    border-radius: 8px; /* زوايا الزر دائرية */
-    padding: 10px 20px; /* مسافة داخلية حول النص */
-    font-size: 1em; /* حجم النص */
-    cursor: pointer; /* تغيير المؤشر عند التمرير */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* تأثير ثلاثي الأبعاد */
-    transition: transform 0.2s, background 0.3s; /* تأثير الانتقال عند التفاعل */
-}
-
-.manager-card .buttons {
-    display: flex; /* عرض الأزرار بجانب بعضها */
-    justify-content: space-between; /* توزيع الأزرار على جانبي البطاقة */
-    padding: 10px; /* مسافة داخلية حول الأزرار */
-    position: relative; /* تموضع الأزرار داخل البطاقة */
-    margin-top: 20px; /* مسافة كافية لضمان الأزرار تبقى في مكانها */
-}
-
-
-/* تأثير عند تمرير المؤشر فوق الزر */
-.manager-card .buttons button:hover {
-    background: #003f8f; /* لون أغمق عند التمرير */
-    transform: translateY(-2px); /* تأثير رفع الزر */
-
-}
-
-/* تصميم النص الخاص بالفترة الزمنية */
-.manager-card .body .manager-years {
-    font-size: 1.2em; /* زيادة حجم النص */
-    line-height: 1.8; /* تحسين المسافة بين الأسطر */
-    color: #444; /* لون أغمق قليلاً لتحسين الوضوح */
-    margin-bottom: 15px; /* تحسين المسافة السفلية */
-    text-align: center; /* توسيط النصوص */
-    margin-top: 25px; /* زيادة المسافة العلوية قليلاً */
-  
-    border-bottom: 1px solid #ccc; /* خط سفلي */
-    padding-bottom: 5px;
-}
-
-/* تصميم النص الخاص بالبطولات */
-.manager-card .body .manager-wins {
-    font-size: 1.2em; /* زيادة حجم النص */
-    line-height: 1.8; /* تحسين المسافة بين الأسطر */
-    color: #444; /* لون أغمق قليلاً لتحسين الوضوح */
-    margin-bottom: 25px; /* تحسين المسافة السفلية */
-    text-align: center; /* توسيط النصوص */
-    margin-top: 20px; /* زيادة المسافة العلوية لتكون تحت الفترة الزمنية */
-  
-   border-bottom: 1px solid #ccc; /* خط سفلي */
-    padding-bottom: 5px;
-}
-
-/* تصميم النص الخاص بالإحصائيات */
-.manager-card .body .manager-stats {
-    font-size: 1.2em; /* حجم النص */
-    line-height: 1.8; /* تحسين المسافة بين الأسطر */
-    color: #444; /* لون أغمق قليلاً لتحسين الوضوح */
-    margin-top: 10px; /* مسافة أعلى النص */
-    text-align: center; /* توسيط النصوص */
-    padding-top: 10px; /* مسافة داخلية أعلى */
-}
-
-/* تحسين أيقونة الإحصائيات */
-.manager-card .body .manager-stats::before {
-    content: "\f080"; /* أيقونة الرسم البياني من FontAwesome */
-    font-family: "Font Awesome 5 Free"; /* تحميل الخط */
-    font-weight: 900; /* جعل الأيقونة عريضة */
-    margin-right: 5px; /* مسافة بين الأيقونة والنص */
-    color: #00bcd4; /* لون أزرق سماوي */
-    font-size: 1.3em; /* زيادة حجم الأيقونة */
-}
-
-/* تحسين أيقونة الفترة الزمنية */
-.manager-card .body .manager-years::before {
-    content: "\f073"; /* أيقونة التقويم من FontAwesome */
-    font-family: "Font Awesome 5 Free"; /* تحميل الخط */
-    margin-right: 5px; /* مسافة صغيرة بين الأيقونة والنص */
-    color: #3f51b5; /* لون أزرق داكن */
-    font-size: 1.3em; /* زيادة حجم الأيقونة */
-}
-
-/* تحسين أيقونة البطولات */
-.manager-card .body .manager-wins::before {
-    content: "\f091"; /* أيقونة الكأس من FontAwesome */
-    font-family: "Font Awesome 5 Free";
-    margin-right: 5px; /* مسافة بين الأيقونة والنص */
-    color: #d4af37; /* لون ذهبي لامع يشبه الكأس الحقيقي */
-    font-size: 1.3em; /* زيادة حجم الأيقونة */
-}
-.manager-card .body .manager-stats:hover::before,
-.manager-card .body .manager-years:hover::before,
-.manager-card .body .manager-wins:hover::before {
-    color: #6d008b; /* لون برتقالي عند التمرير */
-    transform: scale(1.2); /* تكبير الأيقونة قليلاً */
-    transition: transform 0.3s ease, color 0.3s ease;
-}
-.manager-card .body .manager-stats,
-.manager-card .body .manager-years,
-.manager-card .body .manager-wins {
-    background: rgba(0, 0, 0, 0.05); /* خلفية رمادية خفيفة */
-    padding: 10px; /* مسافة داخلية */
-    border-radius: 8px; /* زوايا دائرية */
-      border: 2px solid #071bf0; /* لون أزرق فاتح */ 
-}
-
-
-
-/*======================================================================
-/* كل مايتعلق بالخرائط */
-/*======================================================================*/
-/*======================================================================
-/* كل مايتعلق بالخرائط */
-/*======================================================================*/
-/* إطار للخريطة */
-.map-wrapper {
-    border: 4px solid #87CEEB; /* إطار أزرق فاتح */
-    border-radius: 15px; /* زوايا دائرية */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* ظل لطيف */
-    margin-bottom: 20px; /* مسافة تحت الخريطة */
-    overflow: hidden;
-    width: 100%; /* عرض كامل */
-}
-
-.map-card {
-    margin-top: 30px; /* تباعد عن الخريطة */
-    padding: 20px;
-    background: #d1d1be; /* لون بيج */
-    border-radius: 15px; /* زوايا دائرية */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* ظل لطيف */
-    max-width: 800px; /* الحد الأقصى للعرض */
-    width: 90%; /* عرض افتراضي يشغل 90% من العرض المتاح */
-    margin-left: auto;
-    margin-right: auto;
-    color: #333; /* النص باللون الداكن */
-    border: 2px solid #87CEEB; /* حواف زرقاء فاتحة */
-    box-sizing: border-box; /* لضمان عدم تجاوز الحدود */
-}
-
-.map-controls {
-    display: flex; /* جعل الحاوية أفقية */
-    gap: 10px; /* مسافة بين الحقول */
-    justify-content: center; /* محاذاة العناصر في المنتصف */
-    align-items: center; /* توسيط عمودي للعناصر */
-}
-
-/* فقط للقائمة المنسدلة وزر البحث */
-#search-dropdown, .search-btn {
-    flex: 1;
-    width: 200px; /* نفس العرض */
-    padding: 8px; /* نفس التباعد الداخلي */
-    font-size: 14px;
-    border: 1px solid #ccc; /* حدود الحقول */
-    border-radius: 5px; /* زوايا دائرية */
-}
-
-.search-btn:hover {
-    background-color: #003f7f; /* لون أزرق غامق عند التمرير */
-}
-
-/* الحالة الافتراضية للزر */
-.search-btn {
+.back-to-home-btn {
     background-color: #005fbf;
     color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-/* عند التمرير */
-.search-btn:hover {
-    background-color: #003f7f;
-}
-
-/* حالة مميزة للزر عند تغيير الكومبو بوكس */
-.search-btn.highlighted {
-    background-color: #32CD32; /* لون أخضر فاتح */
-}
-
-/* الأزرار */
-.map-buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px; /* مسافة بين الأزرار */
-    margin-top: 15px;
-}
-.description-text {
-    font-weight: bold; /* اجعل النص بولد */
-    font-size: 18px; /* زيادة حجم الخط */
-    text-align: center; /* توسيط النص */
-    margin-bottom: 15px; /* تباعد بسيط تحت النص */
-    color: #333; /* لون النص (اختياري إذا أردت تحسين التباين) */
-}
-
-.reset-btn, .stats-btn {
-    width: 200px; /* نفس العرض */
-    text-align: center;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.reset-btn {
-    background-color: #8B0000; /* لون عنابي */
-    color: white;
-}
-
-.reset-btn:hover {
-    background-color: #660000; /* لون غامق عند التمرير */
-}
-
-.stats-btn {
-    background-color: #005fbf; /* لون أزرق */
-    color: white;
-}
-
-.stats-btn:hover {
-    background-color: #003f7f; /* لون غامق عند التمرير */
-}
-
-/*****************************************************************************
-/* بطاقة الإحصائيات */
-
-/* بطاقة الإحصائيات */
-.stats-popup {
-    position: absolute;
-    top:50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #001f3f; /* لون أزرق غامق */
-    color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    width:110%;
-    max-width: 700px;
-    text-align: center;
-    border: 2px solid #005fbf;
-}
-
-.stats-popup h3 {
-    margin-bottom: 15px;
-    font-size: 28px;
-    font-weight: bold;
-    color: #f7f7f0; /* أزرق فاتح */
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 10px;
-}
-
-.stats-list {
-    max-height: 350px;
-    overflow-y: auto; /* للسماح بالتمرير إذا زاد المحتوى */
-    text-align: left;
-    padding-right: 10px; /* لإبعاد شريط التمرير */
-}
-
-.stats-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #ffffff; /* فاصل أبيض */
-}
-
-.stats-item:last-child {
-    border-bottom: none;
-}
-
-.stadium-name {
-    font-size: 20px;
-    font-weight: bold; /* خط عريض */
-    color: #ffffff;
-}
-
-.stadium-count {
-    display: flex;
-    align-items: center;
-    background-color: #f5f5f5;
-    padding: 5px 10px;
-    border-radius: 5px;
-    border: 1px solid #00aaff; /* حدود أزرق */
-    margin-left: 10px; /* إبعاد النص عن شريط التمرير */
-}
-
-.stadium-count .count {
-    font-weight: bold;
-    margin-right: 5px;
-    color: #005fbf; /* لون نص العدد */
-}
-
-.stadium-count .cup-icon {
-    width: 20px;
-    height: 20px;
-}
-
-.total-stats {
-    margin-top: 15px;
-    font-size: 25px;
-    font-weight: bold;
-    color: #ffffff; /* أبيض */
-    text-align: center;
-}
-
-.total-stats .cup-icon {
-    margin-left: 10px;
-    width: 20px;
-    height: 20px;
-}
-
-/* زر الإغلاق */
-.stats-popup .close-btn {
-    background-color: #db0404; /* لون احمر */
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background-color 0.3s ease;
-}
-
-.stats-popup .close-btn:hover {
-    background-color: #003f7f; /* لون أزرق غامق عند التمرير */
-}
-
-/*======================================================================
-/* لشريط السفلي للبرنامج  */
-/*======================================================================*/
-
-
-
-/*======================================================================
-/* كاس العالم  */
-/*======================================================================*/
-
-.hidden {
-    display: none;
-}
-
-/* زر كأس العالم */
-.menu-bar {
-    text-align: center;
-    margin: 20px;
-}
-
-#fifa-world-cup-btn {
-    background-color: #007bff;
-    color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
-    font-size: 1.2rem;
-    transition: background 0.3s ease;
-}
-
-#fifa-world-cup-btn:hover {
-    background-color: #0056b3;
-}
-
-/* بطاقات البطولات */
-.fifa-world-cup-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin: 20px auto;
-    max-width: 1200px;
-
-}
-
-.fifa-card {
-    width: 180px; /* تصغير حجم البطاقة */
-    background-color: #E6E6E6;
-    border: 2px solid #007bff; /* إضافة حدود بلون أزرق */
-    border-radius: 8px;
-    text-align: center;
-    padding: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-}
-
-.fifa-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.fifa-card h3 {
-    margin-bottom: 10px;
-    font-size: 1rem;
-    color: #0056b3;
-}
-
-.fifa-card p {
-    margin: 5px 0;
-    color: #333;
-    font-size: 0.9rem;
-}
-
-.fifa-card img {
-    width: 25px;
-    height: 25px;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-}
-
-.fifa-btn {
-       background: linear-gradient(145deg, #005fbf, #9836d1); /* تدرج لوني عند التمرير */
-    color: white;
-    padding: 8px 12px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    font-size: 0.8rem;
-    transition: background 0.3s ease;
-}
-
-.fifa-btn:hover {
-    background-color: #004080;
-}
-/* تفاصيل */
-/* تنسيق القسم العام */
-#fifa-world-cup-section {
-    padding: 20px;
-    text-align: center;
-}
-
-/* تنسيق الحاوية التي تحتوي على البطاقات */
-#fifa-world-cup-matches {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* بطاقتين في صف واحد */
-    gap: 20px; /* مسافة بين البطاقات */
-    justify-content: center; /* توسيط البطاقات */
-    margin-top: 20px; /* مسافة من الأعلى */
-}
-
-  
-  
-  
-  
-  
-  
-/* تنسيق البطاقة */
-/* الحاوية الأساسية لبطاقات التفاصيل */
-.fifa-details-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* تجعل البطاقات تصطف ببطاقتين لكل صف */
-    gap: 20px; /* مسافة بين البطاقات */
     margin-top: 20px;
-    justify-content: center; /* توسيط المحتوى */
-}
-
-/* تصميم البطاقة */
-.fifa-detail-card {
-    background-color: #0056b3; /* خلفية البطاقة زرقاء */
-  
-    color: #ffffff; /* النصوص بلون أبيض */
-    border-radius: 12px; /* زوايا دائرية */
-    border: 2px solid #ebf0f5; /* إطار ذهبي */
-    padding: 20px; /* حشوة داخلية */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* ظل خفيف */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* تأثير عند التمرير */
-    overflow: hidden;
-    text-align: center; /* محاذاة النصوص في المنتصف */
-    max-width: 400px; /* عرض البطاقة */
-    margin: auto; /* توسيط البطاقة */
-}
-
-/* تأثير عند التمرير */
-.fifa-detail-card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-}
-
-/* العنوان الرئيسي داخل البطاقة */
-.fifa-detail-card h3 {
-    font-size: 1.5rem; /* تكبير العنوان */
-    font-weight: bold;
-    color: #e6ebf0; /* اللون الذهبي */
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-/* النصوص داخل البطاقة */
-.fifa-detail-card p {
-    margin: 10px 0;
-    font-size: 1rem;
-    line-height: 1.6;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #ffffff; /* النصوص بلون أبيض */
-}
-
-/* النصوص البارزة */
-.fifa-detail-card p strong {
-    color: #FFD700; /* النصوص المهمة بلون ذهبي */
-    font-weight: bold;
-}
-
-/* أيقونات النصوص */
-.fifa-detail-card p i {
-    margin-right: 5px;
-    color: #FFD700; /* لون الأيقونة */
-}
-
-/* تنسيق الجدول داخل البطاقة */
-.details-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 10px 0;
-}
-
-.details-table th,
-.details-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
-
-.details-table th {
-    background-color: #0091ff; /* لون خلفية العنوان */
-    color: #fff; /* لون النص */
-    font-weight: bold;
-}
-
-.details-table td {
-    background-color: #f4f4f4; /* لون خلفية البيانات */
-    color: #333; /* لون النص */
-}
-
-.details-table tr:nth-child(even) td {
-    background-color: #e9e9e9; /* لون خلفية الصفوف الزوجية */
-}
-
-/* تصميم الفيديو داخل البطاقة */
-.video-container {
-    margin-top: 15px;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 2px solid #e6ebf0; /* إطار ذهبي */
-  
-  
- 
-
-}
-
-.video-container iframe {
-    width: 100%;
-    height: 200px;
-}
-
-
-/* زر العودة */
-.fifa-back-btn {
+    transition: background-color 0.3s ease;
     display: block;
-    margin: 20px auto 0;
-       background: linear-gradient(145deg, #005fbf, #9836d1); /* تدرج لوني عند التمرير */
-    color: #ffffff;
-    padding: 10px 20px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
     text-align: center;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.fifa-back-btn:hover {
-    background: linear-gradient(145deg, #005fbf, #9836d1); /* تدرج لوني عند التمرير */
-    transform: scale(1.22); /* تكبير الزر قليلاً */
-    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4); /* تكبير الظل */
+.back-to-home-btn:hover {
+    background-color: #0033cc;
 }
 
-/*********************************************************************
-/* قسم في مثل هذا اليوم */
 
-/**************************************************************************
-/* العنوان الرئيسي */
-.today-event-title {
-    text-align: center;
-    color: #fff;
-    
-}
 
-/* البطاقة */
-.event-card {
-    padding: 20px;
-    background: #f0f3f7;
-    border-radius: 15px;
-    margin: 20px auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    max-width: 500px;
-    text-align: center;
-    font-family: 'Arial', sans-serif;
-}
-
-/* النصوص الداخلية */
-.event-info {
-    color: #004080;
-    font-size: 1.1rem;
+  
+  
+/* العنوان ------------------------------------------------------------------- */
+.title {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 24px;
     font-weight: bold;
-    margin-bottom: 10px;
+    text-align: center;
 }
-
-.event-date {
-    color: #d9534f;
-}
-
-.event-title {
-    color: #d9534f;
-}
-
-.event-opponent {
-    color:#d9534f;
-}
-
-/* الصورة */
-.event-image {
+/* الوصف (description) ------------------------------------------------------ */
+.label {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: right;
+    margin-bottom: 5px;
     width: 100%;
-    max-width: 320px;
-    margin: 15px 0;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-/* النتيجة */
-.event-result {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-}
-
-.team-name {
-    color: #004080;
-    font-weight: bold;
-}
-
-.team-name.opponent {
-    color:  #004080;
-}
-
-.vs {
-    color: red;
-    font-weight: bold;
-}
-
-/* النتيجة */
-.event-score {
-    font-size: 1.5rem;
-    color: #333;
-    font-weight: bold;
-}
-
-/* تاريخ البطولة */
-.event-date-info {
-    color: #333;
-    font-size: 1.5rem;
-}
-
-/* رسالة عدم وجود بطولات */
-.no-event-message {
-    padding: 20px;
-    background-color: #004080;
-    color: #fff;
-    border-radius: 10px;
-    text-align: center;
-    max-width: 500px;
-    margin: 20px auto;
-}
-
-.no-event-message h2 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-}
-
-.no-event-message p {
-    font-size: 1.1rem;
-    margin: 5px 0;
 }
 
 .error-message {
+    color: #ff4444;
+    font-size: 14px;
+    margin-top: 5px;
+    display: none; /* مخفي افتراضيًا */
+    text-align: right; /* جعل رسائل الخطأ تظهر بشكل مناسب */
+}
+/* العداد ------------------------------------------------------------------- */
+.timer {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #ff4444; /* لون أحمر */
     text-align: center;
-    color: red;
+    font-weight: bold;
+    display: none; /* مخفي افتراضيًا */
 }
 
-/* =====================================================================*/
-/* كل مايتعلق بالبطولات الشهر في مثل هذا اليوم 
-/*======================================================================*/
+/* الصورة الدائرية ---------------------------------------------------------- */
+.welcome-image {
+    width: 250px; /* تكبير الصورة */
+    height: 250px; /* تكبير الصورة */
+    border-radius: 50%;
+    border: 6px solid white; /* زيادة حجم الإطار */
+    margin-bottom: 20px;
+}
+
+/* العنوان الترحيبي --------------------------------------------------------- */
+.welcome-title {
+    font-size: 28px; /* تكبير الخط */
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* الوصف الترحيبي */
+.welcome-description {
+    font-size: 20px; /* تكبير الخط */
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-weight: bold; /* جعل النص بولد */
+}
+
+/* الهيدر ------------------------------------------------------------------- */
+.header {
+       background-color: #002080;
+
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+
+ height: 50px; /* ارتفاع الهيدر */
+   
+   
+
+}
+
+.header-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.header-nav .header-menu {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.header-nav .header-menu li {
+    margin-left: 15px;
+}
+
+.header-nav .header-menu a {
+  color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.header-nav .header-menu a:hover {
+    text-decoration: underline;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* زر تسجيل الخروج ---------------------------------------------------------- */
+.logout-button {
+    background-color: #8b0000; /* لون عنابي */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    display: none; /* مخفي افتراضيًا */
+}
+
+.logout-button:hover {
+    background-color: #4b0082; /* لون مدموج أزرق وعنابي */
+}
+
+/* شعارات الفوتر */
+.footer-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+/* الفوتر ------------------------------------------------------------------- */
+.footer {
+    background-color: #002080;
+    color: white;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+    left: 0;
+    z-index: 1000; /* فوق أي عنصر آخر */
+
+
+    padding: 10px 0; /* مسافة داخلية */
+    font-size: 0.9rem; /* حجم النص */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); /* ظل أعلى الفوتر */
+
+   
+ 
+            text-align: center;
+       }
+
+
+
+
+.footer-text {
+    margin: 0;
+    font-size: 14px;
+}
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* مسافات بين الروابط */
+    margin-bottom: 10px;
+}
+
+.footer-link {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    display: flex;
+    align-items: center; /* لمحاذاة النص مع الأيقونة */
+    gap: 8px; /* مسافة بين الأيقونة والنص */
+    transition: color 0.3s ease;
+}
+
+footer-link:hover {
+    color: #00aced; /* لون عند تمرير الماوس */
+}
+
+.footer-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* حقوق الطبع */
+.footer-copyright {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+
+/* زر تسجيل الخروج في الهيدر */
+.logout-button {
+      background: linear-gradient(145deg, #005fbf, #9836d1); /* تدرج لوني عند التمرير */
+
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.logout-button:hover {
+    background-color: darkred;
+}
+/* الميني بار --------------------------------------------------------------- */
+.minibar {
+    position: fixed;
+    top: 80px; /* يبدأ أسفل الهيدر */
+    bottom: 40px; /* ينتهي فوق الفوتر */
+    right: 0;
+    width: 300px; /* عرض الميني بار */
+    background-color: #002080; /* لون الخلفية */
+    color: white; /* لون النص */
+    overflow-y: auto; /* تمكين التمرير العمودي */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* ظل */
+    padding: 20px;
+    z-index: 999; /* فوق العناصر الأخرى */
+    transform: translateX(100%); /* افتراضيًا تكون مغلقة */
+    transition: transform 0.3s ease-in-out; /* تأثير الفتح والإغلاق */
+}
+
+/* الميني بار عند الفتح ---------------------------------------------------- */
+.minibar.open {
+    transform: translateX(0); /* إظهار الميني بار */
+}
+/* الأوفرليه --------------------------------------------------------------- */
+.overlay {
+    position: fixed;
+    top: 80px; /* أسفل الهيدر */
+    left: 0;
+    width: 100%;
+    height: calc(100% - 120px); /* تغطية الشاشة باستثناء الهيدر والفوتر */
+    background-color: rgba(0, 0, 0, 0.5); /* شفافية */
+    z-index: 998; /* أسفل الميني بار */
+    display: none; /* مخفية افتراضيًا */
+}
+
+/* إظهار الأوفرليه */
+.overlay.show {
+    display: block;
+}
+
+
+
+.minibar-section {
+    margin-bottom: 20px; /* مسافة بين الأقسام */
+}
+
+.minibar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid #4b0082;
+}
+
+.minibar-header h3 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.minibar-buttons button {
+    width: 100%;
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    font-size: 1rem;
+    text-align: left;
+
+}
+
+
+.minibar-buttons button:hover {
+    background: rgba(255, 255, 255, 0.1); /* خلفية خفيفة عند التمرير */
+}
+
+
+.minibar-buttons {
+    list-style: none;
+    padding: 0;
+}
+
+.minibar-buttons li {
+    margin-bottom: 10px; /* مسافة بين الأزرار */
+}
+
+.minibar-buttons button:hover {
+    background-color: #0033cc;
+}
+.minibar-section-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.main-content {
+    margin-left: 320px; /* ترك مسافة لعرض المحتوى بجانب الميني بار */
+    padding: 20px;
+}
+
+/* زر الهامبرغر ------------------------------------------------------------ */
+
+.hamburger {
+    background: none;
+    border: none;
+    color: white; /* اللون الافتراضي للأيقونة */
+    font-size: 24px; /* حجم الأيقونة */
+    cursor: pointer;
+    padding: 10px; /* مسافة داخلية حول الأيقونة */
+}
+
+.hamburger:hover {
+    color: #005fbf; /* لون عند التمرير */
+    background: rgba(255, 255, 255, 0.1); /* خلفية خفيفة عند التمرير */
+    border-radius: 5px; /* زوايا مستديرة */
+}
+
+.hamburger:active {
+    color: white; /* لون الأيقونة عند الضغط */
+    background: #005fbf; /* لون الخلفية عند الضغط */
+}
+/* ------------------------------------------------------------ */
+/* تصميم البطاقات */
+.championship-card {
+    border: 2px solid #005fbf; /* حدود البطاقة */
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    margin: 3px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      position: relative; /* لتمكين وضع رقم البطولة */
+
+}
+
+
+.card-title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: white; /* لون النص أبيض */
+    background-color: #005fbf; /* خلفية زرقاء */
+    border: 2px solid white; /* حدود بيضاء */
+    padding: 10px; /* مسافة داخلية */
+    border-radius: 8px; /* حواف ناعمة */
+    margin-bottom: 15px; /* مسافة بين العنوان وباقي البطاقة */
+}
+
+
+.championship-image {
+   width: 100%;
+height: 200px;
+border-radius: 10px;
+object-fit: cover;
+margin-bottom: 15px;
+}
+
+.info-section {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    direction: rtl;
+    margin-bottom: 10px; /* مسافة أسفل العنصر */
+    font-size: 14px;
+    padding-bottom: 8px; /* مسافة إضافية للخط */
+    border-bottom: 1px solid #005fbf; /* الخط الأزرق */
+}
+
+.info-section:last-child {
+    border-bottom: none; /* إزالة الخط من العنصر الأخير */
+}
+
+.info-section i {
+    margin-left: 8px;
+    color: #005fbf;
+    font-size: 16px;
+}
+
+.info-section span {
+    font-weight: normal;
+    color: #333;
+}
+.info-value {
+    font-weight: bold;
+    color: #333; /* اللون الأسود للقيم */
+}
+
+
+.championship-card table {
+    width: 100%;
+    text-align: right;
+    margin-top: 10px;
+    border-collapse: collapse;
+}
+
+/* رقم البطولة في الزاوية العليا */
+.card-rank {
+    position: absolute;
+    top: 5px; /* تعديل المسافة من الأعلى */
+    left: 10px; /* تعديل المسافة من اليسار */
+    background-color: #800080; /* لون الخلفية البنفسجي */
+    color: white; /* لون النص */
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+ 
+/* لون الرقم داخل رقم البطولة */
+.rank-value {
+    color: #ffff00; /* لون الرقم */
+}
+
+
+/* تصميم القائمة المنسدلة */
+.dropdown-container {
+    text-align: center;
+    margin: 20px 0;
+}
+/* تصميم القائمة المسدلة */
+/* تصميم القائمة المسدلة */
+.styled-dropdown {
+    padding: 12px 15px;
+    font-size: 18px;
+    font-weight: bold;
+    border: 2px solid #005fbf;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    color: #005fbf;
+    appearance: none;
+    background-image: url("https://cdn-icons-png.flaticon.com/512/892/892528.png"); /* أيقونة السهم */
+    background-repeat: no-repeat;
+    background-position: calc(100% - 10px) center;
+    background-size: 20px;
+    transition: all 0.3s ease;
+    width: 300px;
+}
+
+.styled-dropdown option {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px;
+    background-color: white;
+    color: #002080;
+}
+
+
+.styled-dropdown:hover {
+    border-color: #0033cc;
+}
+
+
 
 /* تصميم البطاقات */
-.event-card {
-    background-color: #f9f9f9; /* خلفية أفتح */
-    border: 1px solid #e0e0e0; /* حدود خفيفة */
-    border-radius: 10px; /* حواف دائرية */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* ظل خفيف */
-    text-align: center;
-    width: 250px; /* عرض البطاقة */
-    margin: 10px; /* مسافة بين البطاقات */
-    overflow: hidden;
+.cards-container {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
 }
 
-/* الصور داخل البطاقات */
-.event-card img {
+.card {
+    background-color: #f9f9f9;
+    border: 2px solid #005fbf;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
     width: 100%;
-    height: 150px;
+    height: 200px;
+    border-radius: 10px;
     object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    color: #005fbf;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #333;
+    margin: 5px 0;
 }
 
 
-/* العناوين والنصوص */
-.event-title {
-    font-size: 1.1rem;
+
+
+
+.players-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* التصميم المتجاوب */
+    gap: 20px; /* تقليل المسافة بين البطاقات */
+    margin-top: 4px; /* تقليل المسافة من الأعلى */
+    padding:  22px; /* إبعاد البطاقات عن الحواف */
+}
+
+
+/* تصميم البطاقة */
+.player-card {
+    background: #1e3a8a;
+      margin: 5px; /* تقليل المسافة بين البطاقات */
+
+    color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    padding: 15px;
+    text-align: center;
+    position: relative;
+    border: 2px solid #ffffff;
+    transition: transform 0.3s ease;
+}
+
+.player-card:hover {
+    transform: scale(1.05);
+}
+
+/* صورة اللاعب */
+.player-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* رقم اللاعب */
+.player-number {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.2rem;
     font-weight: bold;
-    color: #0056b3; /* أزرق هادئ */
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 2px solid #FFD700;
+}
+
+/* اسم اللاعب */
+.player-name {
+    font-size: 1.2rem;
+    font-weight: bold;
     margin: 10px 0;
 }
 
-.event-date, .event-score {
-    font-size: 0.9rem;
-    color: #333;
+/* مركز اللاعب */
+.player-position {
+    font-size: 1rem;
     font-weight: bold;
-}
-
-.event-score {
-    color: #28a745; /* أخضر للنتيجة */
-}
-
-.event-result .vs {
-    color: red;
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-
-/* الشبكة الرئيسية للبطاقات */
-.events-container {
+    color: #FFD700;
     display: flex;
-    flex-wrap: wrap; /* يلتف على عدة صفوف */
-    justify-content: center;
-    gap: 15px; /* مسافة بين البطاقات */
-    margin-top: 20px;
-}
-/* رقم البطولة في الزاوية */
-.rank-badge {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: #d4af37; /* لون ذهبي */
-    color: #fff;
-    font-weight: bold;
-    font-size: 0.9rem;
-    padding: 5px 8px;
-    border-radius: 50%; /* دائري */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    z-index: 2; /* فوق الصورة */
-}
-
-/* تعديل المسافة داخل البطاقة */
-
-.event-card {
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    position: relative;
-}
-
-
-.event-footer {
-    font-size: 0.9rem;
-    color: #555;
-    margin-top: 5px;
-    font-weight: bold;
-}
-
-/* البطاقات العادية لبقية الشهر */
-.events-month-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-}
-.center-card {
-    width: 300px;
-    margin: 0 auto; /* لتوسيط البطاقة */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    background-color: #fdfdfd; /* خلفية خفيفة */
-    border: 1px solid #ddd;
-}
-
-
-/* البطاقة الخاصة باليوم في المنتصف */
-.today-card-container {
-    display: flex;
-    justify-content: center;
     align-items: center;
-    margin: 20px 0;
+    justify-content: center;
+    gap: 10px;
 }
-.month-btn {
-    background-color: #007bff; /* أزرق */
-    color: #ffffff; /* أبيض */
-    padding: 10px 20px; /* حشوة داخلية */
-    border: none; /* إزالة الحدود */
-    border-radius: 5px; /* حواف دائرية */
-    font-size: 1rem; /* حجم الخط */
-    font-weight: bold; /* خط عريض */
-    cursor: pointer; /* تغيير المؤشر */
-    transition: background-color 0.3s ease; /* تأثير الانتقال */
+/* تنسيق أزرار التنقل */
+.pagination-controls {
+    display: flex;
+    justify-content: center; /* جعل الأزرار في الوسط */
+    gap: 15px; /* مسافة بين الأزرار */
+    margin-top: 15px; /* مسافة من الأعلى */
 }
 
-.month-btn:hover {
-    background-color: #0056b3; /* لون أزرق غامق عند التمرير */
+.pagination-controls button {
+    background: #005fbf;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px; /* زيادة حجم الأزرار */
+    border-radius: 5px;
+    font-size: 16px; /* تكبير النص */
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-/*=====================================================================*/
-/* كل مايتعلق بمواجهات الاندية مع الهلال 
-/*======================================================================*/
-/* حاوية البطاقات الخاصة بالإحصائيات */
+.pagination-controls button:hover {
+    background: #8623ad; /* تغيير اللون عند التمرير */
+}
+
+/* ------------------------------------------------------------ */
+
+
+
+/* تنسيق الجدولين */
+#team-stats-table,
+#year-stats-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+#team-stats-table th, #team-stats-table td,
+#year-stats-table th, #year-stats-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    color: #333; /* تغيير لون النص داخل الجدول إلى أسود */
+    font-weight: bold; /* جعل النص عريض */
+}
+
+#team-stats-table th,
+#year-stats-table th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold; /* عريض لعناوين الأعمدة */
+}
+
+#team-stats-table tr:nth-child(even),
+#year-stats-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+#team-stats-table tr:nth-child(odd),
+#year-stats-table tr:nth-child(odd) {
+    background-color: #e2e6ea;
+}
+
+#team-stats-table tr:hover,
+#year-stats-table tr:hover {
+    background-color: #cce5ff;
+}
+
+/* تخصيص عرض العمود "الدور" */
+#team-stats-table td:nth-child(2), #team-stats-table th:nth-child(2),
+#year-stats-table td:nth-child(2), #year-stats-table th:nth-child(2) {
+    width: 15%; /* تخصيص عرض العمود */
+}
+
+/* إحصائيات المواجهات */
 .team-stats-container {
     display: flex;
     justify-content: center; 
@@ -1955,50 +792,27 @@ body {
 
 .team-stat-card h3 {
     font-size: 1rem;
-    color: #333;
+    color: #333; /* لون أسود */
+    font-weight: bold; /* عريض */
 }
 
 .team-stat-card p {
     font-size: 1.2rem;
-    font-weight: bold;
-    color: #000;
+    font-weight: bold; /* عريض */
+    color: #000; /* لون أسود */
 }
 
-/* تنسيق جدول الإحصائيات */
-#team-stats-table {
-    width: 100%;
-    margin-top: 20px;
-    border-collapse: collapse;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* تحسين عرض الجدول على الشاشات الكبيرة */
+@media screen and (min-width: 1024px) {
+    #team-stats-table,
+    #year-stats-table {
+        max-width: 80%; /* تقليص عرض الجدول ليكون 80% فقط من الشاشة */
+        margin: 0 auto; /* توسيط الجدول داخل الصفحة */
+    }
 }
 
-#team-stats-table th,
-#team-stats-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-    color: #333; /* لون النص موحد لجميع الخلايا */
-    font-weight: bold;
-}
 
-#team-stats-table th {
-    background-color: #007bff;
-    color: white;
-}
-
-#team-stats-table tr:nth-child(even) {
-    background-color: #e2e6ea; /* لون رمادي فاتح للصفوف الزوجية */
-}
-
-#team-stats-table tr:nth-child(odd) {
-    background-color: #f8f9fa; /* لون مختلف للصفوف الفردية */
-}
-
-#team-stats-table tr:hover {
-    background-color: #cce5ff; /* تغيير لون الصف عند التحويم */
-}
-
-/* أزرار قسم المواجهات */
+/* تنسيقات أزرار الفلترة */
 .team-filter-btn {
     background-color: #007bff; /* أزرق */
     color: white;
@@ -2023,433 +837,465 @@ body {
     background-color: #ffc107; /* أصفر */
 }
 
-
-/* تنسيق الأيقونة الخاصة بعنوان القسم */
-h2 i.fa-futbol {
-    font-size: 1.5rem; /* حجم الأيقونة */
-    color: #28a745; /* لون أخضر */
+.team-filter-btn:hover {
+    opacity: 0.9; /* تأثير عند التحويم */
 }
 
-/* تنسيق الأيقونة الخاصة بـ "اختر الفريق" */
-label i.fa-users {
-    font-size: 1.2rem; /* حجم الأيقونة */
-    color: #17a2b8; /* لون أزرق سماوي */
+/* ------------------------------------------------------------ */
+/* العنوان */
+.managers-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white; /* لون أبيض */
+    text-align: center;
+    margin-bottom: 20px;
 }
-/* تحسين عرض الجدول على الشاشات الكبيرة */
-@media screen and (min-width: 1024px) {
-    #team-stats-table {
-        max-width: 80%; /* تقليص عرض الجدول ليكون 80% فقط من الشاشة */
-        margin: 0 auto; /* توسيط الجدول داخل الصفحة */
-    }
 
+.managers-title .icon {
+    font-size: 1.5rem;
+    color: #ffd700; /* لون ذهبي */
+    margin-right: 10px;
+}
 
+/* الحاوية الكاملة */
+.manager-container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f0f4f8;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
 
+/* البطاقة الرئيسية للرئيس */
+.manager-main-card {
+    padding: 15px;
+    background-color: #e6ecf0; /* لون أغمق من الأبيض */
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    border: 2px solid #005fbf;
+}
 
-/*======================================================================*/
+.manager-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-/* تنسيق القائمة المنسدلة */
-#year-stats-select {
-    width: 100%; /* عرض القائمة بالكامل */
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
+.manager-image {
+    width: 180px; /* تكبير الصورة */
+    height: 180px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    border: 3px solid #005fbf;
+}
+
+.manager-name {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #005fbf;
+}
+
+/* رقم الرئيس */
+.manager-number {
+    font-size: 1.2rem;
+    font-weight: bold;
+      color: #ffffff;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 5px 15px;
     border-radius: 5px;
-    background-color: #f8f9fa;
-    font-size: 16px;
-    color: #333;
-    appearance: none;
-    cursor: pointer;
-  
+    position: absolute;
+    top: 15px; /* إنزالها داخل البطاقة */
+    left: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* تنسيق النصوص داخل الخيارات */
-#year-stats-select option {
-    padding: 10px;
-    font-size: 16px;
-    color: #333;
-    background-color: #fff;
-}
-
-/* تنسيق عام للجدول */
-#year-stats-table {
-     width: 100%;
+/* صف البطاقات */
+.manager-stats-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
     margin-top: 20px;
-    border-collapse: collapse;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-#year-stats-table th,
-#year-stats-table td {
- border: 1px solid #ddd;
-    padding: 10px;
+
+/* البطاقة الواحدة */
+.stat-card {
+    background-color: #ffffff; /* لون البطاقة */
+    border: 2px solid #005fbf;
+    border-radius: 10px;
     text-align: center;
-    color: #333; /* لون النص موحد لجميع الخلايا */
+    padding: 20px;
+    width: 32%; /* تكبير البطاقات */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.stat-card h4 {
+    font-size: 1.4rem; /* تكبير العنوان */
+    font-weight: bold;
+    color: #005fbf;
+    margin-bottom: 10px;
+}
+
+.stat-card p {
+    font-size: 1.2rem; /* تكبير النصوص */
+    line-height: 1.5;
+    color: #333;
     font-weight: bold;
 }
 
-/* رأس الجدول */
-#year-stats-table th {
-    background-color: #007bff;
-    color: white;
-}
-/* تقليل عرض عمود الدور */
-#year-stats-table th:nth-child(2),
-#year-stats-table td:nth-child(2) {
-    width: 80px; /* عرض محدد بالبيكسل */
-    max-width: 80px; /* عرض أقصى */
-    text-overflow: ellipsis; /* إظهار "..." إذا تجاوز النص العرض */
-    white-space: nowrap; /* منع النص من الانتقال إلى سطر جديد */
-    overflow: hidden; /* إخفاء النص الزائد */
-}
-/* تقليل عرض عمود الدور */
-#year-stats-table th:nth-child(1),
-#year-stats-table td:nth-child(1) {
-    width: 80px; /* عرض محدد بالبيكسل */
-    max-width: 80px; /* عرض أقصى */
-    text-overflow: ellipsis; /* إظهار "..." إذا تجاوز النص العرض */
-    white-space: nowrap; /* منع النص من الانتقال إلى سطر جديد */
-    overflow: hidden; /* إخفاء النص الزائد */
+.stat-card .icon {
+    font-size: 2.2rem;
+    color: #007bff;
+    margin-bottom: 10px;
 }
 
-
-/* الصفوف الزوجية */
-#year-stats-table tr:nth-child(even) {
-    background-color: #e2e6ea; /* لون رمادي فاتح للصفوف الزوجية */
-}
-
-/* الصفوف الفردية */
-#year-stats-table tr:nth-child(odd) {
-    background-color: #f8f9fa; /* لون مختلف للصفوف الفردية */
-}
-#year-stats-table tr:hover {
-    background-color: #cce5ff; /* تغيير لون الصف عند التحويم */
-}
-
-/* أزرار قسم الحسميات */
-.year-filter-btn {
-    background-color: #6c757d; /* رمادي */
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    margin: 5px;
-    border-radius: 5px;
+/* النصوص البارزة */
+.highlight.year {
+    color: #005fbf; /* لون أزرق كحلي */
     font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
-.year-filter-btn.wins {
-    background-color: #28a745; /* أخضر */
+.highlight.win {
+    color: #333; /* لون أسود فاتح */
+    font-weight: bold;
 }
 
-.year-filter-btn.losses {
-    background-color: #dc3545; /* أحمر */
+.highlight.stat {
+    color: #ff4500; /* لون برتقالي */
+    font-weight: bold;
 }
 
-.year-filter-btn.draws {
-    background-color: #ffc107; /* أصفر */
-}
-/* تنسيق أيقونة الكلندر */
-label i.fa-calendar {
-    font-size: 1.2rem; /* حجم الأيقونة */
-    color: #FFD700; /* اللون الذهبي */
+/* أزرار التنقل */
+.navigation-buttons {
+    margin-top: 20px;
 }
 
-/* تنسيق الأيقونة بجانب العنوان */
-h2 i.fa-chart-bar {
-    font-size: 1.5rem; /* حجم الأيقونة */
-    color: #FFD700; /* اللون الذهبي */
-}
-/* تحسين عرض الجدول على الشاشات الكبيرة */
-
-/* تحسين عرض الجدول على الشاشات الكبيرة */
-@media screen and (min-width: 1024px) {
-   #year-stats-table {
-        max-width: 80%; /* تقليص عرض الجدول ليكون 80% فقط من الشاشة */
-        margin: 0 auto; /* توسيط الجدول داخل الصفحة */
-    }
-
- 
-  
-
-
-
-/***********************************************************************************/
-/* حاوية الأزرار */
-.upcoming-filter-buttons {
-    text-align: center;
-    margin: 15px 0;
-}
-
-/* تنسيق الأزرار */
-.upcoming-filter-btn {
-    background-color: #007bff;
+.navigation-buttons button {
+    background-color: #005fbf;
     color: white;
     border: none;
-    padding: 10px 15px;
+    padding: 10px 20px;
     margin: 5px;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 1rem;
     font-weight: bold;
-    transition: background-color 0.3s ease;
 }
 
-.upcoming-filter-btn:hover {
-    opacity: 0.9;
+.navigation-buttons button:hover {
+    background-color: #004080;
 }
 
-/* ألوان مخصصة للأزرار */
-.upcoming-filter-btn.super { background-color: #28a745; }
-.upcoming-filter-btn.league { background-color: #17a2b8; }
-.upcoming-filter-btn.king { background-color: #ffc107; color: #333; }
-.upcoming-filter-btn.asia { background-color: #6f42c1; }
-.upcoming-filter-btn.world { background-color: #dc3545; }
-.upcoming-filter-btn.all { background-color: #343a40; }
+/* ------------------------------------------------------------ */
 
-/* تنسيق عام للجدول */
-#upcoming-matches-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
 
-#upcoming-matches-table th,
-#upcoming-matches-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
+/* العنوان الرئيسي */
+.videos-title {
+    font-size: 2rem;
     font-weight: bold;
-    color: #000; /* لون النص بالأسود */
-}
-
-/* رأس الجدول */
-#upcoming-matches-table th {
-    background-color: #0056b3; /* أزرق داكن */
-    color: white; /* لون النص بالأبيض */
-}
-
-/* الصفوف الزوجية */
-#upcoming-matches-table tr:nth-child(even) {
-    background-color: #f8f9fa; /* خلفية رمادية فاتحة */
-}
-
-/* الصفوف الفردية */
-#upcoming-matches-table tr:nth-child(odd) {
-    background-color: #e2e6ea; /* خلفية رمادية أفتح */
-}
-
-/* عند التحويم على الصف */
-#upcoming-matches-table tr:hover {
-    background-color: #cce5ff; /* خلفية زرقاء فاتحة */
-    color: #000; /* تأكد من أن النص يبقى واضحًا */
-}
-
-/* تنسيق خاص للعمود */
-#upcoming-matches-table td {
-    color: #333; /* لون النص الرمادي الداكن */
-}
- 
-  /* تحسين عرض الجدول على الشاشات الكبيرة */
-@media screen and (min-width: 1024px) {
-  #upcoming-matches-table {
-        max-width: 80%; /* تقليص عرض الجدول ليكون 80% فقط من الشاشة */
-        margin: 0 auto; /* توسيط الجدول داخل الصفحة */
-    }
-
-
-
-
-.footer-copyright {
+    color: white;
     text-align: center;
-    font-size: 1.0rem;
-    color: #ffffff;
-    background-color: #001f3f;
-    padding: 10px 0;
-    margin-top: 15px;
-    padding-bottom: 50px; /* ترك مساحة لتجنب تغطيته من شريط التنقل */
-    border-top: 1px solid #87CEEB;
+    margin-bottom: 20px;
 }
 
+.videos-title .fa {
+    color: #ff0000;
+    margin-right: 10px;
+}
 
-
-/*****************************************************************************/
-/* الشبكة لعرض اللاعبين */
-.players-grid {
+/* حاوية الفيديوهات */
+.youtube-videos-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* عمودين */
-    gap: 15px; /* تقليل التباعد بين البطاقات */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* كارد الفيديو */
+.video-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: 2px solid #005fbf;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #002b5c, #004080);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.video-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.video-card iframe {
+    border-radius: 7px;
+}
+
+/* عنوان الفيديو */
+.video-title {
+    margin-top: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+
+/* أزرار التنقل */
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
     margin-top: 20px;
+}
+
+.pagination-button {
+    background-color: #005fbf;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination-button:hover {
+    background-color: #0033cc;
+}
+
+.page-number {
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+}
+/* ------------------------------------------------------------ */
+.stadium-button {
+    white-space: normal; /* للسماح بتقسيم النص */
+    text-align: center;
+    line-height: 1.2;
+}
+.stadium-button {
+    border: 2px solid #005fbf; /* إطار مشابه للخريطة */
+    background-color: #800020; /* خلفية عنابية */
+    color: white; /* لون النص */
+    border-radius: 10px;
+    padding: 10px 15px;
+    margin: 5px;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stadium-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+#stadiums-bar {
+    border: 3px solid #005fbf;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+.stadium-button span {
+    color: #FFD700; /* لون ذهبي للرقم */
+    font-size: 1.2rem; /* تكبير الرقم */
+    font-weight: bold;
+}
+
+
+
+
+
+
+/* شبكة البطاقات */
+.world-cup-grid {
+    display: flex;
+    flex-wrap: wrap; /* للسماح بالتفاف البطاقات */
+    gap: 20px; /* مسافة بين البطاقات */
+    justify-content: center; /* وضع البطاقات في الوسط أفقيًا */
+    align-items: center; /* وضع البطاقات في الوسط عموديًا */
+    margin-top: 20px; /* مسافة من العنوان */
 }
 
 /* تصميم البطاقة */
-.player-card {
-    background: #1e3a8a; /* لون أزرق فاتح لخلفية البطاقة */
-    color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* ظل */
+.world-cup-card {
+    background: #dcdcdc; /* لون رمادي فاتح */
+    border: 2px solid #005fbf; /* إطار أزرق */
+    border-radius: 8px;
     padding: 15px;
+    width: 220px;
     text-align: center;
     position: relative;
-    width: 230px; /* تقليل عرض البطاقة قليلاً */
-    margin: 0 auto; /* توسيط البطاقة */
-    border: 2px solid #ffffff; /* حواف بيضاء */
-    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #333; /* لون النص */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* حركة عند التفاعل */
 }
 
-.player-card:hover {
-    transform: scale(1.05); /* تكبير البطاقة عند التمرير */
+/* الحركة عند التفاعل */
+.world-cup-card:hover {
+    transform: scale(1.05); /* تكبير البطاقة قليلاً */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* زيادة الظل */
 }
 
-/* صورة اللاعب */
-.player-image {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%; /* صورة دائرية */
-    margin-bottom: 10px;
-    border: 3px solid #FFD700; /* لون إطار الصورة */
-}
-
-/* رقم اللاعب */
-.player-number {
+/* الرقم داخل البطاقة */
+.card-number {
     position: absolute;
-    top: 10px; /* في الزاوية العلوية */
-    right: 10px; /* على اليمين */
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #FFD700; /* اللون الذهبي */
-    background: #1e3a8a; /* خلفية صغيرة */
-    padding: 5px 10px;
-    border-radius: 5px;
-}
-
-/* اسم اللاعب */
-.player-name {
-    font-size: 1.4rem; /* تكبير الخط */
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-/* مركز اللاعب */
-.player-position {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #b3c7e6;
-    margin-bottom: 5px; /* تقليل التباعد السفلي */
+    top: 10px;
+    right: 10px;
+    background: #005fbf; /* خلفية زرقاء */
+    color: #fff; /* رقم أبيض */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px; /* مسافة بين النص والأيقونة */
+    font-size: 1.2em;
+    font-weight: bold;
 }
 
-/* الأزرار */
-.pagination-controls {
-    display: flex;
-    justify-content: center; /* توسيط الأزرار */
-    gap: 20px; /* مسافة بين الأزرار */
-    margin-top: 15px;
+/* العنوان والنصوص */
+.cup-title {
+    font-size: 1.4em;
+    color: #005fbf;
+    font-weight: bold;
+    margin: 10px 0;
+}
+.country-name {
+    font-size: 1.2em; /* تكبير النص */
+    color: #000; /* لون أسود */
+    font-weight: bold; /* جعل النص عريضًا */
+    margin-top: 5px; /* مسافة بسيطة بين النص والعناصر الأخرى */
+    text-align: center; /* محاذاة النص في الوسط */
 }
 
-.pagination-controls button {
+.details-button {
     background: #005fbf;
-    color: #ffffff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1em;
+    margin-top: 10px;
+}
+
+.details-button:hover {
+    background: #004799;
+}
+/* شاشة التفاصيل */
+.details-container h2 {
+    font-size: 1.6em;
+    color: #003366; /* لون أزرق داكن */
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* مسافة بين الأيقونة والعنوان */
+}
+
+
+.world-cup-details-grid {
+    display: flex;
+    gap: 20px; /* مسافات بين البطاقات */
+    justify-content: center; /* وضع البطاقات في الوسط */
+    flex-wrap: wrap; /* السماح بالتفاف البطاقات عند الحاجة */
+}
+
+/* تصميم البطاقة */
+.match-card {
+    background: #e6e6e6; /* لون رمادي فاتح */
+    border: 2px solid #005fbf;
+    border-radius: 8px;
+    padding: 15px;
+    width: 300px;
+    text-align: right; /* من اليمين لليسار */
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    color: #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* حركة عند التفاعل */
+}
+.match-stage {
+    font-size: 1.4em;
+    color: #005fbf;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px; /* مسافة بين العنوان وبقية النصوص */
+    position: relative;
+}
+
+.match-stage::before {
+    content: "\f1e3"; /* أيقونة كرة قدم من FontAwesome */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: #005fbf;
+    margin-right: 8px;
+    position: absolute;
+    right: -25px; /* لتكون الأيقونة على اليمين */
+}
+
+.match-info p {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* النصوص تبدأ بعد الأيقونة */
+    font-size: 1em;
+    margin: 5px 0;
+    font-weight: bold; /* النصوص بولد */
+    color: #800000; /* لون عنابي للفريق والمنافس، الملعب، والكابتن */
+    border-bottom: 2px solid #aaa; /* خط أكثر وضوحًا */
+    padding-bottom: 5px;
+    text-align: right; /* النصوص تبدأ من اليمين */
+}
+
+.match-info i {
+    color: #005fbf; /* لون الأيقونات */
+    margin-left: 10px; /* مسافة بين الأيقونة والنص */
+}
+
+.result-info {
+    color: #000; /* لون أسود للنتائج */
+}
+
+.video-frame {
+    width: 100%;
+    height: 200px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 2px solid #005fbf;
+}
+
+.back-button {
+    background: #005fbf;
+    color: #fff;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 1.2em;
+    font-weight: bold;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
 }
 
-.pagination-controls button:hover {
-    background: #8623ad;
+.back-button:hover {
+    background: #004799;
 }
-
-.pagination-controls button:disabled {
-    background: #cccccc;
-    cursor: not-allowed;
-}
-
-  
-  /* الخصوووووووووووووووووووووصية  */
-
-#privacy-policy-section {
-  background: linear-gradient(135deg, #35004e, #001f5c); /* خلفية عنابية */
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* تحسين الظل */
-  margin: 20px auto;
-  width: 90%;
-  max-width: 600px;
-  text-align: right;
-  direction: rtl;
-  color: #ffffff; /* لون النصوص */
-  border: 3px solid #ffffff; /* إطار خارجي أبيض */
-}
-
-/* تصميم المربعات الداخلية */
-#privacy-policy-section h1, #privacy-policy-section h2 {
-  color: #35004e; /* لون النصوص عنابي */
-  font-weight: bold;
-  text-align: center;
-  background-color: #f2f2f2; /* لون قريب من الأبيض */
-  padding: 10px;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  border: 2px solid #35004e; /* إطار داخلي عنابي */
-}
-
-/* تصميم النصوص */
-#privacy-policy-section p {
-  color: #ffffff; /* لون النصوص أبيض */
-  font-weight: bold;
-  line-height: 1.6;
-  text-align: justify;
-  margin-bottom: 15px;
-}
-
-/* تصميم الروابط */
-#privacy-policy-section .contact a {
-  color: #00bfff; /* لون أزرق فاتح */
-  text-decoration: underline;
-}
-
-#privacy-policy-section .contact a:hover {
-  text-decoration: none;
-  color: #ffcc00; /* لون مختلف عند التمرير */
-}
-
-/* تصميم زر الإغلاق */
-.close-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: #8623ad; /* لون الزر بنفس التدرج */
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  font-size: 18px;
-  cursor: pointer;
-  text-align: center;
-  line-height: 30px;
-}
-
-.close-btn:hover {
-  background-color: #5e1d85; /* تغيير اللون عند التمرير */
-}
-
-/* تحسين تصميم الإطار */
-.modal-content {
-  position: relative;
-  background: linear-gradient(135deg, #35004e, #001f5c); /* نفس الخلفية */
-  border-radius: 10px;
-  padding: 20px;
-  width: 90%;
-  max-width: 600px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  text-align: right;
-  direction: rtl;
-  border: 2px solid rgba(255, 255, 255, 0.3); /* إطار شفاف */
-  margin: auto;
-}
-
