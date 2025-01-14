@@ -1,543 +1,203 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-   <script>
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js')
-            .then((registration) => {
-                console.log('Service Worker registered with scope:', registration.scope);
-            })
-            .catch((error) => {
-                console.log('Service Worker registration failed:', error);
-            });
-    });
-}
-         <!-------------------------------------------------------------------------------------------->
+      <!-- إعدادات الصفحة الرئيسية -->
 
-  </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بطولات نادي الهلال السعودي</title>
+    <title>تطبيق نادي الهلال</title>
+  
+      <!-- روابط ملفات التنسيق الخارجية -->
+    <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
-   <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#005fbf">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<!-- مكتبة Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
+    <!-- مكتبة MarkerCluster -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster-src.js"></script>
+ 
+ 
 </head>
-<!-------------------------------------------------------------------------------------------->
-<header id="header-section">
-  <div class="menu-bar">
-    <button id="menu-toggle">☰</button>
-    <div id="logo-container">
-      <img src="icon.png" alt="شعار" id="logo">
+<body onload="initializeApp()">
+
+    <!-- الهيدر ---------------------------------------------------------------- -->
+    <header class="header">
+    <h1 class="header-title">تطبيق حالي الذوق</h1>
+    <nav class="header-nav">
+        <ul class="header-menu">
+            <li><a href="#">الرئيسية</a></li>
+            <li><a href="#">عن النادي</a></li>
+            <li><a href="#">اتصل بنا</a></li>
+        </ul>
+    </nav>
+      
+  <div id="overlay" class="overlay hidden"></div>
+
+      
+   <div class="header-actions">
+     <div class="header-actions">
+    <button id="menu-toggle" class="hamburger" onclick="toggleMinibar()">☰</button>
+    <button id="logout-btn" class="logout-button" onclick="logoutUser()">تسجيل الخروج</button>
     </div>
-    <div class="top-nav-buttons">
-      <a id="about-btn" title="من نحن" onclick="showAboutCard()">
-        <i class="fa fa-user"></i>
-        <span>من نحن</span>
-      </a>
-      <a id="subscribe-btn" title="اشترك معنا" onclick="subscribeChannel()">
-        <i class="fa fa-bell"></i>
-        <span>اشترك معنا</span>
-      </a>
-    </div>
-  </div>
 </header>
+      <!-- نهاية الهيدر ---------------------------------------------------------- -->
+      <!-- الميني بار ----------------------------------------------------------- -->
 
- 
- <!-- الشريط الزمني (marquee) مباشرةً تحت شريط الميني بار -->
-    <div id="welcome-message" class="welcome-message">
-        مرحباً بك يا زعيم
-    </div>
-    <div class="marquee-container">
-        <div class="marquee-content">
-            آخر الأخبار: الهلال يحقق الانتصار الكبير!
-        </div>
-    </div>
-  </div>
-  
-  
-  <!-- المحتوى الرئيسي -->
-  <div id="content-container" class="content-wrapper">
- <div id="app-intro">
-   
-    <h2>مرحبًا بك في تطبيق بطولات الهلال</h2>
-      <p>استمتع باستكشاف بطولات وإنجازات الزعيم!</p>
-      <!-- الصورة الرئيسية -->
-      <img src="https://github.com/sweettaste95/hilal-images/blob/main/signal-2024-11-09-085859.jpeg?raw=true
-" alt="تطبيق بطولات الهلال" id="intro-image">
-      <!-- النص الترحيبي -->
+<div id="minibar" class="minibar">
+    <!-- قسم معلومات الهلال -->
+    <div class="minibar-section">
+        <h3 class="minibar-section-title">معلومات الهلال</h3>
+        <ul class="minibar-buttons">
+            <ul class="minibar-buttons">
+            <li><button data-content="championships" onclick="handleButtonClick(event)">🏆 التتويجات</button></li>
+           <li><button data-content="competitions" onclick="handleButtonClick(event)">⭐ المسابقات</button></li>
+           <li><button data-content="team-matches" onclick="handleButtonClick(event)">⚽ المواجهات</button></li>
+           <li><button data-content="team-players" onclick="handleButtonClick(event)">👥 الفريق الأول</button></li>
+             <li><button data-content="year-stats" onclick="handleButtonClick(event)">📊 حسميات الدوري</button></li>
+             <li><button data-content="managers" onclick="handleButtonClick(event)">👔 رؤساء النادي </button></li>             
+<li><button data-content="youtube-videos" onclick="handleButtonClick(event)">📹 مقاطع التتويج</button></li>
+<li><button data-content="hilal-map" onclick="handleButtonClick(event)">🗺️ منصات الهلال</button></li>
+
+<li><button data-content="world-cup" onclick="handleButtonClick(event)">🌍 كأس العالم</button></li>
+
      
-    </div>   
-    <div id="menu-content" class="menu-content">
-      <div class="menu-section">
-        <div class="menu-section-header">معلومات الهلال</div>
-        <button onclick="showCompetitionSearch()">⭐ المسابقة</button>
-        <button onclick="showTimeline()">🏆 التتويجات</button>
-        <button onclick="showYouTubeVideos()">📹 مقاطع التتويج</button>
-        <button onclick="showHilalMap()">🗺️ منصات الهلال</button>
-        <button onclick="showManagers()">👥 رؤساء الهلال</button>
-        <button onclick="showYearStats()">⚽ حسميات الدوري</button>
-        <button onclick="showUpcomingMatches()">🗓️ مباريات الهلال القادمة</button>
-        <button onclick="showTeamPlayers()">👥 الفريق الأول</button>
-        <button onclick="showFifaWorldCup()">🌍 كأس العالم</button>
-        <button onclick="showTodayEvent()">📅 في مثل هذا اليوم</button>
-        <button onclick="showTeamMatches()">⚽ تاريخ المواجهات</button>
-      </div>
-      <div class="menu-section">
-        <div class="menu-section-header">الدعم</div>
-        <button onclick="showPrivacyPolicy()">سياسة الخصوصية</button>
-        <button onclick="showAboutUs()">من نحن</button>
-        <button onclick="contactUs()">راسلنا</button>
-        <button onclick="showCustomFeedback()">📝 ملاحظات الدعم</button>
-      </div>
-    </div>
-<!-- الرسالة الترحيبية -->
-    <div id="dynamic-content">
-
-     <!-------------------------------------------------------------------------------------------->
- 
-    
       
-      <!-- قسم مباريات الهلال القادمة -->
-<!-- قسم جدول مباريات الهلال القادمة -->
-<div id="upcoming-matches-section" class="hidden">
-    <h2 style="text-align: center;">مباريات الهلال القادمة</h2>
 
-    <!-- أزرار الفلترة -->
-    <div id="upcoming-matches-filters" class="upcoming-filter-buttons">
-        <button class="upcoming-filter-btn super" onclick="filterUpcomingMatches('كأس السوبر')">كأس السوبر</button>
-        <button class="upcoming-filter-btn league" onclick="filterUpcomingMatches('دوري روشن')">دوري روشن</button>
-        <button class="upcoming-filter-btn king" onclick="filterUpcomingMatches('كأس الملك')">كأس الملك</button>
-        <button class="upcoming-filter-btn asia" onclick="filterUpcomingMatches('دوري أبطال آسيا')">دوري أبطال آسيا</button>
-        <button class="upcoming-filter-btn world" onclick="filterUpcomingMatches('كأس العالم')">كأس العالم</button>
-        <button class="upcoming-filter-btn all" onclick="displayUpcomingMatches(allUpcomingMatches)">الكل</button>
+
+</ul>
+        </ul>
     </div>
 
-    <!-- جدول عرض المباريات -->
-    <table id="upcoming-matches-table" class="styled-table">
-        <thead>
-            <tr>
-                <th>التاريخ</th>
-                <th>المنافس</th>
-                <th>المسابقة</th>
-                <th>الموقع</th>
-            </tr>
-        </thead>
-        <tbody id="upcoming-matches-tbody">
-            <!-- سيتم ملء البيانات ديناميكيًا هنا -->
-        </tbody>
-    </table>
+    <!-- قسم الدعم -->
+    <div class="minibar-section">
+        <h3 class="minibar-section-title">الدعم</h3>
+        <ul class="minibar-buttons">
+            <li><button onclick="openContent('سياسة الخصوصية')">🛡️ سياسة الخصوصية</button></li>
+            <li><button onclick="openContent('من نحن')">📖 من نحن</button></li>
+            <li><button onclick="openContent('ملاحظات الدعم')">📝 ملاحظات الدعم</button></li>
+        </ul>
+    </div>
 </div>
+    <!-- نهاية الميني بار ------------------------------------------------------ -->
+<div id="main-content" class="main-content"></div>
 
-
-         <!-------------------------------------------------------------------------------------------->
- 
-    <!-- إطار للخريطة -->
-   <!-- إطار للخريطة -->
-<main>
-    <section id="hilal-map-section" class="hidden">
-        <!-- عنوان القسم مع أيقونة في نهاية النص -->
-        <h2 style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-            <span>منصات الهلال حول العالم</span>
-            <i class="fa fa-globe" style="color: #007bff;"></i> <!-- أيقونة الكرة الأرضية بلون أزرق -->
-        </h2>
-        
-        <!-- إطار للخريطة -->
-        <div class="map-wrapper">
-            <div id="map" style="height: 500px; width: 100%;"></div>
-        </div>
-
-        <!-- إضافة فاصل لتباعد المربع عن الخريطة -->
-        <div style="height: 30px;"></div>
-
-        <!-- بطاقة البحث -->
-        <div class="map-card">
-            <p class="description-text">اختر البطولة أو الملعب من القائمة:</p>
-            <div class="map-controls">
-                <select id="search-dropdown" onchange="highlightSearchButton()">
-                    <option value="">اختر من القائمة</option>
-                    <option value="كأس ولي العهد - ملعب الملك فهد">كأس ولي العهد - ملعب الملك فهد</option>
-                    <option value="كأس آسيا - ملعب الجامعة">كأس آسيا - ملعب الجامعة</option>
-                </select>
-                <button id="search-btn" onclick="searchMap()" class="search-btn">بحث</button>
+    <!-- المحتوى الرئيسي ------------------------------------------------------- -->
+<div id="championships-section" style="display: none;">
+    <h2 class="championship-title">🏆 تتويجات البطولات النهائية</h2>
+    <p class="championship-subtitle">اختر سنة التتويج</p>
+    <div class="dropdown-container">
+        <select id="year-select" class="styled-dropdown">
+            <option value="" disabled selected>اختر السنة</option>
+            <option value="1997">1997 🏆</option>
+            <option value="2000">2000 🏆</option>
+            <option value="2005">2005 🏆</option>
+            <option value="2010">2010 🏆</option>
+            <option value="2022">2022 🏆</option>
+        </select>
+    </div>
+    <div id="championships-data" class="championships-container">
+        <!-- مثال لبطاقة -->
+        <div class="championship-card">
+            <!-- رقم البطولة -->
+            <div class="card-rank">
+                رقم البطولة: <span class="rank-value">15</span>
             </div>
-            <div class="map-buttons">
-                <button class="reset-btn" onclick="resetMap()">إعادة ضبط الخريطة</button>
-                <button onclick="showCityStats()" class="stats-btn">عرض إحصائيات البطولات</button>
-            </div>
-        </div>
-    </section>
-</main>
-
-    <!-------------------------------------------------------------------------------------------->
-      
-      <div id="fifa-world-cup-section" class="hidden">
-    <h2>مباريات الهلال في كأس العالم</h2>
-    <div id="fifa-world-cup-matches"></div>
-</div>
-
-
-      <!-------------------------------------------------------------------------------------------->
- 
-   <!-- قسم في مثل هذا اليوم -->
-<div id="today-event-section" class="hidden">
-    <h2>🎉 بطولات الهلال في مثل هذا اليوم</h2>
-    <div id="today-event-container"></div>
-</div>
-
-     <!-------------------------------------------------------------------------------------------->
-     
-       <!-- البحث حسب المسابقة -->
-<div id="competition-search" class="search-section hidden">
-    <!-- عنوان القسم مع أيقونة -->
-    <h2 style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-        <span>المسابقات المحلية و الدولية</span>
-        <i class="fa fa-trophy" style="color: #FFD700;"></i> <!-- أيقونة الكأس بلون ذهبي -->
-    </h2>
-
-    <!-- اختيار المسابقة مع أيقونة في نهاية النص -->
-    <label for="competition-select" style="display: flex; align-items: center; justify-content: center; gap: 5px; margin-top: 10px;">
-        <span>اختر المسابقة</span>
-        <i class="fa fa-flag-checkered" style="color: #007bff;"></i> <!-- أيقونة العلم المتقاطع باللون الأزرق -->
-    </label>
-    <select id="competition-select" onchange="searchByCompetition()">
-        <option value="">-- أسماء المسابقات --</option>
-    </select>
-
-    <!-- نتائج البحث -->
-    <div id="competition-results" class="results"></div>
-</div>
-       <!-------------------------------------------------------------------------------------------->
-      
-    
-<!-- قسم الفريق الأول -->
-<div id="team-players-section" class="hidden">
-    <h2>👥 لاعبو الفريق الأول</h2>
-    <div id="players-container" class="players-grid">
-        <!-- بطاقات اللاعبين ستُضاف هنا ديناميكيًا -->
-    </div>
-    <div class="pagination-controls">
-      
-        <button id="next-page-btn" onclick="nextPage()">التالي</button>
-        <button id="prev-page-btn" onclick="prevPage()">السابق</button>
-    </div>
-</div>
-
-
-
-             <!-------------------------------------------------------------------------------------------->
-<div id="privacy-policy-section" class="hidden">
-  <div class="modal-content">
-        <button class="close-btn" onclick="hidePrivacyPolicy()">×</button>
-
-    <h1>سياسة الخصوصية</h1>
-    <p>مرحبًا بكم في تطبيق "بطولات الهلال". هذا التطبيق تم تطويره باجتهاد شخصي ويهدف إلى جمع معلومات حول تاريخ وإنجازات نادي الهلال بشكل شامل ومفيد للجمهور.</p>
-
-    <h2>بيان الاستقلالية</h2>
-    <p>هذا التطبيق غير تابع أو مدعوم من قبل نادي الهلال الرسمي أو أي جهة رسمية أخرى. جميع الجهود المبذولة هنا شخصية ومستقلة.</p>
-
-    <h2>مصادر المحتوى</h2>
-    <p>تم جمع جميع البيانات والمعلومات من مصادر عامة موثوقة مثل الإنترنت. مقاطع الفيديو المعروضة من مصادرها الأصلية (مثل قنوات اليوتيوب) ولم يتم تعديلها. إذا كنت مالكًا لأي محتوى وترغب في إزالته، يرجى التواصل معنا.</p>
-
-    <h2>حقوق النشر</h2>
-    <p>جميع حقوق الملكية الفكرية للتطبيق محفوظة. يمنع نسخ أو تعديل أو استخدام التطبيق لأغراض تجارية دون إذن مسبق.</p>
-
-    <h2>سياسة البيانات</h2>
-    <p>نحن لا نجمع أو نشارك بيانات المستخدمين مع أطراف ثالثة. إذا قمت بالتسجيل في التطبيق، سيتم استخدام بياناتك فقط لتحسين تجربة الاستخدام.</p>
-
-    <div class="contact">
-        <h2>تواصل معنا</h2>
-        <p>إذا كان لديك أي استفسارات أو اعتراضات، يمكنك التواصل معنا عبر البريد التالي:</p>
-        <a href="mailto:your-email@example.com">تواصل معنا</a>
-    </div>
-  </div>
-</div>
-
-
- <div id="feedback-section" class="hidden section">
-  <h2>إرسال ملاحظاتكم</h2>
-  
-  <label for="feedbackSubject">عنوان المقترح:</label>
-  <input type="text" id="feedbackSubject" placeholder="اكتب عنوان المقترح هنا">
-  
-  <label for="feedbackMessage">تفاصيل المقترح:</label>
-  <textarea id="feedbackMessage" placeholder="اكتب تفاصيل المقترح هنا"></textarea>
-  
-  <button class="feedback-btn" onclick="sendFeedback()">إرسال المقترح</button>
-  <button class="close-feedback-btn" onclick="resetView()">إغلاق</button>
-
-    </button>
-</div>
-
-      
-  
-      
-
-   
-
-             <!-------------------------------------------------------------------------------------------->
-
-
-        <!-- قسم التتويجات مع قائمة منسدلة -->
-     <!-- قسم التتويجات مع قائمة منسدلة -->
-<div class="timeline-container hidden">
-    <!-- عنوان القسم مع أيقونة -->
-    <h2 style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-        <span>تتويجات البطولات النهائية</span>
-        <i class="fa fa-trophy" style="color: #FFD700;"></i> <!-- أيقونة الكأس بلون ذهبي -->
-    </h2>
-
-    <!-- اختيار السنة مع أيقونة في نهاية النص -->
-    <label for="year-select" style="display: flex; align-items: center; justify-content: center; gap: 5px; margin-top: 15px;">
-        <span>اختر سنة التتويج</span>
-        <i class="fa fa-calendar-alt" style="color: #17a2b8;"></i> <!-- أيقونة التقويم بلون أزرق سماوي -->
-    </label>
-    <select id="year-select" onchange="showChampionshipDetails(this.value)">
-        <option value="">-- الأعوام --</option> <!-- النص داخل القائمة كما طلبت -->
-    </select>
-
-    <!-- تفاصيل البطولات -->
-    <div id="championship-details" class="hidden">
-        <!-- تفاصيل البطولات ستظهر هنا -->
-    </div>
-</div>
-
-    <!-------------------------------------------------------------------------------------------->
-
-<!-- قسم إحصائيات المواجهات -->
-<div id="team-stats-section" class="hidden">
-    <!-- عنوان القسم مع أيقونة في نهاية النص -->
-    <h2 style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-        <span>إحصائيات مواجهات الهلال</span>
-        <i class="fa fa-futbol" style="color: #28a745;"></i> <!-- أيقونة كرة قدم بلون أخضر -->
-    </h2>
-
-    <!-- اختيار اسم الفريق مع أيقونة -->
-    <label for="team-select" style="display: flex; align-items: center; justify-content: center; gap: 5px; margin-top: 15px;">
-        <span>اختر الفريق</span>
-        <i class="fa fa-users" style="color: #17a2b8;"></i> <!-- أيقونة مجموعة لاعبين بلون أزرق سماوي -->
-    </label>
-    <select id="team-select" onchange="fetchTeamMatchesData()">
-        <option value="">-- اختر الفريق --</option>
-    </select>
-
-    <!-- عرض الإحصائيات العامة -->
-    <div id="team-stats" style="text-align: center; margin-top: 20px;">
-        <!-- ستظهر إحصائيات المواجهات هنا -->
-    </div>
-    <!-- جدول عرض المواجهات -->
-    <table id="team-stats-table">
-        <thead>
-            <tr>
-                <th>السنة</th>
-                <th>الدور</th>
-                <th>الهلال</th>
-                <th>المنافس</th>
-                <th>النتيجة</th>
-                <th>الفائز</th>
-            </tr>
-        </thead>
-        <tbody id="team-stats-tbody">
-            <!-- يتم إدراج البيانات ديناميكيًا هنا -->
-        </tbody>
-    </table>
-</div>
-
-      <!-- أزرار التصفية -->
-<!-- أزرار التصفية لقسم المواجهات -->
-<div id="team-matches-stats" class="hidden">
-    <button class="team-filter-btn all" onclick="fetchTeamMatchesData()">الكل</button>
-    <button class="team-filter-btn wins" onclick="filterMatches('win')">الانتصارات</button>
-    <button class="team-filter-btn losses" onclick="filterMatches('loss')">الخسائر</button>
-    <button class="team-filter-btn draws" onclick="filterMatches('draw')">التعادلات</button>
-</div>
-
-    <!-------------------------------------------------------------------------------------------->
-
-       
-      <div id="year-stats-section" class="hidden">
-    <!-- عنوان القسم مع أيقونة في نهاية النص -->
-    <h2 style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-        <span>إحصائيات حسميات الدوري</span>
-        <i class="fa fa-chart-bar" style="color: #FFD700;"></i>
-    </h2>
-    
-    <!-- اختيار السنة مع أيقونة في نهاية النص -->
-    <label for="year-stats-select" style="display: flex; align-items: center; justify-content: center; gap: 5px;">
-        <span>اختر السنة</span>
-        <i class="fa fa-calendar" style="color: #FFD700;"></i>
-    </label>
-    <select id="year-stats-select" onchange="fetchYearStatsData()">
-        <option value="">-- الأعوام --</option> <!-- النص داخل القائمة كما طلبت -->
-    </select>
-
-    <!-- عرض الإحصائيات العامة -->
-    <div id="year-stats" style="text-align: center; margin-top: 20px;">
-        <!-- ستظهر إحصائيات السنة هنا -->
-    </div>
-</div>              
-
-    <!-- جدول عرض المباريات -->
-    <table id="year-stats-table" class="hidden">
-        <thead>
-            <tr>
-                <th>رقم المباراة</th>
-                <th>السنة</th>
-                <th>الدور</th>
-                <th>الهلال</th>
-                <th>المنافس</th>
-                <th>النتيجة</th>
-                <th>الفائز</th>
-            </tr>
-        </thead>
-        <tbody id="year-stats-tbody">
-            <!-- يتم إدراج البيانات ديناميكيًا هنا -->
-        </tbody>
-    </table>
-
-  
-<!-- أزرار التصفية لقسم الحسميات -->
-<div id="year-matches-stats" class="hidden">
-    <button class="year-filter-btn all" onclick="fetchYearStatsData()">الكل</button>
-    <button class="year-filter-btn wins" onclick="filterYearMatches('win')">الانتصارات</button>
-    <button class="year-filter-btn losses" onclick="filterYearMatches('loss')">الخسائر</button>
-    <button class="year-filter-btn draws" onclick="filterYearMatches('draw')">التعادلات</button>
-</div>
-
-    <!-------------------------------------------------------------------------------------------->
-
-     <div id="managers-section" class="hidden">
-    <div id="managers-container">
-        <!-- مثال على بطاقة مدير -->
-        <div class="manager-header">
-            <img src="path/to/manager-image.jpg" alt="مدير الصورة">
-            <h3>الشيخ عبد الرحمن بن سعيد رحمه الله</h3>
+            <h3 class="card-title">كأس الملك</h3>
+            <img src="image_url_here" alt="كأس الملك" class="championship-image">
+            <table>
+                <tr>
+                    <td><i class="fas fa-trophy"></i> المباراة النهائية:</td>
+                    <td>الهلال ضد الاتحاد</td>
+                </tr>
+                <tr>
+                    <td><i class="fas fa-calendar-alt"></i> التاريخ:</td>
+                    <td>2024-2023</td>
+                </tr>
+                <tr>
+                    <td><i class="fas fa-futbol"></i> النتيجة:</td>
+                    <td>4/1</td>
+                </tr>
+                <tr>
+                    <td><i class="fas fa-users"></i> الفريق المهزوم:</td>
+                    <td>الاتحاد</td>
+                </tr>
+                <tr>
+                    <td><i class="fas fa-user"></i> الكابتن:</td>
+                    <td>سلمان الفرج</td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>
-
-     <!-------------------------------------------------------------------------------------------->
-     
-
-
-       <div id="overlay" class="hidden"></div>
-<div id="register-screen" class="popup">
-    <h2>أهلاً يازعيـــــم </h2>
-    <input type="text" id="user-name" placeholder="الاسم" required>
-    <input type="email" id="user-email" placeholder="البريد الإلكتروني" required>
-<button id="register-btn" class="icon-btn register-btn" onclick="registerUser()">تسجيل</button>
-</div>
-
-      <!-------------------------------------------------------------------------------------------->
-    
       
       
-      <div id="championship-info" class="hidden">
-    <!-- الشعار -->
-    <img src="icon.png" alt="شعار التطبيق" id="championship-logo">
-    
-    <!-- باقي تفاصيل البطولة -->
-    <h2 class="info-title">كأس المؤسس</h2>
-    <img src="path-to-image.jpg" alt="بطولة" class="championship-image">
-    <div class="info-section">
-        <i class="fas fa-calendar-alt"></i>
-        <span>الموسم: 1999-2000</span>
-    </div>
-    <div class="info-section">
-        <i class="fas fa-trophy"></i>
-        <span>المباراة النهائية: الهلال ضد الأهلي</span>
-    </div>
-    <div class="info-section">
-        <i class="fas fa-futbol"></i>
-        <span>النتيجة: 1/2</span>
-    </div>
-    <div class="info-section">
-        <i class="fas fa-user"></i>
-        <span>الكابتن: يوسف الثنيان</span>
-    </div>
-    <div class="info-section">
-        <i class="fas fa-hashtag"></i>
-        <span>رقم البطولة: 29</span>
-    </div>
-    <button class="return-btn" onclick="backToList()">العودة إلى قائمة البطولات</button>
-</div>
+    <!-- نهاية المحتوى الرئيسي ------------------------------------------------- -->
 
-     <!-------------------------------------------------------------------------------------------->
-     
+    <!-- شاشة التسجيل ---------------------------------------------------------- -->
+    <div id="register-screen" class="screen">
+        <h2 class="title">شاشة تسجيل الدخول</h2>
+        <div class="form-group">
+            <label for="user-name" class="label">اسم المستخدم</label>
+            <input type="text" id="user-name" class="register-input" placeholder="اسم المستخدم">
+            <p id="user-name-error" class="error-message"></p>
+        </div>
+        <div class="form-group">
+            <label for="user-email" class="label">البريد الإلكتروني</label>
+            <input type="email" id="user-email" class="register-input" placeholder="example@example.com">
+            <p id="user-email-error" class="error-message"></p>
+        </div>
+        <button id="register-btn" class="register-button" onclick="registerUser()">تسجيل</button>
+    </div>
 
-
-    <!-------------------------------------------------------------------------------------------->
+    <!-- نهاية شاشة التسجيل --------------------------------------------------- -->
+      
+    <!-- شاشة الترحيب ---------------------------------------------------------- -->
  
-     <!-- قسم مقاطع يوتيوب -->
-<div id="youtube-videos"></div>
-<div id="pagination"></div>
-
-        <button id="main-menu-btn" class="main-btn hidden" onclick="goToMainMenu()">العودة إلى الشاشة الرئيسية</button>
-
-      <!-------------------------------------------------------------------------------------------->
-    
-       
-        <!-- إضافة زر إرسال رسالة التليجرام -->
- <button id="send-last-match" class="icon-btn">إرسال آخر مباراة</button>
-
-<button class="icon-btn" id="telegram-send-btn">✉️ إرسال رسالة</button>
-
-    <!-------------------------------------------------------------------------------------------->
-
-
-      
-     
-      
-
-   
-       
-      
-      
-      
-      
-      
-    <!-------------------------------------------------------------------------------------------->
- <!-- البطاقة التعريفية -->
-<div id="about-card" class="about-card hidden">
-    <span class="close-btn" onclick="closeAboutCard()">×</span>
-    <h2>مرحبــاً يا زعمـــاء</h2>
-    <p>أنا أخوكم الهلالي الملقب بـ **حالي الذوق** صممت هذا التطبيق خصيصًا لعشاق الزعيم نادي الهلال و يجمع كل ما يهم الجمهور من معلومات و بطولات وأحداث تهمكم أتمنى أن ينال إعجابكم ويكون مصدر فخر لكل هلالي زعيمنا يستحق الأفضل دائمًا</p>
-    
-    <h3>@B_S_2000 </h3>
-   </div>   
-    <!-------------------------------------------------------------------------------------------->
-
-   
-        <!-------------------------------------------------------------------------------------------->
-<!-- الفوتر -->
-<footer>
-  <div class="social-links">
-    <!-- النص "للدعم والتواصل" مع الأيقونة -->
-    <p id="support-text" style="margin: 10px 0; font-weight: bold;">
-      <i class="fa fa-envelope" aria-hidden="true" style="margin-right: 5px; color: #ffcc00;"></i> للدعــم و التواصــل
-    </p>
-    <!-- الروابط -->
-    <div class="social-icons" style="display: flex; justify-content: center; gap: 15px;">
-      <a href="https://x.com/B_S_2000" target="_blank" style="color: #1DA1F2; font-weight: bold;">
-        <i class="fab fa-twitter" style="color: #1DA1F2; margin-right: 5px;"></i> Twitter
-      </a>
-      <a href="https://www.youtube.com/channel/UC3YNG_VDR80fXDkyKssV3-Q/join" target="_blank" style="color: #FF0000; font-weight: bold;">
-        <i class="fab fa-youtube" style="color: #FF0000; margin-right: 5px;"></i> YouTube
-      </a>
-      <a href="https://t.me/AlHilalFansChannel" target="_blank" style="color: #0088CC; font-weight: bold;">
-        <i class="fab fa-telegram" style="color: #0088CC; margin-right: 5px;"></i> Telegram
-      </a>
+    <div id="welcome-screen" class="screen" style="display: none;">
+        <div class="welcome-container">
+            <img id="welcome-image" src="https://github.com/sweettaste95/hilal-images/blob/main/signal-2024-11-09-085859.jpeg?raw=true" alt="مرحبًا بك" class="welcome-image">
+            <h1 id="welcome-message" class="welcome-title"></h1>
+            <p class="welcome-description">استمتع بالمعلومات والبيانات الحصرية حول تاريخ وإنجازات نادي الهلال.</p>
+            <div id="timer" class="timer" style="display: none;">سيتم تسجيل خروجك بعد 10 ثوانٍ...</div>
+        </div>
     </div>
-  </div>
-  <p>© جميع الحقوق محفوظة لتطبيق "إنجازات الهلال" الخاص بحساب "حالي الذوق" - الإصدار الأول 2024</p>
-</footer>
+
+     <!-- نهاية شاشة الترحيب --------------------------------------------------- -->
+
+    <!-- الفوتر ---------------------------------------------------------------- --> 
+      
+      <footer class="footer">
+        <div class="footer-links">
+            <a href="https://x.com/B_S_2000" target="_blank" class="footer-link">
+                <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" class="footer-icon">
+                تويتر
+            </a>
+            <a href="https://www.youtube.com/channel/UC3YNG_VDR80fXDkyKssV3-Q/join" target="_blank" class="footer-link">
+                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" class="footer-icon">
+                يوتيوب
+            </a>
+            <a href="https://t.me/AlHilalFansChannel" target="_blank" class="footer-link">
+                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" class="footer-icon">
+                تيليجرام
+            </a>
+        </div>
+        <p class="footer-copyright">
+            © جميع الحقوق محفوظة لتطبيق "إنجازات الهلال" الخاص بحساب "حالي الذوق" - الإصدار الأول 2024
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
